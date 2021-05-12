@@ -6,6 +6,7 @@ import {
   KeyboardTimePicker,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
 import Section from '../interfaces/Section';
 
 interface RoomPageProps {
@@ -63,19 +64,21 @@ const RoomPage: React.FC<RoomPageProps> = () => {
         ))}
       </TextField>
       <Button onClick={() => console.log(currentSection)}>clickme</Button>
-      <KeyboardDatePicker
-        disableToolbar
-        variant="inline"
-        format="MM/dd/yyyy"
-        margin="normal"
-        id="date-picker-inline"
-        label="Date picker inline"
-        value={selectedDate}
-        onChange={handleDateChange}
-        KeyboardButtonProps={{
-          'aria-label': 'change date',
-        }}
-      />
+      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <KeyboardDatePicker
+          disableToolbar
+          variant="inline"
+          format="MM/dd/yyyy"
+          margin="normal"
+          id="date-picker-inline"
+          label="Date picker inline"
+          value={selectedDate}
+          onChange={handleDateChange}
+          KeyboardButtonProps={{
+            'aria-label': 'change date',
+          }}
+        />
+      </MuiPickersUtilsProvider>
     </div>
   );
 };
