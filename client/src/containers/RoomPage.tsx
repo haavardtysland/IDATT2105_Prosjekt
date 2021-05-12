@@ -1,13 +1,8 @@
 import React, { ChangeEvent, useState } from 'react';
 import Room from '../interfaces/Room';
 import { Button, MenuItem, TextField } from '@material-ui/core';
-import {
-  MuiPickersUtilsProvider,
-  KeyboardTimePicker,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
 import Section from '../interfaces/Section';
+import Calendar from '../components/Calendar';
 
 interface RoomPageProps {
   room?: Room;
@@ -42,8 +37,9 @@ const RoomPage: React.FC<RoomPageProps> = () => {
     if (tmp !== undefined) setCurrentSection(tmp);
   };
 
-  const handleDateChange = (date: Date | null) => {
-    setSelectedDate(date);
+  const handleChangeDate = (event: ChangeEvent<HTMLInputElement>) => {
+    console.log(event.target.value);
+    setSelectedDate(new Date(event.target.value));
   };
 
   return (
@@ -63,22 +59,25 @@ const RoomPage: React.FC<RoomPageProps> = () => {
           </MenuItem>
         ))}
       </TextField>
-      <Button onClick={() => console.log(currentSection)}>clickme</Button>
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <KeyboardDatePicker
-          disableToolbar
-          variant="inline"
-          format="MM/dd/yyyy"
-          margin="normal"
-          id="date-picker-inline"
-          label="Date picker inline"
-          value={selectedDate}
-          onChange={handleDateChange}
-          KeyboardButtonProps={{
-            'aria-label': 'change date',
-          }}
-        />
-      </MuiPickersUtilsProvider>
+      <Button
+        onClick={() => {
+          console.log(currentSection);
+          console.log(selectedDate);
+        }}
+      >
+        clickme
+      </Button>
+      <TextField
+        id="date"
+        label="Dato"
+        type="date"
+        defaultValue="2021-05-12"
+        InputLabelProps={{
+          shrink: true,
+        }}
+        onChange={handleChangeDate}
+      />
+      <Calendar date={new Date('2021-05-12')} />
     </div>
   );
 };
