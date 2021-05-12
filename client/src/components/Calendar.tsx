@@ -142,6 +142,7 @@ const Calendar: React.FC<CalendarProps> = ({ date }: CalendarProps) => {
         >
           {renderTimeCards}
         </GridList>
+        <Button>Reserver de markerte tidene</Button>
       </CardContent>
     </Card>
   );
