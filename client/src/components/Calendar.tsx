@@ -53,9 +53,6 @@ interface CalendarProps {
 
 const Calendar: React.FC<CalendarProps> = ({ date }: CalendarProps) => {
   const classes = useStyles();
-  //const [times, setTimes] = useState<string[]>([]);
-  //const [hour, setHour] = useState<number>(6);
-  //const [minutes, setMinutes] = useState<number>(30);
 
   const getDayOfWeek = (id: number): string => {
     let str = '';
