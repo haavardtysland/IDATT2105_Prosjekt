@@ -1,6 +1,11 @@
 import React, { ChangeEvent, useState } from 'react';
 import Room from '../interfaces/Room';
 import { Button, MenuItem, TextField } from '@material-ui/core';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
 import Section from '../interfaces/Section';
 
 interface RoomPageProps {
@@ -13,6 +18,9 @@ const RoomPage: React.FC<RoomPageProps> = () => {
     sectionId: -1,
     sectionName: '',
   });
+  const [selectedDate, setSelectedDate] = React.useState<Date | null>(
+    new Date('2014-08-18T21:11:54')
+  );
   const room: Room = {
     roomId: 1,
     name: 'Room 1',
@@ -26,11 +34,15 @@ const RoomPage: React.FC<RoomPageProps> = () => {
     ],
   };
 
-  const onChangeCurrentSection = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChangeCurrentSection = (event: ChangeEvent<HTMLInputElement>) => {
     const tmp = room.sections.find(
       (section) => section.sectionId === +event.target.value
     );
     if (tmp !== undefined) setCurrentSection(tmp);
+  };
+
+  const handleDateChange = (date: Date | null) => {
+    setSelectedDate(date);
   };
 
   return (
@@ -41,7 +53,7 @@ const RoomPage: React.FC<RoomPageProps> = () => {
         variant="outlined"
         select
         label="Seksjon"
-        onChange={onChangeCurrentSection}
+        onChange={handleChangeCurrentSection}
         value={currentSection}
       >
         {room.sections.map((section, key: number) => (
@@ -51,6 +63,19 @@ const RoomPage: React.FC<RoomPageProps> = () => {
         ))}
       </TextField>
       <Button onClick={() => console.log(currentSection)}>clickme</Button>
+      <KeyboardDatePicker
+        disableToolbar
+        variant="inline"
+        format="MM/dd/yyyy"
+        margin="normal"
+        id="date-picker-inline"
+        label="Date picker inline"
+        value={selectedDate}
+        onChange={handleDateChange}
+        KeyboardButtonProps={{
+          'aria-label': 'change date',
+        }}
+      />
     </div>
   );
 };
