@@ -2,8 +2,6 @@ import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import LoginCard from '../components/LoginCard';
 import { useHistory } from 'react-router-dom';
-import { LOGIN } from '../graphQL/Queries';
-import { useQuery } from '@apollo/client';
 import { UserContext } from '../App';
 
 const LoginContainer = styled.div`
@@ -30,15 +28,9 @@ const Login = () => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const { setUser } = useContext(UserContext);
-  const { loading, data } = useQuery(LOGIN, {
-    variables: { username: username, password: password },
-  });
 
   const onLogin = () => {
-    if (data) {
-      setUser(data.login.id);
-      history.push('/mainPage');
-    }
+    history.push('/mainPage');
   };
 
   const onNewUser = () => {
