@@ -15,21 +15,21 @@ import java.security.spec.InvalidKeySpecException;
 @Entity
 public class User {
   @Id
-  @Column(name = "bruker_id")
+  @Column(name = "userId")
   private int userId;
-  @Column(name = "fornavn")
+  @Column(name = "firstName")
   private String firstName;
-  @Column(name = "etternavn")
+  @Column(name = "sureName")
   private String surname;
-  @Column(name = "epost")
+  @Column(name = "email", unique = true)
   private String email;
-  @Column(name = "passord")
+  @Column(name = "password")
   private String password;
-  @Column(name = "is_Admin")
+  @Column(name = "isAdmin")
   private Boolean isAdmin;
-  @Column(name = "gyldig_dato")
+  @Column(name = "validDate")
   private Date validDate;
-  @Column(name = "telefon_nr")
+  @Column(name = "phoneNumber")
   private int phoneNumber;
   private String salt;
 
