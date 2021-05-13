@@ -1,8 +1,28 @@
 import React, { ChangeEvent, useState } from 'react';
 import Room from '../interfaces/Room';
-import { Button, MenuItem, TextField } from '@material-ui/core';
+import {
+  Button,
+  Divider,
+  MenuItem,
+  TextField,
+  withStyles,
+} from '@material-ui/core';
 import Section from '../interfaces/Section';
 import Calendar from '../components/CalendarComponents/Calendar';
+import styled from 'styled-components';
+
+const StyledHeader = styled.h1`
+  margin-top: 6rem;
+  margin-left: 50%;
+`;
+const StyledTextField = withStyles({
+  root: {
+    width: '20%',
+    //margin: '5%',
+    //marginRight: '10rem',
+    margin: '5% 10rem 5% 20%',
+  },
+})(TextField);
 
 interface RoomPageProps {
   room?: Room;
@@ -44,39 +64,34 @@ const RoomPage: React.FC<RoomPageProps> = () => {
 
   return (
     <div>
-      <h1 style={{ marginTop: '5rem' }}>{room.name}</h1>
-      <TextField
-        style={{ width: '20%', margin: '5%' }}
-        variant="outlined"
-        select
-        label="Seksjon"
-        onChange={handleChangeCurrentSection}
-        value={currentSection}
-      >
-        {room.sections.map((section, key: number) => (
-          <MenuItem value={section.sectionId} key={key}>
-            {section.sectionName}
-          </MenuItem>
-        ))}
-      </TextField>
-      <Button
-        onClick={() => {
-          console.log(currentSection);
-          console.log(selectedDate);
-        }}
-      >
-        clickme
-      </Button>
-      <TextField
-        id="date"
-        label="Dato"
-        type="date"
-        defaultValue="2021-05-12"
-        InputLabelProps={{
-          shrink: true,
-        }}
-        onChange={handleChangeDate}
-      />
+      <StyledHeader>{room.name}</StyledHeader>
+      <Divider variant="fullWidth" />
+      <div>
+        <StyledTextField
+          variant="outlined"
+          select
+          label="Seksjon"
+          onChange={handleChangeCurrentSection}
+          value={currentSection}
+        >
+          {room.sections.map((section, key: number) => (
+            <MenuItem value={section.sectionId} key={key}>
+              {section.sectionName}
+            </MenuItem>
+          ))}
+        </StyledTextField>
+        <TextField
+          style={{ marginTop: '5%', marginLeft: '15%' }}
+          id="date"
+          label="Dato"
+          type="date"
+          defaultValue="2021-05-12"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          onChange={handleChangeDate}
+        />
+      </div>
       <Calendar date={new Date('2021-05-12')} />
     </div>
   );

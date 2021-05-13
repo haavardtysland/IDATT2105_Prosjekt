@@ -1,6 +1,7 @@
-import { Card, CardContent, Typography } from '@material-ui/core';
+import { Card, CardContent, Typography, Tooltip } from '@material-ui/core';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import Circle from './Circle';
 
 const TransformDiv = styled.div`
   transition: transform 450ms;
@@ -25,16 +26,19 @@ const CalendarCard: React.FC<CalendarCardProps> = ({
     }
   };
   return (
-    <TransformDiv
-      onClick={handleUpdateBackgroundColor}
-      style={{ padding: '3px' }}
-    >
-      <Card style={{ backgroundColor: backgroundcolor }}>
-        <CardContent>
-          <Typography>{time}</Typography>
-        </CardContent>
-      </Card>
-    </TransformDiv>
+    <Tooltip title="ledig">
+      <TransformDiv
+        onClick={handleUpdateBackgroundColor}
+        style={{ padding: '3px' }}
+      >
+        <Card style={{ backgroundColor: backgroundcolor }}>
+          <CardContent>
+            <Typography>{time}</Typography>
+            <Circle />
+          </CardContent>
+        </Card>
+      </TransformDiv>
+    </Tooltip>
   );
 };
 

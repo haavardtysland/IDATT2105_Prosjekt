@@ -10,6 +10,7 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import TimeCard from './TimeCard';
+import getDayOfWeek from './GetDayOfWeek';
 
 const useStyles = makeStyles({
   root: {
@@ -36,41 +37,6 @@ interface CalendarProps {
 
 const Calendar: React.FC<CalendarProps> = ({ date }: CalendarProps) => {
   const classes = useStyles();
-
-  const getDayOfWeek = (id: number): string => {
-    let str = '';
-    switch (id) {
-      case 1: {
-        str = 'Mandag';
-        break;
-      }
-      case 2: {
-        str = 'Tirsdag';
-        break;
-      }
-      case 3: {
-        str = 'Onsdag';
-        break;
-      }
-      case 4: {
-        str = 'Torsdag';
-        break;
-      }
-      case 5: {
-        str = 'Fredag';
-        break;
-      }
-      case 6: {
-        str = 'Lørdag';
-        break;
-      }
-      case 7: {
-        str = 'Søndag';
-        break;
-      }
-    }
-    return str;
-  };
 
   const setTimeArr = (): string[] => {
     let hour = 7;
@@ -99,7 +65,7 @@ const Calendar: React.FC<CalendarProps> = ({ date }: CalendarProps) => {
   });
 
   return (
-    <Card>
+    <Card style={{ margin: '1%' }}>
       <CardContent>
         <Typography
           className={classes.title}
