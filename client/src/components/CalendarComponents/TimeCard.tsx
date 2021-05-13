@@ -14,6 +14,7 @@ interface TimeCardProps {
   reset: boolean;
 }
 
+//TODO pass a list as a prop
 const TimeCard: React.FC<TimeCardProps> = ({ time, reset }: TimeCardProps) => {
   const [backgroundcolor, setBackgroundcolor] = useState<string>('');
   const [isMarked, setIsMarked] = useState<boolean>(false);
