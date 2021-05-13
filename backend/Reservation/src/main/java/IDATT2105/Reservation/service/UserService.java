@@ -35,6 +35,7 @@ public class UserService {
 
     User newUser = new User(id, firstname, surname, email, isAdmin, validDate,  password, phoneNumber);
     log.info("creating new user: " + newUser.getUserId());
+    log.info("creating new password: " + newUser.getPassword());
     boolean result = repo.addUser(newUser);
     log.info("adding new user was " + result);
     if (result) {

@@ -66,20 +66,24 @@ public class UserRepo extends ReservationRepo {
     return new ArrayList<>(allUsers);
   }
 
-    public boolean addUser(User user) {
-      EntityManager em = getEm();
-      try{
-        em.getTransaction().begin();
-        em.persist(user);
-        em.getTransaction().commit();
-        return true;
-      } catch(Exception e) {
-        em.getTransaction().rollback();
-        return false;
-      } finally {
-        em.close();
-      }
+  public boolean addUser(User user){
+    log.info("adding a user" + user.getUserId() + " | " + user.getSurname() + ' ' + user.toString());
+    EntityManager em = getEm();
+
+    try{
+      em.getTransaction().begin();
+      em.persist(user);
+      em.getTransaction().commit();
+      log.info("added user successfully " + user.getUserId());
+      return true;
+    }catch (Exception e){
+      log.error("adding user " + user.getUserId() + " failed due to " + e.getMessage());
+      em.getTransaction().rollback();
+      return false;
+    }finally {
+      em.close();
     }
+  }
 
   public boolean deleteUser(int userId){
     log.info("deleting user with id: " + userId);

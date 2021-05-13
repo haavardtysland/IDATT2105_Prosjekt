@@ -21,6 +21,7 @@ import java.security.spec.InvalidKeySpecException;
 @Entity
 public class User {
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "userId")
   private int userId;
   @Column(name = "firstName")
@@ -176,7 +177,8 @@ public class User {
         "\n     \"email\":" + '\"' + email + '\"' + "," +
         "\n     \"isAdmin\":" + '\"' + isAdmin + '\"' + "," +
         "\n     \"validDate\":" + '\"' + validDate + '\"' + "," +
-        "\n     \"phoneNumber\":" + phoneNumber + "," +
+        "\n     \"password\":" + '\"' + password + '\"' + "," +
+        "\n     \"phoneNumber\":" + '\"' + phoneNumber + '\"' + "," +
         "\n }";
   }
 
@@ -186,9 +188,10 @@ public class User {
         "\n     \"firstName\":" + '\"' + firstName + '\"' + "," +
         "\n     \"surname\":" + '\"' + surname + '\"' + "," +
         "\n     \"email\":" + '\"' + email + '\"' + "," +
-        "\n     \"isAdmin\":" + isAdmin + "," +
-        "\n     \"validDate\":" + validDate + "," +
-        "\n     \"phoneNumber\":" + phoneNumber + "," +
+        "\n     \"isAdmin\":" + '\"' + isAdmin + '\"' + "," +
+        "\n     \"validDate\":" + '\"' + validDate + '\"' + "," +
+        "\n     \"password\":" + '\"' + password + '\"'+ "," +
+        "\n     \"phoneNumber\":" + '\"' + phoneNumber + '\"' + "," +
         "\n }";
   }
 

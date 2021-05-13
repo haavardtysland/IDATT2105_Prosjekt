@@ -1,0 +1,18 @@
+
+H
+java:S1481#"+Remove this unused "result" local variable.(Ÿ¢¢õ8è¾ÿ•/
+W
+java:S1854#":Remove this useless assignment to local variable "result".(Ÿ¢¢õ8è¾ÿ•/
+T
+java:S1135""2Complete the task associated to this TODO comment.(Ë‚µÀûÿÿÿÿ8è¾ÿ•/
+@
+java:S2119"Save and re-use this "Random".(šŸ«íøÿÿÿÿ8è¾ÿ•/
+ù
+java:S1598"ÖThis file "UserService.java" should be located in "IDATT2106\team6\Gidd\service" directory, not in "D:\Fullstack\ProsjektFulstack\IDATT2105_Prosjekt\backend\Reservation\src\main\java\IDATT2105\Reservation\service".(š÷ëÇıÿÿÿÿ8è¾ÿ•/
+N
+java:S1172'",Remove this unused method parameter "email".(˜ïËêÿÿÿÿÿ8è¾ÿ•/
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(š÷ëÇıÿÿÿÿ8è¾ÿ•/
+T
+java:S1135"2Complete the task associated to this TODO comment.(éãŸ½şÿÿÿÿ8è¾ÿ•/
+T
+java:S1135("2Complete the task associated to this TODO comment.(±ÉÖıøÿÿÿÿ8è¾ÿ•/
