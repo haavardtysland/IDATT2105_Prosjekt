@@ -820,6 +820,447 @@ to section {
 "}
 2021-05-13T12:03:01.778134 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
 >>>>>>> 7319f913ff9a461ce9af17254ebae4480821c8b2
+<<<<<<< HEAD
+2021-05-13T12:23:09.997317500 class IDATT2105.Reservation.controller.UserController INFO: recieved postmapping to /user: {firstName=Mathias, password=123, phoneNumber=123332, surName=Myrold, validDate=2015-03-31, isAdmin=true, email=mattimy99@gmail.com}
+2021-05-13T12:23:10.034303100 class IDATT2105.Reservation.service.UserService INFO: getting user by email: mattimy99@gmail.com
+2021-05-13T12:23:14.320505800 class IDATT2105.Reservation.repo.UserRepo INFO: finding user by email mattimy99@gmail.com
+2021-05-13T12:23:16.073202900 class IDATT2105.Reservation.repo.UserRepo INFO: found single result with email: mattimy99@gmail.com
+2021-05-13T12:23:16.195197100 class IDATT2105.Reservation.repo.UserRepo INFO: finding user with email mattimy99@gmail.com failed due to getSingleResult() did not retrieve any entities.
+2021-05-13T12:23:16.197197600 class IDATT2105.Reservation.controller.ControllerUtil INFO: creating new random id
+2021-05-13T12:23:18.799628600 class IDATT2105.Reservation.service.UserService INFO: creating new user: 1320972286
+2021-05-13T12:23:18.800630100 class IDATT2105.Reservation.service.UserService INFO: creating new password: 8906b6824c539daea0d641a19726e3f1a9bcdf10c4a891255c43f6d09b1e83b9b605fc2fff62c18fd5be7dfc431e981efebe978d199713b9b6eefca4d457870f
+2021-05-13T12:23:18.837723600 class IDATT2105.Reservation.repo.UserRepo INFO: adding a user1320972286 | Myrold 
+  {
+     "userId":1320972286,
+     "firstName":"Mathias",
+     "surname":"Myrold",
+     "email":"mattimy99@gmail.com",
+     "isAdmin":"true",
+     "validDate":"2015-03-31",
+     "password":"8906b6824c539daea0d641a19726e3f1a9bcdf10c4a891255c43f6d09b1e83b9b605fc2fff62c18fd5be7dfc431e981efebe978d199713b9b6eefca4d457870f",
+     "phoneNumber":"123332",
+ }
+2021-05-13T12:23:19.003253100 class IDATT2105.Reservation.repo.UserRepo INFO: added user successfully 1
+2021-05-13T12:23:19.004253 class IDATT2105.Reservation.service.UserService INFO: adding new user was true
+2021-05-13T12:23:19.005251900 class IDATT2105.Reservation.controller.UserController INFO: created user with id: 1
+2021-05-13T12:23:19.009254500 class IDATT2105.Reservation.controller.UserController INFO: created user 1 | mattimy99@gmail.com
+2021-05-13T12:23:19.009254500 class IDATT2105.Reservation.controller.UserController INFO: created user
+2021-05-13T12:23:19.013253200 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-13T12:30:51.820160 class IDATT2105.Reservation.controller.UserController INFO: recieved deletemapping to user with id 1
+2021-05-13T12:30:51.833156 class IDATT2105.Reservation.service.UserService INFO: deleting user 1
+2021-05-13T12:30:51.834160 class IDATT2105.Reservation.repo.UserRepo INFO: deleting user with id: 1
+2021-05-13T12:30:54.111534800 class IDATT2105.Reservation.repo.UserRepo INFO: finding user 1
+2021-05-13T12:30:54.194532900 class IDATT2105.Reservation.repo.UserRepo INFO: found user 1 to be deleted
+2021-05-13T12:30:54.742530900 class IDATT2105.Reservation.repo.UserRepo INFO: deleting user 1 failed due to You have attempted to set a value of type class java.lang.Integer for parameter 1 with expected type of class IDATT2105.Reservation.models.User from query string DELETE FROM Reservation WHERE user = ?1 .
+2021-05-13T12:30:54.746531500 class IDATT2105.Reservation.controller.UserController INFO: unable to delete user with id: 1
+2021-05-13T12:30:54.752531900 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-13T12:31:55.540220600 class IDATT2105.Reservation.controller.UserController INFO: recieved deletemapping to user with id 1320972286
+2021-05-13T12:31:55.557234200 class IDATT2105.Reservation.service.UserService INFO: deleting user 1320972286
+2021-05-13T12:31:55.559222200 class IDATT2105.Reservation.repo.UserRepo INFO: deleting user with id: 1320972286
+2021-05-13T12:31:55.563223400 class IDATT2105.Reservation.repo.UserRepo INFO: finding user 1320972286
+2021-05-13T12:31:55.586219800 class IDATT2105.Reservation.repo.UserRepo INFO: user to be deleted 1320972286 not found
+2021-05-13T12:31:55.598220100 class IDATT2105.Reservation.repo.UserRepo INFO: deleting user 1320972286 failed due to 
+Exception Description: No transaction is currently active
+2021-05-13T12:31:55.599221 class IDATT2105.Reservation.controller.UserController INFO: unable to delete user with id: 1320972286
+2021-05-13T12:31:55.599221 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-13T12:32:01.088501 class IDATT2105.Reservation.controller.UserController INFO: recieved deletemapping to user with id 1
+2021-05-13T12:32:01.089499500 class IDATT2105.Reservation.service.UserService INFO: deleting user 1
+2021-05-13T12:32:01.090501400 class IDATT2105.Reservation.repo.UserRepo INFO: deleting user with id: 1
+2021-05-13T12:32:01.090501400 class IDATT2105.Reservation.repo.UserRepo INFO: finding user 1
+2021-05-13T12:32:01.091502 class IDATT2105.Reservation.repo.UserRepo INFO: found user 1 to be deleted
+2021-05-13T12:32:01.102502800 class IDATT2105.Reservation.repo.UserRepo INFO: deleting user 1 failed due to You have attempted to set a value of type class java.lang.Integer for parameter 1 with expected type of class IDATT2105.Reservation.models.User from query string DELETE FROM Reservation WHERE user = ?1 .
+2021-05-13T12:32:01.104502700 class IDATT2105.Reservation.controller.UserController INFO: unable to delete user with id: 1
+2021-05-13T12:32:01.118500600 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-13T12:34:27.417424200 class IDATT2105.Reservation.controller.UserController INFO: recieved deletemapping to user with id 1
+2021-05-13T12:34:27.435429200 class IDATT2105.Reservation.service.UserService INFO: deleting user 1
+2021-05-13T12:34:27.437424300 class IDATT2105.Reservation.repo.UserRepo INFO: deleting user with id: 1
+2021-05-13T12:34:30.326387500 class IDATT2105.Reservation.repo.UserRepo INFO: finding user 1
+2021-05-13T12:34:30.426387400 class IDATT2105.Reservation.repo.UserRepo INFO: found user 1 to be deleted
+2021-05-13T12:34:31.411453800 class IDATT2105.Reservation.repo.UserRepo INFO: user 1 deleted successfully
+2021-05-13T12:34:31.412451100 class IDATT2105.Reservation.controller.UserController INFO: deletion successful
+2021-05-13T12:34:31.421452 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-13T12:34:53.733601700 class IDATT2105.Reservation.controller.UserController INFO: recieved postmapping to /user: {firstName=Mathias, password=123, phoneNumber=123332, surName=Myrold, validDate=2015-03-31, isAdmin=true, email=mattimy99@gmail.com}
+2021-05-13T12:34:53.734602500 class IDATT2105.Reservation.service.UserService INFO: getting user by email: mattimy99@gmail.com
+2021-05-13T12:34:53.742607200 class IDATT2105.Reservation.repo.UserRepo INFO: finding user by email mattimy99@gmail.com
+2021-05-13T12:34:53.782602100 class IDATT2105.Reservation.repo.UserRepo INFO: found single result with email: mattimy99@gmail.com
+2021-05-13T12:34:53.838603 class IDATT2105.Reservation.repo.UserRepo INFO: finding user with email mattimy99@gmail.com failed due to getSingleResult() did not retrieve any entities.
+2021-05-13T12:34:53.839604100 class IDATT2105.Reservation.controller.ControllerUtil INFO: creating new random id
+2021-05-13T12:34:54.091143700 class IDATT2105.Reservation.service.UserService INFO: creating new user: 1356351367
+2021-05-13T12:34:54.093139700 class IDATT2105.Reservation.service.UserService INFO: creating new password: 5da00e3992e69b004a3cd41dff1157f906126c56606da61cd6df4cb660f3fc46bd60abbdd15f82daab3a8ba78bc964626785af81d5a2e258fd89bd60ebae7de2
+2021-05-13T12:34:54.833944400 class IDATT2105.Reservation.repo.UserRepo INFO: adding a user1356351367 | Myrold 
+  {
+     "userId":1356351367,
+     "firstName":"Mathias",
+     "surname":"Myrold",
+     "email":"mattimy99@gmail.com",
+     "isAdmin":"true",
+     "validDate":"2015-03-31",
+     "password":"5da00e3992e69b004a3cd41dff1157f906126c56606da61cd6df4cb660f3fc46bd60abbdd15f82daab3a8ba78bc964626785af81d5a2e258fd89bd60ebae7de2",
+     "phoneNumber":"123332",
+ }
+2021-05-13T12:34:54.963945600 class IDATT2105.Reservation.repo.UserRepo INFO: added user successfully 1356351367
+2021-05-13T12:34:54.964945900 class IDATT2105.Reservation.service.UserService INFO: adding new user was true
+2021-05-13T12:34:54.965945600 class IDATT2105.Reservation.controller.UserController INFO: created user with id: 1356351367
+2021-05-13T12:34:54.970946400 class IDATT2105.Reservation.controller.UserController INFO: created user 1356351367 | mattimy99@gmail.com
+2021-05-13T12:34:54.971949600 class IDATT2105.Reservation.controller.UserController INFO: created user
+2021-05-13T12:34:54.972947400 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-13T12:35:51.530848100 class IDATT2105.Reservation.controller.UserController INFO: Received GetMapping at '/user'
+2021-05-13T12:35:51.530848100 class IDATT2105.Reservation.service.UserService INFO: getting all users
+2021-05-13T12:37:39.383493 class IDATT2105.Reservation.controller.UserController INFO: Received GetMapping at '/user'
+2021-05-13T12:37:39.383493 class IDATT2105.Reservation.service.UserService INFO: getting all users
+2021-05-13T12:37:49.361289900 class IDATT2105.Reservation.controller.UserController INFO: Received GetMapping at '/user'
+2021-05-13T12:37:49.371286 class IDATT2105.Reservation.service.UserService INFO: getting all users
+2021-05-13T12:38:06.277804400 class IDATT2105.Reservation.controller.UserController INFO: Received GetMapping at '/user'
+2021-05-13T12:38:06.286807700 class IDATT2105.Reservation.service.UserService INFO: getting all users
+2021-05-13T12:41:48.081987900 class IDATT2105.Reservation.controller.UserController INFO: Received GetMapping at '/user'
+2021-05-13T12:41:48.090985400 class IDATT2105.Reservation.service.UserService INFO: getting all users
+2021-05-13T12:43:31.895048400 class IDATT2105.Reservation.controller.UserController INFO: Received GetMapping at '/user'
+2021-05-13T12:43:31.905046900 class IDATT2105.Reservation.service.UserService INFO: getting all users
+2021-05-13T13:57:05.873837700 class IDATT2105.Reservation.controller.UserController INFO: recieved postmapping to /user: {firstName=Mathias, phoneNumber=123332, surName=Myrold, validDate=2015-03-31, isAdmin=true, email=mattimy99@gmail.com}
+2021-05-13T13:57:05.880841600 class IDATT2105.Reservation.service.UserService INFO: getting user by email: mattimy99@gmail.com
+2021-05-13T13:57:07.252593 class IDATT2105.Reservation.repo.UserRepo INFO: finding user by email mattimy99@gmail.com
+2021-05-13T13:57:07.579590 class IDATT2105.Reservation.repo.UserRepo INFO: found single result with email: mattimy99@gmail.com
+2021-05-13T13:57:07.628591200 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-13T13:57:47.556252800 class IDATT2105.Reservation.controller.UserController INFO: recieved postmapping to /user: {firstName=Genpassord, phoneNumber=123332, surName=TestGenPAss, validDate=2015-03-31, isAdmin=false, email=Generertpassord@gmail.com}
+2021-05-13T13:57:47.557252500 class IDATT2105.Reservation.service.UserService INFO: getting user by email: Generertpassord@gmail.com
+2021-05-13T13:57:47.557252500 class IDATT2105.Reservation.repo.UserRepo INFO: finding user by email Generertpassord@gmail.com
+2021-05-13T13:57:47.558252400 class IDATT2105.Reservation.repo.UserRepo INFO: found single result with email: Generertpassord@gmail.com
+2021-05-13T13:57:47.598254100 class IDATT2105.Reservation.repo.UserRepo INFO: finding user with email Generertpassord@gmail.com failed due to getSingleResult() did not retrieve any entities.
+2021-05-13T13:57:47.602252700 class IDATT2105.Reservation.controller.ControllerUtil INFO: creating new random id
+2021-05-13T13:57:47.602252700 class IDATT2105.Reservation.controller.ControllerUtil INFO: generating random password
+2021-05-13T14:00:27.369079200 class IDATT2105.Reservation.controller.UserController INFO: recieved postmapping to /user: {firstName=Genpassord, phoneNumber=123332, surName=TestGenPAss, validDate=2015-03-31, isAdmin=false, email=Generertpassord@gmail.com}
+2021-05-13T14:00:27.375078600 class IDATT2105.Reservation.service.UserService INFO: getting user by email: Generertpassord@gmail.com
+2021-05-13T14:00:29.219083300 class IDATT2105.Reservation.repo.UserRepo INFO: finding user by email Generertpassord@gmail.com
+2021-05-13T14:00:29.678080 class IDATT2105.Reservation.repo.UserRepo INFO: found single result with email: Generertpassord@gmail.com
+2021-05-13T14:00:29.760081700 class IDATT2105.Reservation.repo.UserRepo INFO: finding user with email Generertpassord@gmail.com failed due to getSingleResult() did not retrieve any entities.
+2021-05-13T14:00:29.762084600 class IDATT2105.Reservation.controller.ControllerUtil INFO: creating new random id
+2021-05-13T14:00:29.763084300 class IDATT2105.Reservation.controller.ControllerUtil INFO: generating random password
+2021-05-13T14:00:30.587398200 class IDATT2105.Reservation.service.UserService INFO: creating new user: 2057024060
+2021-05-13T14:00:30.591398300 class IDATT2105.Reservation.service.UserService INFO: creating new password: 10699f1e918a7ee2eed2cbc223065a30761a8199185e81619b2806fa83af6683b9a7aeebd80214602f8ef4d3293b7bea59928ea4c6e18653882b32eed2539233
+2021-05-13T14:00:30.681396800 class IDATT2105.Reservation.repo.UserRepo INFO: adding a user2057024060 | TestGenPAss 
+  {
+     "userId":2057024060,
+     "firstName":"Genpassord",
+     "surname":"TestGenPAss",
+     "email":"Generertpassord@gmail.com",
+     "isAdmin":"false",
+     "validDate":"2015-03-31",
+     "password":"10699f1e918a7ee2eed2cbc223065a30761a8199185e81619b2806fa83af6683b9a7aeebd80214602f8ef4d3293b7bea59928ea4c6e18653882b32eed2539233",
+     "phoneNumber":"123332",
+ }
+2021-05-13T14:00:30.954394400 class IDATT2105.Reservation.repo.UserRepo INFO: added user successfully 2057024060
+2021-05-13T14:00:30.955395800 class IDATT2105.Reservation.service.UserService INFO: adding new user was true
+2021-05-13T14:00:30.956396400 class IDATT2105.Reservation.controller.UserController INFO: created user with id: 2057024060
+2021-05-13T14:00:30.958394 class IDATT2105.Reservation.controller.UserController INFO: created user 2057024060 | Generertpassord@gmail.com
+2021-05-13T14:00:30.959394100 class IDATT2105.Reservation.controller.UserController INFO: created user
+2021-05-13T14:00:30.962396300 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-13T14:41:32.287163400 class IDATT2105.Reservation.controller.UserController INFO: recieved postmapping to /user: {firstName=Skule, phoneNumber=123332, surName=Test send pass, validDate=2015-03-31, isAdmin=false, email=mathimyr@stud.ntnu.no}
+2021-05-13T14:41:32.293159700 class IDATT2105.Reservation.service.UserService INFO: getting user by email: mathimyr@stud.ntnu.no
+2021-05-13T14:41:33.838294700 class IDATT2105.Reservation.repo.UserRepo INFO: finding user by email mathimyr@stud.ntnu.no
+2021-05-13T14:41:34.088817700 class IDATT2105.Reservation.repo.UserRepo INFO: found single result with email: mathimyr@stud.ntnu.no
+2021-05-13T14:41:34.130820800 class IDATT2105.Reservation.repo.UserRepo INFO: finding user with email mathimyr@stud.ntnu.no failed due to getSingleResult() did not retrieve any entities.
+2021-05-13T14:41:34.132823800 class IDATT2105.Reservation.controller.ControllerUtil INFO: creating new random id
+2021-05-13T14:41:34.133821300 class IDATT2105.Reservation.controller.ControllerUtil INFO: generating random password
+2021-05-13T14:41:34.255822200 class IDATT2105.Reservation.service.UserService INFO: creating new user: 1620454443
+2021-05-13T14:41:34.256819900 class IDATT2105.Reservation.service.UserService INFO: creating new password: 8c3d06ba2e5eb0b63fb021b67d3a8bafa136dcda4a43996ae91f2ad581a418f48bc2a1ec273fb645e8846fdfee016f3911aa756042808b3ed515429121771d20
+2021-05-13T14:41:34.282820700 class IDATT2105.Reservation.repo.UserRepo INFO: adding a user1620454443 | Test send pass 
+  {
+     "userId":1620454443,
+     "firstName":"Skule",
+     "surname":"Test send pass",
+     "email":"mathimyr@stud.ntnu.no",
+     "isAdmin":"false",
+     "validDate":"2015-03-31",
+     "password":"8c3d06ba2e5eb0b63fb021b67d3a8bafa136dcda4a43996ae91f2ad581a418f48bc2a1ec273fb645e8846fdfee016f3911aa756042808b3ed515429121771d20",
+     "phoneNumber":"123332",
+ }
+2021-05-13T14:41:34.386819400 class IDATT2105.Reservation.service.UserService INFO: sending mail
+2021-05-13T14:41:34.389827500 class IDATT2105.Reservation.repo.UserRepo INFO: adding user 1620454443 failed due to null
+2021-05-13T14:43:35.724763300 class IDATT2105.Reservation.controller.UserController INFO: recieved postmapping to /user: {firstName=Skule, phoneNumber=123332, surName=Test send pass, validDate=2015-03-31, isAdmin=false, email=mathimyr@stud.ntnu.no}
+2021-05-13T14:43:35.725761800 class IDATT2105.Reservation.service.UserService INFO: getting user by email: mathimyr@stud.ntnu.no
+2021-05-13T14:43:35.725761800 class IDATT2105.Reservation.repo.UserRepo INFO: finding user by email mathimyr@stud.ntnu.no
+2021-05-13T14:43:35.726761600 class IDATT2105.Reservation.repo.UserRepo INFO: found single result with email: mathimyr@stud.ntnu.no
+2021-05-13T14:43:35.756761700 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-13T14:47:37.145257300 class IDATT2105.Reservation.controller.UserController INFO: recieved postmapping to /user: {firstName=Skule, phoneNumber=123332, surName=Test send pass, validDate=2015-03-31, isAdmin=false, email=mathimyr@stud.ntnu.no}
+2021-05-13T14:47:37.151259400 class IDATT2105.Reservation.service.UserService INFO: getting user by email: mathimyr@stud.ntnu.no
+2021-05-13T14:47:38.750263300 class IDATT2105.Reservation.repo.UserRepo INFO: finding user by email mathimyr@stud.ntnu.no
+2021-05-13T14:47:39.189259600 class IDATT2105.Reservation.repo.UserRepo INFO: found single result with email: mathimyr@stud.ntnu.no
+2021-05-13T14:47:39.321259200 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-13T14:56:01.720062300 class IDATT2105.Reservation.controller.UserController INFO: recieved postmapping to /user: {firstName=Skule, phoneNumber=123332, surName=Test send pass, validDate=2015-03-31, isAdmin=false, email=mathias-myro@hotmail.com}
+2021-05-13T14:56:01.726065700 class IDATT2105.Reservation.service.UserService INFO: getting user by email: mathias-myro@hotmail.com
+2021-05-13T14:56:03.364030600 class IDATT2105.Reservation.repo.UserRepo INFO: finding user by email mathias-myro@hotmail.com
+2021-05-13T14:56:03.655020700 class IDATT2105.Reservation.repo.UserRepo INFO: found single result with email: mathias-myro@hotmail.com
+2021-05-13T14:56:03.709021400 class IDATT2105.Reservation.repo.UserRepo INFO: finding user with email mathias-myro@hotmail.com failed due to getSingleResult() did not retrieve any entities.
+2021-05-13T14:56:03.712022100 class IDATT2105.Reservation.controller.ControllerUtil INFO: creating new random id
+2021-05-13T14:56:03.713022400 class IDATT2105.Reservation.controller.ControllerUtil INFO: generating random password
+2021-05-13T14:56:04.024029400 class IDATT2105.Reservation.service.UserService INFO: creating new user: 1430717067
+2021-05-13T14:56:04.025025800 class IDATT2105.Reservation.service.UserService INFO: creating new password: c4e1568ecb7b2e755633507ad7454cb0a9f62f52b7d8c65c87583db541285283e2f997b8340d6ecdf0935831a5e3cb92d940ce493141a34be994e93efe91e72f
+2021-05-13T14:56:04.088024100 class IDATT2105.Reservation.repo.UserRepo INFO: adding a user1430717067 | Test send pass 
+  {
+     "userId":1430717067,
+     "firstName":"Skule",
+     "surname":"Test send pass",
+     "email":"mathias-myro@hotmail.com",
+     "isAdmin":"false",
+     "validDate":"2015-03-31",
+     "password":"c4e1568ecb7b2e755633507ad7454cb0a9f62f52b7d8c65c87583db541285283e2f997b8340d6ecdf0935831a5e3cb92d940ce493141a34be994e93efe91e72f",
+     "phoneNumber":"123332",
+ }
+2021-05-13T14:56:04.205024900 class IDATT2105.Reservation.util.SendEmailService INFO: sending mail
+2021-05-13T14:56:05.325228800 class IDATT2105.Reservation.repo.UserRepo INFO: adding user 1430717067 failed due to Authentication failed; nested exception is javax.mail.AuthenticationFailedException: 535-5.7.8 Username and Password not accepted. Learn more at
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials a20sm206691lfb.198 - gsmtp
+
+2021-05-13T15:04:12.770148 class IDATT2105.Reservation.controller.UserController INFO: Received GetMapping at '/user'
+2021-05-13T15:04:12.771147900 class IDATT2105.Reservation.service.UserService INFO: getting all users
+2021-05-13T15:29:56.885959600 class IDATT2105.Reservation.controller.UserController INFO: recieved deletemapping to user with id 2057024060
+2021-05-13T15:29:56.898956300 class IDATT2105.Reservation.service.UserService INFO: deleting user 2057024060
+2021-05-13T15:29:56.899957200 class IDATT2105.Reservation.repo.UserRepo INFO: deleting user with id: 2057024060
+2021-05-13T15:29:58.186909100 class IDATT2105.Reservation.repo.UserRepo INFO: finding user 2057024060
+2021-05-13T15:29:58.236892100 class IDATT2105.Reservation.repo.UserRepo INFO: found user 2057024060 to be deleted
+2021-05-13T15:29:58.588885400 class IDATT2105.Reservation.repo.UserRepo INFO: user 2057024060 deleted successfully
+2021-05-13T15:29:58.588885400 class IDATT2105.Reservation.controller.UserController INFO: deletion successful
+2021-05-13T15:29:58.597886600 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-13T15:30:21.487668600 class IDATT2105.Reservation.controller.UserController INFO: Received GetMapping at '/user'
+2021-05-13T15:30:21.488668700 class IDATT2105.Reservation.service.UserService INFO: getting all users
+2021-05-13T15:31:12.028365500 class IDATT2105.Reservation.controller.LoginController INFO: recieved postmapping to /login {email=mattimy99@gmail.com, password=123}
+2021-05-13T15:31:12.029364800 class IDATT2105.Reservation.service.UserService INFO: logging in user with email mattimy99@gmail.com
+2021-05-13T15:31:12.030366 class IDATT2105.Reservation.service.UserService INFO: getting user by email: mattimy99@gmail.com
+2021-05-13T15:31:12.030366 class IDATT2105.Reservation.repo.UserRepo INFO: finding user by email mattimy99@gmail.com
+2021-05-13T15:31:12.053366600 class IDATT2105.Reservation.repo.UserRepo INFO: found single result with email: mattimy99@gmail.com
+2021-05-13T15:31:12.207365600 class IDATT2105.Reservation.controller.LoginController INFO: logged in user with email mattimy99@gmail.com
+2021-05-13T15:31:12.207365600 class IDATT2105.Reservation.service.UserService INFO: getting user by email: mattimy99@gmail.com
+2021-05-13T15:31:12.209367700 class IDATT2105.Reservation.repo.UserRepo INFO: finding user by email mattimy99@gmail.com
+2021-05-13T15:31:12.210367800 class IDATT2105.Reservation.repo.UserRepo INFO: found single result with email: mattimy99@gmail.com
+2021-05-13T15:31:12.231366400 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-13T16:13:32.526527800 class IDATT2105.Reservation.controller.UserController INFO: recieved deletemapping to user with id 1356351367
+2021-05-13T16:13:32.551529500 class IDATT2105.Reservation.service.UserService INFO: deleting user 1356351367
+2021-05-13T16:13:32.561532300 class IDATT2105.Reservation.repo.UserRepo INFO: deleting user with id: 1356351367
+2021-05-13T16:13:34.485529400 class IDATT2105.Reservation.repo.UserRepo INFO: finding user 1356351367
+2021-05-13T16:13:34.581531600 class IDATT2105.Reservation.repo.UserRepo INFO: found user 1356351367 to be deleted
+2021-05-13T16:13:35.393112800 class IDATT2105.Reservation.repo.UserRepo INFO: user 1356351367 deleted successfully
+2021-05-13T16:13:35.394106400 class IDATT2105.Reservation.controller.UserController INFO: deletion successful
+2021-05-13T16:13:35.400105700 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-13T16:14:06.860487800 class IDATT2105.Reservation.controller.UserController INFO: recieved postmapping to /user: {firstName=Mathias, phoneNumber=123332, surName=Myrold, validDate=2015-03-31, isAdmin=true, email=mattimy99@gmail.com}
+2021-05-13T16:14:06.862482800 class IDATT2105.Reservation.service.UserService INFO: getting user by email: mattimy99@gmail.com
+2021-05-13T16:14:06.863486700 class IDATT2105.Reservation.repo.UserRepo INFO: finding user by email mattimy99@gmail.com
+2021-05-13T16:14:06.899482500 class IDATT2105.Reservation.repo.UserRepo INFO: found single result with email: mattimy99@gmail.com
+2021-05-13T16:14:06.962483500 class IDATT2105.Reservation.repo.UserRepo INFO: finding user with email mattimy99@gmail.com failed due to getSingleResult() did not retrieve any entities.
+2021-05-13T16:14:06.963488300 class IDATT2105.Reservation.controller.ControllerUtil INFO: creating new random id
+2021-05-13T16:14:06.964484200 class IDATT2105.Reservation.controller.ControllerUtil INFO: generating random password
+2021-05-13T16:14:07.330486800 class IDATT2105.Reservation.service.UserService INFO: creating new user: 1824489038
+2021-05-13T16:14:07.331483 class IDATT2105.Reservation.service.UserService INFO: creating new password: ee97d5726ee64aa61ac187bdf28b6558b44321318c6ada71152d9fce974f9270590ff7b4d7b622839e9699572f9b749df7a4da0e368083213b4749f1ae57534b
+2021-05-13T16:14:07.402483800 class IDATT2105.Reservation.repo.UserRepo INFO: adding a user1824489038 | Myrold 
+  {
+     "userId":1824489038,
+     "firstName":"Mathias",
+     "surname":"Myrold",
+     "email":"mattimy99@gmail.com",
+     "isAdmin":"true",
+     "validDate":"2015-03-31",
+     "password":"ee97d5726ee64aa61ac187bdf28b6558b44321318c6ada71152d9fce974f9270590ff7b4d7b622839e9699572f9b749df7a4da0e368083213b4749f1ae57534b",
+     "phoneNumber":"123332",
+ }
+2021-05-13T16:14:07.519483300 class IDATT2105.Reservation.repo.UserRepo INFO: added user successfully 1824489038
+2021-05-13T16:14:07.519483300 class IDATT2105.Reservation.service.UserService INFO: adding new user was true
+2021-05-13T16:14:07.521486400 class IDATT2105.Reservation.controller.UserController INFO: created user with id: 1824489038
+2021-05-13T16:14:07.526486300 class IDATT2105.Reservation.controller.UserController INFO: created user 1824489038 | mattimy99@gmail.com
+2021-05-13T16:14:07.527485700 class IDATT2105.Reservation.controller.UserController INFO: created user
+2021-05-13T16:14:07.528484900 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-13T16:14:32.477949500 class IDATT2105.Reservation.controller.UserController INFO: recieved deletemapping to user with id 1824489038
+2021-05-13T16:14:32.477949500 class IDATT2105.Reservation.service.UserService INFO: deleting user 1824489038
+2021-05-13T16:14:32.478947800 class IDATT2105.Reservation.repo.UserRepo INFO: deleting user with id: 1824489038
+2021-05-13T16:14:32.479954300 class IDATT2105.Reservation.repo.UserRepo INFO: finding user 1824489038
+2021-05-13T16:14:32.482953700 class IDATT2105.Reservation.repo.UserRepo INFO: found user 1824489038 to be deleted
+2021-05-13T16:14:32.608948100 class IDATT2105.Reservation.repo.UserRepo INFO: user 1824489038 deleted successfully
+2021-05-13T16:14:32.608948100 class IDATT2105.Reservation.controller.UserController INFO: deletion successful
+2021-05-13T16:14:32.609948500 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-13T16:17:43.114198100 class IDATT2105.Reservation.controller.UserController INFO: recieved postmapping to /user: {firstName=Mathias, phoneNumber=123332, surName=Myrold, validDate=2015-03-31, isAdmin=true, email=mattimy99@gmail.com}
+2021-05-13T16:17:43.134197900 class IDATT2105.Reservation.service.UserService INFO: getting user by email: mattimy99@gmail.com
+2021-05-13T16:17:45.148730300 class IDATT2105.Reservation.repo.UserRepo INFO: finding user by email mattimy99@gmail.com
+2021-05-13T16:17:45.565728200 class IDATT2105.Reservation.repo.UserRepo INFO: found single result with email: mattimy99@gmail.com
+2021-05-13T16:17:45.632730300 class IDATT2105.Reservation.repo.UserRepo INFO: finding user with email mattimy99@gmail.com failed due to getSingleResult() did not retrieve any entities.
+2021-05-13T16:17:45.634730600 class IDATT2105.Reservation.controller.ControllerUtil INFO: creating new random id
+2021-05-13T16:17:45.635729700 class IDATT2105.Reservation.controller.ControllerUtil INFO: generating random password
+2021-05-13T16:17:45.998728300 class IDATT2105.Reservation.service.UserService INFO: creating new user: 1223009801
+2021-05-13T16:17:45.999728300 class IDATT2105.Reservation.service.UserService INFO: creating new password: a6e89880a339ba9adddb9d30ad1d5aa45074d6111c28f993d191c96ca649f68572e0ed8f3f299e217331d255c0efcd9e5923005a3ce31415e0f7cfa2edb68bbf
+2021-05-13T16:17:46.038731400 class IDATT2105.Reservation.repo.UserRepo INFO: adding a user1223009801 | Myrold 
+  {
+     "userId":1223009801,
+     "firstName":"Mathias",
+     "surname":"Myrold",
+     "email":"mattimy99@gmail.com",
+     "isAdmin":"true",
+     "validDate":"2015-03-31",
+     "password":"a6e89880a339ba9adddb9d30ad1d5aa45074d6111c28f993d191c96ca649f68572e0ed8f3f299e217331d255c0efcd9e5923005a3ce31415e0f7cfa2edb68bbf",
+     "phoneNumber":"123332",
+ }
+2021-05-13T16:17:46.163730100 class IDATT2105.Reservation.util.SendEmailService INFO: sending mail
+2021-05-13T16:17:49.627322700 class IDATT2105.Reservation.util.SendEmailService INFO: sending sent
+2021-05-13T16:17:49.628322600 class IDATT2105.Reservation.repo.UserRepo INFO: added user successfully 1223009801
+2021-05-13T16:17:49.628322600 class IDATT2105.Reservation.service.UserService INFO: adding new user was true
+2021-05-13T16:17:49.637323 class IDATT2105.Reservation.controller.UserController INFO: created user with id: 1223009801
+2021-05-13T16:17:49.644325800 class IDATT2105.Reservation.controller.UserController INFO: created user 1223009801 | mattimy99@gmail.com
+2021-05-13T16:17:49.644325800 class IDATT2105.Reservation.controller.UserController INFO: created user
+2021-05-13T16:17:49.647324400 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-13T16:30:33.023804200 class IDATT2105.Reservation.controller.UserController INFO: recieved deletemapping to user with id 1223009801
+2021-05-13T16:30:33.036798800 class IDATT2105.Reservation.service.UserService INFO: deleting user 1223009801
+2021-05-13T16:30:33.037798500 class IDATT2105.Reservation.repo.UserRepo INFO: deleting user with id: 1223009801
+2021-05-13T16:30:35.057797400 class IDATT2105.Reservation.repo.UserRepo INFO: finding user 1223009801
+2021-05-13T16:30:35.120796400 class IDATT2105.Reservation.repo.UserRepo INFO: found user 1223009801 to be deleted
+2021-05-13T16:30:35.551795 class IDATT2105.Reservation.repo.UserRepo INFO: user 1223009801 deleted successfully
+2021-05-13T16:30:35.552796 class IDATT2105.Reservation.controller.UserController INFO: deletion successful
+2021-05-13T16:30:35.558797 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-13T16:30:42.399861400 class IDATT2105.Reservation.controller.UserController INFO: recieved postmapping to /user: {firstName=Mathias, phoneNumber=123332, surName=Myrold, validDate=2015-03-31, isAdmin=true, email=mattimy99@gmail.com}
+2021-05-13T16:30:42.400857600 class IDATT2105.Reservation.service.UserService INFO: getting user by email: mattimy99@gmail.com
+2021-05-13T16:30:42.401859 class IDATT2105.Reservation.repo.UserRepo INFO: finding user by email mattimy99@gmail.com
+2021-05-13T16:30:42.430856700 class IDATT2105.Reservation.repo.UserRepo INFO: found single result with email: mattimy99@gmail.com
+2021-05-13T16:30:42.467858500 class IDATT2105.Reservation.repo.UserRepo INFO: finding user with email mattimy99@gmail.com failed due to getSingleResult() did not retrieve any entities.
+2021-05-13T16:30:42.468861300 class IDATT2105.Reservation.controller.ControllerUtil INFO: generating random password
+2021-05-13T16:30:42.469861 class IDATT2105.Reservation.controller.ControllerUtil INFO: creating new random id
+2021-05-13T16:30:42.767857100 class IDATT2105.Reservation.service.UserService INFO: creating new user: 1679294723
+2021-05-13T16:30:42.768859700 class IDATT2105.Reservation.service.UserService INFO: creating new password: d43e5be6095a50f3016307787765e28fc399bffdd385df4164fd62f095cda856adbdb84893802bbc1a8a19d355f4a4576325931edb01ae2b0995d1943ffd2e86
+2021-05-13T16:30:42.802858400 class IDATT2105.Reservation.repo.UserRepo INFO: adding a user1679294723 | Myrold 
+  {
+     "userId":1679294723,
+     "firstName":"Mathias",
+     "surname":"Myrold",
+     "email":"mattimy99@gmail.com",
+     "isAdmin":"true",
+     "validDate":"2015-03-31",
+     "password":"d43e5be6095a50f3016307787765e28fc399bffdd385df4164fd62f095cda856adbdb84893802bbc1a8a19d355f4a4576325931edb01ae2b0995d1943ffd2e86",
+     "phoneNumber":"123332",
+ }
+2021-05-13T16:30:42.890859800 class IDATT2105.Reservation.repo.UserRepo INFO: added user successfully 1679294723
+2021-05-13T16:30:42.893860100 class IDATT2105.Reservation.service.UserService INFO: adding new user was true
+2021-05-13T16:30:42.894859300 class IDATT2105.Reservation.controller.UserController INFO: created user with id: 1679294723
+2021-05-13T16:30:42.898859100 class IDATT2105.Reservation.controller.UserController INFO: created user 1679294723 | mattimy99@gmail.com
+2021-05-13T16:30:42.899858700 class IDATT2105.Reservation.controller.UserController INFO: created user
+2021-05-13T16:30:42.899858700 class IDATT2105.Reservation.util.SendEmailService INFO: sending mail
+2021-05-13T16:30:45.090521800 class IDATT2105.Reservation.util.SendEmailService INFO: sending sent
+2021-05-13T16:30:45.093522900 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-13T16:34:03.365826900 class IDATT2105.Reservation.controller.UserController INFO: recieved deletemapping to user with id 1679294723
+2021-05-13T16:34:03.401825 class IDATT2105.Reservation.service.UserService INFO: deleting user 1679294723
+2021-05-13T16:34:03.420823600 class IDATT2105.Reservation.repo.UserRepo INFO: deleting user with id: 1679294723
+2021-05-13T16:34:05.871883400 class IDATT2105.Reservation.repo.UserRepo INFO: finding user 1679294723
+2021-05-13T16:34:05.932880100 class IDATT2105.Reservation.repo.UserRepo INFO: found user 1679294723 to be deleted
+2021-05-13T16:34:06.319878500 class IDATT2105.Reservation.repo.UserRepo INFO: user 1679294723 deleted successfully
+2021-05-13T16:34:06.319878500 class IDATT2105.Reservation.controller.UserController INFO: deletion successful
+2021-05-13T16:34:06.327882100 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-13T16:34:33.623035400 class IDATT2105.Reservation.controller.UserController INFO: recieved postmapping to /user: {firstName=Mathias, phoneNumber=123332, surName=Myrold, validDate=2015-03-31, isAdmin=true, email=mattimy99@gmail.com}
+2021-05-13T16:34:33.624038600 class IDATT2105.Reservation.service.UserService INFO: getting user by email: mattimy99@gmail.com
+2021-05-13T16:34:33.625037 class IDATT2105.Reservation.repo.UserRepo INFO: finding user by email mattimy99@gmail.com
+2021-05-13T16:34:33.650037300 class IDATT2105.Reservation.repo.UserRepo INFO: found single result with email: mattimy99@gmail.com
+2021-05-13T16:34:33.688033 class IDATT2105.Reservation.repo.UserRepo INFO: finding user with email mattimy99@gmail.com failed due to getSingleResult() did not retrieve any entities.
+2021-05-13T16:34:33.689039900 class IDATT2105.Reservation.controller.ControllerUtil INFO: generating random password
+2021-05-13T16:34:33.690037400 class IDATT2105.Reservation.controller.ControllerUtil INFO: creating new random id
+2021-05-13T16:34:33.906040100 class IDATT2105.Reservation.service.UserService INFO: creating new user: 1819766832
+2021-05-13T16:34:33.907038200 class IDATT2105.Reservation.service.UserService INFO: creating new password: f850788f969e07b4ea136fd638f7e0693a1c887271ba88f301e6a5436fa89ff672d83bde3fae72a3a47edc58a944028e9251fc1f5b903865b3b082816e8543aa
+2021-05-13T16:34:33.933038300 class IDATT2105.Reservation.repo.UserRepo INFO: adding a user1819766832 | Myrold 
+  {
+     "userId":1819766832,
+     "firstName":"Mathias",
+     "surname":"Myrold",
+     "email":"mattimy99@gmail.com",
+     "isAdmin":"true",
+     "validDate":"2015-03-31",
+     "password":"f850788f969e07b4ea136fd638f7e0693a1c887271ba88f301e6a5436fa89ff672d83bde3fae72a3a47edc58a944028e9251fc1f5b903865b3b082816e8543aa",
+     "phoneNumber":"123332",
+ }
+2021-05-13T16:34:34.032036300 class IDATT2105.Reservation.repo.UserRepo INFO: added user successfully 1819766832
+2021-05-13T16:34:34.033035500 class IDATT2105.Reservation.service.UserService INFO: adding new user was true
+2021-05-13T16:34:34.033035500 class IDATT2105.Reservation.controller.UserController INFO: created user with id: 1819766832
+2021-05-13T16:34:34.040038 class IDATT2105.Reservation.controller.UserController INFO: created user 1819766832 | mattimy99@gmail.com
+2021-05-13T16:34:34.041036700 class IDATT2105.Reservation.controller.UserController INFO: created user
+2021-05-13T16:34:34.041036700 class IDATT2105.Reservation.util.SendEmailService INFO: sending mail
+2021-05-13T16:34:35.768831300 class IDATT2105.Reservation.util.SendEmailService INFO: sending sent
+2021-05-13T16:34:35.769834700 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-13T16:35:07.724388400 class IDATT2105.Reservation.controller.UserController INFO: Received GetMapping at '/user'
+2021-05-13T16:35:07.725388700 class IDATT2105.Reservation.service.UserService INFO: getting all users
+2021-05-13T16:36:55.061269700 class IDATT2105.Reservation.controller.UserController INFO: recieved postmapping to /user: {firstName=Håvard, phoneNumber=4444444, surName=Tysland, validDate=2022-03-31, isAdmin=true, email=haavard.steam@gmail.com}
+2021-05-13T16:36:55.063273100 class IDATT2105.Reservation.service.UserService INFO: getting user by email: haavard.steam@gmail.com
+2021-05-13T16:36:55.063273100 class IDATT2105.Reservation.repo.UserRepo INFO: finding user by email haavard.steam@gmail.com
+2021-05-13T16:36:55.064272500 class IDATT2105.Reservation.repo.UserRepo INFO: found single result with email: haavard.steam@gmail.com
+2021-05-13T16:36:55.091269500 class IDATT2105.Reservation.repo.UserRepo INFO: finding user with email haavard.steam@gmail.com failed due to getSingleResult() did not retrieve any entities.
+2021-05-13T16:36:55.092269500 class IDATT2105.Reservation.controller.ControllerUtil INFO: generating random password
+2021-05-13T16:36:55.092269500 class IDATT2105.Reservation.controller.ControllerUtil INFO: creating new random id
+2021-05-13T16:36:55.319272300 class IDATT2105.Reservation.service.UserService INFO: creating new user: 306530481
+2021-05-13T16:36:55.320276 class IDATT2105.Reservation.service.UserService INFO: creating new password: a030e1279c5502e21f3cecfcdb9140091835a4bb0475f0910a46c1c3505ddcff815296dc65d7f5e51af5956101f071dec9b20696e83f3f3fee762a0f572c9b35
+2021-05-13T16:36:55.321272400 class IDATT2105.Reservation.repo.UserRepo INFO: adding a user306530481 | Tysland 
+  {
+     "userId":306530481,
+     "firstName":"Håvard",
+     "surname":"Tysland",
+     "email":"haavard.steam@gmail.com",
+     "isAdmin":"true",
+     "validDate":"2022-03-31",
+     "password":"a030e1279c5502e21f3cecfcdb9140091835a4bb0475f0910a46c1c3505ddcff815296dc65d7f5e51af5956101f071dec9b20696e83f3f3fee762a0f572c9b35",
+     "phoneNumber":"4444444",
+ }
+2021-05-13T16:36:55.426269200 class IDATT2105.Reservation.repo.UserRepo INFO: added user successfully 306530481
+2021-05-13T16:36:55.427268400 class IDATT2105.Reservation.service.UserService INFO: adding new user was true
+2021-05-13T16:36:55.438280700 class IDATT2105.Reservation.controller.UserController INFO: created user with id: 306530481
+2021-05-13T16:36:55.439270100 class IDATT2105.Reservation.controller.UserController INFO: created user 306530481 | haavard.steam@gmail.com
+2021-05-13T16:36:55.439270100 class IDATT2105.Reservation.controller.UserController INFO: created user
+2021-05-13T16:36:55.440271500 class IDATT2105.Reservation.util.SendEmailService INFO: sending mail
+2021-05-13T16:36:57.084198700 class IDATT2105.Reservation.util.SendEmailService INFO: sending sent
+2021-05-13T16:36:57.087230100 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-13T16:38:21.488968900 class IDATT2105.Reservation.controller.UserController INFO: recieved postmapping to /user: {firstName=Ole, phoneNumber=99239129, surName=Løkken, validDate=2022-03-31, isAdmin=true, email=olelokken1@gmail.com}
+2021-05-13T16:38:21.489967 class IDATT2105.Reservation.service.UserService INFO: getting user by email: olelokken1@gmail.com
+2021-05-13T16:38:21.490966900 class IDATT2105.Reservation.repo.UserRepo INFO: finding user by email olelokken1@gmail.com
+2021-05-13T16:38:21.490966900 class IDATT2105.Reservation.repo.UserRepo INFO: found single result with email: olelokken1@gmail.com
+2021-05-13T16:38:21.515966200 class IDATT2105.Reservation.repo.UserRepo INFO: finding user with email olelokken1@gmail.com failed due to getSingleResult() did not retrieve any entities.
+2021-05-13T16:38:21.515966200 class IDATT2105.Reservation.controller.ControllerUtil INFO: generating random password
+2021-05-13T16:38:21.516966900 class IDATT2105.Reservation.controller.ControllerUtil INFO: creating new random id
+2021-05-13T16:38:21.688961700 class IDATT2105.Reservation.service.UserService INFO: creating new user: 119848474
+2021-05-13T16:38:21.688961700 class IDATT2105.Reservation.service.UserService INFO: creating new password: 6a37a9fd2bdfa10b1f2c774b11b26107c76b428c1e16388731a94a962a62ef1d7f52e6a175e4306a99792729ad147dbffb9fa6ded35e0c22e467aaacd838b078
+2021-05-13T16:38:21.690966900 class IDATT2105.Reservation.repo.UserRepo INFO: adding a user119848474 | Løkken 
+  {
+     "userId":119848474,
+     "firstName":"Ole",
+     "surname":"Løkken",
+     "email":"olelokken1@gmail.com",
+     "isAdmin":"true",
+     "validDate":"2022-03-31",
+     "password":"6a37a9fd2bdfa10b1f2c774b11b26107c76b428c1e16388731a94a962a62ef1d7f52e6a175e4306a99792729ad147dbffb9fa6ded35e0c22e467aaacd838b078",
+     "phoneNumber":"99239129",
+ }
+2021-05-13T16:38:21.778970400 class IDATT2105.Reservation.repo.UserRepo INFO: added user successfully 119848474
+2021-05-13T16:38:21.779967500 class IDATT2105.Reservation.service.UserService INFO: adding new user was true
+2021-05-13T16:38:21.779967500 class IDATT2105.Reservation.controller.UserController INFO: created user with id: 119848474
+2021-05-13T16:38:21.780968300 class IDATT2105.Reservation.controller.UserController INFO: created user 119848474 | olelokken1@gmail.com
+2021-05-13T16:38:21.780968300 class IDATT2105.Reservation.controller.UserController INFO: created user
+2021-05-13T16:38:21.781968300 class IDATT2105.Reservation.util.SendEmailService INFO: sending mail
+2021-05-13T16:38:23.357409 class IDATT2105.Reservation.util.SendEmailService INFO: sending sent
+2021-05-13T16:38:23.375377300 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-13T16:38:56.919574200 class IDATT2105.Reservation.controller.UserController INFO: recieved postmapping to /user: {firstName=William, phoneNumber=92312213, surName=Forbrigd, validDate=2022-03-31, isAdmin=true, email=hansw0701@gmail.com}
+2021-05-13T16:38:56.920573700 class IDATT2105.Reservation.service.UserService INFO: getting user by email: hansw0701@gmail.com
+2021-05-13T16:38:56.921119100 class IDATT2105.Reservation.repo.UserRepo INFO: finding user by email hansw0701@gmail.com
+2021-05-13T16:38:56.921665400 class IDATT2105.Reservation.repo.UserRepo INFO: found single result with email: hansw0701@gmail.com
+2021-05-13T16:38:56.946639900 class IDATT2105.Reservation.repo.UserRepo INFO: finding user with email hansw0701@gmail.com failed due to getSingleResult() did not retrieve any entities.
+2021-05-13T16:38:56.947640500 class IDATT2105.Reservation.controller.ControllerUtil INFO: generating random password
+2021-05-13T16:38:56.947640500 class IDATT2105.Reservation.controller.ControllerUtil INFO: creating new random id
+2021-05-13T16:38:57.249770500 class IDATT2105.Reservation.service.UserService INFO: creating new user: 1804306858
+2021-05-13T16:38:57.249770500 class IDATT2105.Reservation.service.UserService INFO: creating new password: c7ac442a98caa6764ea9cf9b4311ed6f45ae08066a1b3168165d656c0dcc6a3932a8ff84cb16e07d74b9f2ccf836fe5b02ec70ad267317e7fc6249ddb7f92b31
+2021-05-13T16:38:57.250769300 class IDATT2105.Reservation.repo.UserRepo INFO: adding a user1804306858 | Forbrigd 
+  {
+     "userId":1804306858,
+     "firstName":"William",
+     "surname":"Forbrigd",
+     "email":"hansw0701@gmail.com",
+     "isAdmin":"true",
+     "validDate":"2022-03-31",
+     "password":"c7ac442a98caa6764ea9cf9b4311ed6f45ae08066a1b3168165d656c0dcc6a3932a8ff84cb16e07d74b9f2ccf836fe5b02ec70ad267317e7fc6249ddb7f92b31",
+     "phoneNumber":"92312213",
+ }
+2021-05-13T16:38:57.349772 class IDATT2105.Reservation.repo.UserRepo INFO: added user successfully 1804306858
+2021-05-13T16:38:57.350770300 class IDATT2105.Reservation.service.UserService INFO: adding new user was true
+2021-05-13T16:38:57.350770300 class IDATT2105.Reservation.controller.UserController INFO: created user with id: 1804306858
+2021-05-13T16:38:57.351769400 class IDATT2105.Reservation.controller.UserController INFO: created user 1804306858 | hansw0701@gmail.com
+2021-05-13T16:38:57.351769400 class IDATT2105.Reservation.controller.UserController INFO: created user
+2021-05-13T16:38:57.353772900 class IDATT2105.Reservation.util.SendEmailService INFO: sending mail
+2021-05-13T16:38:58.842892300 class IDATT2105.Reservation.util.SendEmailService INFO: sending sent
+2021-05-13T16:38:58.842892300 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+=======
 2021-05-13T12:22:17.298141 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
 2021-05-13T12:24:28.496366 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
 2021-05-13T12:24:28.499902 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
@@ -1619,6 +2060,7 @@ Query: DeleteObjectQuery({
 2021-05-13T15:43:58.791755 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 8
 2021-05-13T15:44:04.791033 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
 2021-05-13T15:44:04.791252 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+<<<<<<< HEAD
 2021-05-13T15:52:33.248670 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
 2021-05-13T15:52:34.406364 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
 2021-05-13T15:52:45.308715 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 10
@@ -2339,3 +2781,6 @@ Query: DeleteObjectQuery({
 2021-05-13T17:22:11.553470 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 3
 2021-05-13T17:22:16.572293 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
 2021-05-13T17:22:16.572531 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+=======
+>>>>>>> 7cf47df760c53063b6fab79a500d66b6ecc56c04
+>>>>>>> 82dc6367bf7cbcac19904ebe82a749f1b923c010

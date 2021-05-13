@@ -3,6 +3,8 @@ package IDATT2105.Reservation.controller;
 
 import static IDATT2105.Reservation.controller.ControllerUtil.formatJson;
 import static IDATT2105.Reservation.controller.ControllerUtil.getRandomID;
+import static IDATT2105.Reservation.controller.ControllerUtil.getRandomPassword;
+
 /*
 import static IDATT2106.team6.Gidd.Constants.*;
 import static IDATT2106.team6.Gidd.web.ControllerUtil.getRandomID;
@@ -13,6 +15,7 @@ import IDATT2105.Reservation.repo.RoomRepo;
 import IDATT2105.Reservation.repo.UserRepo;
 import IDATT2105.Reservation.service.UserService;
 
+import IDATT2105.Reservation.util.SendEmailService;
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,6 +35,9 @@ public class UserController {
   private static Logger log = new Logger(UserController.class.toString());
   @Autowired
   private UserService userService;
+
+  @Autowired
+  private SendEmailService sendEmailService;
 
 
   @GetMapping(value = "", produces = "application/json")
@@ -91,14 +97,16 @@ public class UserController {
           .body(formatJson(body));
     }
 
+    String randomPassword = getRandomPassword();
     User result = userService.registerUser(
         getRandomID(),
         map.get("firstName").toString(),
         map.get("surName").toString(),
         map.get("email").toString(),
         Boolean.parseBoolean(map.get("isAdmin").toString()),
-            Date.valueOf(map.get("validDate").toString()),
-        map.get("password").toString(),
+        Date.valueOf(map.get("validDate").toString()),
+        //map.get("password").toString(),
+        randomPassword,
         Integer.parseInt(map.get("phoneNumber").toString()));
     log.info("created user with id: " + result.getUserId());
     HttpHeaders header = new HttpHeaders();
@@ -113,6 +121,7 @@ public class UserController {
       //body.put("token", securityService
         //  .createToken(String.valueOf(result.getUserId()), (1000 * 60 * 60 * 24)));
 
+      sendEmailService.sendEmail(result.getEmail(), randomPassword);
       return ResponseEntity
           .ok()
           .headers(header)

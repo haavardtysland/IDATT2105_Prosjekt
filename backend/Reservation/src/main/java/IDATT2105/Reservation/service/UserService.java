@@ -29,6 +29,11 @@ public class UserService {
     return repo.findUserByEmail(email);
   }
 
+  public boolean login(String email, String password) {
+    log.info("logging in user with email " + email.trim());
+    return getUser(email.trim()).verifyPassword(password);
+  }
+
   public User registerUser(int id, String firstname, String surname, String email, Boolean isAdmin, Date validDate, String password, int phoneNumber) {
 
     User newUser = new User(id, firstname, surname, email, isAdmin, validDate,  password, phoneNumber);
