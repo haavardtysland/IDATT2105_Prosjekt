@@ -12,6 +12,8 @@ import IDATT2105.Reservation.models.User;
 import IDATT2105.Reservation.repo.RoomRepo;
 import IDATT2105.Reservation.repo.UserRepo;
 import IDATT2105.Reservation.service.UserService;
+
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,7 +97,7 @@ public class UserController {
         map.get("surName").toString(),
         map.get("email").toString(),
         Boolean.parseBoolean(map.get("isAdmin").toString()),
-        new java.sql.Date((Long) map.get("validDate")),
+            Date.valueOf(map.get("validDate").toString()),
         map.get("password").toString(),
         Integer.parseInt(map.get("phoneNumber").toString()));
     log.info("created user with id: " + result.getUserId());
