@@ -2,7 +2,7 @@ import React, { ChangeEvent, useState } from 'react';
 import Room from '../interfaces/Room';
 import { Button, MenuItem, TextField } from '@material-ui/core';
 import Section from '../interfaces/Section';
-import Calendar from '../components/Calendar';
+import Calendar from '../components/CalendarComponents/Calendar';
 
 interface RoomPageProps {
   room?: Room;

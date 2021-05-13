@@ -1,7 +1,6 @@
 import {
   Button,
   Card,
-  CardActions,
   CardContent,
   Divider,
   GridList,
@@ -10,6 +9,7 @@ import {
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import TimeCard from './TimeCard';
 
 const useStyles = makeStyles({
   root: {
@@ -29,23 +29,6 @@ const useStyles = makeStyles({
     marginBottom: 12,
   },
 });
-
-const StyledCard = withStyles({
-  root: {
-    margin: '1%',
-  },
-  hover: {
-    transform: 'scale(1.08)',
-  },
-})(Card);
-
-const TransformDiv = styled.div`
-  transition: transform 450ms;
-
-  :hover {
-    transform: scale(1.08);
-  }
-`;
 
 interface CalendarProps {
   date: Date;
@@ -112,15 +95,7 @@ const Calendar: React.FC<CalendarProps> = ({ date }: CalendarProps) => {
 
   const times = setTimeArr();
   const renderTimeCards = times.map((time, key: number) => {
-    return (
-      <TransformDiv key={key}>
-        <StyledCard>
-          <CardContent>
-            <Typography>{time}</Typography>
-          </CardContent>
-        </StyledCard>
-      </TransformDiv>
-    );
+    return <TimeCard key={key} time={time} />;
   });
 
   return (
@@ -135,11 +110,7 @@ const Calendar: React.FC<CalendarProps> = ({ date }: CalendarProps) => {
           {date.getFullYear()}
         </Typography>
         <Divider variant="fullWidth" />
-        <GridList
-          cellHeight={101}
-          cols={8}
-          style={{ margin: '2%', padding: '20px' }}
-        >
+        <GridList cellHeight={60} cols={7} style={{ padding: '10px' }}>
           {renderTimeCards}
         </GridList>
         <Button>Reserver de markerte tidene</Button>
