@@ -4,8 +4,6 @@ import IDATT2105.Reservation.models.User;
 import IDATT2105.Reservation.repo.UserRepo;
 import IDATT2105.Reservation.util.Logger;
 import java.sql.Date;
-import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

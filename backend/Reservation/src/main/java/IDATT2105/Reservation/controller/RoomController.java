@@ -19,6 +19,15 @@ public class RoomController {
     @Autowired
     private RoomService service;
 
+    /**
+     * @param map which is sent by the client on the format:
+     * {
+     *     "name": "String",
+     *     "capacity": INT,
+     *     "sections": "String, String, String"
+     * }
+     * @return true if the room was succesfully added, false if not
+     */
     @PostMapping(value="/add")
     public @ResponseBody
     boolean addRoom (@RequestBody HashMap<String, Object> map){
@@ -28,28 +37,31 @@ public class RoomController {
         Set<String> keySet = map.keySet();
         room.setCapacity(Integer.parseInt(map.get("capacity").toString()));
         String sectionString = map.get("sections").toString();
-        room.setSections(toSectionList(sectionString));
+        room.setSections(toSectionList(sectionString, room));
         return service.addRoom(room);
     }
 
     /**
      * Split csv string with sections
-     * @return
+     * @return a list of sections
      */
-    private List<Section> toSectionList(String sectionString) {
+    private List<Section> toSectionList(String sectionString, Room room) {
         log.info("splitting sections");
         ArrayList<Section> sections = new ArrayList<>();
         for (String name : sectionString.split(",")) {
             name = name.toLowerCase();
             Section section = new Section(name);
+            section.setRoom(room);
             sections.add(section);
         }
-
         log.debug("final section list: " + sections.toString());
         return sections;
     }
 
-
+    /**
+     * Getting all the rooms in the database
+     * @return A ResponseEntity with the rooms
+     */
     @GetMapping(value="", produces="application/json")
     public ResponseEntity GetRooms(
     ) {

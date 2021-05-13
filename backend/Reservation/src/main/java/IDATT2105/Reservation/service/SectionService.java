@@ -17,4 +17,14 @@ public class SectionService {
         log.info("Adding new section " + section);
         return this.repo.addSection(section);
     }
+
+    public Section getSection(int section_id) {
+        log.info("Finding section with section_id " + section_id);
+        return this.repo.findSection(section_id);
+    }
+
+    public boolean deleteSection(int section_id) {
+        log.info("Deleting section with section_id " + section_id);
+        return this.repo.deleteSection(section_id);
+    }
 }

@@ -24,16 +24,36 @@ public class SectionController {
     @Autowired
     private RoomService roomService;
 
+    /**
+     *
+     * @param map which is sent by the client on the format:
+     *            {
+     *            "section_name": ""
+     *            }
+     * @param room_id the room that the admin wants to add sections to
+     * @return true if the sections can be added, false if not
+     */
     @PostMapping(value="{room_id}/add")
     public @ResponseBody
-    boolean addSection(@RequestBody HashMap<String, Object> map, @PathVariable String room_id) {
+    boolean addSections(@RequestBody HashMap<String, Object> map, @PathVariable String room_id) {
         Map<String, String> body = new HashMap<>();
-
-        Section section = new Section();
         int id = Integer.parseInt(room_id);
-        section.setSectionName(map.get("section_name").toString());
         Room room = roomService.getRoom(id);
-        room.addSection(section);
+        String[] sections = map.get("section_name").toString().split(",");
+        for(String name : sections) {
+            Section section = new Section(name);
+            section.setRoom(room);
+            room.addSection(section);
+        }
         return roomService.addSection(room);
     }
+
+    @DeleteMapping(value="/{section_id}")
+    public @ResponseBody
+    boolean deleteSection(@PathVariable String section_id) {
+        int sectionID = Integer.parseInt(section_id);
+        return sectionService.deleteSection(sectionID);
+
+    }
+
 }
