@@ -15,7 +15,6 @@ import java.security.spec.InvalidKeySpecException;
 @Entity
 public class User {
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "userId")
   private int userId;
   @Column(name = "firstName")
