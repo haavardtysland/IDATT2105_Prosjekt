@@ -1,59 +1,50 @@
 package IDATT2105.Reservation.models;
 
 import javax.persistence.*;
-import org.eclipse.persistence.annotations.CascadeOnDelete;
 
 @Entity
 public class Section {
   @Id
-  @Column(name = "seksjon_id")
-  private int sectionId;
-  @Column(name = "seksjon_navn")
-  private String sectionName;
-  @Column(name = "rom_id")
-  private int roomId;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "section_id", unique = true)
+  private int section_id;
+
+  @Column(name = "section_name")
+  private String section_name;
+
+
 
   public Section() {
   }
 
-  public Section(int sectionId, String sectionName, int roomId) {
-    this.sectionId = sectionId;
-    this.sectionName = sectionName;
-    this.roomId = roomId;
+  public Section(String name) {
+    this.section_name = name;
   }
 
 
   public int getSectionId() {
-    return sectionId;
+    return section_id;
   }
 
   public void setSectionId(int sectionId) {
-    this.sectionId = sectionId;
+    this.section_id = sectionId;
   }
 
   public String getSectionName() {
-    return sectionName;
+    return section_name;
   }
 
   public void setSectionName(String sectionName) {
-    this.sectionName = sectionName;
+    this.section_name = sectionName;
   }
 
-  public int getRoomId() {
-    return roomId;
-  }
-
-  public void setRoomId(int roomId) {
-    this.roomId = roomId;
-  }
 
   @Override
   public String toString() {
     return
         "{" +
-            "\n \"sectionId\": " + sectionId + "," +
-            "\n \"name\": \"" + sectionName + "\"," +
-            "\n \"roomId\": \"" + roomId + "\"" +
+            "\n \"section_id\": " + section_id + "," +
+            "\n \"section_name\": \"" + section_name + "\"," +
             "\n}";
   }
 

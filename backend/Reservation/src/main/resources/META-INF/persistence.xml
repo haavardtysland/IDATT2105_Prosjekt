@@ -7,9 +7,11 @@
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <class>IDATT2105.Reservation.models.Room</class>
         <class>IDATT2105.Reservation.models.User</class>
+        <class>IDATT2105.Reservation.models.Section</class>
+        <class>IDATT2105.Reservation.models.Reservation</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
-            <property name="eclipselink.ddl-generation" value="create-tables" />
+            <property name="eclipselink.ddl-generation" value="create-tables"/>
             <property name="eclipselink.ddl-generation.output-mode" value="database" />
             <!-- EclipseLink connectionpooling -->
             <property name="eclipselink.connection-pool.default.initial" value="1" />

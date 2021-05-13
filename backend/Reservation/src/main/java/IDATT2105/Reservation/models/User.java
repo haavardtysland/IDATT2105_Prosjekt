@@ -5,12 +5,6 @@ import org.apache.tomcat.util.codec.binary.Base64;
 import org.eclipse.persistence.annotations.CascadeOnDelete;
 import javax.persistence.*;
 import org.apache.commons.codec.binary.Hex;
-
-
-import java.util.ArrayList;
-import java.util.List;
-
-
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;

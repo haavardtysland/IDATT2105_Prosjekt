@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 2021-05-13T10:41:29.021698200 class IDATT2105.Reservation.controller.UserController INFO: Received GetMapping at '/user'
 2021-05-13T10:41:29.026696900 class IDATT2105.Reservation.service.UserService INFO: getting all users
 2021-05-13T10:44:20.756052200 class IDATT2105.Reservation.controller.UserController INFO: recieved postmapping to /user: {firstName=Mathias, password=123, phoneNumber=123332, surName=Myrold, validDate=2015-03-31, isAdmin=true, email=mattimy99@gmail.com}
@@ -233,3 +234,589 @@ Query: InsertObjectQuery(
      "password":"f820b3f822cf22bbcc43deda8667351d0c0b3741f0a082e1f3145b551817d25d6339082102cf85972a122c18b7798bc9eba395b4ab26c8f96f2b58508dccba58",
      "phoneNumber":"123332",
  })
+=======
+2021-05-13T08:52:29.656838 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T08:53:41.230232 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"name": "Soverommet", 
+"capacity":10}
+2021-05-13T09:12:53.260287 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T09:14:08.595068 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T09:16:42.648132 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-13T09:16:43.648134 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-13T09:16:43.726782 class IDATT2105.Reservation.service.SectionService INFO: Adding new section {
+ "sectionId": 0,
+ "name": "Sengen",
+ "roomId": "{
+"room_id": "1",
+"name": "Soverommet", 
+"capacity":10}"
+}
+2021-05-13T09:19:09.049059 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-13T09:19:09.980056 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-13T09:19:10.053966 class IDATT2105.Reservation.service.SectionService INFO: Adding new section {
+ "sectionId": 0,
+ "name": "Sengen",
+ "roomId": "{
+"room_id": "1",
+"name": "Soverommet", 
+"capacity":10}"
+}
+2021-05-13T09:19:10.059207 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed adding section{
+ "sectionId": 0,
+ "name": "Sengen",
+ "roomId": "{
+"room_id": "1",
+"name": "Soverommet", 
+"capacity":10}"
+}
+2021-05-13T09:32:29.427815 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-13T09:32:29.428955 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-13T09:32:29.429452 class IDATT2105.Reservation.service.SectionService INFO: Adding new section {
+ "sectionId": 0,
+ "name": "Sengen",
+ "roomId": "{
+"room_id": "1",
+"name": "Soverommet", 
+"capacity":10}"
+}
+2021-05-13T09:32:29.429702 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed adding section{
+ "sectionId": 0,
+ "name": "Sengen",
+ "roomId": "{
+"room_id": "1",
+"name": "Soverommet", 
+"capacity":10}"
+}
+2021-05-13T09:37:21.375549 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-13T09:37:22.313882 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-13T09:37:22.393914 class IDATT2105.Reservation.controller.SectionController INFO: Setting room{
+"room_id": "1",
+"name": "Soverommet", 
+"capacity":10}
+to section {
+ "sectionId": 0,
+ "name": "Sengen",
+ "roomId": "null"
+}
+2021-05-13T09:37:22.394281 class IDATT2105.Reservation.service.SectionService INFO: Adding new section {
+ "sectionId": 0,
+ "name": "Sengen",
+ "roomId": "{
+"room_id": "1",
+"name": "Soverommet", 
+"capacity":10}"
+}
+2021-05-13T09:37:22.398979 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed adding section{
+ "sectionId": 0,
+ "name": "Sengen",
+ "roomId": "{
+"room_id": "1",
+"name": "Soverommet", 
+"capacity":10}"
+}
+2021-05-13T09:46:49.387947 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-13T09:46:50.353594 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-13T09:46:59.116640 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-13T09:46:59.116837 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-13T09:47:35.823370 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-13T09:47:36.735715 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-13T09:47:36.814587 class IDATT2105.Reservation.controller.SectionController INFO: Setting room{
+"room_id": "1",
+"name": "Soverommet", 
+"capacity":10}
+to section {
+ "sectionId": 0,
+ "name": "Sengen",
+ "room": "null"
+}
+2021-05-13T09:47:36.814984 class IDATT2105.Reservation.service.SectionService INFO: Adding new section {
+ "sectionId": 0,
+ "name": "Sengen",
+ "room": "{
+"room_id": "1",
+"name": "Soverommet", 
+"capacity":10}"
+}
+2021-05-13T09:47:36.819836 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed adding section{
+ "sectionId": 0,
+ "name": "Sengen",
+ "room": "{
+"room_id": "1",
+"name": "Soverommet", 
+"capacity":10}"
+}
+2021-05-13T09:49:40.988984 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-13T09:49:41.938397 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-13T09:49:42.016426 class IDATT2105.Reservation.controller.SectionController INFO: Setting room{
+"room_id": "1",
+"name": "Soverommet", 
+"capacity":10}
+to section {
+ "sectionId": 0,
+ "name": "Sengen",
+ "room": "null"
+}
+2021-05-13T09:49:42.016759 class IDATT2105.Reservation.service.SectionService INFO: Adding new section {
+ "sectionId": 0,
+ "name": "Sengen",
+ "room": "{
+"room_id": "1",
+"name": "Soverommet", 
+"capacity":10}"
+}
+2021-05-13T09:49:42.020511 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed adding section{
+ "sectionId": 0,
+ "name": "Sengen",
+ "room": "{
+"room_id": "1",
+"name": "Soverommet", 
+"capacity":10}"
+}
+2021-05-13T09:51:50.201056 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-13T09:51:51.143095 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-13T09:51:51.218878 class IDATT2105.Reservation.controller.SectionController INFO: Setting room{
+"room_id": "1",
+"name": "Soverommet", 
+"capacity":10}
+to section {
+ "sectionId": 0,
+ "name": "Sengen",
+ "room": "null"
+}
+2021-05-13T09:51:51.219322 class IDATT2105.Reservation.service.SectionService INFO: Adding new section {
+ "sectionId": 0,
+ "name": "Sengen",
+ "room": "{
+"room_id": "1",
+"name": "Soverommet", 
+"capacity":10}"
+}
+2021-05-13T09:51:51.224168 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed adding section{
+ "sectionId": 0,
+ "name": "Sengen",
+ "room": "{
+"room_id": "1",
+"name": "Soverommet", 
+"capacity":10}"
+}
+2021-05-13T09:53:21.111089 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-13T09:53:22.058732 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-13T09:53:22.134612 class IDATT2105.Reservation.controller.SectionController INFO: Setting room{
+"room_id": "1",
+"name": "Soverommet", 
+"capacity":10}
+to section {
+ "sectionId": 0,
+ "name": "Sengen",
+ "room": "null"
+}
+2021-05-13T09:53:22.134990 class IDATT2105.Reservation.service.SectionService INFO: Adding new section {
+ "sectionId": 0,
+ "name": "Sengen",
+ "room": "{
+"room_id": "1",
+"name": "Soverommet", 
+"capacity":10}"
+}
+2021-05-13T09:53:22.139919 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed adding section{
+ "sectionId": 0,
+ "name": "Sengen",
+ "room": "{
+"room_id": "1",
+"name": "Soverommet", 
+"capacity":10}"
+}
+2021-05-13T09:55:02.998734 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-13T09:55:03.982950 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-13T09:55:04.057280 class IDATT2105.Reservation.controller.SectionController INFO: Setting room{
+"room_id": "1",
+"name": "Soverommet", 
+"capacity":10}
+to section {
+ "sectionId": 0,
+ "name": "Sengen",
+ "room": "null"
+}
+2021-05-13T09:55:04.057656 class IDATT2105.Reservation.service.SectionService INFO: Adding new section {
+ "sectionId": 0,
+ "name": "Sengen",
+ "room": "{
+"room_id": "1",
+"name": "Soverommet", 
+"capacity":10}"
+}
+2021-05-13T09:55:04.062956 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed adding sectionObject: {
+ "sectionId": 0,
+ "name": "Sengen",
+ "room": "{
+"room_id": "1",
+"name": "Soverommet", 
+"capacity":10}"
+} is not a known Entity type.
+2021-05-13T09:56:27.312367 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-13T09:56:28.304671 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-13T09:56:28.342552 class IDATT2105.Reservation.repo.ProjectRepo INFO: Returning null, finding room failed tu to Could not find Entity for id: 1
+2021-05-13T09:56:28.346553 class IDATT2105.Reservation.service.SectionService INFO: Adding new section {
+ "sectionId": 0,
+ "name": "Sengen",
+ "room": "null"
+}
+2021-05-13T09:56:28.348504 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed adding sectionObject: {
+ "sectionId": 0,
+ "name": "Sengen",
+ "room": "null"
+} is not a known Entity type.
+2021-05-13T09:57:11.224104 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "Soverommet", 
+"capacity":15}
+2021-05-13T09:57:19.093705 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-13T09:57:19.093909 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-13T09:57:19.096174 class IDATT2105.Reservation.controller.SectionController INFO: Setting room{
+"room_id": "1",
+"name": "Soverommet", 
+"capacity":15}
+to section {
+ "sectionId": 0,
+ "name": "Sengen",
+ "room": "null"
+}
+2021-05-13T09:57:19.096342 class IDATT2105.Reservation.service.SectionService INFO: Adding new section {
+ "sectionId": 0,
+ "name": "Sengen",
+ "room": "{
+"room_id": "1",
+"name": "Soverommet", 
+"capacity":15}"
+}
+2021-05-13T09:57:19.096614 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed adding sectionObject: {
+ "sectionId": 0,
+ "name": "Sengen",
+ "room": "{
+"room_id": "1",
+"name": "Soverommet", 
+"capacity":15}"
+} is not a known Entity type.
+2021-05-13T10:01:07.958418 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-13T10:01:08.923744 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-13T10:01:08.998653 class IDATT2105.Reservation.controller.SectionController INFO: Setting room{
+"room_id": "1",
+"name": "Soverommet", 
+"capacity":15}
+to section {
+ "sectionId": 0,
+ "name": "Sengen",
+ "room": "null"
+}
+2021-05-13T10:01:08.999069 class IDATT2105.Reservation.service.SectionService INFO: Adding new section {
+ "sectionId": 0,
+ "name": "Sengen",
+ "room": "{
+"room_id": "1",
+"name": "Soverommet", 
+"capacity":15}"
+}
+2021-05-13T10:01:09.003980 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed adding sectionObject: {
+ "sectionId": 0,
+ "name": "Sengen",
+ "room": "{
+"room_id": "1",
+"name": "Soverommet", 
+"capacity":15}"
+} is not a known Entity type.
+2021-05-13T10:07:25.368916 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-13T10:07:26.287387 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-13T10:07:26.358373 class IDATT2105.Reservation.controller.SectionController INFO: Setting room{
+"room_id": "1",
+"name": "Soverommet", 
+"capacity":15}
+to section {
+ "sectionId": 0,
+ "name": "Sengen",
+ "room": "null"
+}
+2021-05-13T10:07:26.358699 class IDATT2105.Reservation.service.SectionService INFO: Adding new section {
+ "sectionId": 0,
+ "name": "Sengen",
+ "room": "{
+"room_id": "1",
+"name": "Soverommet", 
+"capacity":15}"
+}
+2021-05-13T10:07:26.363025 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed adding sectionObject: {
+ "sectionId": 0,
+ "name": "Sengen",
+ "room": "{
+"room_id": "1",
+"name": "Soverommet", 
+"capacity":15}"
+} is not a known Entity type.
+2021-05-13T10:14:38.925398 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-13T10:14:39.886993 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-13T10:14:39.963209 class IDATT2105.Reservation.controller.SectionController INFO: Setting room{
+"room_id": "1",
+"name": "Soverommet", 
+"capacity":15}
+to section {
+ "sectionId": 0,
+ "name": "Sengen",
+ "room": "null"
+}
+2021-05-13T10:14:39.963558 class IDATT2105.Reservation.service.SectionService INFO: Adding new section {
+ "sectionId": 0,
+ "name": "Sengen",
+ "room": "{
+"room_id": "1",
+"name": "Soverommet", 
+"capacity":15}"
+}
+2021-05-13T10:14:39.967914 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed adding sectionObject: {
+ "sectionId": 0,
+ "name": "Sengen",
+ "room": "{
+"room_id": "1",
+"name": "Soverommet", 
+"capacity":15}"
+} is not a known Entity type.
+2021-05-13T10:17:19.270547 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-13T10:17:20.204170 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-13T10:17:20.287068 class IDATT2105.Reservation.controller.SectionController INFO: Setting room{
+"room_id": "1",
+"name": "Soverommet",
+"capacity":15
+}
+to section {
+ "section_id": 0,
+ "section_name": "Sengen",
+ "room": "null"
+}
+2021-05-13T10:17:20.287422 class IDATT2105.Reservation.service.SectionService INFO: Adding new section {
+ "section_id": 0,
+ "section_name": "Sengen",
+ "room": "{
+"room_id": "1",
+"name": "Soverommet",
+"capacity":15
+}"
+}
+2021-05-13T10:17:20.292042 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed adding sectionObject: {
+ "section_id": 0,
+ "section_name": "Sengen",
+ "room": "{
+"room_id": "1",
+"name": "Soverommet",
+"capacity":15
+}"
+} is not a known Entity type.
+2021-05-13T10:23:09.969102 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "Testrom",
+"capacity":7
+}
+2021-05-13T11:00:01.046301 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "Testrom",
+"capacity":7
+"sections:":[]"
+"}
+2021-05-13T11:01:07.091345 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T11:03:06.576217 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "Kult rom",
+"capacity":13
+"sections:":[]"
+"}
+2021-05-13T11:23:22.845243 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-13T11:23:24.027005 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-13T11:24:35.837317 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-13T11:24:40.018032 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-13T11:25:51.856383 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-13T11:25:52.990467 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-13T11:27:35.981179 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "test",
+"capacity":2
+"sections:":[]"
+"}
+2021-05-13T11:27:53.776512 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "test",
+"capacity":2
+"sections:":[]"
+"}
+2021-05-13T11:28:14.946752 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "test",
+"capacity":2
+"sections:":[]"
+"}
+2021-05-13T11:32:30.085128 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "test",
+"capacity":2
+"sections:":[]"
+"}
+2021-05-13T11:33:27.776185 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-13T11:33:27.776498 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-13T11:33:27.781863 class IDATT2105.Reservation.service.RoomService INFO: Adding section to room {
+"room_id": "1",
+"name": "test",
+"capacity":2
+"sections:":{[{
+ "section_id": 0,
+ "section_name": "Seng",
+}]}"
+"}
+2021-05-13T11:33:38.898866 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T11:35:55.541640 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "test",
+"capacity":2
+"sections:":[]"
+"}
+2021-05-13T11:36:14.149246 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-13T11:36:14.149578 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-13T11:36:14.155303 class IDATT2105.Reservation.service.RoomService INFO: Adding section to room {
+"room_id": "1",
+"name": "test",
+"capacity":2
+"sections:":{[{
+ "section_id": 0,
+ "section_name": "Seng",
+}]}"
+"}
+2021-05-13T11:36:21.633236 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T11:37:58.215597 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T11:38:34.924335 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-13T11:38:34.924747 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-13T11:38:34.925872 class IDATT2105.Reservation.service.RoomService INFO: Adding section to room {
+"room_id": "1",
+"name": "test",
+"capacity":2
+"sections:":[{
+ "section_id": 1,
+ "section_name": "Seng",
+}, {
+ "section_id": 0,
+ "section_name": "Pult",
+}]"
+"}
+2021-05-13T11:38:41.949149 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T11:39:41.636255 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T11:39:48.331804 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T11:40:03.536404 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T11:41:47.598184 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T11:41:50.946948 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T11:44:42.998390 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T11:45:09.750440 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T11:46:22.655537 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T11:55:57.606194 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-13T11:55:57.612340 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "[{section_name=blablabla}",
+}, {
+ "section_id": 0,
+ "section_name": " {section_name=yeyeyey}]",
+}]
+2021-05-13T11:55:57.617177 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "Kult rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "[{section_name=blablabla}",
+}, {
+ "section_id": 0,
+ "section_name": " {section_name=yeyeyey}]",
+}]"
+"}
+2021-05-13T11:56:58.797380 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-13T11:56:58.797597 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "[{section_name=blablabla}",
+}, {
+ "section_id": 0,
+ "section_name": " {section_name=yeyeyey}]",
+}]
+2021-05-13T11:56:58.798039 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "Kult rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "[{section_name=blablabla}",
+}, {
+ "section_id": 0,
+ "section_name": " {section_name=yeyeyey}]",
+}]"
+"}
+2021-05-13T11:59:02.267115 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-13T11:59:02.272850 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "[{section_name=blablabla}",
+}, {
+ "section_id": 0,
+ "section_name": " {section_name=yeyeyey}]",
+}]
+2021-05-13T11:59:02.277603 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "Kult rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "[{section_name=blablabla}",
+}, {
+ "section_id": 0,
+ "section_name": " {section_name=yeyeyey}]",
+}]"
+"}
+2021-05-13T11:59:11.739301 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T12:02:10.296273 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-13T12:02:10.302698 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " wow",
+}]
+2021-05-13T12:02:10.307791 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "Nytt rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " wow",
+}]"
+"}
+2021-05-13T12:02:16.306778 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T12:02:56.887438 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 3
+2021-05-13T12:02:56.887772 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 3
+2021-05-13T12:02:56.888895 class IDATT2105.Reservation.service.RoomService INFO: Adding section to room {
+"room_id": "3",
+"name": "Nytt rom",
+"capacity":13
+"sections:":[{
+ "section_id": 5,
+ "section_name": "test",
+}, {
+ "section_id": 6,
+ "section_name": " dette funker",
+}, {
+ "section_id": 7,
+ "section_name": " wow",
+}, {
+ "section_id": 0,
+ "section_name": "Ny seksjon",
+}]"
+"}
+2021-05-13T12:03:01.778134 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+>>>>>>> 7319f913ff9a461ce9af17254ebae4480821c8b2
