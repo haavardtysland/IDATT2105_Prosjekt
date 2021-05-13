@@ -18,8 +18,6 @@ const StyledHeader = styled.h1`
 const StyledTextField = withStyles({
   root: {
     width: '20%',
-    //margin: '5%',
-    //marginRight: '10rem',
     margin: '5% 10rem 5% 20%',
   },
 })(TextField);

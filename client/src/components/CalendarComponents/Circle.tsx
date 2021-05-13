@@ -5,8 +5,6 @@ function Circle() {
     padding: 3,
     margin: 6,
     display: 'inline-block',
-    // position:'absolute',
-    //backgroundColor: this.props.bgColor,
     backgroundColor: 'green',
     borderRadius: '50%',
     width: 1,
