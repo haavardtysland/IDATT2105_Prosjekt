@@ -1,5 +1,6 @@
 package IDATT2105.Reservation.models;
 
+import javax.annotation.processing.Generated;
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -7,29 +8,32 @@ import java.sql.Date;
 public class Reservation {
 
   @Id
-  @Column(name = "seksjon_id")
+  @Column(name = "reservation_id")
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private int reservation_id;
+  @OneToOne
+  @JoinColumn(name = "section_id")
   private Section section;
-  @Column(name = "fra_dato")
-  private Date fromDate;
-  @Column(name = "til_dato")
-  private Date toDate;
-  @Id
-  @Column(name = "bruker_id")
+  @Column(name = "from_date")
+  private Date from_date;
+  @Column(name = "to_date")
+  private Date to_date;
+  @OneToOne
+  @JoinColumn(name = "user_id")
   private User user;
-  @Column(name = "antall_personer")
+  @Column(name = "capacity")
   private int capacity;
-  @Column(name = "beskjed")
+  @Column(name = "description")
   private String description;
 
   public Reservation() {
-
   }
 
-  public Reservation(Section section, Date fromDate, Date toDate, User user, int capacity,
+  public Reservation(Section section, Date from_date, Date to_date, User user, int capacity,
                      String description) {
     this.section = section;
-    this.fromDate = fromDate;
-    this.toDate = toDate;
+    this.from_date = from_date;
+    this.to_date = to_date;
     this.user = user;
     this.capacity = capacity;
     this.description = description;
@@ -44,19 +48,19 @@ public class Reservation {
   }
 
   public Date getFromDate() {
-    return fromDate;
+    return from_date;
   }
 
   public void setFromDate(Date fromDate) {
-    this.fromDate = fromDate;
+    this.from_date = fromDate;
   }
 
   public Date getToDate() {
-    return toDate;
+    return to_date;
   }
 
   public void setToDate(Date toDate) {
-    this.toDate = toDate;
+    this.to_date = toDate;
   }
 
   public User getUser() {
@@ -87,10 +91,10 @@ public class Reservation {
   public String toString() {
     return
         "{" +
-            "\n \"sectionId\": " + section + "," +
-            "\n \"fromDate\": \"" + fromDate + "\"," +
-            "\n \"toDate\": \"" + toDate + "\"," +
-            "\n \"userId\": " + user + "," +
+            "\n \"section\": " + section + "," +
+            "\n \"from_date\": \"" + from_date + "\"," +
+            "\n \"to_date\": \"" + to_date + "\"," +
+            "\n \"user\": " + user + "," +
             "\n \"capacity\": \"" + capacity + "\"" +
             "\n \"description\": \"" + description + "\"" +
             "\n}";

@@ -10,7 +10,7 @@ import javax.persistence.EntityManagerFactory;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public abstract class ReservationRepo {
+public abstract class ProjectRepo {
     protected static EntityManagerFactory emf;
 
     /**

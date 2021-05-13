@@ -1,8 +1,6 @@
 package IDATT2105.Reservation.repo;
 
-import IDATT2105.Reservation.models.Room;
 import java.io.IOException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Repository;
@@ -12,10 +10,9 @@ import IDATT2105.Reservation.util.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 
 @Repository
-public class UserRepo extends ReservationRepo {
+public class UserRepo extends ProjectRepo {
   private Logger log = new Logger(UserRepo.class.toString());
 
   public UserRepo() throws IOException {

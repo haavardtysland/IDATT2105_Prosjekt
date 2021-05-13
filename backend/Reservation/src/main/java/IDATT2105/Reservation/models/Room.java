@@ -1,17 +1,21 @@
 package IDATT2105.Reservation.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "room_id")
+    @Column(name = "room_id", unique = true)
     private int room_id = 0;
     @Column(name = "name")
     private String name;
-    @Column(name = "available")
-    private int available;
+    @Column(name = "capacity")
+    private int capacity;
+    @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.PERSIST)
+    private List<Section> sections = new ArrayList<>();
 
     public int getRoom_id() {
         return room_id;
@@ -21,16 +25,28 @@ public class Room {
         return name;
     }
 
-    public int getAvailable() {
-        return available;
+    public int getCapacity() {
+        return capacity;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setAvailable(int available) {
-        this.available = available;
+    public List<Section> getSections() {
+        return this.sections;
+    }
+
+    public void setSections(List<Section> sections) {
+        this.sections = sections;
+    }
+
+    public void addSection(Section section) {
+        this.sections.add(section);
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
     }
 
     public void setRoom_id(int room_id) {
@@ -39,12 +55,10 @@ public class Room {
 
     public String toString() {
         return "{" +
-                "\n\"name\": " + "\"" + name + "\"" +
-                ", \n\"available\":" + available +
-
-                "}";
-
+                "\n\"room_id\": " + "\"" + room_id + "\"" +
+                ",\n\"name\": " + "\"" + name + "\"" +
+                ",\n\"capacity\":" + capacity +
+                "\n\"sections:\":" + sections + "\"" +
+                "\n\"}";
     }
-
-
 }
