@@ -44,7 +44,7 @@ public class RoomRepo extends ReservationRepo{
         EntityManager em = getEm();
         List<Room> allRooms = null;
         try{
-            Query q = em.createNativeQuery("SELECT * FROM Rom", Room.class);
+            Query q = em.createNativeQuery("SELECT * FROM ROOM", Room.class);
             allRooms = q.getResultList();
         } catch(Exception e) {
 

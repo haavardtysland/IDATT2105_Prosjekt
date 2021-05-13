@@ -5,37 +5,46 @@ import javax.persistence.*;
 @Entity
 public class Room {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int rom_id;
-    private String navn;
-    private int antall_plasser;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "room_id")
+    private int room_id = 0;
+    @Column(name = "name")
+    private String name;
+    @Column(name = "available")
+    private int available;
 
-    public int getRom_id() {
-        return rom_id;
+    public int getRoom_id() {
+        return room_id;
     }
 
-    public String getNavn() {
-        return navn;
+    public String getName() {
+        return name;
     }
 
-    public int getAntall_plasser() {
-        return antall_plasser;
+    public int getAvailable() {
+        return available;
     }
 
-    public void setNavn(String navn) {
-        this.navn = navn;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setAntall_plasser(int antall_plasser) {
-        this.antall_plasser = antall_plasser;
+    public void setAvailable(int available) {
+        this.available = available;
     }
 
-    public void setRom_id(int rom_id) {
-        this.rom_id = rom_id;
+    public void setRoom_id(int room_id) {
+        this.room_id = room_id;
     }
 
-    @Override
     public String toString() {
-        return this.navn;
+        return "{" +
+                "\n\"name\": " + "\"" + name + "\"" +
+                ", \n\"available\":" + available +
+
+                "}";
+
     }
+
+
 }
