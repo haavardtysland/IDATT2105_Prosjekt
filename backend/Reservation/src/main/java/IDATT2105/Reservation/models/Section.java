@@ -3,7 +3,6 @@ package IDATT2105.Reservation.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "section")
 public class Section {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,7 +12,7 @@ public class Section {
   @Column(name = "section_name")
   private String section_name;
 
-  @ManyToOne(fetch = FetchType.EAGER)
+  @ManyToOne
   private Room room;
 
   public Section() {
@@ -53,9 +52,6 @@ public class Section {
     this.room = room;
   }
 
-  public void resetRoom() {
-    this.room = null;
-  }
 
 
 

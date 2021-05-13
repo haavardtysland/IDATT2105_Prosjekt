@@ -45,7 +45,7 @@ public class RoomController {
      * Split csv string with sections
      * @return a list of sections
      */
-    private List<Section> toSectionList(String sectionString, Room room) {
+    private ArrayList<Section> toSectionList(String sectionString, Room room) {
         log.info("splitting sections");
         ArrayList<Section> sections = new ArrayList<>();
         for (String name : sectionString.split(",")) {

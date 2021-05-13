@@ -7,6 +7,7 @@ import IDATT2105.Reservation.service.RoomService;
 import IDATT2105.Reservation.service.SectionService;
 import IDATT2105.Reservation.util.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,6 +47,21 @@ public class SectionController {
             room.addSection(section);
         }
         return roomService.addSection(room);
+    }
+
+    @GetMapping(value="{section_id}", produces="application/json")
+    public ResponseEntity getSection(@PathVariable String section_id){
+
+        Section section;
+        try{
+            int id = Integer.parseInt(section_id);
+            section = sectionService.getSection(id);
+            return ResponseEntity.ok().body("Section: " + section.toString());
+
+        }         catch(Exception e) {
+
+        }
+        return null;
     }
 
     @DeleteMapping(value="/{section_id}")
