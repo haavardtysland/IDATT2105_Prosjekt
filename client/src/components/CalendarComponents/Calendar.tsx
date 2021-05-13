@@ -7,10 +7,23 @@ import {
   Typography,
 } from '@material-ui/core';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import React, { useState, useEffect, useRef } from 'react';
 import TimeCard from './TimeCard';
 import getDayOfWeek from './GetDayOfWeek';
+import styled from 'styled-components';
+import Popup from '../Popup';
+import ReservationForm from '../ReservationForm';
+
+const ButtonsDiv = styled.div`
+  display: flex;
+`;
+
+const StyledButton = withStyles({
+  root: {
+    margin: '1%',
+    width: '44%',
+  },
+})(Button);
 
 const useStyles = makeStyles({
   root: {
@@ -36,13 +49,23 @@ interface CalendarProps {
 }
 
 const Calendar: React.FC<CalendarProps> = ({ date }: CalendarProps) => {
+  const length = 24;
   const classes = useStyles();
+  const [reset, setReset] = useState<boolean>(false);
+  const [openPopup, setOpenPopup] = useState<boolean>(false);
+  const [isMarkedArr, setIsMarkedArr] = useState<boolean[]>(() => {
+    const arr: boolean[] = [];
+    for (let i = 0; i < length; i++) {
+      arr.push(false);
+    }
+    return arr;
+  });
 
   const setTimeArr = (): string[] => {
     let hour = 7;
     let minutes = 0;
     const times: string[] = [];
-    for (let i = 0; i < 24; i++) {
+    for (let i = 0; i < length; i++) {
       if (i % 2 === 0) {
         minutes = 30;
         String(hour).length === 1
@@ -61,11 +84,20 @@ const Calendar: React.FC<CalendarProps> = ({ date }: CalendarProps) => {
 
   const times = setTimeArr();
   const renderTimeCards = times.map((time, key: number) => {
-    return <TimeCard key={key} time={time} />;
+    return <TimeCard key={key} time={time} reset={reset} />;
   });
 
   return (
-    <Card style={{ margin: '1%' }}>
+    <Card
+      style={{
+        margin: '1%',
+        width: '45rem',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+      }}
+    >
+      {' '}
+      {/* Set the width to 37% for responsive design, 45rem for static*/}
       <CardContent>
         <Typography
           className={classes.title}
@@ -76,10 +108,28 @@ const Calendar: React.FC<CalendarProps> = ({ date }: CalendarProps) => {
           {date.getFullYear()}
         </Typography>
         <Divider variant="fullWidth" />
-        <GridList cellHeight={60} cols={7} style={{ padding: '10px' }}>
+        <GridList cellHeight={60} cols={8} style={{ padding: '10px' }}>
           {renderTimeCards}
         </GridList>
-        <Button>Reserver de markerte tidene</Button>
+        <ButtonsDiv>
+          <StyledButton
+            variant="outlined"
+            onClick={() => setOpenPopup(!openPopup)}
+          >
+            Reserver tidene
+          </StyledButton>
+          <StyledButton variant="outlined" onClick={() => setReset(!reset)}>
+            Fjern valgte tider
+          </StyledButton>
+          <Popup
+            title="Reserver"
+            openPopup={openPopup}
+            setOpenPopup={setOpenPopup}
+          >
+            <ReservationForm timeFrom="" timeTo="" />
+          </Popup>
+        </ButtonsDiv>
+        <Button onClick={() => console.log(isMarkedArr)}>Log marked arr</Button>
       </CardContent>
     </Card>
   );

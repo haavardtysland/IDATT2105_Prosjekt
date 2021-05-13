@@ -1,19 +1,24 @@
 import React, { ChangeEvent, useState } from 'react';
 import Room from '../interfaces/Room';
 import {
-  Button,
   Divider,
   MenuItem,
   TextField,
+  Tooltip,
   withStyles,
 } from '@material-ui/core';
 import Section from '../interfaces/Section';
 import Calendar from '../components/CalendarComponents/Calendar';
 import styled from 'styled-components';
+import InfoIcon from '@material-ui/icons/Info';
 
 const StyledHeader = styled.h1`
   margin-top: 6rem;
+`;
+
+const StyledDivHeader = styled.div`
   margin-left: 50%;
+  display: flex;
 `;
 const StyledTextField = withStyles({
   root: {
@@ -62,7 +67,15 @@ const RoomPage: React.FC<RoomPageProps> = () => {
 
   return (
     <div>
-      <StyledHeader>{room.name}</StyledHeader>
+      <StyledDivHeader>
+        <StyledHeader>{room.name}</StyledHeader>
+        <Tooltip
+          title="Markere de ønskede tidene"
+          style={{ marginTop: '6.8rem', marginLeft: '0.5rem' }}
+        >
+          <InfoIcon></InfoIcon>
+        </Tooltip>
+      </StyledDivHeader>
       <Divider variant="fullWidth" />
       <div>
         <StyledTextField
