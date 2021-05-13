@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Properties;
 import javax.persistence.EntityManagerFactory;
 
+import IDATT2105.Reservation.models.Room;
 import org.springframework.stereotype.Repository;
 
 @Repository

@@ -5,16 +5,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "room")
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "room_id", unique = true)
+    @Column(name = "room_id")
     private int room_id = 0;
     @Column(name = "name")
     private String name;
     @Column(name = "capacity")
     private int capacity;
-    @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy="room", fetch=FetchType.EAGER, cascade = {CascadeType.ALL}, orphanRemoval = true)
     private List<Section> sections = new ArrayList<>();
 
     public int getRoom_id() {
@@ -41,7 +42,13 @@ public class Room {
         this.sections = sections;
     }
 
+    public void removeSection(Section section) {
+        section.resetRoom();
+        this.sections.remove(section);
+    }
+
     public void addSection(Section section) {
+        section.setRoom(this);
         this.sections.add(section);
     }
 

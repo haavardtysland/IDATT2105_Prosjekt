@@ -46,7 +46,10 @@ public class RoomRepo extends ProjectRepo {
         EntityManager em = getEm();
         List<Room> allRooms = null;
         try{
-            Query q = em.createNativeQuery("SELECT * FROM ROOM", Room.class);
+            log.info("Getting all the rooms");
+            em.getTransaction().begin();
+            Query q = em.createNativeQuery("SELECT * FROM room", Room.class);
+            em.getTransaction().commit();
             allRooms = q.getResultList();
         } catch(Exception e) {
 
@@ -82,10 +85,11 @@ public class RoomRepo extends ProjectRepo {
             log.info("Finding room with room_id " + room_id);
             return em.getReference(Room.class, room_id);
         } catch (Exception e) {
-            log.error("Returning null, finding room failed tu to " + e.getMessage());
+            log.error("Returning null, finding room failed due to " + e.getMessage());
             return null;
         } finally {
             em.close();
         }
     }
+
 }

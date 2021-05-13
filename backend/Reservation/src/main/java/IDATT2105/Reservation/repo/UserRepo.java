@@ -13,6 +13,7 @@ import IDATT2105.Reservation.util.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 @Repository
 public class UserRepo extends ProjectRepo {

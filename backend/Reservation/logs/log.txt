@@ -820,6 +820,7 @@ to section {
 "}
 2021-05-13T12:03:01.778134 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
 >>>>>>> 7319f913ff9a461ce9af17254ebae4480821c8b2
+<<<<<<< HEAD
 2021-05-13T12:23:09.997317500 class IDATT2105.Reservation.controller.UserController INFO: recieved postmapping to /user: {firstName=Mathias, password=123, phoneNumber=123332, surName=Myrold, validDate=2015-03-31, isAdmin=true, email=mattimy99@gmail.com}
 2021-05-13T12:23:10.034303100 class IDATT2105.Reservation.service.UserService INFO: getting user by email: mattimy99@gmail.com
 2021-05-13T12:23:14.320505800 class IDATT2105.Reservation.repo.UserRepo INFO: finding user by email mattimy99@gmail.com
@@ -1259,3 +1260,804 @@ Exception Description: No transaction is currently active
 2021-05-13T16:38:57.353772900 class IDATT2105.Reservation.util.SendEmailService INFO: sending mail
 2021-05-13T16:38:58.842892300 class IDATT2105.Reservation.util.SendEmailService INFO: sending sent
 2021-05-13T16:38:58.842892300 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+=======
+2021-05-13T12:22:17.298141 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T12:24:28.496366 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-13T12:24:28.499902 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " wow",
+}]
+2021-05-13T12:24:28.504649 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "Kult rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " wow",
+}]"
+"}
+2021-05-13T12:27:34.120293 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T12:39:05.853582 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-13T12:39:06.978477 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-13T12:39:07.058633 class IDATT2105.Reservation.service.RoomService INFO: Adding section to room {
+"room_id": "1",
+"name": "Kult rom",
+"capacity":13
+"sections:":[{
+ "section_id": 1,
+ "section_name": " dette funker",
+}, {
+ "section_id": 2,
+ "section_name": "test",
+}, {
+ "section_id": 3,
+ "section_name": " wow",
+}, {
+ "section_id": 0,
+ "section_name": "Gøy",
+}, {
+ "section_id": 0,
+ "section_name": " Flere seksjoner",
+}]"
+"}
+2021-05-13T12:39:13.524072 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T12:39:29.654539 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-13T12:39:29.654873 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-13T12:39:29.655621 class IDATT2105.Reservation.service.RoomService INFO: Adding section to room {
+"room_id": "1",
+"name": "Kult rom",
+"capacity":13
+"sections:":[{
+ "section_id": 1,
+ "section_name": " dette funker",
+}, {
+ "section_id": 2,
+ "section_name": "test",
+}, {
+ "section_id": 3,
+ "section_name": " wow",
+}, {
+ "section_id": 4,
+ "section_name": "Gøy",
+}, {
+ "section_id": 5,
+ "section_name": " Flere seksjoner",
+}, {
+ "section_id": 0,
+ "section_name": "Moro",
+}]"
+"}
+2021-05-13T12:39:41.318906 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T12:59:19.664678 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T12:59:44.547713 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-13T12:59:44.548365 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-13T12:59:44.549758 class IDATT2105.Reservation.service.SectionService INFO: Finding section with section_id 4
+2021-05-13T12:59:44.550016 class IDATT2105.Reservation.repo.SectionRepo INFO: Finding room with room_id 4
+2021-05-13T12:59:44.550431 class IDATT2105.Reservation.service.RoomService INFO: Deleting section from room{
+"room_id": "1",
+"name": "Kult rom",
+"capacity":13
+"sections:":[{
+ "section_id": 1,
+ "section_name": " dette funker",
+}, {
+ "section_id": 2,
+ "section_name": "test",
+}, {
+ "section_id": 3,
+ "section_name": " wow",
+}, {
+ "section_id": 4,
+ "section_name": "Gøy",
+}, {
+ "section_id": 5,
+ "section_name": " Flere seksjoner",
+}, {
+ "section_id": 6,
+ "section_name": "Moro",
+}]"
+"}
+2021-05-13T12:59:53.783118 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T13:11:26.792293 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-13T13:11:26.793437 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-13T13:11:26.794103 class IDATT2105.Reservation.service.SectionService INFO: Finding section with section_id 4
+2021-05-13T13:11:26.794289 class IDATT2105.Reservation.repo.SectionRepo INFO: Finding room with room_id 4
+2021-05-13T13:11:26.794586 class IDATT2105.Reservation.service.RoomService INFO: Deleting section from room{
+"room_id": "1",
+"name": "Kult rom",
+"capacity":13
+"sections:":[{
+ "section_id": 1,
+ "section_name": " dette funker",
+}, {
+ "section_id": 2,
+ "section_name": "test",
+}, {
+ "section_id": 3,
+ "section_name": " wow",
+}, {
+ "section_id": 4,
+ "section_name": "Gøy",
+}, {
+ "section_id": 5,
+ "section_name": " Flere seksjoner",
+}, {
+ "section_id": 6,
+ "section_name": "Moro",
+}]"
+"}
+2021-05-13T13:22:35.084531 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 4
+2021-05-13T13:22:36.283308 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 4
+2021-05-13T13:22:36.482231 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed deleting sectionException [EclipseLink-4002] (Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`olelok`.`ROOM_SECTION`, CONSTRAINT `FK_ROOM_SECTION_sections_section_id` FOREIGN KEY (`sections_section_id`) REFERENCES `SECTION` (`section_id`))
+Error Code: 1451
+Call: DELETE FROM SECTION WHERE (section_id = ?)
+	bind => [1 parameter bound]
+Query: DeleteObjectQuery({
+ "section_id": 4,
+ "section_name": "Gøy",
+})
+2021-05-13T13:24:14.285906 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 4
+2021-05-13T13:24:15.451336 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 4
+2021-05-13T13:24:15.654377 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed deleting sectionException [EclipseLink-4002] (Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`olelok`.`ROOM_SECTION`, CONSTRAINT `FK_ROOM_SECTION_sections_section_id` FOREIGN KEY (`sections_section_id`) REFERENCES `SECTION` (`section_id`))
+Error Code: 1451
+Call: DELETE FROM SECTION WHERE (section_id = ?)
+	bind => [1 parameter bound]
+Query: DeleteObjectQuery({
+ "section_id": 4,
+ "section_name": "Gøy",
+})
+2021-05-13T13:26:11.893507 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 4
+2021-05-13T13:26:13.079734 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 4
+2021-05-13T13:26:13.288353 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed deleting sectionException [EclipseLink-4002] (Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`olelok`.`ROOM_SECTION`, CONSTRAINT `FK_ROOM_SECTION_sections_section_id` FOREIGN KEY (`sections_section_id`) REFERENCES `SECTION` (`section_id`))
+Error Code: 1451
+Call: DELETE FROM SECTION WHERE (section_id = ?)
+	bind => [1 parameter bound]
+Query: DeleteObjectQuery({
+ "section_id": 4,
+ "section_name": "Gøy",
+})
+2021-05-13T13:33:30.419842 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 4
+2021-05-13T13:33:31.556815 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 4
+2021-05-13T13:33:31.667482 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed deleting sectionAn exception occurred while creating a query in EntityManager: 
+Exception Description: Problem compiling [DELETE FROM ROOM_SECTION  WHERE section_id = ?1 ]. 
+[12, 24] The abstract schema type 'ROOM_SECTION' is unknown.
+2021-05-13T13:35:00.300400 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 4
+2021-05-13T13:35:01.434461 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 4
+2021-05-13T13:35:01.539114 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed deleting sectionAn exception occurred while creating a query in EntityManager: 
+Exception Description: Problem compiling [DELETE FROM ROOM  WHERE section_id = ?1 ]. 
+[12, 16] The abstract schema type 'ROOM' is unknown.
+2021-05-13T13:35:36.987296 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 4
+2021-05-13T13:35:38.142235 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 4
+2021-05-13T13:35:38.497413 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed deleting sectionException [EclipseLink-4002] (Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`olelok`.`ROOM_SECTION`, CONSTRAINT `FK_ROOM_SECTION_sections_section_id` FOREIGN KEY (`sections_section_id`) REFERENCES `SECTION` (`section_id`))
+Error Code: 1451
+Call: DELETE FROM SECTION WHERE (section_id = ?)
+	bind => [1 parameter bound]
+Query: DeleteObjectQuery({
+ "section_id": 4,
+ "section_name": "Gøy",
+})
+2021-05-13T13:36:28.798398 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 4
+2021-05-13T13:36:29.937114 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 4
+2021-05-13T13:36:30.275488 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed deleting sectionException [EclipseLink-4002] (Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`olelok`.`ROOM_SECTION`, CONSTRAINT `FK_ROOM_SECTION_sections_section_id` FOREIGN KEY (`sections_section_id`) REFERENCES `SECTION` (`section_id`))
+Error Code: 1451
+Call: DELETE FROM SECTION WHERE (section_id = ?)
+	bind => [1 parameter bound]
+Query: DeleteObjectQuery({
+ "section_id": 4,
+ "section_name": "Gøy",
+})
+2021-05-13T13:38:24.576474 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 4
+2021-05-13T13:38:25.749597 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 4
+2021-05-13T13:38:26.076329 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed deleting sectionException [EclipseLink-4002] (Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`olelok`.`ROOM_SECTION`, CONSTRAINT `FK_ROOM_SECTION_sections_section_id` FOREIGN KEY (`sections_section_id`) REFERENCES `SECTION` (`section_id`))
+Error Code: 1451
+Call: DELETE FROM SECTION WHERE (section_id = ?)
+	bind => [1 parameter bound]
+Query: DeleteObjectQuery({
+ "section_id": 4,
+ "section_name": "Gøy",
+})
+2021-05-13T13:38:27.842916 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 4
+2021-05-13T13:38:27.843122 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 4
+2021-05-13T13:38:28.066928 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed deleting sectionException [EclipseLink-4002] (Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`olelok`.`ROOM_SECTION`, CONSTRAINT `FK_ROOM_SECTION_sections_section_id` FOREIGN KEY (`sections_section_id`) REFERENCES `SECTION` (`section_id`))
+Error Code: 1451
+Call: DELETE FROM SECTION WHERE (section_id = ?)
+	bind => [1 parameter bound]
+Query: DeleteObjectQuery({
+ "section_id": 4,
+ "section_name": "Gøy",
+})
+2021-05-13T13:43:58.913026 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 4
+2021-05-13T13:44:00.068375 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 4
+2021-05-13T13:44:00.202870 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed deleting sectionException [EclipseLink-4002] (Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: java.sql.SQLSyntaxErrorException: Unknown column 'section_id' in 'where clause'
+Error Code: 1054
+Call: DELETE FROM ROOM_SECTION WHERE section_id = ? 
+	bind => [1 parameter bound]
+Query: DataModifyQuery(sql="DELETE FROM ROOM_SECTION WHERE section_id = ? ")
+2021-05-13T13:45:10.351397 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 4
+2021-05-13T13:45:11.502526 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 4
+2021-05-13T13:45:11.643536 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed deleting sectionException [EclipseLink-4002] (Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':section_id' at line 1
+Error Code: 1064
+Call: DELETE FROM ROOM_SECTION WHERE section_id = :section_id 
+Query: DataModifyQuery(sql="DELETE FROM ROOM_SECTION WHERE section_id = :section_id ")
+2021-05-13T13:45:54.711635 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 4
+2021-05-13T13:45:55.828338 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 4
+2021-05-13T13:45:55.871337 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed deleting sectionincorrect_query_for_execute_update (There is no English translation for this message.)
+2021-05-13T13:46:48.482341 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 4
+2021-05-13T13:46:49.571748 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 4
+2021-05-13T13:46:49.674949 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed deleting sectionAn exception occurred while creating a query in EntityManager: 
+Exception Description: Problem compiling [DELETE FROM ROOM_SECTION WHERE section_id = ?1]. 
+[12, 24] The abstract schema type 'ROOM_SECTION' is unknown.
+2021-05-13T13:50:37.202792 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 4
+2021-05-13T13:50:38.317066 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 4
+2021-05-13T13:50:38.519021 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed deleting sectionException [EclipseLink-4002] (Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`olelok`.`ROOM_SECTION`, CONSTRAINT `FK_ROOM_SECTION_sections_section_id` FOREIGN KEY (`sections_section_id`) REFERENCES `SECTION` (`section_id`))
+Error Code: 1451
+Call: DELETE FROM SECTION WHERE (section_id = ?)
+	bind => [1 parameter bound]
+Query: DeleteObjectQuery({
+ "section_id": 4,
+ "section_name": "Gøy",
+})
+2021-05-13T13:52:21.139441 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 4
+2021-05-13T13:52:22.314904 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 4
+2021-05-13T13:52:22.520586 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed deleting sectionException [EclipseLink-4002] (Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`olelok`.`ROOM_SECTION`, CONSTRAINT `FK_ROOM_SECTION_sections_section_id` FOREIGN KEY (`sections_section_id`) REFERENCES `SECTION` (`section_id`))
+Error Code: 1451
+Call: DELETE FROM SECTION WHERE (section_id = ?)
+	bind => [1 parameter bound]
+Query: DeleteObjectQuery({
+ "section_id": 4,
+ "section_name": "Gøy",
+})
+2021-05-13T14:00:04.421954 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-13T14:00:04.428487 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " wow",
+}]
+2021-05-13T14:00:04.433377 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "Kult rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " wow",
+}]"
+"}
+2021-05-13T14:00:29.919687 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:00:45.248624 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 3
+2021-05-13T14:00:45.248935 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 3
+2021-05-13T14:00:45.396506 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed deleting sectionException [EclipseLink-4002] (Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`olelok`.`ROOM_SECTION`, CONSTRAINT `FK_ROOM_SECTION_sections_section_id` FOREIGN KEY (`sections_section_id`) REFERENCES `SECTION` (`section_id`))
+Error Code: 1451
+Call: DELETE FROM SECTION WHERE (section_id = ?)
+	bind => [1 parameter bound]
+Query: DeleteObjectQuery({
+ "section_id": 3,
+ "section_name": " dette funker",
+})
+2021-05-13T14:03:30.303747 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-13T14:03:30.309785 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " wow",
+}]
+2021-05-13T14:03:30.314621 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "Kult rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " wow",
+}]"
+"}
+2021-05-13T14:07:38.632196 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-13T14:07:38.638521 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " wow",
+}]
+2021-05-13T14:07:38.643677 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "Kult rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " wow",
+}]"
+"}
+2021-05-13T14:10:33.652813 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-13T14:10:33.659359 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " wow",
+}]
+2021-05-13T14:10:33.664811 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "Kult rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " wow",
+}]"
+"}
+2021-05-13T14:13:31.348969 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-13T14:13:31.356004 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " wow",
+}]
+2021-05-13T14:13:31.361392 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "Kult rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " wow",
+}]"
+"}
+2021-05-13T14:15:03.247614 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-13T14:15:03.254637 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " wow",
+}]
+2021-05-13T14:15:03.260323 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "Kult rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " wow",
+}]"
+"}
+2021-05-13T14:15:42.740821 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:16:58.064537 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:20:13.407675 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:20:21.277206 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-13T14:20:21.280405 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " wow",
+}]
+2021-05-13T14:20:21.285613 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "Kult rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " wow",
+}]"
+"}
+2021-05-13T14:20:27.171069 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:20:49.776937 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:21:31.187746 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 3
+2021-05-13T14:21:31.188491 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 3
+2021-05-13T14:21:31.311129 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 3
+2021-05-13T14:21:41.221259 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:21:58.996796 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:22:44.787328 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:22:59.971819 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 2
+2021-05-13T14:22:59.972198 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 2
+2021-05-13T14:23:00.094716 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 2
+2021-05-13T14:23:06.040934 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:23:08.566494 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:23:09.245016 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:23:09.723116 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:23:10.303997 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:23:16.698092 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:23:17.726377 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:23:25.810728 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:23:26.513571 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:23:45.817989 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:23:46.852561 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:25:14.105748 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-13T14:25:14.111464 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " wow",
+}]
+2021-05-13T14:25:14.116543 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "Kult rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " wow",
+}]"
+"}
+2021-05-13T14:25:23.831945 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:25:27.229010 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:25:58.647475 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:26:07.158030 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 3
+2021-05-13T14:26:07.158439 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 3
+2021-05-13T14:26:07.280101 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 3
+2021-05-13T14:26:14.623813 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:28:35.137890 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:29:22.018364 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 2
+2021-05-13T14:29:22.019041 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 2
+2021-05-13T14:29:22.138339 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 2
+2021-05-13T14:29:31.219990 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:29:33.619768 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:29:34.345503 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:29:35.082216 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:32:16.536578 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:33:23.105309 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:33:26.154926 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:33:39.963157 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:34:43.792778 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-13T14:34:43.793736 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-13T14:34:43.795116 class IDATT2105.Reservation.service.RoomService INFO: Adding section to room {
+"room_id": "1",
+"name": "Kult rom",
+"capacity":13
+"sections:":[{
+ "section_id": 1,
+ "section_name": " wow",
+}, {
+ "section_id": 0,
+ "section_name": "Hei",
+}, {
+ "section_id": 0,
+ "section_name": " På",
+}, {
+ "section_id": 0,
+ "section_name": " Deg",
+}]"
+"}
+2021-05-13T14:34:48.478031 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:35:00.830671 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 4
+2021-05-13T14:35:00.830984 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 4
+2021-05-13T14:35:00.943579 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 4
+2021-05-13T14:35:08.230597 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:38:16.058642 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:38:22.287278 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:39:16.107131 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:39:42.447142 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-13T14:39:42.447494 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-13T14:39:42.448469 class IDATT2105.Reservation.service.RoomService INFO: Adding section to room {
+"room_id": "1",
+"name": "Kult rom",
+"capacity":13
+"sections:":[{
+ "section_id": 1,
+ "section_name": " wow",
+}, {
+ "section_id": 0,
+ "section_name": "Hei",
+}, {
+ "section_id": 0,
+ "section_name": " På",
+}, {
+ "section_id": 0,
+ "section_name": " Deg",
+}]"
+"}
+2021-05-13T14:39:54.053629 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:44:05.562061 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-13T14:44:06.666945 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-13T14:44:06.747620 class IDATT2105.Reservation.service.RoomService INFO: Adding section to room {
+"room_id": "1",
+"name": "Kult rom",
+"capacity":13
+"sections:":[{
+ "section_id": 1,
+ "section_name": " wow",
+}, {
+ "section_id": 0,
+ "section_name": "Fikk",
+}, {
+ "section_id": 0,
+ "section_name": " det",
+}, {
+ "section_id": 0,
+ "section_name": " til",
+}]"
+"}
+2021-05-13T14:44:14.286367 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:45:15.829320 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:45:24.222493 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-13T14:45:24.222919 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " wow",
+}]
+2021-05-13T14:45:24.223162 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "Kult rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " wow",
+}]"
+"}
+2021-05-13T14:46:11.331399 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-13T14:46:11.337119 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " wow",
+}]
+2021-05-13T14:46:11.342758 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "Kult rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " wow",
+}]"
+"}
+2021-05-13T14:46:40.856911 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 3
+2021-05-13T14:46:40.857276 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 3
+2021-05-13T14:46:40.995128 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 3
+2021-05-13T14:46:45.582878 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:53:41.073039 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:53:53.734474 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 2
+2021-05-13T14:53:53.734797 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 2
+2021-05-13T14:53:53.904618 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 2
+2021-05-13T14:54:00.350319 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:54:02.858467 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:59:03.342348 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:59:33.776657 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-13T14:59:33.787580 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-13T14:59:33.789372 class IDATT2105.Reservation.service.RoomService INFO: Adding section to room {
+"room_id": "1",
+"name": "Kult rom",
+"capacity":13
+"sections:":[{
+ "section_id": 1,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": "Hei",
+}]"
+"}
+2021-05-13T14:59:41.633161 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T14:59:49.335838 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 4
+2021-05-13T14:59:49.336226 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 4
+2021-05-13T14:59:49.484361 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 4
+2021-05-13T14:59:54.108737 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T15:07:20.110061 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T15:09:01.138467 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T15:09:02.319584 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T15:15:07.289499 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T15:15:08.419807 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T15:15:26.823259 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-13T15:15:26.823556 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-13T15:15:26.824768 class IDATT2105.Reservation.service.RoomService INFO: Adding section to room {
+"room_id": "1",
+"name": "Kult rom",
+"capacity":13
+"sections:":[{
+ "section_id": 1,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": "Hei",
+}, {
+ "section_id": 0,
+ "section_name": " hva",
+}, {
+ "section_id": 0,
+ "section_name": " skjer",
+}]"
+"}
+2021-05-13T15:15:33.337324 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T15:15:33.337542 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T15:15:56.486431 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 5
+2021-05-13T15:15:56.486783 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 5
+2021-05-13T15:15:56.490938 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed deleting sectionEntity must be managed to call remove: {
+ "section_id": 5,
+ "section_name": "Hei",
+}, try merging the detached and try the remove again.
+2021-05-13T15:17:51.510065 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T15:17:52.644022 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T15:18:12.951343 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 5
+2021-05-13T15:18:12.951679 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 5
+2021-05-13T15:18:12.956711 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed deleting sectionEntity must be managed to call remove: {
+ "section_id": 5,
+ "section_name": "Hei",
+}, try merging the detached and try the remove again.
+2021-05-13T15:18:44.763215 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 5
+2021-05-13T15:18:45.880816 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 5
+2021-05-13T15:18:46.164798 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 5
+2021-05-13T15:18:53.447905 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T15:18:53.448144 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T15:23:21.788152 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T15:23:22.913739 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T15:23:32.732386 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 6
+2021-05-13T15:23:32.733112 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 6
+2021-05-13T15:23:32.735321 class IDATT2105.Reservation.repo.SectionRepo INFO: Finding room with room_id 6
+2021-05-13T15:23:32.766170 class IDATT2105.Reservation.repo.SectionRepo INFO: Returning null, finding room failed tu to Could not find Entity for id: 6
+2021-05-13T15:23:32.766506 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed deleting sectionnull
+2021-05-13T15:24:03.054407 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 6
+2021-05-13T15:24:03.054624 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 6
+2021-05-13T15:24:03.055374 class IDATT2105.Reservation.repo.SectionRepo INFO: Finding room with room_id 6
+2021-05-13T15:24:03.080490 class IDATT2105.Reservation.repo.SectionRepo INFO: Returning null, finding room failed tu to Could not find Entity for id: 6
+2021-05-13T15:24:03.080835 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed deleting sectionnull
+2021-05-13T15:27:49.719065 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 6
+2021-05-13T15:27:50.840040 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 6
+2021-05-13T15:27:50.939291 class IDATT2105.Reservation.repo.SectionRepo INFO: Finding room with room_id 1
+2021-05-13T15:27:51.092981 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 6
+2021-05-13T15:27:57.588135 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T15:27:57.588399 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T15:29:02.641831 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T15:29:03.704866 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T15:29:35.583402 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 7
+2021-05-13T15:29:35.583758 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 7
+2021-05-13T15:29:35.585411 class IDATT2105.Reservation.repo.SectionRepo INFO: Finding room with room_id 1
+2021-05-13T15:29:35.730962 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 7
+2021-05-13T15:29:39.709262 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T15:29:39.709484 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T15:32:16.352052 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T15:32:17.531684 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T15:32:30.958202 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 1
+2021-05-13T15:32:30.958558 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 1
+2021-05-13T15:32:30.960271 class IDATT2105.Reservation.repo.SectionRepo INFO: Finding room with room_id 1
+2021-05-13T15:32:31.025149 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed deleting sectionYou have attempted to set a value of type class java.lang.Integer for parameter 1 with expected type of class IDATT2105.Reservation.models.Section from query string DELETE FROM Reservation WHERE section = ?1 .
+2021-05-13T15:35:06.180227 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 1
+2021-05-13T15:35:07.316739 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 1
+2021-05-13T15:35:07.424459 class IDATT2105.Reservation.repo.SectionRepo INFO: Finding room with room_id 1
+2021-05-13T15:35:07.696611 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 1
+2021-05-13T15:35:16.993669 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T15:35:16.993890 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T15:39:47.236321 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T15:39:52.319687 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T15:42:59.551206 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T15:43:00.682942 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T15:43:15.823819 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-13T15:43:15.824246 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-13T15:43:15.828344 class IDATT2105.Reservation.service.RoomService INFO: Adding section to room {
+"room_id": "1",
+"name": "Kult rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "Hei",
+}, {
+ "section_id": 0,
+ "section_name": " hva",
+}, {
+ "section_id": 0,
+ "section_name": " skjer",
+}]"
+"}
+2021-05-13T15:43:24.508598 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T15:43:24.508831 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T15:43:58.513172 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 8
+2021-05-13T15:43:58.513496 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 8
+2021-05-13T15:43:58.514857 class IDATT2105.Reservation.repo.SectionRepo INFO: Finding room with room_id 1
+2021-05-13T15:43:58.791755 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 8
+2021-05-13T15:44:04.791033 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T15:44:04.791252 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+>>>>>>> 7cf47df760c53063b6fab79a500d66b6ecc56c04
