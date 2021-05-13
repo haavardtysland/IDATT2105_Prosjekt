@@ -26,6 +26,7 @@ public class Logger {
   }
   private void write(String msg, boolean print){
     try{
+      System.out.println(log.getAbsolutePath());
       fw = new FileWriter(log, StandardCharsets.UTF_8, true);
       bw = new BufferedWriter(fw);
 

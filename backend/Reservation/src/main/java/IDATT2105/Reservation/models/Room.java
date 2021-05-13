@@ -1,59 +1,41 @@
 package IDATT2105.Reservation.models;
 
-import java.util.Base64;
+import javax.persistence.*;
 
 @Entity
 public class Room {
     @Id
-    @Column(name = "rom_id")
-    private int roomId;
-    @Column(name = "navn")
-    private String name;
-    @Column(name = "antall_plasser")
-    private int capacity;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int rom_id;
+    private String navn;
+    private int antall_plasser;
 
-    public Room() {
-
+    public int getRom_id() {
+        return rom_id;
     }
 
-    public Room(int roomId, String name, int capacity) {
-      this.roomId = roomId;
-      this.name = name;
-      this.capacity = capacity;
-
+    public String getNavn() {
+        return navn;
     }
 
-    public int getRoomId() {
-      return roomId;
+    public int getAntall_plasser() {
+        return antall_plasser;
     }
 
-    public void setRoomId(int roomId) {
-      this.roomId = roomId;
+    public void setNavn(String navn) {
+        this.navn = navn;
     }
 
-    public String getName() {
-      return name;
+    public void setAntall_plasser(int antall_plasser) {
+        this.antall_plasser = antall_plasser;
     }
 
-    public void setName(String name) {
-      this.name = name;
-    }
-
-    public int getCapacity() {
-      return capacity;
-    }
-
-    public void setCapacity(int capacity) {
-      this.capacity = capacity;
+    public void setRom_id(int rom_id) {
+        this.rom_id = rom_id;
     }
 
     @Override
     public String toString() {
-      return
-          "{" +
-              "\n \"roomId\": " + roomId + "," +
-              "\n \"name\": \"" + name + "\"," +
-              "\n \"capacity\": \"" + capacity + "\"" +
-              "\n}";
+        return this.navn;
     }
 }

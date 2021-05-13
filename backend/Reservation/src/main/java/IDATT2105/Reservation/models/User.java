@@ -3,12 +3,12 @@ package IDATT2105.Reservation.models;
 import java.sql.Date;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.eclipse.persistence.annotations.CascadeOnDelete;
-
 import javax.persistence.*;
+import org.apache.commons.codec.binary.Hex;
+
+
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.codec.binary.Hex;
 
 
 import javax.crypto.SecretKey;
@@ -21,30 +21,23 @@ import java.security.spec.InvalidKeySpecException;
 @Entity
 public class User {
   @Id
-  @Column(name = "user_id")
+  @Column(name = "bruker_id")
   private int userId;
-  @Column(unique = true)
-  private String email;
-  private String password;
-  private Boolean isAdmin;
-  private Date validDate;
-  @Column(name = "first_name")
+  @Column(name = "fornavn")
   private String firstName;
+  @Column(name = "etternavn")
   private String surname;
-  @Column(name = "phone_number")
+  @Column(name = "epost")
+  private String email;
+  @Column(name = "passord")
+  private String password;
+  @Column(name = "is_Admin")
+  private Boolean isAdmin;
+  @Column(name = "gyldig_dato")
+  private Date validDate;
+  @Column(name = "telefon_nr")
   private int phoneNumber;
-  @Column(name = "auth_provider")
-  private Provider authProvider;
-  @CascadeOnDelete
-  @OneToMany(mappedBy = "User", fetch = FetchType.EAGER)
-  private List<ActivityUser> activities;
   private String salt;
-  @CascadeOnDelete
-  @CascadeOnDelete
-  @OneToOne(targetEntity = Image.class, fetch = FetchType.EAGER)
-  private Image image;
-  @OneToMany
-  private List<Activity> notifications;
 
   public User() {
   }

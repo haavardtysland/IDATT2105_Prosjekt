@@ -1,22 +1,25 @@
 package IDATT2105.Reservation.models;
 
+import javax.persistence.*;
+import org.eclipse.persistence.annotations.CascadeOnDelete;
+
 @Entity
 public class Section {
   @Id
-  @Column(name = "seksjons_id")
+  @Column(name = "seksjon_id")
   private int sectionId;
-  @Column(name = "seksjons_navn")
+  @Column(name = "seksjon_navn")
   private String sectionName;
   @Column(name = "rom_id")
-  private Room room; //eller private romId???????????
+  private int roomId;
 
   public Section() {
   }
 
-  public Section(int sectionId, String sectionName, Room room) {
+  public Section(int sectionId, String sectionName, int roomId) {
     this.sectionId = sectionId;
     this.sectionName = sectionName;
-    this.room = room;
+    this.roomId = roomId;
   }
 
 
@@ -36,12 +39,12 @@ public class Section {
     this.sectionName = sectionName;
   }
 
-  public Room getRoom() {
-    return room;
+  public int getRoomId() {
+    return roomId;
   }
 
-  public void setRoom(Room room) {
-    this.room = room;
+  public void setRoomId(int roomId) {
+    this.roomId = roomId;
   }
 
   @Override
@@ -50,7 +53,7 @@ public class Section {
         "{" +
             "\n \"sectionId\": " + sectionId + "," +
             "\n \"name\": \"" + sectionName + "\"," +
-            "\n \"room\": \"" + room + "\"" +
+            "\n \"roomId\": \"" + roomId + "\"" +
             "\n}";
   }
 

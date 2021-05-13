@@ -1,5 +1,6 @@
 package IDATT2105.Reservation.models;
 
+import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
