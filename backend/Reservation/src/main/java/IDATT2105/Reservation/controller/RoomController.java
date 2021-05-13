@@ -25,7 +25,7 @@ public class RoomController {
         Map<String, String> body = new HashMap<>();
 
         Room room = new Room();
-        room.setRoom_id(0);
+        room.setRoom_id(Integer.parseInt(map.get("room_id").toString()));
         room.setName(map.get("name").toString());
         room.setAvailable(Integer.parseInt(map.get("available").toString()));
         return service.addRoom(room);

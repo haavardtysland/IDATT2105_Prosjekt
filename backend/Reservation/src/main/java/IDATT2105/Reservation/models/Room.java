@@ -6,11 +6,11 @@ import javax.persistence.*;
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "rom_id")
-    private int room_id;
-    @Column(name = "navn")
+    @Column(name = "room_id")
+    private int room_id = 0;
+    @Column(name = "name")
     private String name;
-    @Column(name = "antall_plasser")
+    @Column(name = "available")
     private int available;
 
     public int getRoom_id() {
