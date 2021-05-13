@@ -2,6 +2,7 @@ package IDATT2105.Reservation.controller;
 
 
 import static IDATT2105.Reservation.controller.ControllerUtil.formatJson;
+import static IDATT2105.Reservation.controller.ControllerUtil.getRandomID;
 /*
 import static IDATT2106.team6.Gidd.Constants.*;
 import static IDATT2106.team6.Gidd.web.ControllerUtil.getRandomID;
@@ -12,7 +13,9 @@ import IDATT2105.Reservation.repo.RoomRepo;
 import IDATT2105.Reservation.repo.UserRepo;
 import IDATT2105.Reservation.service.UserService;
 import java.util.HashMap;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -49,5 +52,78 @@ public class UserController {
           .body(formatJson(body));
     }
   }
+
+  @DeleteMapping("/{id}")
+  public ResponseEntity deleteUser(@PathVariable Integer id) {
+    //todo return activity-objects and user id's affected by this user being deleted
+    // aka the activities this user has created
+    log.info("recieved deletemapping to user with id " + id);
+    HttpHeaders header = new HttpHeaders();
+    boolean result = userService.deleteUser(id);
+    Map<String, String> body = new HashMap<>();
+
+    if (result) {
+      log.info("deletion successful");
+      header.add("Status", "200 OK");
+      return ResponseEntity.ok()
+          .headers(header).body(formatJson(body));
+    }
+
+    log.error("unable to delete user with id: " + id);
+    body.put("error", "deletion failed, are you sure the user with id " + id + " exists?");
+    header.add("Status", "400 BAD REQUEST");
+    return ResponseEntity.ok()
+        .headers(header).body(formatJson(body));
+  }
+
+  @PostMapping("")
+  public ResponseEntity registerUser(@RequestBody HashMap<String, Object> map) {
+    log.info("recieved postmapping to /user: " + map.toString());
+    Map<String, String> body = new HashMap<>();
+
+    if (userService.getUser(map.get("email").toString()) != null) {
+      body.put("error", "a user with that email already exists!");
+
+      return ResponseEntity
+          .badRequest()
+          .body(formatJson(body));
+    }
+
+    User result = userService.registerUser(
+        getRandomID(),
+        map.get("firstName").toString(),
+        map.get("surName").toString(),
+        map.get("email").toString(),
+        Boolean.parseBoolean(map.get("isAdmin").toString()),
+        new java.sql.Date((Long) map.get("validDate")),
+        map.get("password").toString(),
+        Integer.parseInt(map.get("phoneNumber").toString()));
+    log.info("created user with id: " + result.getUserId());
+    HttpHeaders header = new HttpHeaders();
+
+    header.add("Content-Type", "application/json; charset=UTF-8");
+    log.info("created user " + result.getUserId() + " | " + result.getEmail());
+    if (result != null) {
+      log.info("created user");
+      header.add("Status", "201 CREATED");
+
+      body.put("userId", String.valueOf(result.getUserId()));
+      //body.put("token", securityService
+        //  .createToken(String.valueOf(result.getUserId()), (1000 * 60 * 60 * 24)));
+
+      return ResponseEntity
+          .ok()
+          .headers(header)
+          .body(formatJson(body));
+    }
+    log.error("Created user is null");
+    header.add("Status", "400 BAD REQUEST");
+    body.put("error", "Created user is null");
+    return ResponseEntity
+        .ok()
+        .headers(header)
+        .body(formatJson(body));
+  }
+
 
 }
