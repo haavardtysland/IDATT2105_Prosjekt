@@ -84,6 +84,7 @@ const Calendar: React.FC<CalendarProps> = ({ date }: CalendarProps) => {
   };
 
   const times = setTimeArr();
+
   const renderTimeCards = times.map((time, key: number) => {
     return (
       <TimeCard
