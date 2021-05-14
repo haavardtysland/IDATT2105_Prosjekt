@@ -12,12 +12,19 @@ const TransformDiv = styled.div`
 interface TimeCardProps {
   time: string;
   reset: boolean;
+  isMarkedArr: boolean[];
+  setIsMarkedArr: React.Dispatch<React.SetStateAction<boolean[]>>;
+  index: number;
 }
 
-//TODO pass a list as a prop
-const TimeCard: React.FC<TimeCardProps> = ({ time, reset }: TimeCardProps) => {
+const TimeCard: React.FC<TimeCardProps> = ({
+  time,
+  reset,
+  isMarkedArr,
+  setIsMarkedArr,
+  index,
+}: TimeCardProps) => {
   const [backgroundcolor, setBackgroundcolor] = useState<string>('');
-  const [isMarked, setIsMarked] = useState<boolean>(false);
 
   const handleIsMarked = () => {
     if (backgroundcolor === 'lightgrey') {
@@ -25,10 +32,9 @@ const TimeCard: React.FC<TimeCardProps> = ({ time, reset }: TimeCardProps) => {
     } else {
       setBackgroundcolor('lightgrey');
     }
-    setIsMarked(!isMarked);
+    updateIsMarkedArr();
   };
 
-  /*
   const updateIsMarkedArr = () => {
     const items = [...isMarkedArr];
     let item = items[index];
@@ -36,11 +42,16 @@ const TimeCard: React.FC<TimeCardProps> = ({ time, reset }: TimeCardProps) => {
     items[index] = item;
     setIsMarkedArr(items);
   };
-  */
 
   useEffect(() => {
     setBackgroundcolor('white');
-    setIsMarked(!isMarked);
+    setIsMarkedArr(() => {
+      const arr: boolean[] = [];
+      for (let i = 0; i < isMarkedArr.length; i++) {
+        arr.push(false);
+      }
+      return arr;
+    });
   }, [reset]);
 
   return (
