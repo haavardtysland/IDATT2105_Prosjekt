@@ -17,14 +17,17 @@ import AppBar from '@material-ui/core/AppBar';
 import SettingsIcon from '@material-ui/icons/Settings';
 import styled from 'styled-components';
 import DropDownList from './DropDownList';
+import { useHistory } from 'react-router';
 
 function Bar() {
+  const history = useHistory();
+
   return (
     <div>
       <AppBar>
         <Toolbar style={{ justifyContent: 'space-between' }}>
           <Typography variant="h4">Scroll to Elevate App Bar</Typography>
-          <Button>
+          <Button onClick={() => history.push('/addUser')}>
             <Typography variant="h6">Legg til brukere</Typography>
           </Button>
           <Button>
