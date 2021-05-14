@@ -1,5 +1,6 @@
 package IDATT2105.Reservation.service;
 
+<<<<<<< HEAD
 import IDATT2105.Reservation.models.Reservation;
 import IDATT2105.Reservation.models.Section;
 import IDATT2105.Reservation.models.User;
@@ -10,6 +11,8 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+=======
+>>>>>>> 45ff69f6f68dc3936f300a4f0b6490c3a9c52913
 import org.springframework.stereotype.Service;
 
 @Service

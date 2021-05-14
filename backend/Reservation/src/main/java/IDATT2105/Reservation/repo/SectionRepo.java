@@ -84,8 +84,6 @@ public class SectionRepo extends ProjectRepo {
     public boolean deleteSection(int section_id) {
         EntityManager em = getEm();
         try{
-
-
                 em.getTransaction().begin();
                 Section section = findSection(section_id);
             if(section != null) {
@@ -94,7 +92,7 @@ public class SectionRepo extends ProjectRepo {
                 room.removeSection(section);
                 em.merge(room);
                 em.getTransaction().commit();
-                log.info("Sucessfully delete section with id " + section_id);
+                log.info("Successfully delete section with id " + section_id);
                 return true;
             } else {
                 log.info("section to be deleted " + section_id + " not found");

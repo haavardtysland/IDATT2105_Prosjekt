@@ -12,7 +12,7 @@ public class Reservation {
   @Column(name = "reservation_id")
   @GeneratedValue(strategy = GenerationType.AUTO)
   private int reservation_id;
-  @OneToOne
+  @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "section_id")
   private Section section;
   @Column(name = "from_date")

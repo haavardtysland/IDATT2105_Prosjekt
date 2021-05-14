@@ -26,7 +26,7 @@ import IDATT2105.Reservation.util.Logger;
 
 import java.util.List;
 
-
+@CrossOrigin(origins = "*")
 @Controller
 @RequestMapping(value="/user")
 public class UserController {
