@@ -16,7 +16,6 @@ public class Room {
     private String name;
     @Column(name = "capacity")
     private int capacity;
-    @PrivateOwned
     @OneToMany(mappedBy="room", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Section> sections = new ArrayList<>();
 
@@ -69,10 +68,10 @@ public class Room {
 
     public String toString() {
         return "{" +
-                "\n\"room_id\": " + "\"" + room_id + "\"" +
+                "\n\"room_id\": "  + room_id  +
                 ",\n\"name\": " + "\"" + name + "\"" +
                 ",\n\"capacity\":" + capacity +
-                "\n\"sections:\":" + sections + "\"" +
-                "\n\"}";
+                "\n\"sections:\":" + sections  +
+                "\n}";
     }
 }

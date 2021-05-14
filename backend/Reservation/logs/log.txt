@@ -2784,3 +2784,1838 @@ Query: DeleteObjectQuery({
 =======
 >>>>>>> 7cf47df760c53063b6fab79a500d66b6ecc56c04
 >>>>>>> 82dc6367bf7cbcac19904ebe82a749f1b923c010
+2021-05-14T08:14:58.003199 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T08:14:59.149297 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T08:15:11.380439 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 2
+2021-05-14T08:15:11.380826 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 2
+2021-05-14T08:15:11.470840 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section {
+ "section_id": 2,
+ "section_name": "test",
+}
+2021-05-14T08:15:11.471226 class IDATT2105.Reservation.repo.SectionRepo INFO: Finding room with room_id 1
+2021-05-14T08:15:11.593202 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 2
+2021-05-14T08:15:17.577268 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T08:15:17.577472 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T08:15:33.391522 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T08:15:34.520023 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T08:15:41.352780 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 1
+2021-05-14T08:15:41.353221 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 1
+2021-05-14T08:15:41.454753 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section {
+ "section_id": 1,
+ "section_name": " dette funker",
+}
+2021-05-14T08:15:41.455252 class IDATT2105.Reservation.repo.SectionRepo INFO: Finding room with room_id 1
+2021-05-14T08:15:41.570038 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 1
+2021-05-14T08:15:46.753759 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T08:15:46.753967 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T08:45:23.907746 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T08:45:25.018856 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T08:46:03.360149 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-14T08:46:03.360436 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-14T08:46:03.420956 class IDATT2105.Reservation.service.RoomService INFO: Adding section to room {
+"room_id": "1",
+"name": "Nytt rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "Rom",
+}, {
+ "section_id": 0,
+ "section_name": " Seng",
+}, {
+ "section_id": 0,
+ "section_name": " Mer",
+}]"
+"}
+2021-05-14T08:46:03.675233 class IDATT2105.Reservation.controller.SectionController INFO: Sucesfully added section to room 1
+2021-05-14T08:46:03.675857 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T08:46:32.946969 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T08:46:32.947172 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T08:47:38.379692 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-14T08:47:39.526724 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-14T08:47:39.607645 class IDATT2105.Reservation.service.RoomService INFO: Adding section to room {
+"room_id": "1",
+"name": "Nytt rom",
+"capacity":13
+"sections:":[{
+ "section_id": 4,
+ "section_name": " Seng",
+}, {
+ "section_id": 5,
+ "section_name": " Mer",
+}, {
+ "section_id": 6,
+ "section_name": "Rom",
+}, {
+ "section_id": 0,
+ "section_name": "Tv-stue",
+}]"
+"}
+2021-05-14T08:47:39.751850 class IDATT2105.Reservation.controller.SectionController INFO: Sucesfully added section to room 1
+2021-05-14T08:47:39.754138 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T08:51:11.398091 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T08:51:11.399032 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T08:51:20.913488 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T08:51:20.913713 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T09:07:31.697904 class IDATT2105.Reservation.controller.RoomController INFO: Recieved put mapping for room with id 1
+2021-05-14T09:07:31.701601 class IDATT2105.Reservation.service.RoomService INFO: Editing room with room_id 1
+2021-05-14T09:07:32.841523 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-14T09:07:32.913653 class IDATT2105.Reservation.repo.ProjectRepo INFO: Setting new variables to room
+2021-05-14T09:07:33.033635 class IDATT2105.Reservation.controller.RoomController INFO: Sucesfully edited room with room_id 1
+2021-05-14T09:07:33.036183 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T09:07:39.457029 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T09:07:39.457245 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T09:09:23.304714 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T09:09:24.495223 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T09:12:44.681680 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T09:12:44.685262 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-14T09:12:44.688917 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "test",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": " s",
+ "capacity": "0",
+}]
+2021-05-14T09:12:44.694092 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "Nytt rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "test",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": " s",
+ "capacity": "0",
+}]"
+"}
+2021-05-14T09:14:37.564096 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T09:14:37.564303 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-14T09:14:37.564632 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "test",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": " s",
+ "capacity": "0",
+}]
+2021-05-14T09:14:37.564787 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "Nytt rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "test",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": " s",
+ "capacity": "0",
+}]"
+"}
+2021-05-14T09:14:50.405720 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T09:14:50.405934 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-14T09:14:50.406370 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "test",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": " s",
+ "capacity": "0",
+}]
+2021-05-14T09:14:50.406542 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "Nytt rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "test",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": " s",
+ "capacity": "0",
+}]"
+"}
+2021-05-14T09:15:35.722660 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T09:15:35.723224 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T09:15:56.849963 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T09:15:58.239945 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T09:16:17.217288 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T09:16:17.217507 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-14T09:16:17.221047 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "test",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": " s",
+ "capacity": "0",
+}]
+2021-05-14T09:16:17.225781 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "Nytt rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "test",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": " s",
+ "capacity": "0",
+}]"
+"}
+2021-05-14T09:16:17.543491 class IDATT2105.Reservation.controller.RoomController INFO: Posted room successfully
+2021-05-14T09:16:17.544208 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T09:16:23.257824 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T09:16:23.258030 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T09:19:16.346730 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T09:19:16.349561 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-14T09:19:16.349702 class IDATT2105.Reservation.controller.RoomController INFO: [{section_name=Blablabla}, {section_name=Yeyeyey}]
+2021-05-14T09:19:16.353150 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "[{section_name=blablabla}",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": " {section_name=yeyeyey}]",
+ "capacity": "0",
+}]
+2021-05-14T09:19:16.357811 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "Kult rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "[{section_name=blablabla}",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": " {section_name=yeyeyey}]",
+ "capacity": "0",
+}]"
+"}
+2021-05-14T09:19:17.796267 class IDATT2105.Reservation.controller.RoomController INFO: Posted room successfully
+2021-05-14T09:19:17.797806 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T09:19:32.879220 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T09:19:32.879432 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T09:28:54.861108 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T09:28:54.864692 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-14T09:28:54.864850 class IDATT2105.Reservation.controller.RoomController INFO: [{section_name=Blablabla, capacity=10}, {section_name=Yeyeyey, capacity=20}]
+2021-05-14T09:28:54.868992 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "[",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "{",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "s",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "e",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "c",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "t",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "i",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "o",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "n",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "_",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "n",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "a",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "m",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "e",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "=",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "B",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "l",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "a",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "b",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "l",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "a",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "b",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "l",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "a",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": ",",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": " ",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "c",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "a",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "p",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "a",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "c",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "i",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "t",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "y",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "=",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "1",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "0",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "}",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": ",",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": " ",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "{",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "s",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "e",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "c",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "t",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "i",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "o",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "n",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "_",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "n",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "a",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "m",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "e",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "=",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "Y",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "e",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "y",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "e",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "y",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "e",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "y",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": ",",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": " ",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "c",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "a",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "p",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "a",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "c",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "i",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "t",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "y",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "=",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "2",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "0",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "}",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "]",
+ "capacity": "0",
+}]
+2021-05-14T09:28:54.874423 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "test rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "[",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "{",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "s",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "e",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "c",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "t",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "i",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "o",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "n",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "_",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "n",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "a",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "m",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "e",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "=",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "B",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "l",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "a",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "b",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "l",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "a",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "b",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "l",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "a",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": ",",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": " ",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "c",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "a",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "p",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "a",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "c",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "i",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "t",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "y",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "=",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "1",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "0",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "}",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": ",",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": " ",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "{",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "s",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "e",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "c",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "t",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "i",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "o",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "n",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "_",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "n",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "a",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "m",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "e",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "=",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "Y",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "e",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "y",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "e",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "y",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "e",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "y",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": ",",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": " ",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "c",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "a",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "p",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "a",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "c",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "i",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "t",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "y",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "=",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "2",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "0",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "}",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "]",
+ "capacity": "0",
+}]"
+"}
+2021-05-14T09:29:00.289420 class IDATT2105.Reservation.controller.RoomController INFO: Posted room successfully
+2021-05-14T09:29:00.291020 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T09:40:41.454331 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T09:40:41.455364 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-14T09:40:41.455515 class IDATT2105.Reservation.controller.RoomController INFO: [{section_name=Blablabla, capacity=10}, {section_name=Yeyeyey, capacity=20}]
+2021-05-14T09:40:41.455864 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "[",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "{",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "s",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "e",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "c",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "t",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "i",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "o",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "n",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "_",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "n",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "a",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "m",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "e",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "=",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "B",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "l",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "a",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "b",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "l",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "a",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "b",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "l",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "a",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": ",",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": " ",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "c",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "a",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "p",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "a",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "c",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "i",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "t",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "y",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "=",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "1",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "0",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "}",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": ",",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": " ",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "{",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "s",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "e",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "c",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "t",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "i",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "o",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "n",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "_",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "n",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "a",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "m",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "e",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "=",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "Y",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "e",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "y",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "e",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "y",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "e",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "y",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": ",",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": " ",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "c",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "a",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "p",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "a",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "c",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "i",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "t",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "y",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "=",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "2",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "0",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "}",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "]",
+ "capacity": "0",
+}]
+2021-05-14T09:40:41.456158 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "test rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "[",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "{",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "s",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "e",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "c",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "t",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "i",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "o",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "n",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "_",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "n",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "a",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "m",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "e",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "=",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "B",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "l",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "a",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "b",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "l",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "a",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "b",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "l",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "a",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": ",",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": " ",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "c",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "a",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "p",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "a",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "c",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "i",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "t",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "y",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "=",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "1",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "0",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "}",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": ",",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": " ",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "{",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "s",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "e",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "c",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "t",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "i",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "o",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "n",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "_",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "n",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "a",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "m",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "e",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "=",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "Y",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "e",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "y",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "e",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "y",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "e",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "y",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": ",",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": " ",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "c",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "a",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "p",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "a",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "c",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "i",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "t",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "y",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "=",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "2",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "0",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "}",
+ "capacity": "0",
+}, {
+ "section_id": 0,
+ "section_name": "]",
+ "capacity": "0",
+}]"
+"}
+2021-05-14T09:41:03.679466 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T09:41:57.920574 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T09:50:27.905063 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T09:52:15.261576 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T09:52:15.269710 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "test rom",
+"capacity":13
+"sections:":[]"
+"}
+2021-05-14T09:52:16.873748 class IDATT2105.Reservation.controller.RoomController INFO: Posted room successfully
+2021-05-14T09:52:16.876075 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T09:52:34.139204 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T09:52:34.139427 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T09:56:23.761715 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T09:56:23.766625 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T10:02:50.337345 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T10:02:50.341719 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T10:07:42.931678 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T10:07:42.937208 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T10:08:04.528689 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T10:08:04.533978 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T10:11:55.204468 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T10:11:55.208291 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-14T10:11:55.212395 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "Blablabla",
+ "capacity": "10",
+}, {
+ "section_id": 0,
+ "section_name": "Yeyeyey",
+ "capacity": "20",
+}]
+2021-05-14T10:11:55.217641 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "test rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "Blablabla",
+ "capacity": "10",
+}, {
+ "section_id": 0,
+ "section_name": "Yeyeyey",
+ "capacity": "20",
+}]"
+"}
+2021-05-14T10:11:56.879994 class IDATT2105.Reservation.controller.RoomController INFO: Posted room successfully
+2021-05-14T10:11:56.882336 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T10:12:01.834920 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T10:12:01.835144 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T10:19:50.879800 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-14T10:19:51.989452 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-14T10:19:52.071206 class IDATT2105.Reservation.service.RoomService INFO: Adding section to room {
+"room_id": "1",
+"name": "test rom",
+"capacity":13
+"sections:":[{
+ "section_id": 1,
+ "section_name": "Blablabla",
+ "capacity": "10",
+}, {
+ "section_id": 2,
+ "section_name": "Yeyeyey",
+ "capacity": "20",
+}]"
+"}
+2021-05-14T10:19:52.075819 class IDATT2105.Reservation.controller.SectionController INFO: Sucesfully added section to room 1
+2021-05-14T10:19:52.077827 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T10:19:58.204616 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T10:19:58.204834 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T10:22:02.287581 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-14T10:22:03.409227 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-14T10:22:03.502100 class IDATT2105.Reservation.service.RoomService INFO: Adding section to room {
+"room_id": "1",
+"name": "test rom",
+"capacity":13
+"sections:":[{
+ "section_id": 1,
+ "section_name": "Blablabla",
+ "capacity": "10",
+}, {
+ "section_id": 2,
+ "section_name": "Yeyeyey",
+ "capacity": "20",
+}, {
+ "section_id": 0,
+ "section_name": "test",
+ "capacity": "10",
+}, {
+ "section_id": 0,
+ "section_name": "kult",
+ "capacity": "20",
+}]"
+"}
+2021-05-14T10:22:03.711249 class IDATT2105.Reservation.controller.SectionController INFO: Sucesfully added section to room 1
+2021-05-14T10:22:03.713637 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T10:22:18.038692 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T10:22:18.038908 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T10:22:22.000919 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T10:22:22.001126 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T10:22:27.287837 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T10:22:27.288057 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T10:24:07.323071 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T10:24:08.424416 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T10:24:51.300390 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-14T10:24:51.300998 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-14T10:24:51.365181 class IDATT2105.Reservation.service.RoomService INFO: Adding section to room {
+"room_id": "1",
+"name": "test rom",
+"capacity":13
+"sections:":[{
+ "section_id": 1,
+ "section_name": "Blablabla",
+ "capacity": "10"
+}, {
+ "section_id": 2,
+ "section_name": "Yeyeyey",
+ "capacity": "20"
+}, {
+ "section_id": 3,
+ "section_name": "test",
+ "capacity": "10"
+}, {
+ "section_id": 4,
+ "section_name": "kult",
+ "capacity": "20"
+}, {
+ "section_id": 0,
+ "section_name": "test",
+ "capacity": "10"
+}, {
+ "section_id": 0,
+ "section_name": "kult",
+ "capacity": "20"
+}]"
+"}
+2021-05-14T10:24:51.570472 class IDATT2105.Reservation.controller.SectionController INFO: Sucesfully added section to room 1
+2021-05-14T10:24:51.571309 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T10:26:04.738063 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T10:26:04.741243 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-14T10:26:04.745070 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "Blablabla",
+ "capacity": "10"
+}, {
+ "section_id": 0,
+ "section_name": "Yeyeyey",
+ "capacity": "20"
+}]
+2021-05-14T10:26:04.750491 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "Kult rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "Blablabla",
+ "capacity": "10"
+}, {
+ "section_id": 0,
+ "section_name": "Yeyeyey",
+ "capacity": "20"
+}]"
+"}
+2021-05-14T10:26:06.391499 class IDATT2105.Reservation.controller.RoomController INFO: Posted room successfully
+2021-05-14T10:26:06.393642 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T10:26:24.290688 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T10:26:24.290874 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T10:27:56.962173 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T10:27:58.071355 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T10:29:42.121694 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T10:29:43.248065 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T10:30:03.649414 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T10:30:04.750521 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T10:30:46.484210 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T10:30:47.629958 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T10:33:49.177870 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T10:33:49.180738 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-14T10:33:49.184092 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "Blablabla",
+"capacity":10
+}, {
+ "section_id": 0,
+ "section_name": "Yeyeyey",
+"capacity":20
+}]
+2021-05-14T10:33:49.188525 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": 0,
+"name": "Kult rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "Blablabla",
+"capacity":10
+}, {
+ "section_id": 0,
+ "section_name": "Yeyeyey",
+"capacity":20
+}]"
+"}
+2021-05-14T10:33:50.575756 class IDATT2105.Reservation.controller.RoomController INFO: Posted room successfully
+2021-05-14T10:33:50.578161 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T10:33:57.731435 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T10:33:57.731684 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T10:34:28.744035 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T10:34:29.802340 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T10:34:45.882554 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T10:34:47.004635 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T10:34:59.938863 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T10:34:59.939066 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T10:35:17.005192 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T10:35:17.005391 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T10:35:24.692498 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T10:35:26.098653 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T10:35:33.675288 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T10:35:33.675528 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T10:35:41.710611 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T10:35:42.818395 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T10:35:52.568168 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T10:35:52.568395 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-14T10:35:52.572365 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "Blablabla",
+"capacity":10
+}, {
+ "section_id": 0,
+ "section_name": "Yeyeyey",
+"capacity":20
+}]
+2021-05-14T10:35:52.577255 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": 0,
+"name": "Kult rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "Blablabla",
+"capacity":10
+}, {
+ "section_id": 0,
+ "section_name": "Yeyeyey",
+"capacity":20
+}]"
+"}
+2021-05-14T10:35:52.837848 class IDATT2105.Reservation.controller.RoomController INFO: Posted room successfully
+2021-05-14T10:35:52.838458 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T10:35:57.428851 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T10:35:57.429055 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T10:39:52.815340 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-14T10:39:52.815708 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-14T10:39:52.830383 class IDATT2105.Reservation.service.RoomService INFO: Adding section to room {
+"room_id": 1,
+"name": "Kult rom",
+"capacity":13
+"sections:":[{
+ "section_id": 2,
+ "section_name": "Blablabla",
+"capacity":10
+}, {
+ "section_id": 1,
+ "section_name": "Yeyeyey",
+"capacity":20
+}, {
+ "section_id": 0,
+ "section_name": "Blablabla",
+"capacity":10
+}, {
+ "section_id": 0,
+ "section_name": "Yeyeyey",
+"capacity":20
+}]"
+"}
+2021-05-14T10:39:53.373902 class IDATT2105.Reservation.controller.SectionController INFO: Sucesfully added section to room 1
+2021-05-14T10:39:53.374297 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T10:39:59.637582 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T10:39:59.637795 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T10:40:25.491784 class IDATT2105.Reservation.controller.SectionController INFO: Getting section with section id 1
+2021-05-14T10:40:25.492131 class IDATT2105.Reservation.service.SectionService INFO: Finding section with section_id 1
+2021-05-14T10:40:25.492476 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 1
+2021-05-14T10:40:25.493588 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section {
+ "section_id": 1,
+ "section_name": "Yeyeyey",
+"capacity":20
+}
+2021-05-14T10:42:08.787322 class IDATT2105.Reservation.controller.SectionController INFO: Getting section with section id 1
+2021-05-14T10:42:08.790555 class IDATT2105.Reservation.service.SectionService INFO: Finding section with section_id 1
+2021-05-14T10:42:08.790813 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 1
+2021-05-14T10:42:10.046318 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section {
+ "section_id": 1,
+ "section_name": "Yeyeyey",
+"capacity":20
+}
+2021-05-14T10:42:21.348163 class IDATT2105.Reservation.controller.SectionController INFO: Getting section with section id 1
+2021-05-14T10:42:21.348410 class IDATT2105.Reservation.service.SectionService INFO: Finding section with section_id 1
+2021-05-14T10:42:21.348719 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 1
+2021-05-14T10:42:21.350158 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section {
+ "section_id": 1,
+ "section_name": "Yeyeyey",
+"capacity":20
+}
+2021-05-14T10:42:30.289420 class IDATT2105.Reservation.controller.SectionController INFO: Getting section with section id 1
+2021-05-14T10:42:30.292584 class IDATT2105.Reservation.service.SectionService INFO: Finding section with section_id 1
+2021-05-14T10:42:30.292925 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 1
+2021-05-14T10:42:31.463554 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section {
+ "section_id": 1,
+ "section_name": "Yeyeyey",
+"capacity":20
+}
+2021-05-14T10:42:34.296691 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T10:42:34.296955 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T10:43:10.723007 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T10:43:11.836618 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T10:43:43.425774 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-14T10:43:43.426132 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-14T10:43:43.485493 class IDATT2105.Reservation.service.RoomService INFO: Adding section to room {
+"room_id": 1,
+"name": "Kult rom",
+"capacity":13
+"sections:":[{
+ "section_id": 1,
+ "section_name": "Yeyeyey",
+"capacity":20
+}, {
+ "section_id": 2,
+ "section_name": "Blablabla",
+"capacity":10
+}, {
+ "section_id": 3,
+ "section_name": "Blablabla",
+"capacity":10
+}, {
+ "section_id": 4,
+ "section_name": "Yeyeyey",
+"capacity":20
+}, {
+ "section_id": 0,
+ "section_name": "testeseksjon",
+"capacity":20
+}]
+}
+2021-05-14T10:43:43.633426 class IDATT2105.Reservation.controller.SectionController INFO: Sucesfully added section to room 1
+2021-05-14T10:43:43.634130 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T10:43:48.831983 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T10:43:48.832195 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms

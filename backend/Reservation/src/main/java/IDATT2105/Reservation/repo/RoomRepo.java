@@ -75,7 +75,27 @@ public class RoomRepo extends ProjectRepo {
             } finally {
                 em.close();
             }
+    }
 
+    public boolean editRoom(int room_id, String name, int capacity){
+        EntityManager em = getEm();
+        try{
+            Room room = getRoom(room_id);
+            if(room == null) {
+                log.info("Room was not found");
+                return false;
+            }
+            log.info("Setting new variables to room");
+            room.setName(name);
+            room.setCapacity(capacity);
+            em.getTransaction().begin();
+            em.merge(room);
+            em.getTransaction().commit();
+            return true;
+        } catch(Exception e){
+            log.info("Could not edit room due to " + e.getCause() + " failed with message " + e.getMessage());
+            return false;
+        }
     }
 
     public Room getRoom(int room_id) {

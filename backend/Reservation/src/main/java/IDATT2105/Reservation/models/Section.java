@@ -12,6 +12,9 @@ public class Section {
   @Column(name = "section_name")
   private String section_name;
 
+  @Column(name = "capacity")
+  private int capacity;
+
   @ManyToOne
   private Room room;
 
@@ -52,6 +55,14 @@ public class Section {
     this.room = room;
   }
 
+  public int getCapacity() {
+    return this.capacity;
+  }
+
+  public void setCapacity(int capacity){
+    this.capacity = capacity;
+  }
+
 
 
 
@@ -61,6 +72,7 @@ public class Section {
         "{" +
             "\n \"section_id\": " + section_id + "," +
             "\n \"section_name\": \"" + section_name + "\"," +
+                "\n\"capacity\":" + capacity +
             "\n}";
   }
 

@@ -24,6 +24,11 @@ public class RoomService {
         return this.repo.getRooms();
     }
 
+    public boolean editRoom(int room_id, String name, int capacity){
+        log.info("Editing room with room_id " + room_id);
+        return this.repo.editRoom(room_id, name, capacity);
+    }
+
     public Room getRoom(int room_id) {
         log.info("Finding room with room_id " + room_id);
         return this.repo.getRoom(room_id);
