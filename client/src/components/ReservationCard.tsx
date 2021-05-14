@@ -19,7 +19,7 @@ const TimeContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin: 1% 0 2% 2%;
-  width: 7rem;
+  width: 13rem;
 `;
 
 const TransformDiv = styled.div`

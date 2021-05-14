@@ -1,4 +1,4 @@
-import Reservation from '../interfaces/Reservation';
+import Reservation from '../../interfaces/Reservation';
 
 const dateFilterHighLow = (reservations: Reservation[]) => {};
 
