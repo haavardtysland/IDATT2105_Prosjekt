@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+@CrossOrigin(origins = "*")
 @Controller
 @RequestMapping(value="/section/")
 public class SectionController {
@@ -59,6 +60,12 @@ public class SectionController {
              newSection.setSectionName(section.get("section_name").toString());
              newSection.setCapacity(Integer.parseInt(section.get("capacity").toString()));
              sections.add(newSection);
+             if(room.getAvailable() < newSection.getCapacity()) {
+                 log.info("Capacity is full");
+                 header.add("STATUS", "400 BAD REQUEST");
+                 body.put("error", "not enough capacity for the room to add this section");
+                 return ResponseEntity.badRequest().headers(header).body(formatJson(body));
+             }
              room.addSection(newSection);
          }
         boolean result =  roomService.addSection(room);

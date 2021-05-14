@@ -4619,3 +4619,785 @@ Query: DeleteObjectQuery({
 2021-05-14T10:43:43.634130 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
 2021-05-14T10:43:48.831983 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
 2021-05-14T10:43:48.832195 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T10:52:26.052806 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T10:52:27.196662 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T10:53:16.677945 class IDATT2105.Reservation.controller.RoomController INFO: Recieved put mapping for room with id 1
+2021-05-14T10:53:16.678273 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-14T10:53:16.678539 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-14T10:53:16.748253 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-14T10:53:16.748942 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "testeseksjon",
+"capacity":20
+}]
+2021-05-14T10:53:16.749258 class IDATT2105.Reservation.service.RoomService INFO: Editing room with room_id {
+"room_id": 1,
+"name": "Mitt rom",
+"capacity":100
+"sections:":[{
+ "section_id": 0,
+ "section_name": "testeseksjon",
+"capacity":20
+}]
+}
+2021-05-14T10:53:16.749436 class IDATT2105.Reservation.repo.ProjectRepo INFO: Setting new variables to room
+2021-05-14T10:53:17.079677 class IDATT2105.Reservation.controller.RoomController INFO: Sucesfully edited room with room_id 1
+2021-05-14T10:53:17.080406 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T10:53:22.195359 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T10:53:22.195585 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T10:58:51.781981 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-14T10:58:52.883316 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-14T10:58:52.954965 class IDATT2105.Reservation.controller.SectionController INFO: Capacity is full
+2021-05-14T10:58:52.956610 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T10:59:01.224340 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-14T10:59:01.224560 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-14T10:59:01.225430 class IDATT2105.Reservation.controller.SectionController INFO: Capacity is full
+2021-05-14T10:59:01.225601 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T10:59:38.604748 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-14T10:59:39.704662 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-14T10:59:39.785392 class IDATT2105.Reservation.service.RoomService INFO: Adding section to room {
+"room_id": 1,
+"name": "Mitt rom",
+"capacity":100
+"sections:":[{
+ "section_id": 6,
+ "section_name": "testeseksjon",
+"capacity":20
+}]
+}
+2021-05-14T10:59:39.790620 class IDATT2105.Reservation.controller.SectionController INFO: Sucesfully added section to room 1
+2021-05-14T10:59:39.792443 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T11:00:01.242650 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T11:00:01.242910 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T11:00:17.795887 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-14T11:00:17.796104 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-14T11:00:17.796843 class IDATT2105.Reservation.service.RoomService INFO: Adding section to room {
+"room_id": 1,
+"name": "Mitt rom",
+"capacity":100
+"sections:":[{
+ "section_id": 6,
+ "section_name": "testeseksjon",
+"capacity":20
+}]
+}
+2021-05-14T11:00:17.797335 class IDATT2105.Reservation.controller.SectionController INFO: Sucesfully added section to room 1
+2021-05-14T11:00:17.797509 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T11:00:30.348497 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T11:00:30.348719 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T11:01:01.593934 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-14T11:01:01.594136 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-14T11:01:01.595263 class IDATT2105.Reservation.service.RoomService INFO: Adding section to room {
+"room_id": 1,
+"name": "Mitt rom",
+"capacity":100
+"sections:":[{
+ "section_id": 6,
+ "section_name": "testeseksjon",
+"capacity":20
+}]
+}
+2021-05-14T11:01:01.595729 class IDATT2105.Reservation.controller.SectionController INFO: Sucesfully added section to room 1
+2021-05-14T11:01:01.595874 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T11:02:18.542512 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-14T11:02:19.661294 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-14T11:02:19.731166 class IDATT2105.Reservation.controller.SectionController INFO: Capacity is full
+2021-05-14T11:02:19.733352 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T11:02:42.638347 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-14T11:02:42.638559 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-14T11:02:42.646976 class IDATT2105.Reservation.service.RoomService INFO: Adding section to room {
+"room_id": 1,
+"name": "Mitt rom",
+"capacity":100
+"sections:":[{
+ "section_id": 6,
+ "section_name": "testeseksjon",
+"capacity":20
+}, {
+ "section_id": 0,
+ "section_name": "over",
+"capacity":80
+}]
+}
+2021-05-14T11:02:42.796210 class IDATT2105.Reservation.controller.SectionController INFO: Sucesfully added section to room 1
+2021-05-14T11:02:42.796502 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T11:02:48.951373 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T11:02:48.951575 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T11:05:28.874174 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T11:05:28.875428 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T11:06:42.432751 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T11:06:42.432982 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-14T11:06:42.433497 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "over",
+"capacity":80
+}]
+2021-05-14T11:06:42.433746 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": 0,
+"name": "Testrom",
+"capacity":120
+"sections:":[{
+ "section_id": 0,
+ "section_name": "over",
+"capacity":80
+}]
+}
+2021-05-14T11:07:18.899067 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T11:07:18.902399 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-14T11:07:18.906344 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "over",
+"capacity":80
+}]
+2021-05-14T11:07:18.911545 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": 0,
+"name": "Testrom",
+"capacity":120
+"sections:":[{
+ "section_id": 0,
+ "section_name": "over",
+"capacity":80
+}]
+}
+2021-05-14T11:07:20.517587 class IDATT2105.Reservation.controller.RoomController INFO: Posted room successfully
+2021-05-14T11:07:20.519753 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T11:07:24.771488 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T11:07:24.771697 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T11:07:41.567856 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-14T11:07:41.568194 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-14T11:07:41.573036 class IDATT2105.Reservation.controller.SectionController INFO: Capacity is full
+2021-05-14T11:07:41.573232 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T11:08:22.287355 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-14T11:08:22.287564 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-14T11:08:22.288321 class IDATT2105.Reservation.controller.SectionController INFO: Capacity is full
+2021-05-14T11:08:22.288495 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T11:08:28.989997 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T11:08:28.990205 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T11:08:43.215452 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-14T11:08:43.215671 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-14T11:08:43.216502 class IDATT2105.Reservation.service.RoomService INFO: Adding section to room {
+"room_id": 1,
+"name": "Testrom",
+"capacity":120
+"sections:":[{
+ "section_id": 1,
+ "section_name": "over",
+"capacity":80
+}, {
+ "section_id": 0,
+ "section_name": "over",
+"capacity":10
+}, {
+ "section_id": 0,
+ "section_name": "ny",
+"capacity":20
+}]
+}
+2021-05-14T11:08:43.421232 class IDATT2105.Reservation.controller.SectionController INFO: Sucesfully added section to room 1
+2021-05-14T11:08:43.421550 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T11:08:49.519175 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T11:08:49.519362 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T11:17:29.641858 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T11:17:29.643049 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T11:19:07.751271 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T11:19:07.751558 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T11:21:33.960546 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T11:21:33.963972 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-14T11:21:33.967685 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "over",
+"capacity":10
+}, {
+ "section_id": 0,
+ "section_name": "ny",
+"capacity":20
+}]
+2021-05-14T11:21:33.972532 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": 0,
+"name": "Rommet mitt",
+"capacity":20
+"sections:":[{
+ "section_id": 0,
+ "section_name": "over",
+"capacity":10
+}, {
+ "section_id": 0,
+ "section_name": "ny",
+"capacity":20
+}]
+}
+2021-05-14T11:21:35.368055 class IDATT2105.Reservation.controller.RoomController INFO: Posted room successfully
+2021-05-14T11:21:35.372097 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T11:22:07.994250 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T11:22:09.139059 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T11:22:18.273684 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T11:22:18.273945 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-14T11:22:18.274681 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "over",
+"capacity":10
+}, {
+ "section_id": 0,
+ "section_name": "ny",
+"capacity":20
+}]
+2021-05-14T11:22:18.274957 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": 0,
+"name": "Rommet mitt",
+"capacity":20
+"sections:":[{
+ "section_id": 0,
+ "section_name": "over",
+"capacity":10
+}, {
+ "section_id": 0,
+ "section_name": "ny",
+"capacity":20
+}]
+}
+2021-05-14T11:22:18.533993 class IDATT2105.Reservation.controller.RoomController INFO: Posted room successfully
+2021-05-14T11:22:18.534501 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T11:30:06.675523 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T11:30:06.679465 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-14T11:30:06.683606 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "over",
+"capacity":10
+}, {
+ "section_id": 0,
+ "section_name": "ny",
+"capacity":20
+}]
+2021-05-14T11:30:06.688821 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": 0,
+"name": "Rommet mitt",
+"capacity":20
+"sections:":[{
+ "section_id": 0,
+ "section_name": "over",
+"capacity":10
+}, {
+ "section_id": 0,
+ "section_name": "ny",
+"capacity":20
+}]
+}
+2021-05-14T11:30:11.295794 class IDATT2105.Reservation.controller.RoomController INFO: Posted room successfully
+2021-05-14T11:30:11.297767 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T11:31:34.902529 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T11:31:34.905940 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-14T11:31:34.910122 class IDATT2105.Reservation.controller.RoomController INFO: Capacity is full
+2021-05-14T11:31:34.912193 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T11:31:41.159726 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T11:31:41.159967 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-14T11:31:41.160575 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "over",
+"capacity":10
+}, {
+ "section_id": 0,
+ "section_name": "ny",
+"capacity":20
+}]
+2021-05-14T11:31:41.165237 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": 0,
+"name": "Rommet mitt",
+"capacity":40
+"sections:":[{
+ "section_id": 0,
+ "section_name": "over",
+"capacity":10
+}, {
+ "section_id": 0,
+ "section_name": "ny",
+"capacity":20
+}]
+}
+2021-05-14T11:31:42.643870 class IDATT2105.Reservation.controller.RoomController INFO: Posted room successfully
+2021-05-14T11:31:42.644197 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T11:31:46.911802 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T11:31:46.912131 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T11:32:35.665610 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T11:32:35.684792 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-14T11:32:35.690176 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "Bord 1",
+"capacity":10
+}, {
+ "section_id": 0,
+ "section_name": "Bord 2",
+"capacity":20
+}]
+2021-05-14T11:32:35.695928 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": 0,
+"name": "Labben",
+"capacity":40
+"sections:":[{
+ "section_id": 0,
+ "section_name": "Bord 1",
+"capacity":10
+}, {
+ "section_id": 0,
+ "section_name": "Bord 2",
+"capacity":20
+}]
+}
+2021-05-14T11:33:04.409060 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T11:33:04.410 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-14T11:33:04.410219 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "Bord 1",
+"capacity":10
+}, {
+ "section_id": 0,
+ "section_name": "Bord 2",
+"capacity":20
+}]
+2021-05-14T11:33:04.410371 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": 0,
+"name": "Labben",
+"capacity":40
+"sections:":[{
+ "section_id": 0,
+ "section_name": "Bord 1",
+"capacity":10
+}, {
+ "section_id": 0,
+ "section_name": "Bord 2",
+"capacity":20
+}]
+}
+2021-05-14T11:33:21.217528 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T11:33:21.221125 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-14T11:33:21.225536 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "Bord 1",
+"capacity":10
+}, {
+ "section_id": 0,
+ "section_name": "Bord 2",
+"capacity":20
+}]
+2021-05-14T11:33:21.231441 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": 0,
+"name": "Labben",
+"capacity":40
+"sections:":[{
+ "section_id": 0,
+ "section_name": "Bord 1",
+"capacity":10
+}, {
+ "section_id": 0,
+ "section_name": "Bord 2",
+"capacity":20
+}]
+}
+2021-05-14T11:34:01.800385 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T11:34:01.803524 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-14T11:34:01.807604 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "Bord 1",
+"capacity":10
+}, {
+ "section_id": 0,
+ "section_name": "Bord 2",
+"capacity":20
+}]
+2021-05-14T11:34:01.813693 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": 0,
+"name": "Labben",
+"capacity":40
+"sections:":[{
+ "section_id": 0,
+ "section_name": "Bord 1",
+"capacity":10
+}, {
+ "section_id": 0,
+ "section_name": "Bord 2",
+"capacity":20
+}]
+}
+2021-05-14T11:34:03.486797 class IDATT2105.Reservation.controller.RoomController INFO: Posted room successfully
+2021-05-14T11:34:03.488905 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T11:34:30.838664 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T11:34:30.838885 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T11:34:33.198338 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T11:34:33.198570 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T11:45:19.092451 class IDATT2105.Reservation.controller.UserController INFO: recieved postmapping to /user: {firstName=Ole, phoneNumber=1234, surName=Lokken, validDate=2021-05-28, isAdmin=false, email=ole.fifa14@gmail.com}
+2021-05-14T11:45:19.095626 class IDATT2105.Reservation.service.UserService INFO: getting user by email: ole.fifa14@gmail.com
+2021-05-14T11:45:20.278777 class IDATT2105.Reservation.repo.UserRepo INFO: finding user by email ole.fifa14@gmail.com
+2021-05-14T11:45:20.347718 class IDATT2105.Reservation.repo.UserRepo INFO: found single result with email: ole.fifa14@gmail.com
+2021-05-14T11:45:20.387255 class IDATT2105.Reservation.repo.UserRepo INFO: finding user with email ole.fifa14@gmail.com failed due to getSingleResult() did not retrieve any entities.
+2021-05-14T11:45:20.388051 class IDATT2105.Reservation.controller.ControllerUtil INFO: generating random password
+2021-05-14T11:45:20.388426 class IDATT2105.Reservation.controller.ControllerUtil INFO: creating new random id
+2021-05-14T11:45:20.461158 class IDATT2105.Reservation.service.UserService INFO: creating new user: 1326137950
+2021-05-14T11:45:20.461424 class IDATT2105.Reservation.service.UserService INFO: creating new password: b4ff92c6bd9582a0612d152cb78c4df287f4090d4e6384459f77cf00a4f0bbfe056e19484b17d7e53d56a75c5acd433488a2cc3187ac244be4607d21bc89afb3
+2021-05-14T11:45:20.475649 class IDATT2105.Reservation.repo.UserRepo INFO: adding a user1326137950 | Lokken 
+  {
+     "userId":1326137950,
+     "firstName":"Ole",
+     "surname":"Lokken",
+     "email":"ole.fifa14@gmail.com",
+     "isAdmin":"false",
+     "validDate":"2021-05-28",
+     "password":"b4ff92c6bd9582a0612d152cb78c4df287f4090d4e6384459f77cf00a4f0bbfe056e19484b17d7e53d56a75c5acd433488a2cc3187ac244be4607d21bc89afb3",
+     "phoneNumber":"1234",
+ }
+2021-05-14T11:45:20.601379 class IDATT2105.Reservation.repo.UserRepo INFO: added user successfully 1326137950
+2021-05-14T11:45:20.601713 class IDATT2105.Reservation.service.UserService INFO: adding new user was true
+2021-05-14T11:45:20.602103 class IDATT2105.Reservation.controller.UserController INFO: created user with id: 1326137950
+2021-05-14T11:45:20.602496 class IDATT2105.Reservation.controller.UserController INFO: created user 1326137950 | ole.fifa14@gmail.com
+2021-05-14T11:45:20.602653 class IDATT2105.Reservation.controller.UserController INFO: created user
+2021-05-14T11:45:20.602855 class IDATT2105.Reservation.util.SendEmailService INFO: sending mail
+2021-05-14T11:45:22.996002 class IDATT2105.Reservation.util.SendEmailService INFO: sending sent
+2021-05-14T11:45:22.998960 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T11:48:22.365875 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T11:48:22.366832 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T11:59:23.584739 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T11:59:24.781987 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T12:03:24.778053 class IDATT2105.Reservation.service.RoomService INFO: Deleting room with room_id 1
+2021-05-14T12:03:26.145472 class IDATT2105.Reservation.repo.ProjectRepo INFO: Failed deleting room Exception [EclipseLink-4002] (Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`olelok`.`RESERVATION`, CONSTRAINT `FK_RESERVATION_section_id` FOREIGN KEY (`section_id`) REFERENCES `SECTION` (`section_id`))
+Error Code: 1451
+Call: DELETE FROM SECTION WHERE (section_id = ?)
+	bind => [1 parameter bound]
+Query: DeleteObjectQuery({
+ "section_id": 1,
+ "section_name": "Bord 2",
+"capacity":20
+})
+2021-05-14T12:03:37.385458 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T12:03:37.385696 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-14T12:03:37.386397 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "asd",
+"capacity":2
+}, {
+ "section_id": 0,
+ "section_name": "asdff",
+"capacity":1
+}]
+2021-05-14T12:03:37.392195 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": 0,
+"name": "gutta",
+"capacity":3
+"sections:":[{
+ "section_id": 0,
+ "section_name": "asd",
+"capacity":2
+}, {
+ "section_id": 0,
+ "section_name": "asdff",
+"capacity":1
+}]
+}
+2021-05-14T12:03:37.661405 class IDATT2105.Reservation.controller.RoomController INFO: Posted room successfully
+2021-05-14T12:03:37.664013 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T12:03:46.035527 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T12:03:46.035741 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T12:04:42.467813 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T12:04:42.468590 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-14T12:04:42.468878 class IDATT2105.Reservation.controller.RoomController INFO: Capacity is full
+2021-05-14T12:04:42.469104 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T12:05:20.715153 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T12:05:20.715371 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T12:06:46.211853 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T12:06:46.212148 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-14T12:06:46.212654 class IDATT2105.Reservation.controller.RoomController INFO: Capacity is full
+2021-05-14T12:06:46.212879 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T12:07:07.825467 class IDATT2105.Reservation.service.RoomService INFO: Deleting room with room_id 1
+2021-05-14T12:07:07.969634 class IDATT2105.Reservation.repo.ProjectRepo INFO: Failed deleting room Exception [EclipseLink-4002] (Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`olelok`.`RESERVATION`, CONSTRAINT `FK_RESERVATION_section_id` FOREIGN KEY (`section_id`) REFERENCES `SECTION` (`section_id`))
+Error Code: 1451
+Call: DELETE FROM SECTION WHERE (section_id = ?)
+	bind => [1 parameter bound]
+Query: DeleteObjectQuery({
+ "section_id": 1,
+ "section_name": "Bord 2",
+"capacity":20
+})
+2021-05-14T12:08:39.435880 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T12:08:39.436942 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-14T12:08:39.437238 class IDATT2105.Reservation.controller.RoomController INFO: Capacity is full
+2021-05-14T12:08:39.437460 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T12:09:49.824267 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T12:09:49.825552 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-14T12:09:49.826096 class IDATT2105.Reservation.controller.RoomController INFO: Capacity is full
+2021-05-14T12:09:49.826380 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T12:10:10.925059 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T12:10:10.925251 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-14T12:10:10.925493 class IDATT2105.Reservation.controller.RoomController INFO: Capacity is full
+2021-05-14T12:10:10.925696 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T12:12:19.879724 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T12:12:19.880711 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-14T12:12:19.881073 class IDATT2105.Reservation.controller.RoomController INFO: Capacity is full
+2021-05-14T12:12:19.881248 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T12:12:46.617645 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T12:12:46.630747 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-14T12:12:46.631109 class IDATT2105.Reservation.controller.RoomController INFO: Capacity is full
+2021-05-14T12:12:46.631414 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T12:13:14.349628 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T12:13:14.352813 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-14T12:13:14.356785 class IDATT2105.Reservation.controller.RoomController INFO: Capacity is full
+2021-05-14T12:13:14.359055 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T12:13:24.829035 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T12:13:24.829345 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-14T12:13:24.829926 class IDATT2105.Reservation.controller.RoomController INFO: Capacity is full
+2021-05-14T12:13:24.830173 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T12:13:35.881778 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T12:13:35.881989 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-14T12:13:35.882235 class IDATT2105.Reservation.controller.RoomController INFO: Capacity is full
+2021-05-14T12:13:35.882425 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T12:14:28.582027 class IDATT2105.Reservation.controller.RoomController INFO: Recieved postmappping to add room
+2021-05-14T12:14:28.585129 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-14T12:14:28.588575 class IDATT2105.Reservation.controller.RoomController INFO: Capacity is full
+2021-05-14T12:14:28.590346 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T12:15:56.935937 class IDATT2105.Reservation.service.RoomService INFO: Deleting room with room_id 1
+2021-05-14T12:15:58.427256 class IDATT2105.Reservation.repo.ProjectRepo INFO: Failed deleting room Exception [EclipseLink-4002] (Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`olelok`.`RESERVATION`, CONSTRAINT `FK_RESERVATION_section_id` FOREIGN KEY (`section_id`) REFERENCES `SECTION` (`section_id`))
+Error Code: 1451
+Call: DELETE FROM SECTION WHERE (section_id = ?)
+	bind => [1 parameter bound]
+Query: DeleteObjectQuery({
+ "section_id": 1,
+ "section_name": "Bord 2",
+"capacity":20
+})
+2021-05-14T12:16:55.853755 class IDATT2105.Reservation.service.RoomService INFO: Deleting room with room_id 1
+2021-05-14T12:16:57.308332 class IDATT2105.Reservation.repo.ProjectRepo INFO: Failed deleting room Exception [EclipseLink-4002] (Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`olelok`.`RESERVATION`, CONSTRAINT `FK_RESERVATION_section_id` FOREIGN KEY (`section_id`) REFERENCES `SECTION` (`section_id`))
+Error Code: 1451
+Call: DELETE FROM SECTION WHERE (section_id = ?)
+	bind => [1 parameter bound]
+Query: DeleteObjectQuery({
+ "section_id": 1,
+ "section_name": "Bord 2",
+"capacity":20
+})
+2021-05-14T12:19:50.437910 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T12:19:50.438971 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T12:24:25.383174 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T12:24:25.384134 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T12:27:43.203751 class IDATT2105.Reservation.service.RoomService INFO: Deleting room with room_id 1
+2021-05-14T12:27:44.475012 class IDATT2105.Reservation.repo.ProjectRepo INFO: Failed deleting room An exception occurred while creating a query in EntityManager: 
+Exception Description: Syntax error parsing [DELETE FROM Reservation WHERE section = (SELECT section FROM Room WHERE room = ?1) ]. 
+[66, 66] An identification variable must be provided for a range variable declaration.
+2021-05-14T12:27:44.475525 class IDATT2105.Reservation.controller.RoomController INFO: Something went wrong during deletion of room with room_id 1
+2021-05-14T12:27:44.478090 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T12:30:01.362210 class IDATT2105.Reservation.service.RoomService INFO: Deleting room with room_id 1
+2021-05-14T12:30:05.885289 class IDATT2105.Reservation.repo.ProjectRepo INFO: Failed deleting room An exception occurred while creating a query in EntityManager: 
+Exception Description: Syntax error parsing [DELETE FROM Reservation WHERE section = (SELECT section FROM Room WHERE Room = ?1) ]. 
+[66, 66] An identification variable must be provided for a range variable declaration.
+2021-05-14T12:30:05.885836 class IDATT2105.Reservation.controller.RoomController INFO: Something went wrong during deletion of room with room_id 1
+2021-05-14T12:30:05.888057 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T12:31:25.544600 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T12:31:25.545164 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T12:32:19.449705 class IDATT2105.Reservation.service.RoomService INFO: Deleting room with room_id 1
+2021-05-14T12:32:20.785126 class IDATT2105.Reservation.repo.ProjectRepo INFO: Failed deleting room An exception occurred while creating a query in EntityManager: 
+Exception Description: Syntax error parsing [DELETE FROM Reservation WHERE section IN (SELECT section FROM Room WHERE room = ?1) ]. 
+[66, 66] An identification variable must be provided for a range variable declaration.
+2021-05-14T12:32:20.785641 class IDATT2105.Reservation.controller.RoomController INFO: Something went wrong during deletion of room with room_id 1
+2021-05-14T12:32:20.787870 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T12:32:34.944106 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T12:32:34.944345 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T12:34:58.694896 class IDATT2105.Reservation.service.RoomService INFO: Deleting room with room_id 1
+2021-05-14T12:35:00.013725 class IDATT2105.Reservation.repo.ProjectRepo INFO: Failed deleting room An exception occurred while creating a query in EntityManager: 
+Exception Description: Syntax error parsing [DELETE FROM Reservation WHERE section IN (SELECT section FROM Room WHERE room_id = ?1) ]. 
+[66, 66] An identification variable must be provided for a range variable declaration.
+2021-05-14T12:35:00.014254 class IDATT2105.Reservation.controller.RoomController INFO: Something went wrong during deletion of room with room_id 1
+2021-05-14T12:35:00.016309 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T12:36:11.285270 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T12:36:11.285521 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T12:36:23.134142 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T12:36:23.134438 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T12:36:26.843149 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T12:36:26.843428 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T12:36:41.509252 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-14T12:36:41.509598 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-14T12:42:14.623528 class IDATT2105.Reservation.service.RoomService INFO: Deleting room with room_id 1
+2021-05-14T12:42:15.998786 class IDATT2105.Reservation.repo.ProjectRepo INFO: Failed deleting room An exception occurred while creating a query in EntityManager: 
+Exception Description: Problem compiling [DELETE FROM Reservation WHERE section  IN (SELECT section FROM Room r WHERE r.room_id = ?1) ]. 
+[48, 55] The identification variable 'section' is not defined in the FROM clause.
+2021-05-14T12:42:15.999334 class IDATT2105.Reservation.controller.RoomController INFO: Something went wrong during deletion of room with room_id 1
+2021-05-14T12:42:16.002114 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T12:42:42.810719 class IDATT2105.Reservation.service.RoomService INFO: Deleting room with room_id 1
+2021-05-14T12:42:44.179133 class IDATT2105.Reservation.repo.ProjectRepo INFO: Failed deleting room An exception occurred while creating a query in EntityManager: 
+Exception Description: Problem compiling [DELETE FROM Reservation WHERE section  IN (SELECT section_id FROM Room r WHERE r.room_id = ?1) ]. 
+[48, 58] The identification variable 'section_id' is not defined in the FROM clause.
+2021-05-14T12:42:44.179655 class IDATT2105.Reservation.controller.RoomController INFO: Something went wrong during deletion of room with room_id 1
+2021-05-14T12:42:44.182084 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T12:43:21.440148 class IDATT2105.Reservation.service.RoomService INFO: Deleting room with room_id 1
+2021-05-14T12:43:22.754462 class IDATT2105.Reservation.repo.ProjectRepo INFO: Failed deleting room An exception occurred while creating a query in EntityManager: 
+Exception Description: Problem compiling [DELETE FROM Reservation WHERE section  IN (SELECT section FROM Room r WHERE r.room_id = ?1) ]. 
+[48, 55] The identification variable 'section' is not defined in the FROM clause.
+2021-05-14T12:43:22.754959 class IDATT2105.Reservation.controller.RoomController INFO: Something went wrong during deletion of room with room_id 1
+2021-05-14T12:43:22.757560 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T12:44:25.287110 class IDATT2105.Reservation.service.RoomService INFO: Deleting room with room_id 1
+2021-05-14T12:44:27.547443 class IDATT2105.Reservation.repo.ProjectRepo INFO: Failed deleting room Exception [EclipseLink-4002] (Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`olelok`.`RESERVATION`, CONSTRAINT `FK_RESERVATION_section_id` FOREIGN KEY (`section_id`) REFERENCES `SECTION` (`section_id`))
+Error Code: 1451
+Call: DELETE FROM SECTION WHERE (section_id = ?)
+	bind => [1 parameter bound]
+Query: DeleteObjectQuery({
+ "section_id": 1,
+ "section_name": "Bord 2",
+"capacity":20
+})
+2021-05-14T12:47:37.273049 class IDATT2105.Reservation.service.RoomService INFO: Deleting room with room_id 1
+2021-05-14T12:47:38.764340 class IDATT2105.Reservation.repo.ProjectRepo INFO: Failed deleting room Exception [EclipseLink-4002] (Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`olelok`.`SECTION`, CONSTRAINT `FK_SECTION_ROOM_room_id` FOREIGN KEY (`ROOM_room_id`) REFERENCES `ROOM` (`room_id`))
+Error Code: 1451
+Call: DELETE FROM ROOM WHERE (room_id = ?)
+	bind => [1 parameter bound]
+Query: DeleteObjectQuery({
+"room_id": 1,
+"name": "Labben",
+"capacity":40
+"sections:":[{
+ "section_id": 1,
+ "section_name": "Bord 2",
+"capacity":20
+}, {
+ "section_id": 2,
+ "section_name": "Bord 1",
+"capacity":10
+}]
+})
+2021-05-14T12:50:00.472490 class IDATT2105.Reservation.service.RoomService INFO: Deleting room with room_id 1
+2021-05-14T12:50:01.892075 class IDATT2105.Reservation.repo.ProjectRepo INFO: Failed deleting room Exception [EclipseLink-4002] (Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`olelok`.`SECTION`, CONSTRAINT `FK_SECTION_ROOM_room_id` FOREIGN KEY (`ROOM_room_id`) REFERENCES `ROOM` (`room_id`))
+Error Code: 1451
+Call: DELETE FROM ROOM WHERE (room_id = ?)
+	bind => [1 parameter bound]
+Query: DeleteObjectQuery({
+"room_id": 1,
+"name": "Labben",
+"capacity":40
+"sections:":[{
+ "section_id": 1,
+ "section_name": "Bord 2",
+"capacity":20
+}, {
+ "section_id": 2,
+ "section_name": "Bord 1",
+"capacity":10
+}]
+})
+2021-05-14T12:51:34.589588 class IDATT2105.Reservation.service.RoomService INFO: Deleting room with room_id 1
+2021-05-14T12:51:36.028905 class IDATT2105.Reservation.repo.ProjectRepo INFO: Failed deleting room Exception [EclipseLink-4002] (Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`olelok`.`SECTION`, CONSTRAINT `FK_SECTION_ROOM_room_id` FOREIGN KEY (`ROOM_room_id`) REFERENCES `ROOM` (`room_id`))
+Error Code: 1451
+Call: DELETE FROM ROOM WHERE (room_id = ?)
+	bind => [1 parameter bound]
+Query: DeleteObjectQuery({
+"room_id": 1,
+"name": "Labben",
+"capacity":40
+"sections:":[{
+ "section_id": 1,
+ "section_name": "Bord 2",
+"capacity":20
+}, {
+ "section_id": 2,
+ "section_name": "Bord 1",
+"capacity":10
+}]
+})
+2021-05-14T12:54:18.449508 class IDATT2105.Reservation.service.RoomService INFO: Deleting room with room_id 1
+2021-05-14T12:54:19.911664 class IDATT2105.Reservation.repo.ProjectRepo INFO: Failed deleting room Exception [EclipseLink-4002] (Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`olelok`.`RESERVATION`, CONSTRAINT `FK_RESERVATION_section_id` FOREIGN KEY (`section_id`) REFERENCES `SECTION` (`section_id`))
+Error Code: 1451
+Call: DELETE FROM SECTION WHERE (section_id = ?)
+	bind => [1 parameter bound]
+Query: DeleteObjectQuery({
+ "section_id": 1,
+ "section_name": "Bord 2",
+"capacity":20
+})
+2021-05-14T12:54:50.290296 class IDATT2105.Reservation.service.RoomService INFO: Deleting room with room_id 1
+2021-05-14T12:54:51.779901 class IDATT2105.Reservation.repo.ProjectRepo INFO: Failed deleting room Exception [EclipseLink-4002] (Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`olelok`.`RESERVATION`, CONSTRAINT `FK_RESERVATION_section_id` FOREIGN KEY (`section_id`) REFERENCES `SECTION` (`section_id`))
+Error Code: 1451
+Call: DELETE FROM SECTION WHERE (section_id = ?)
+	bind => [1 parameter bound]
+Query: DeleteObjectQuery({
+ "section_id": 1,
+ "section_name": "Bord 2",
+"capacity":20
+})
+2021-05-14T12:55:52.041273 class IDATT2105.Reservation.service.RoomService INFO: Deleting room with room_id 1
+2021-05-14T12:55:53.504420 class IDATT2105.Reservation.repo.ProjectRepo INFO: Failed deleting room Exception [EclipseLink-4002] (Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`olelok`.`RESERVATION`, CONSTRAINT `FK_RESERVATION_section_id` FOREIGN KEY (`section_id`) REFERENCES `SECTION` (`section_id`))
+Error Code: 1451
+Call: DELETE FROM SECTION WHERE (section_id = ?)
+	bind => [1 parameter bound]
+Query: DeleteObjectQuery({
+ "section_id": 1,
+ "section_name": "Bord 2",
+"capacity":20
+})
+2021-05-14T12:55:53.564461 class IDATT2105.Reservation.controller.RoomController INFO: Something went wrong during deletion of room with room_id 1
+2021-05-14T12:55:53.568061 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T12:56:48.637515 class IDATT2105.Reservation.service.RoomService INFO: Deleting room with room_id 1
+2021-05-14T12:56:50.011425 class IDATT2105.Reservation.repo.ProjectRepo INFO: Failed deleting room Exception [EclipseLink-4002] (Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`olelok`.`RESERVATION`, CONSTRAINT `FK_RESERVATION_section_id` FOREIGN KEY (`section_id`) REFERENCES `SECTION` (`section_id`))
+Error Code: 1451
+Call: DELETE FROM SECTION WHERE (section_id = ?)
+	bind => [1 parameter bound]
+Query: DeleteObjectQuery({
+ "section_id": 1,
+ "section_name": "Bord 2",
+"capacity":20
+})
+2021-05-14T12:56:50.072030 class IDATT2105.Reservation.controller.RoomController INFO: Something went wrong during deletion of room with room_id 1
+2021-05-14T12:56:50.074400 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T12:59:14.258540 class IDATT2105.Reservation.service.RoomService INFO: Deleting room with room_id 1
+2021-05-14T12:59:15.760423 class IDATT2105.Reservation.repo.ProjectRepo INFO: Failed deleting room Exception [EclipseLink-4002] (Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`olelok`.`RESERVATION`, CONSTRAINT `FK_RESERVATION_section_id` FOREIGN KEY (`section_id`) REFERENCES `SECTION` (`section_id`))
+Error Code: 1451
+Call: DELETE FROM SECTION WHERE (section_id = ?)
+	bind => [1 parameter bound]
+Query: DeleteObjectQuery({
+ "section_id": 1,
+ "section_name": "Bord 2",
+"capacity":20
+})
+2021-05-14T12:59:15.821629 class IDATT2105.Reservation.controller.RoomController INFO: Something went wrong during deletion of room with room_id 1
+2021-05-14T12:59:15.824254 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T13:04:16.432963 class IDATT2105.Reservation.service.RoomService INFO: Deleting room with room_id 1
+2021-05-14T13:04:17.855869 class IDATT2105.Reservation.repo.ProjectRepo INFO: Failed deleting room Exception [EclipseLink-4002] (Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`olelok`.`RESERVATION`, CONSTRAINT `FK_RESERVATION_section_id` FOREIGN KEY (`section_id`) REFERENCES `SECTION` (`section_id`))
+Error Code: 1451
+Call: DELETE FROM SECTION WHERE (section_id = ?)
+	bind => [1 parameter bound]
+Query: DeleteObjectQuery({
+ "section_id": 1,
+ "section_name": "Bord 2",
+"capacity":20
+})
+2021-05-14T13:04:54.601919 class IDATT2105.Reservation.service.RoomService INFO: Deleting room with room_id 1
+2021-05-14T13:04:56.095198 class IDATT2105.Reservation.repo.ProjectRepo INFO: Failed deleting room Exception [EclipseLink-4002] (Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`olelok`.`RESERVATION`, CONSTRAINT `FK_RESERVATION_section_id` FOREIGN KEY (`section_id`) REFERENCES `SECTION` (`section_id`))
+Error Code: 1451
+Call: DELETE FROM SECTION WHERE (section_id = ?)
+	bind => [1 parameter bound]
+Query: DeleteObjectQuery({
+ "section_id": 1,
+ "section_name": "Bord 2",
+"capacity":20
+})
+2021-05-14T13:04:56.153326 class IDATT2105.Reservation.controller.RoomController INFO: Something went wrong during deletion of room with room_id 1
+2021-05-14T13:04:56.157213 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T13:05:17.894984 class IDATT2105.Reservation.service.RoomService INFO: Deleting room with room_id 1
+2021-05-14T13:05:19.394482 class IDATT2105.Reservation.repo.ProjectRepo INFO: Failed deleting room Exception [EclipseLink-4002] (Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`olelok`.`RESERVATION`, CONSTRAINT `FK_RESERVATION_section_id` FOREIGN KEY (`section_id`) REFERENCES `SECTION` (`section_id`))
+Error Code: 1451
+Call: DELETE FROM SECTION WHERE (section_id = ?)
+	bind => [1 parameter bound]
+Query: DeleteObjectQuery({
+ "section_id": 1,
+ "section_name": "Bord 2",
+"capacity":20
+})
+2021-05-14T13:05:19.457808 class IDATT2105.Reservation.controller.RoomController INFO: Something went wrong during deletion of room with room_id 1
+2021-05-14T13:05:19.460902 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json

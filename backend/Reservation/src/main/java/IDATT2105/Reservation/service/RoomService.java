@@ -24,9 +24,9 @@ public class RoomService {
         return this.repo.getRooms();
     }
 
-    public boolean editRoom(int room_id, String name, int capacity){
-        log.info("Editing room with room_id " + room_id);
-        return this.repo.editRoom(room_id, name, capacity);
+    public boolean editRoom(Room room){
+        log.info("Editing room with room_id " + room);
+        return this.repo.editRoom(room);
     }
 
     public Room getRoom(int room_id) {
@@ -37,6 +37,11 @@ public class RoomService {
     public boolean addSection(Room room){
         log.info("Adding section to room " + room);
         return this.repo.addSection(room);
+    }
+
+    public boolean deleteRoom(int room_id){
+        log.info("Deleting room with room_id " + room_id);
+        return this.repo.deleteRoom(room_id);
     }
 
 }

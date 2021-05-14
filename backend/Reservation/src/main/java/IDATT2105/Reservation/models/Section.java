@@ -1,5 +1,7 @@
 package IDATT2105.Reservation.models;
 
+import org.eclipse.persistence.annotations.CascadeOnDelete;
+
 import javax.persistence.*;
 
 @Entity
@@ -15,7 +17,8 @@ public class Section {
   @Column(name = "capacity")
   private int capacity;
 
-  @ManyToOne
+  @CascadeOnDelete
+  @ManyToOne(targetEntity = Room.class)
   private Room room;
 
   public Section() {

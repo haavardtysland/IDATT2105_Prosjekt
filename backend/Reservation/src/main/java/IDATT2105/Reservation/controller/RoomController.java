@@ -14,27 +14,30 @@ import static IDATT2105.Reservation.controller.ControllerUtil.formatJson;
 
 import java.util.*;
 
+@CrossOrigin(origins = "*")
 @Controller
 @RequestMapping(value="/room")
 public class RoomController {
     Logger log = new Logger(RoomController.class.toString());
     @Autowired
-    private RoomService service;
+    private RoomService roomService;
 
     /**
      * @param map which is sent by the client on the format:
-     * {
-     *     "name": "String",
-     *     "capacity": INT,
-     *     "sections": [{
-     *             "section_name": STRING,
-     *             "capacity": INT
-     *     },
-     *     {
-     *         "section_name": STRING,
-     *         "capacity": INT
-     *     }]
-     * }
+    {
+        "name": STRING,
+        "capacity": INT,
+        "sections": [
+        {
+            "section_name": STRING,
+            "capacity": INT
+        },
+        {
+            "section_name": STRING,
+            "capacity": INT
+        }
+        ]
+    }
      * @return true if the room was succesfully added, false if not
      */
     @PostMapping(value="/add")
@@ -47,9 +50,14 @@ public class RoomController {
         room.setName(map.get("name").toString());
         room.setCapacity(Integer.parseInt(map.get("capacity").toString()));
         ArrayList<LinkedHashMap> sectionList = (ArrayList) map.get("sections");
-
-        room.setSections(toSectionList(sectionList, room));
-        boolean result = service.addRoom(room);
+        ArrayList<Section> sections = toSectionList(sectionList, room);
+        if(sections == null) {
+            log.info("Capacity is full");
+            header.add("STATUS", "400 BAD REQUEST");
+            body.put("error", "Ikke nok kapasitet i rommet til alle seksjonene");
+            return ResponseEntity.ok().headers(header).body(formatJson(body));
+        }
+        boolean result = roomService.addRoom(room);
         if(result){
             log.info("Posted room successfully");
             header.add("Status", "200 OK");
@@ -63,7 +71,7 @@ public class RoomController {
     }
 
     /**
-     * Split csv string with sections
+     * Split ArrayList of LinkedHashMap with sections
      * @return a list of sections
      */
     private ArrayList<Section> toSectionList(ArrayList<LinkedHashMap> sectionList, Room room) {
@@ -74,7 +82,13 @@ public class RoomController {
             newSection.setRoom(room);
             newSection.setSectionName(section.get("section_name").toString());
             newSection.setCapacity(Integer.parseInt(section.get("capacity").toString()));
+            System.out.println(room.getAvailable());
+            System.out.println(newSection);
+            if(room.getAvailable() < newSection.getCapacity()) {
+                return null;
+            }
             sections.add(newSection);
+            room.addSection(newSection);
         }
         log.debug("final section list: " + sections.toString());
         return sections;
@@ -86,6 +100,12 @@ public class RoomController {
      * {
      *     "name": "String",
      *     "capacity": INT,
+     *     "sections": [
+     *            {
+     *          "section_name": STRING,
+     *          "capacity": INT
+     *     }
+     *            ]
      * }
      * @param room_id
      * @return
@@ -97,12 +117,15 @@ public class RoomController {
         HttpHeaders header = new HttpHeaders();
         Map<String, String> body = new HashMap<>();
         int id = Integer.parseInt(room_id);
+        Room room = roomService.getRoom(id);
         String name = map.get("name").toString();
         int capacity = Integer.parseInt(map.get("capacity").toString());
-        boolean result = service.editRoom(id, name, capacity);
-        //TODO ADD EDITING SECTIONS
-        /*String sectionString = map.get("sections").toString();
-        ArrayList<Section> sections = toSectionList()*/
+        ArrayList<LinkedHashMap> sectionList = (ArrayList) map.get("sections");
+        ArrayList<Section> sections = toSectionList(sectionList, room);
+        room.setCapacity(capacity);
+        room.setName(name);
+        room.setSections(sections);
+        boolean result = roomService.editRoom(room);
         if(result){
             log.info("Sucesfully edited room with room_id " + room_id);
             header.add("STATUS", "200 OK");
@@ -118,12 +141,12 @@ public class RoomController {
      * @return A ResponseEntity with the rooms
      */
     @GetMapping(value="", produces="application/json")
-    public ResponseEntity GetRooms(
+    public ResponseEntity getRooms(
     ) {
         List<Room> rooms;
         HttpHeaders header = new HttpHeaders();
         try {
-            rooms = service.getRooms();
+            rooms = roomService.getRooms();
             header.add("Status", "200 OK");
             return ResponseEntity.ok().headers(header).body("\"rooms\": \n" + rooms.toString() + "\n");
         } catch (Exception e) {
@@ -134,5 +157,23 @@ public class RoomController {
             body.put("error", "something went wrong");
             return ResponseEntity.badRequest().headers(header).body(formatJson(body));
         }
+    }
+
+    @DeleteMapping(value="/{room_id}")
+    public @ResponseBody
+    ResponseEntity deleteRoom(@PathVariable String room_id){
+        Map<String, String> body = new HashMap<>();
+        HttpHeaders header = new HttpHeaders();
+        int id = Integer.parseInt(room_id);
+        boolean result = roomService.deleteRoom(id);
+        if(result){
+            log.info("Deleting room with section_id " + room_id + " was a success");
+            header.add("STATUS", "200 OK");
+            return ResponseEntity.ok().headers(header).body(formatJson(body));
+        }
+        log.info("Something went wrong during deletion of room with room_id " + room_id);
+        body.put("error", "room could not be deleted");
+        header.add("STATUS", "400 BAD REQUEST");
+        return ResponseEntity.badRequest().headers(header).body(formatJson(body));
     }
 }
