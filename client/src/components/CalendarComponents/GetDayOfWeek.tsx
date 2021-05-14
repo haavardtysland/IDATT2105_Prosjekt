@@ -1,6 +1,10 @@
 const getDayOfWeek = (id: number): string => {
   let str = '';
   switch (id) {
+    case 0: {
+      str = 'Søndag';
+      break;
+    }
     case 1: {
       str = 'Mandag';
       break;
@@ -23,10 +27,6 @@ const getDayOfWeek = (id: number): string => {
     }
     case 6: {
       str = 'Lørdag';
-      break;
-    }
-    case 7: {
-      str = 'Søndag';
       break;
     }
   }

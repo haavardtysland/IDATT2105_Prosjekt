@@ -11,6 +11,7 @@ import Section from '../interfaces/Section';
 import Calendar from '../components/CalendarComponents/Calendar';
 import styled from 'styled-components';
 import InfoIcon from '@material-ui/icons/Info';
+import RoomCard from '../components/RoomCard';
 
 const StyledHeader = styled.h1`
   margin-top: 6rem;
@@ -37,7 +38,7 @@ const RoomPage: React.FC<RoomPageProps> = () => {
     sectionId: -1,
     sectionName: '',
   });
-  const [selectedDate, setSelectedDate] = React.useState<Date | null>(
+  const [selectedDate, setSelectedDate] = React.useState<Date>(
     new Date('2014-08-18T21:11:54')
   );
   const room: Room = {
@@ -103,10 +104,15 @@ const RoomPage: React.FC<RoomPageProps> = () => {
           onChange={handleChangeDate}
         />
       </div>
-      <Calendar date={new Date('2021-05-12')} />
-      <button onClick={() => console.log(selectedDate)}>
-        log selected date
-      </button>
+      <Calendar date={selectedDate} />
+      <RoomCard
+        room={{
+          roomId: 123,
+          name: 'Room 1',
+          capacity: 100,
+          sections: [],
+        }}
+      />
     </div>
   );
 };
