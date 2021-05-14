@@ -35,7 +35,7 @@ function Bar() {
           <Button onClick={() => history.push('/addRoom')}>
             <Typography variant="h6">Legg til rom</Typography>
           </Button>
-          <Button>
+          <Button onClick={() => history.push('/mineBestillinger')}>
             <Typography variant="h6">Se bestillinger</Typography>
           </Button>
           <SettingsIcon></SettingsIcon>
