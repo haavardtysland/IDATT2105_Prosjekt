@@ -105,7 +105,14 @@ const RoomPage: React.FC<RoomPageProps> = () => {
         />
       </div>
       <Calendar date={selectedDate} />
-      <RoomCard />
+      <RoomCard
+        room={{
+          roomId: 123,
+          name: 'Room 1',
+          capacity: 100,
+          sections: [],
+        }}
+      />
     </div>
   );
 };
