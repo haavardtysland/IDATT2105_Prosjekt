@@ -1,5 +1,6 @@
 package IDATT2105.Reservation.models;
 
+import org.eclipse.persistence.annotations.CascadeOnDelete;
 import org.eclipse.persistence.annotations.PrivateOwned;
 
 import javax.persistence.*;
@@ -16,8 +17,8 @@ public class Room {
     private String name;
     @Column(name = "capacity")
     private int capacity;
-    @PrivateOwned
-    @OneToMany(mappedBy="room", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @CascadeOnDelete
+    @OneToMany(targetEntity = Section.class, mappedBy="room", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Section> sections = new ArrayList<>();
 
     public int getRoom_id() {
@@ -67,12 +68,24 @@ public class Room {
         this.room_id = room_id;
     }
 
+    public int getSectionCapacaties(){
+        int capacities = 0;
+        for(Section section : this.sections){
+            capacities += section.getCapacity();
+        }
+        return capacities;
+    }
+
+    public int getAvailable(){
+        return this.capacity - getSectionCapacaties();
+    }
+
     public String toString() {
         return "{" +
-                "\n\"room_id\": " + "\"" + room_id + "\"" +
+                "\n\"room_id\": "  + room_id  +
                 ",\n\"name\": " + "\"" + name + "\"" +
                 ",\n\"capacity\":" + capacity +
-                "\n\"sections:\":" + sections + "\"" +
-                "\n\"}";
+                "\n\"sections:\":" + sections  +
+                "\n}";
     }
 }

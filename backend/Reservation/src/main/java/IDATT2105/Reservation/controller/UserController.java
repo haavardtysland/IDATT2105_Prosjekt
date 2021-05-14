@@ -28,7 +28,7 @@ import IDATT2105.Reservation.util.Logger;
 
 import java.util.List;
 
-
+@CrossOrigin(origins = "*")
 @Controller
 @RequestMapping(value="/user")
 public class UserController {
@@ -50,7 +50,7 @@ public class UserController {
           .body(users.toString());
     } catch (Exception e) {
       e.printStackTrace();
-      log.error("An unexpected error was caught while getting all tags: " +
+      log.error("An unexpected error was caught while getting all users: " +
           e.getCause() + " with message " + e.getMessage());
       HashMap<String, String> body = new HashMap<>();
       body.put("error", "something went wrong");
