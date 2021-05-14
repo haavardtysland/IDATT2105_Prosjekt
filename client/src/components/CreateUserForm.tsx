@@ -31,7 +31,7 @@ interface Props {
   changePhone: (num: number) => void;
 }
 
-function AddUserForm({
+function CreateUserForm({
   changeFirstname,
   changeSurname,
   changeEmail,
@@ -157,4 +157,4 @@ function AddUserForm({
   );
 }
 
-export default AddUserForm;
+export default CreateUserForm;

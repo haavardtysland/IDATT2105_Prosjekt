@@ -26,11 +26,13 @@ function Bar() {
     <div>
       <AppBar>
         <Toolbar style={{ justifyContent: 'space-between' }}>
-          <Typography variant="h4">Scroll to Elevate App Bar</Typography>
+          <Typography onClick={() => history.push('/mainPage')} variant="h4">
+            Romreservasjon fra helvete
+          </Typography>
           <Button onClick={() => history.push('/addUser')}>
             <Typography variant="h6">Legg til brukere</Typography>
           </Button>
-          <Button>
+          <Button onClick={() => history.push('/addRoom')}>
             <Typography variant="h6">Legg til rom</Typography>
           </Button>
           <Button>
