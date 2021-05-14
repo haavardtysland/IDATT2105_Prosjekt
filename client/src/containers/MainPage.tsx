@@ -3,12 +3,24 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Calendar } from '@material-ui/pickers';
 import Form from '../components/Form';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
 const Container = styled.div`
-  padding-top: 10%;
+  padding-top: 8%;
   padding-right: 3%;
   padding-left: 3%;
 `;
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    button: {
+      width: '10%',
+      height: '10%',
+      margin: '1rem',
+      padding: '2rem',
+    },
+  })
+);
 
 const Flex = styled.div`
   display: flex;
@@ -16,12 +28,21 @@ const Flex = styled.div`
 `;
 
 function MainPage() {
+  const classes = useStyles();
+  const [fromTime, setFromTime] = useState<number>();
+  const [toTime, setToTime] = useState<number>();
+  const [minCapacity, setMinCapacity] = useState<number>();
+
   return (
     <Container>
-      <Form></Form>
+      <Form
+        changeFromTime={(num) => setFromTime(num)}
+        changeToTime={(num) => setToTime(num)}
+        changeMinCapacity={(num) => setMinCapacity(num)}
+      ></Form>
       <Flex>
-        <Button>Vis ledige rom</Button>
-        <Button>Vis alle rom</Button>
+        <Button className={classes.button}>Vis ledige rom</Button>
+        <Button className={classes.button}>Vis alle rom</Button>
       </Flex>
     </Container>
   );
