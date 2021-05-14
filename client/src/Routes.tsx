@@ -6,6 +6,7 @@ import CreateUser from './containers/CreateUser';
 import Login from './containers/Login';
 import MainPage from './containers/MainPage';
 import RoomPage from './containers/RoomPage';
+import ReservationPage from './containers/ReservationPage';
 
 export default (
   <Switch>
@@ -16,6 +17,7 @@ export default (
       <Route exact path="/RoomPage" component={RoomPage} />
       <Route exact path="/addUser" component={CreateUser} />
       <Route exact path="/addRoom" component={CreateRoom} />
+      <Route exact path="/mineBestillinger" component={ReservationPage} />
     </div>
   </Switch>
 );
