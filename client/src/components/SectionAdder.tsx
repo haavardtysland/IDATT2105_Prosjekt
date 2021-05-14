@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface Section {
-  name: string;
+  section_name: string;
   capacity: number;
 }
 
@@ -55,9 +55,11 @@ function SectionAdder({ sectionsChange }: Props) {
 
   const addSection = () => {
     if (name && capacity) {
-      const len: number = sections.filter((sec) => sec.name == name).length;
+      const len: number = sections.filter(
+        (sec) => sec.section_name == name
+      ).length;
       if (len == 0) {
-        const section: Section = { name: name, capacity: capacity };
+        const section: Section = { section_name: name, capacity: capacity };
         setSections(sections.concat(section));
         setName('');
       } else {
@@ -69,7 +71,9 @@ function SectionAdder({ sectionsChange }: Props) {
   };
 
   const deleteSection = (sec: Section) => {
-    const newList = sections.filter((section) => section.name !== sec.name);
+    const newList = sections.filter(
+      (section) => section.section_name !== sec.section_name
+    );
     console.log(newList);
     setSections(newList);
   };
@@ -108,7 +112,7 @@ function SectionAdder({ sectionsChange }: Props) {
       {sections.map((sec, index) => (
         <Flex key={index}>
           <TextField
-            defaultValue={sec.name}
+            defaultValue={sec.section_name}
             style={{ width: '70%', marginRight: '1rem' }}
             variant="outlined"
             className={classes.textField}

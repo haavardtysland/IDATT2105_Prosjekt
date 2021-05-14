@@ -4,6 +4,9 @@ import styled from 'styled-components';
 import { Calendar } from '@material-ui/pickers';
 import Form from '../components/Form';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import axios from '../axios';
+import Room from '../interfaces/Room';
+import RoomGrid from '../components/RoomGrid';
 
 const Container = styled.div`
   padding-top: 8%;
@@ -32,6 +35,18 @@ function MainPage() {
   const [fromTime, setFromTime] = useState<number>();
   const [toTime, setToTime] = useState<number>();
   const [minCapacity, setMinCapacity] = useState<number>();
+  const [rooms, setRooms] = useState<Room[]>();
+
+  const getAvailible = () => {
+    console.log(1);
+  };
+
+  const getAllRooms = () => {
+    axios.get('/room').then((response) => {
+      console.log(JSON.parse(response.data));
+      setRooms(response.data);
+    });
+  };
 
   return (
     <Container>
@@ -42,8 +57,11 @@ function MainPage() {
       ></Form>
       <Flex>
         <Button className={classes.button}>Vis ledige rom</Button>
-        <Button className={classes.button}>Vis alle rom</Button>
+        <Button onClick={getAllRooms} className={classes.button}>
+          Vis alle rom
+        </Button>
       </Flex>
+      {rooms && <RoomGrid rooms={rooms}></RoomGrid>}
     </Container>
   );
 }

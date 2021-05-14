@@ -34,29 +34,29 @@ interface RoomPageProps {
 
 const RoomPage: React.FC<RoomPageProps> = () => {
   const [currentSection, setCurrentSection] = useState<Section>({
-    roomId: -1,
-    sectionId: -1,
-    sectionName: '',
+    room_id: -1,
+    section_id: -1,
+    section_name: '',
   });
   const [selectedDate, setSelectedDate] = React.useState<Date>(
     new Date('2014-08-18T21:11:54')
   );
   const room: Room = {
-    roomId: 1,
+    room_id: 1,
     name: 'Room 1',
     capacity: 10, //antall plasser
     sections: [
       {
-        roomId: 1,
-        sectionId: 1,
-        sectionName: 'Seksjon 1',
+        room_id: 1,
+        section_id: 1,
+        section_name: 'Seksjon 1',
       },
     ],
   };
 
   const handleChangeCurrentSection = (event: ChangeEvent<HTMLInputElement>) => {
     const tmp = room.sections.find(
-      (section) => section.sectionId === +event.target.value
+      (section) => section.section_id === +event.target.value
     );
     if (tmp !== undefined) setCurrentSection(tmp);
   };
@@ -87,8 +87,8 @@ const RoomPage: React.FC<RoomPageProps> = () => {
           value={currentSection}
         >
           {room.sections.map((section, key: number) => (
-            <MenuItem value={section.sectionId} key={key}>
-              {section.sectionName}
+            <MenuItem value={section.section_id} key={key}>
+              {section.section_name}
             </MenuItem>
           ))}
         </StyledTextField>
@@ -107,7 +107,7 @@ const RoomPage: React.FC<RoomPageProps> = () => {
       <Calendar date={selectedDate} />
       <RoomCard
         room={{
-          roomId: 123,
+          room_id: 123,
           name: 'Room 1',
           capacity: 100,
           sections: [],

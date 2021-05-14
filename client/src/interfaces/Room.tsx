@@ -1,6 +1,6 @@
 import Section from './Section';
 export default interface Room {
-  roomId: number;
+  room_id: number;
   name: string;
   capacity: number; //antall plasser
   sections: Section[];
