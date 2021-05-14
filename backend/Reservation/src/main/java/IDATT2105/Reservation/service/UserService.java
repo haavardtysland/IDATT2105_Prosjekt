@@ -1,5 +1,6 @@
 package IDATT2105.Reservation.service;
 
+import IDATT2105.Reservation.models.Reservation;
 import IDATT2105.Reservation.models.User;
 import IDATT2105.Reservation.repo.UserRepo;
 import IDATT2105.Reservation.util.Logger;

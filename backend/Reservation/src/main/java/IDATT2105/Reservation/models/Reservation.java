@@ -1,8 +1,9 @@
 package IDATT2105.Reservation.models;
 
+import java.sql.Time;
+import java.sql.Timestamp;
 import javax.annotation.processing.Generated;
 import javax.persistence.*;
-import java.sql.Date;
 
 @Entity
 public class Reservation {
@@ -15,9 +16,9 @@ public class Reservation {
   @JoinColumn(name = "section_id")
   private Section section;
   @Column(name = "from_date")
-  private Date from_date;
+  private Timestamp from_date;
   @Column(name = "to_date")
-  private Date to_date;
+  private Timestamp to_date;
   @OneToOne
   @JoinColumn(name = "user_id")
   private User user;
@@ -29,14 +30,32 @@ public class Reservation {
   public Reservation() {
   }
 
-  public Reservation(Section section, Date from_date, Date to_date, User user, int capacity,
+  public Reservation(int reservation_id, Section section, Timestamp from_date, Timestamp to_date, User user, int capacity,
                      String description) {
+    this.reservation_id = reservation_id;
     this.section = section;
     this.from_date = from_date;
     this.to_date = to_date;
     this.user = user;
     this.capacity = capacity;
     this.description = description;
+  }
+
+  public Reservation(Reservation reservation){
+    this.reservation_id = reservation.reservation_id;
+    this.section = reservation.section;
+    this.from_date = reservation.from_date;
+    this.to_date = reservation.to_date;
+    this.user = reservation.user;
+    this.capacity = reservation.capacity;
+    this.description = reservation.description;
+  }
+
+
+  public int getReservation_id() {return reservation_id; }
+
+  public void setReservation_id(int reservation_id) {
+    this.reservation_id = reservation_id;
   }
 
   public Section getSection() {
@@ -47,19 +66,19 @@ public class Reservation {
     this.section = section;
   }
 
-  public Date getFromDate() {
+  public Timestamp getFromDate() {
     return from_date;
   }
 
-  public void setFromDate(Date fromDate) {
+  public void setFromDate(Timestamp fromDate) {
     this.from_date = fromDate;
   }
 
-  public Date getToDate() {
+  public Timestamp getToDate() {
     return to_date;
   }
 
-  public void setToDate(Date toDate) {
+  public void setToDate(Timestamp toDate) {
     this.to_date = toDate;
   }
 

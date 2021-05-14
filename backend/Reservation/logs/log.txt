@@ -2784,3 +2784,341 @@ Query: DeleteObjectQuery({
 =======
 >>>>>>> 7cf47df760c53063b6fab79a500d66b6ecc56c04
 >>>>>>> 82dc6367bf7cbcac19904ebe82a749f1b923c010
+2021-05-14T11:08:53.136035300 class IDATT2105.Reservation.controller.ReservationController INFO: Received new reservation: {capacity=3, description=Test description, from_date=2018-11-12 13:02:56.12345678, to_date=2018-11-12 13:04:56.12345678, section_id=6, user_id=1819766832}
+2021-05-14T11:08:53.155036300 class IDATT2105.Reservation.controller.ReservationController INFO: unexplained error caught java.lang.NullPointerException; local:null
+2021-05-14T11:08:53.158037300 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T11:09:05.956475300 class IDATT2105.Reservation.controller.ReservationController INFO: Received new reservation: {capacity=3, description=Test description, from_date=2018-11-12 13:02:56.12345678, to_date=2018-11-12 13:04:56.12345678, section_id=6, user_id=1819766832}
+2021-05-14T11:09:05.965473900 class IDATT2105.Reservation.controller.ReservationController INFO: unexplained error caught java.lang.NullPointerException; local:null
+2021-05-14T11:09:05.976472700 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T11:10:41.490022 class IDATT2105.Reservation.controller.ReservationController INFO: Received new reservation: {capacity=3, description=Test description, from_date=2018-11-12 13:02:56.12345678, to_date=2018-11-12 13:04:56.12345678, section_id=6, user_id=1819766832}
+2021-05-14T11:10:41.509024600 class IDATT2105.Reservation.controller.ReservationController INFO: unexplained error caught java.lang.NullPointerException; local:null
+2021-05-14T11:10:41.513022700 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T11:11:28.530118400 class IDATT2105.Reservation.controller.ReservationController INFO: Received new reservation: {capacity=3, description=Test description, from_date=2018-11-12 13:02:56.12345678, to_date=2018-11-12 13:04:56.12345678, section_id=6, user_id=1819766832}
+2021-05-14T11:11:28.533118100 class IDATT2105.Reservation.controller.ReservationController INFO: unexplained error caught java.lang.NullPointerException; local:null
+2021-05-14T11:11:28.541124800 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T11:14:27.009959500 class IDATT2105.Reservation.controller.ReservationController INFO: Received new reservation: {capacity=3, description=Test description, from_date=2018-11-12 13:02:56.12345678, to_date=2018-11-12 13:04:56.12345678, section_id=6, user_id=1819766832}
+2021-05-14T11:14:27.017960500 class IDATT2105.Reservation.service.UserService INFO: getting user with id 1819766832
+2021-05-14T11:14:27.018960100 class IDATT2105.Reservation.repo.UserRepo INFO: finding user 1819766832
+2021-05-14T11:14:29.747375200 class IDATT2105.Reservation.service.SectionService INFO: Finding section with section_id 6
+2021-05-14T11:14:29.748372900 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 6
+2021-05-14T11:14:29.773377800 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section null
+2021-05-14T11:14:29.776375 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T11:16:42.050454 class IDATT2105.Reservation.controller.ReservationController INFO: Received new reservation: {capacity=3, description=Test description, from_date=2018-11-12 13:02:56.12345678, to_date=2018-11-12 13:04:56.12345678, section_id=6, user_id=1819766832}
+2021-05-14T11:16:42.067455900 class IDATT2105.Reservation.service.UserService INFO: getting user with id 1819766832
+2021-05-14T11:16:42.069456500 class IDATT2105.Reservation.repo.UserRepo INFO: finding user 1819766832
+2021-05-14T11:16:42.075454400 class IDATT2105.Reservation.service.SectionService INFO: Finding section with section_id 6
+2021-05-14T11:16:42.135451800 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 6
+2021-05-14T11:16:42.177456200 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section null
+2021-05-14T11:16:42.178456 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T11:17:43.165761400 class IDATT2105.Reservation.controller.ReservationController INFO: Received new reservation: {capacity=3, description=Test description, from_date=2018-11-12 13:02:56.12345678, to_date=2018-11-12 13:04:56.12345678, section_id=3, user_id=1819766832}
+2021-05-14T11:17:43.174764500 class IDATT2105.Reservation.service.UserService INFO: getting user with id 1819766832
+2021-05-14T11:17:43.177765600 class IDATT2105.Reservation.repo.UserRepo INFO: finding user 1819766832
+2021-05-14T11:17:45.576611600 class IDATT2105.Reservation.service.SectionService INFO: Finding section with section_id 3
+2021-05-14T11:17:45.577612700 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 3
+2021-05-14T11:17:45.661617500 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section {
+ "section_id": 3,
+ "section_name": "over",
+}
+2021-05-14T11:17:45.661617500 class IDATT2105.Reservation.controller.ReservationController INFO: map: to reservation
+2021-05-14T11:17:45.668612800 class IDATT2105.Reservation.controller.ReservationController INFO: unexplained error caught java.lang.NullPointerException; local:null
+2021-05-14T11:17:45.673614900 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T11:29:19.045521700 class IDATT2105.Reservation.controller.ReservationController INFO: Received new reservation: {capacity=3, description=Test description, from_date=2018-11-12 13:02:56.12345678, to_date=2018-11-12 13:04:56.12345678, section_id=3, user_id=1819766832}
+2021-05-14T11:29:19.053521900 class IDATT2105.Reservation.service.UserService INFO: getting user with id 1819766832
+2021-05-14T11:29:19.054521100 class IDATT2105.Reservation.repo.UserRepo INFO: finding user 1819766832
+2021-05-14T11:29:20.904379900 class IDATT2105.Reservation.service.SectionService INFO: Finding section with section_id 3
+2021-05-14T11:29:20.905381100 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 3
+2021-05-14T11:29:20.987382200 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section {
+ "section_id": 3,
+ "section_name": "over",
+}
+2021-05-14T11:29:20.988384200 class IDATT2105.Reservation.controller.ReservationController INFO: map: to reservation
+2021-05-14T11:29:21.000380200 class IDATT2105.Reservation.controller.ReservationController INFO: unexplained error caught java.lang.NullPointerException; local:null
+2021-05-14T11:29:21.004376800 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T11:31:11.517469800 class IDATT2105.Reservation.controller.ReservationController INFO: Received new reservation: {capacity=3, description=Test description, from_date=2018-11-12 13:02:56.12345678, to_date=2018-11-12 13:04:56.12345678, section_id=3, user_id=1819766832}
+2021-05-14T11:31:11.546472300 class IDATT2105.Reservation.service.UserService INFO: getting user with id 1819766832
+2021-05-14T11:31:11.547471600 class IDATT2105.Reservation.repo.UserRepo INFO: finding user 1819766832
+2021-05-14T11:31:13.604996800 class IDATT2105.Reservation.service.SectionService INFO: Finding section with section_id 3
+2021-05-14T11:31:13.605999700 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 3
+2021-05-14T11:31:13.719996800 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section {
+ "section_id": 3,
+ "section_name": "over",
+}
+2021-05-14T11:31:13.720997900 class IDATT2105.Reservation.controller.ReservationController INFO: map: to reservation
+2021-05-14T11:31:13.722002900 class IDATT2105.Reservation.controller.ReservationController INFO: 2018-11-12 13:02:56.12345678
+2021-05-14T11:31:13.734999300 class IDATT2105.Reservation.controller.ReservationController INFO: unexplained error caught java.lang.NullPointerException; local:null
+2021-05-14T11:31:13.738997300 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T11:32:03.668794900 class IDATT2105.Reservation.controller.ReservationController INFO: Received new reservation: {capacity=3, description=Test description, from_date=2018-11-12 13:02:56.12345678, to_date=2018-11-12 13:04:56.12345678, section_id=3, user_id=1819766832}
+2021-05-14T11:32:03.681794700 class IDATT2105.Reservation.service.UserService INFO: getting user with id 1819766832
+2021-05-14T11:32:03.682793900 class IDATT2105.Reservation.repo.UserRepo INFO: finding user 1819766832
+2021-05-14T11:32:06.078083400 class IDATT2105.Reservation.service.SectionService INFO: Finding section with section_id 3
+2021-05-14T11:32:06.079078 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 3
+2021-05-14T11:32:06.107076900 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section null
+2021-05-14T11:32:06.112074900 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T11:34:41.084865700 class IDATT2105.Reservation.controller.ReservationController INFO: Received new reservation: {capacity=3, description=Test description, from_date=2018-11-12 13:02:56.12345678, to_date=2018-11-12 13:04:56.12345678, section_id=1, user_id=1819766832}
+2021-05-14T11:34:41.085867500 class IDATT2105.Reservation.service.UserService INFO: getting user with id 1819766832
+2021-05-14T11:34:41.085867500 class IDATT2105.Reservation.repo.UserRepo INFO: finding user 1819766832
+2021-05-14T11:34:41.086865700 class IDATT2105.Reservation.service.SectionService INFO: Finding section with section_id 1
+2021-05-14T11:34:41.087868600 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 1
+2021-05-14T11:34:41.179867100 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section {
+ "section_id": 1,
+ "section_name": "Bord 2",
+}
+2021-05-14T11:34:41.180866100 class IDATT2105.Reservation.controller.ReservationController INFO: map: to reservation
+2021-05-14T11:34:41.181867600 class IDATT2105.Reservation.controller.ReservationController INFO: 2018-11-12 13:02:56.12345678
+2021-05-14T11:34:41.182866600 class IDATT2105.Reservation.controller.ReservationController INFO: finding new valid id for an activity
+2021-05-14T11:34:41.183869100 class IDATT2105.Reservation.controller.ControllerUtil INFO: creating new random id
+2021-05-14T11:34:41.184868400 class IDATT2105.Reservation.controller.ReservationController INFO: attempting id: 406883486
+2021-05-14T11:34:41.188869100 class IDATT2105.Reservation.service.ReservationService INFO: adding new Reservation: 406883486 from: mattimy99@gmail.com
+2021-05-14T11:34:41.234872 class IDATT2105.Reservation.repo.UserRepo INFO: adding a reservation406883486 | 
+  {
+     "userId":1819766832,
+     "firstName":"Mathias",
+     "surname":"Myrold",
+     "email":"mattimy99@gmail.com",
+     "isAdmin":"true",
+     "validDate":"2015-03-31",
+     "password":"f850788f969e07b4ea136fd638f7e0693a1c887271ba88f301e6a5436fa89ff672d83bde3fae72a3a47edc58a944028e9251fc1f5b903865b3b082816e8543aa",
+     "phoneNumber":"123332",
+ } {
+ "section": {
+ "section_id": 1,
+ "section_name": "Bord 2",
+},
+ "from_date": "2018-11-12 13:02:56.12345678",
+ "to_date": "2018-11-12 13:04:56.12345678",
+ "user": 
+  {
+     "userId":1819766832,
+     "firstName":"Mathias",
+     "surname":"Myrold",
+     "email":"mattimy99@gmail.com",
+     "isAdmin":"true",
+     "validDate":"2015-03-31",
+     "password":"f850788f969e07b4ea136fd638f7e0693a1c887271ba88f301e6a5436fa89ff672d83bde3fae72a3a47edc58a944028e9251fc1f5b903865b3b082816e8543aa",
+     "phoneNumber":"123332",
+ },
+ "capacity": "3"
+ "description": "Test description"
+}
+2021-05-14T11:34:41.366875900 class IDATT2105.Reservation.repo.UserRepo INFO: added reservation successfully 406883486
+2021-05-14T11:34:41.369870300 class IDATT2105.Reservation.controller.ReservationController INFO: creating activity was true successful
+2021-05-14T11:34:41.370867100 class IDATT2105.Reservation.controller.ReservationController INFO: final new activity id: 406883486
+2021-05-14T11:34:41.371873 class IDATT2105.Reservation.controller.ReservationController INFO: new activity id: 406883486
+2021-05-14T11:34:41.371873 class IDATT2105.Reservation.controller.ReservationController INFO: Activity created successfully
+2021-05-14T12:23:16.435672300 class IDATT2105.Reservation.controller.ReservationController INFO: recieved deletemapping to reservation with id 406883486
+2021-05-14T12:23:16.459675900 class IDATT2105.Reservation.service.ReservationService INFO: Getting reservation with reservationId 406883486
+2021-05-14T12:23:18.487791700 class IDATT2105.Reservation.repo.UserRepo INFO: finding reservation with id 406883486
+2021-05-14T12:23:18.654788800 class IDATT2105.Reservation.service.ReservationService INFO: deleting reservation with id: 406883486
+2021-05-14T12:23:18.655793600 class IDATT2105.Reservation.repo.UserRepo INFO: deleting reservation with id: 406883486
+2021-05-14T12:23:18.656793700 class IDATT2105.Reservation.repo.UserRepo INFO: finding reservation with id 406883486
+2021-05-14T12:23:18.659795100 class IDATT2105.Reservation.repo.UserRepo INFO: activity found, attempting delete
+2021-05-14T12:23:18.769790200 class IDATT2105.Reservation.repo.UserRepo INFO: delete success on id: 406883486
+2021-05-14T12:23:18.770791800 class IDATT2105.Reservation.controller.ReservationController INFO: The deletion was successful
+2021-05-14T12:23:18.773795900 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T12:24:45.237616400 class IDATT2105.Reservation.controller.ReservationController INFO: Received new reservation: {capacity=3, description=Test description, from_date=2018-11-12 13:02:56.12345678, to_date=2018-11-12 13:04:56.12345678, section_id=1, user_id=1819766832}
+2021-05-14T12:24:45.245615900 class IDATT2105.Reservation.service.UserService INFO: getting user with id 1819766832
+2021-05-14T12:24:45.246617400 class IDATT2105.Reservation.repo.UserRepo INFO: finding user 1819766832
+2021-05-14T12:24:45.248613400 class IDATT2105.Reservation.service.SectionService INFO: Finding section with section_id 1
+2021-05-14T12:24:45.249614500 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 1
+2021-05-14T12:24:45.280614200 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section {
+ "section_id": 1,
+ "section_name": "Bord 2",
+}
+2021-05-14T12:24:45.281612800 class IDATT2105.Reservation.controller.ReservationController INFO: map: to reservation
+2021-05-14T12:24:45.282612500 class IDATT2105.Reservation.controller.ReservationController INFO: 2018-11-12 13:02:56.12345678
+2021-05-14T12:24:45.283614700 class IDATT2105.Reservation.controller.ReservationController INFO: finding new valid id for an reservation
+2021-05-14T12:24:45.283614700 class IDATT2105.Reservation.controller.ControllerUtil INFO: creating new random id
+2021-05-14T12:24:45.284612900 class IDATT2105.Reservation.controller.ReservationController INFO: attempting id: 1122371843
+2021-05-14T12:24:45.313610600 class IDATT2105.Reservation.service.ReservationService INFO: adding new Reservation: 1122371843 from: mattimy99@gmail.com
+2021-05-14T12:24:45.412611 class IDATT2105.Reservation.repo.UserRepo INFO: adding a reservation1122371843 | 
+  {
+     "userId":1819766832,
+     "firstName":"Mathias",
+     "surname":"Myrold",
+     "email":"mattimy99@gmail.com",
+     "isAdmin":"true",
+     "validDate":"2015-03-31",
+     "password":"f850788f969e07b4ea136fd638f7e0693a1c887271ba88f301e6a5436fa89ff672d83bde3fae72a3a47edc58a944028e9251fc1f5b903865b3b082816e8543aa",
+     "phoneNumber":"123332",
+ } {
+ "section": {
+ "section_id": 1,
+ "section_name": "Bord 2",
+},
+ "from_date": "2018-11-12 13:02:56.12345678",
+ "to_date": "2018-11-12 13:04:56.12345678",
+ "user": 
+  {
+     "userId":1819766832,
+     "firstName":"Mathias",
+     "surname":"Myrold",
+     "email":"mattimy99@gmail.com",
+     "isAdmin":"true",
+     "validDate":"2015-03-31",
+     "password":"f850788f969e07b4ea136fd638f7e0693a1c887271ba88f301e6a5436fa89ff672d83bde3fae72a3a47edc58a944028e9251fc1f5b903865b3b082816e8543aa",
+     "phoneNumber":"123332",
+ },
+ "capacity": "3"
+ "description": "Test description"
+}
+2021-05-14T12:24:45.520613600 class IDATT2105.Reservation.repo.UserRepo INFO: added reservation successfully 1122371843
+2021-05-14T12:24:45.522610100 class IDATT2105.Reservation.controller.ReservationController INFO: creating reservation was true successful
+2021-05-14T12:24:45.526613500 class IDATT2105.Reservation.controller.ReservationController INFO: final new reservation id: 1122371843
+2021-05-14T12:24:45.527614200 class IDATT2105.Reservation.controller.ReservationController INFO: new reservation id: 1122371843
+2021-05-14T12:24:45.527614200 class IDATT2105.Reservation.controller.ReservationController INFO: Reservation created successfully
+2021-05-14T12:24:45.528612200 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T12:50:57.115701900 class IDATT2105.Reservation.controller.ReservationController INFO: Received GetMapping at '/reservation'
+2021-05-14T12:50:57.121700100 class IDATT2105.Reservation.service.ReservationService INFO: getting all reservations
+2021-05-14T14:34:50.244087900 class IDATT2105.Reservation.controller.ReservationController INFO: Received GetMapping at '/reservation'
+2021-05-14T14:34:50.258086 class IDATT2105.Reservation.service.ReservationService INFO: getting all reservations
+2021-05-14T14:36:00.151860800 class IDATT2105.Reservation.controller.ReservationController INFO: Received new reservation: {capacity=3, description=Test description, from_date=2012-11-12 13:02:56.12345678, to_date=2012-11-12 13:04:56.12345678, section_id=1, user_id=1819766832}
+2021-05-14T14:36:00.152861 class IDATT2105.Reservation.service.UserService INFO: getting user with id 1819766832
+2021-05-14T14:36:00.156890300 class IDATT2105.Reservation.repo.UserRepo INFO: finding user 1819766832
+2021-05-14T14:36:00.160971600 class IDATT2105.Reservation.service.SectionService INFO: Finding section with section_id 1
+2021-05-14T14:36:00.162972700 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 1
+2021-05-14T14:36:00.164970500 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section {
+ "section_id": 1,
+ "section_name": "Bord 2",
+}
+2021-05-14T14:36:00.164970500 class IDATT2105.Reservation.controller.ReservationController INFO: map: to reservation
+2021-05-14T14:36:00.165970500 class IDATT2105.Reservation.controller.ReservationController INFO: 2012-11-12 13:02:56.12345678
+2021-05-14T14:36:00.166971600 class IDATT2105.Reservation.controller.ReservationController INFO: finding new valid id for an reservation
+2021-05-14T14:36:00.167970 class IDATT2105.Reservation.controller.ControllerUtil INFO: creating new random id
+2021-05-14T14:36:00.172981700 class IDATT2105.Reservation.controller.ReservationController INFO: attempting id: 1061725212
+2021-05-14T14:36:00.179972200 class IDATT2105.Reservation.service.ReservationService INFO: adding new Reservation: 1061725212 from: mattimy99@gmail.com
+2021-05-14T14:36:00.189971500 class IDATT2105.Reservation.repo.UserRepo INFO: adding a reservation1061725212 | 
+  {
+     "userId":1819766832,
+     "firstName":"Mathias",
+     "surname":"Myrold",
+     "email":"mattimy99@gmail.com",
+     "isAdmin":"true",
+     "validDate":"2015-03-31",
+     "password":"f850788f969e07b4ea136fd638f7e0693a1c887271ba88f301e6a5436fa89ff672d83bde3fae72a3a47edc58a944028e9251fc1f5b903865b3b082816e8543aa",
+     "phoneNumber":"123332",
+ } {
+ "section": {
+ "section_id": 1,
+ "section_name": "Bord 2",
+},
+ "from_date": "2012-11-12 13:02:56.12345678",
+ "to_date": "2012-11-12 13:04:56.12345678",
+ "user": 
+  {
+     "userId":1819766832,
+     "firstName":"Mathias",
+     "surname":"Myrold",
+     "email":"mattimy99@gmail.com",
+     "isAdmin":"true",
+     "validDate":"2015-03-31",
+     "password":"f850788f969e07b4ea136fd638f7e0693a1c887271ba88f301e6a5436fa89ff672d83bde3fae72a3a47edc58a944028e9251fc1f5b903865b3b082816e8543aa",
+     "phoneNumber":"123332",
+ },
+ "capacity": "3"
+ "description": "Test description"
+}
+2021-05-14T14:36:00.311970 class IDATT2105.Reservation.repo.UserRepo INFO: added reservation successfully 1061725212
+2021-05-14T14:36:00.313971800 class IDATT2105.Reservation.controller.ReservationController INFO: creating reservation was true successful
+2021-05-14T14:36:00.314971700 class IDATT2105.Reservation.controller.ReservationController INFO: final new reservation id: 1061725212
+2021-05-14T14:36:00.314971700 class IDATT2105.Reservation.controller.ReservationController INFO: new reservation id: 1061725212
+2021-05-14T14:36:00.314971700 class IDATT2105.Reservation.controller.ReservationController INFO: Reservation created successfully
+2021-05-14T14:36:00.315972200 class IDATT2105.Reservation.service.UserService INFO: Adding friend to user and updating object
+2021-05-14T14:36:00.315972200 class IDATT2105.Reservation.repo.UserRepo INFO: updating user 1819766832
+2021-05-14T14:36:00.457970400 class IDATT2105.Reservation.repo.UserRepo INFO: successfully updated user 1819766832
+2021-05-14T14:36:00.458970300 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T14:39:47.149236500 class IDATT2105.Reservation.controller.UserController INFO: Received GetMapping to '/user/{userId}/reservation' with userId 1819766832
+2021-05-14T14:39:47.150236300 class IDATT2105.Reservation.service.UserService INFO: getting user with id 1819766832
+2021-05-14T14:39:47.151236500 class IDATT2105.Reservation.repo.UserRepo INFO: finding user 1819766832
+2021-05-14T14:39:47.157237800 class IDATT2105.Reservation.controller.UserController INFO: Getting all reservations 1819766832 is registered to
+2021-05-14T14:40:41.383168800 class IDATT2105.Reservation.controller.ReservationController INFO: Received new reservation: {capacity=6, description=Test description om flere plasser, from_date=2020-11-12 13:02:56.12345678, to_date=2020-11-12 13:04:56.12345678, section_id=1, user_id=1819766832}
+2021-05-14T14:40:41.383168800 class IDATT2105.Reservation.service.UserService INFO: getting user with id 1819766832
+2021-05-14T14:40:41.384166600 class IDATT2105.Reservation.repo.UserRepo INFO: finding user 1819766832
+2021-05-14T14:40:41.385167600 class IDATT2105.Reservation.service.SectionService INFO: Finding section with section_id 1
+2021-05-14T14:40:41.386168100 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 1
+2021-05-14T14:40:41.390168600 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section {
+ "section_id": 1,
+ "section_name": "Bord 2",
+}
+2021-05-14T14:40:41.390168600 class IDATT2105.Reservation.controller.ReservationController INFO: map: to reservation
+2021-05-14T14:40:41.391167600 class IDATT2105.Reservation.controller.ReservationController INFO: 2020-11-12 13:02:56.12345678
+2021-05-14T14:40:41.392170200 class IDATT2105.Reservation.controller.ReservationController INFO: finding new valid id for an reservation
+2021-05-14T14:40:41.392170200 class IDATT2105.Reservation.controller.ControllerUtil INFO: creating new random id
+2021-05-14T14:40:41.393168600 class IDATT2105.Reservation.controller.ReservationController INFO: attempting id: 237685953
+2021-05-14T14:40:41.393168600 class IDATT2105.Reservation.service.ReservationService INFO: adding new Reservation: 237685953 from: mattimy99@gmail.com
+2021-05-14T14:40:41.393168600 class IDATT2105.Reservation.repo.UserRepo INFO: adding a reservation237685953 | 
+  {
+     "userId":1819766832,
+     "firstName":"Mathias",
+     "surname":"Myrold",
+     "email":"mattimy99@gmail.com",
+     "isAdmin":"true",
+     "validDate":"2015-03-31",
+     "password":"f850788f969e07b4ea136fd638f7e0693a1c887271ba88f301e6a5436fa89ff672d83bde3fae72a3a47edc58a944028e9251fc1f5b903865b3b082816e8543aa",
+     "phoneNumber":"123332",
+ } {
+ "section": {
+ "section_id": 1,
+ "section_name": "Bord 2",
+},
+ "from_date": "2020-11-12 13:02:56.12345678",
+ "to_date": "2020-11-12 13:04:56.12345678",
+ "user": 
+  {
+     "userId":1819766832,
+     "firstName":"Mathias",
+     "surname":"Myrold",
+     "email":"mattimy99@gmail.com",
+     "isAdmin":"true",
+     "validDate":"2015-03-31",
+     "password":"f850788f969e07b4ea136fd638f7e0693a1c887271ba88f301e6a5436fa89ff672d83bde3fae72a3a47edc58a944028e9251fc1f5b903865b3b082816e8543aa",
+     "phoneNumber":"123332",
+ },
+ "capacity": "6"
+ "description": "Test description om flere plasser"
+}
+2021-05-14T14:40:41.850234800 class IDATT2105.Reservation.repo.UserRepo INFO: added reservation successfully 237685953
+2021-05-14T14:40:41.850234800 class IDATT2105.Reservation.controller.ReservationController INFO: creating reservation was true successful
+2021-05-14T14:40:41.851235200 class IDATT2105.Reservation.controller.ReservationController INFO: final new reservation id: 237685953
+2021-05-14T14:40:41.851235200 class IDATT2105.Reservation.controller.ReservationController INFO: new reservation id: 237685953
+2021-05-14T14:40:41.851235200 class IDATT2105.Reservation.controller.ReservationController INFO: Reservation created successfully
+2021-05-14T14:40:41.852233600 class IDATT2105.Reservation.service.UserService INFO: Adding friend to user and updating object
+2021-05-14T14:40:41.852233600 class IDATT2105.Reservation.repo.UserRepo INFO: updating user 1819766832
+2021-05-14T14:40:42.046235400 class IDATT2105.Reservation.repo.UserRepo INFO: updating user: 1819766832 failed due to Exception [EclipseLink-4002] (Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '1819766832--1' for key 'PRIMARY'
+Error Code: 1062
+Call: INSERT INTO USER_RESERVATION (reservations_reservation_id, User_userId) VALUES (?, ?)
+	bind => [2 parameters bound]
+Query: DataModifyQuery(name="reservations" sql="INSERT INTO USER_RESERVATION (reservations_reservation_id, User_userId) VALUES (?, ?)")
+2021-05-14T14:40:42.046235400 class IDATT2105.Reservation.controller.ReservationController INFO: Something wrong happened when trying to update
+2021-05-14T14:40:42.047236 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
+2021-05-14T14:47:11.824702900 class IDATT2105.Reservation.controller.UserController INFO: Received GetMapping at '/user'
+2021-05-14T14:47:11.827738300 class IDATT2105.Reservation.service.UserService INFO: getting all users
+2021-05-14T15:11:49.009356400 class IDATT2105.Reservation.controller.ReservationController INFO: Received GetMapping at '/reservation/{userID}' with 1819766832
+2021-05-14T15:11:49.025307800 class IDATT2105.Reservation.service.ReservationService INFO: getting all reservations for a particular user  with: 1819766832
+2021-05-14T15:11:51.025303800 class IDATT2105.Reservation.repo.UserRepo INFO: finding user 1819766832
+2021-05-14T15:12:04.103342 class IDATT2105.Reservation.controller.ReservationController INFO: Received GetMapping at '/reservation/{userID}' with 1819766832
+2021-05-14T15:12:04.104341700 class IDATT2105.Reservation.service.ReservationService INFO: getting all reservations for a particular user  with: 1819766832
+2021-05-14T15:12:04.104341700 class IDATT2105.Reservation.repo.UserRepo INFO: finding user 1819766832
+2021-05-14T15:13:35.250810300 class IDATT2105.Reservation.controller.ReservationController INFO: Received GetMapping at '/reservation/{userID}' with 1819766832
+2021-05-14T15:13:35.257810500 class IDATT2105.Reservation.service.ReservationService INFO: getting all reservations for a particular user  with: 1819766832
+2021-05-14T15:13:36.969909400 class IDATT2105.Reservation.repo.UserRepo INFO: finding user 1819766832
+2021-05-14T15:14:21.839760100 class IDATT2105.Reservation.controller.ReservationController INFO: Received GetMapping at '/reservation/{userID}' with 1819766832
+2021-05-14T15:14:21.855758 class IDATT2105.Reservation.service.ReservationService INFO: getting all reservations for a particular user  with: 1819766832
+2021-05-14T15:14:49.668902200 class IDATT2105.Reservation.controller.ReservationController INFO: Received GetMapping at '/reservation'
+2021-05-14T15:14:49.668902200 class IDATT2105.Reservation.service.ReservationService INFO: getting all reservations
+2021-05-14T15:15:03.450732500 class IDATT2105.Reservation.controller.ReservationController INFO: Received GetMapping at '/reservation/{userID}' with 1819766832
+2021-05-14T15:15:03.451733900 class IDATT2105.Reservation.service.ReservationService INFO: getting all reservations for a particular user  with: 1819766832
+2021-05-14T15:17:49.315391800 class IDATT2105.Reservation.controller.ReservationController INFO: Received GetMapping at '/reservation'
+2021-05-14T15:17:49.315391800 class IDATT2105.Reservation.service.ReservationService INFO: getting all reservations
+2021-05-14T15:17:56.061916 class IDATT2105.Reservation.controller.ReservationController INFO: Received GetMapping at '/reservation'
+2021-05-14T15:17:56.062918 class IDATT2105.Reservation.service.ReservationService INFO: getting all reservations
+2021-05-14T15:21:12.172944400 class IDATT2105.Reservation.controller.ReservationController INFO: Received GetMapping at '/reservation/{userID}' with 1819766832
+2021-05-14T15:21:12.187947100 class IDATT2105.Reservation.service.ReservationService INFO: getting all reservations for a particular user  with: 1819766832
+2021-05-14T15:33:23.513772 class IDATT2105.Reservation.controller.ReservationController INFO: Received GetMapping at '/reservation/{sectionID}' with 1
+2021-05-14T15:33:23.522773800 class IDATT2105.Reservation.service.ReservationService INFO: getting all reservations for a particular section with: 1
+2021-05-14T15:34:24.010859100 class IDATT2105.Reservation.controller.ReservationController INFO: Received GetMapping at '/reservation/{sectionID}' with 1819766832
+2021-05-14T15:34:24.010859100 class IDATT2105.Reservation.service.ReservationService INFO: getting all reservations for a particular section with: 1819766832
+2021-05-14T15:34:31.251915500 class IDATT2105.Reservation.controller.ReservationController INFO: Received GetMapping at '/reservation/{userID}' with 1819766832
+2021-05-14T15:34:31.252913400 class IDATT2105.Reservation.service.ReservationService INFO: getting all reservations for a particular user  with: 1819766832
+2021-05-14T15:35:14.991886400 class IDATT2105.Reservation.controller.ReservationController INFO: Received GetMapping at '/reservation/{userID}' with 1819766832
+2021-05-14T15:35:14.991886400 class IDATT2105.Reservation.service.ReservationService INFO: getting all reservations for a particular user  with: 1819766832

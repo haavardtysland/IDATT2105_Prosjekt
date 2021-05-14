@@ -1,6 +1,9 @@
 package IDATT2105.Reservation.models;
 
+
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.eclipse.persistence.annotations.CascadeOnDelete;
 import javax.persistence.*;
@@ -160,6 +163,22 @@ public class User {
   public void setSalt(String salt) {
     this.salt = salt;
   }
+
+
+
+
+  /*public List<ReservationUser> getReservations() {
+    return reservations;
+  }
+  public void addActivity(ReservationUser reservationUser) {
+    this.reservations.add(reservationUser);
+  }
+
+  public void setReservations(List<ReservationUser> reservations) {
+    this.reservations = reservations;
+  }*/
+
+
 
 
   public String toJSON() {
