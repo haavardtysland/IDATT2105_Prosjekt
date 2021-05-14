@@ -48,9 +48,9 @@ public class RoomRepo extends ProjectRepo {
         try{
             log.info("Getting all the rooms");
             em.getTransaction().begin();
-            Query q = em.createNativeQuery("SELECT * FROM room", Room.class);
-            em.getTransaction().commit();
+            Query q = em.createNativeQuery("SELECT * FROM ROOM", Room.class);
             allRooms = q.getResultList();
+            em.getTransaction().commit();
         } catch(Exception e) {
 
         } finally {
@@ -83,7 +83,7 @@ public class RoomRepo extends ProjectRepo {
         Room room;
         try{
             log.info("Finding room with room_id " + room_id);
-            return em.getReference(Room.class, room_id);
+            return em.find(Room.class, room_id);
         } catch (Exception e) {
             log.error("Returning null, finding room failed due to " + e.getMessage());
             return null;

@@ -55,7 +55,9 @@ public class SectionRepo extends ProjectRepo {
         Section section = null;
 
         try {
-            return section = em.find(Section.class, section_id);
+             section = em.find(Section.class, section_id);
+             log.info("Found section " + section);
+             return section;
         } catch (Exception e) {
             log.error("finding user " + section_id + " failed due to " + e.getMessage());
             return null;
@@ -78,23 +80,19 @@ public class SectionRepo extends ProjectRepo {
 
     }
 
+
     public boolean deleteSection(int section_id) {
         EntityManager em = getEm();
         try{
-            Section section = findSection(section_id);
-            int room_id = section.getRoom().getRoom_id();
-            Room room = getRoomBySectionID(room_id);
-            room.removeSection(section);
 
-            if(section != null) {
+
                 em.getTransaction().begin();
-                if(!em.contains(section)) {
-                    section = em.merge(section);
-                }
-                em.createQuery("DELETE FROM Reservation WHERE section = ?1 ", Section.class)
-                        .setParameter(1, section)
-                        .executeUpdate(); //sletter alle instanser av section i reservajsoen
-                em.remove(section);
+                Section section = findSection(section_id);
+            if(section != null) {
+                int room_id = section.getRoom().getRoom_id();
+                Room room = getRoomBySectionID(room_id);
+                room.removeSection(section);
+                em.merge(room);
                 em.getTransaction().commit();
                 log.info("Sucessfully delete section with id " + section_id);
                 return true;

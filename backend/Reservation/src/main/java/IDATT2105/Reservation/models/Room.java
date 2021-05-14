@@ -1,21 +1,23 @@
 package IDATT2105.Reservation.models;
 
+import org.eclipse.persistence.annotations.PrivateOwned;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "room")
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "room_id")
-    private int room_id = 0;
+    private int room_id;
     @Column(name = "name")
     private String name;
     @Column(name = "capacity")
     private int capacity;
-    @OneToMany(mappedBy="room", fetch=FetchType.EAGER, cascade = {CascadeType.ALL}, orphanRemoval = true)
+    @PrivateOwned
+    @OneToMany(mappedBy="room", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Section> sections = new ArrayList<>();
 
     public int getRoom_id() {
@@ -38,13 +40,18 @@ public class Room {
         return this.sections;
     }
 
-    public void setSections(List<Section> sections) {
+    public void setSections(ArrayList<Section> sections) {
         this.sections = sections;
     }
 
     public void removeSection(Section section) {
-        section.resetRoom();
-        this.sections.remove(section);
+        for(int i = 0; i < this.sections.size(); i++) {
+            System.out.println(this.sections.get(i).getSectionId());
+            if(this.sections.get(i).getSectionId() == section.getSectionId()) {
+                this.sections.remove(i);
+            }
+        }
+        section.setRoom(null);
     }
 
     public void addSection(Section section) {

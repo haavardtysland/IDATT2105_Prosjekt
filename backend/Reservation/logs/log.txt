@@ -2060,4 +2060,727 @@ Query: DeleteObjectQuery({
 2021-05-13T15:43:58.791755 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 8
 2021-05-13T15:44:04.791033 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
 2021-05-13T15:44:04.791252 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+<<<<<<< HEAD
+2021-05-13T15:52:33.248670 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T15:52:34.406364 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T15:52:45.308715 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 10
+2021-05-13T15:52:45.309059 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 10
+2021-05-13T15:52:45.310690 class IDATT2105.Reservation.repo.SectionRepo INFO: Finding room with room_id 1
+2021-05-13T15:52:45.584384 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 10
+2021-05-13T15:54:30.157848 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 9
+2021-05-13T15:54:31.300813 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 9
+2021-05-13T15:54:31.417966 class IDATT2105.Reservation.repo.SectionRepo INFO: Finding room with room_id 1
+2021-05-13T15:54:31.682116 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 9
+2021-05-13T15:55:32.692122 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T15:55:33.786845 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T15:55:40.645867 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-13T15:55:40.646168 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-13T15:55:40.650 class IDATT2105.Reservation.service.RoomService INFO: Adding section to room {
+"room_id": "1",
+"name": "Kult rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "Hei",
+}, {
+ "section_id": 0,
+ "section_name": " hva",
+}, {
+ "section_id": 0,
+ "section_name": " skjer",
+}]"
+"}
+2021-05-13T15:55:49.432499 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T15:55:49.432742 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T15:56:01.165503 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 11
+2021-05-13T15:56:01.165890 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 11
+2021-05-13T15:56:01.167500 class IDATT2105.Reservation.repo.SectionRepo INFO: Finding room with room_id 1
+2021-05-13T15:56:01.425571 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 11
+2021-05-13T15:56:47.644886 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 12
+2021-05-13T15:56:48.790492 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 12
+2021-05-13T15:56:48.899472 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section {
+ "section_id": 12,
+ "section_name": " hva",
+}
+2021-05-13T15:56:48.900068 class IDATT2105.Reservation.repo.SectionRepo INFO: Finding room with room_id 1
+2021-05-13T15:56:49.154378 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 12
+2021-05-13T16:00:26.663687 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 13
+2021-05-13T16:00:27.785580 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 13
+2021-05-13T16:00:27.883741 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section {
+ "section_id": 13,
+ "section_name": " skjer",
+}
+2021-05-13T16:00:27.884247 class IDATT2105.Reservation.repo.SectionRepo INFO: Finding room with room_id 1
+2021-05-13T16:00:28.151680 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 13
+2021-05-13T16:00:43.404367 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T16:00:43.405337 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T16:01:39.114824 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T16:01:39.115072 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T16:01:49.730640 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T16:01:50.860433 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T16:01:58.536159 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-13T16:01:58.536493 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-13T16:01:58.541144 class IDATT2105.Reservation.service.RoomService INFO: Adding section to room {
+"room_id": "1",
+"name": "Kult rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "Hei",
+}, {
+ "section_id": 0,
+ "section_name": " hva",
+}, {
+ "section_id": 0,
+ "section_name": " skjer",
+}]"
+"}
+2021-05-13T16:02:06.007487 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T16:02:06.007714 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T16:02:16.223420 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 14
+2021-05-13T16:02:16.223735 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 14
+2021-05-13T16:02:16.224829 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section {
+ "section_id": 14,
+ "section_name": " hva",
+}
+2021-05-13T16:02:16.225139 class IDATT2105.Reservation.repo.SectionRepo INFO: Finding room with room_id 1
+2021-05-13T16:02:16.493192 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 14
+2021-05-13T16:04:54.848915 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 15
+2021-05-13T16:04:55.955908 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 15
+2021-05-13T16:04:56.064556 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section {
+ "section_id": 15,
+ "section_name": "Hei",
+}
+2021-05-13T16:04:56.065034 class IDATT2105.Reservation.repo.SectionRepo INFO: Finding room with room_id 1
+2021-05-13T16:04:56.326493 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 15
+2021-05-13T16:05:10.532544 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T16:05:10.532767 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T16:05:15.498961 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T16:05:15.499160 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T16:05:24.752665 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T16:05:24.752885 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T16:05:25.395099 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T16:05:25.395296 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T16:05:25.816356 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T16:05:25.816561 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T16:05:26.190256 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T16:05:26.190499 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T16:05:26.619121 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T16:05:26.619337 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T16:05:36.082625 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 16
+2021-05-13T16:05:36.082833 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 16
+2021-05-13T16:05:36.083552 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section {
+ "section_id": 16,
+ "section_name": " skjer",
+}
+2021-05-13T16:05:36.083712 class IDATT2105.Reservation.repo.SectionRepo INFO: Finding room with room_id 1
+2021-05-13T16:05:36.266886 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 16
+2021-05-13T16:05:42.044166 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T16:05:42.044353 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T16:05:49.408617 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 15
+2021-05-13T16:05:49.408841 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 15
+2021-05-13T16:05:49.439607 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section null
+2021-05-13T16:05:49.440319 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed deleting sectionnull
+2021-05-13T16:07:25.861329 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T16:07:26.941352 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T16:07:43.376912 class IDATT2105.Reservation.service.RoomService INFO: Finding room with room_id 1
+2021-05-13T16:07:43.377206 class IDATT2105.Reservation.repo.ProjectRepo INFO: Finding room with room_id 1
+2021-05-13T16:07:43.411369 class IDATT2105.Reservation.service.RoomService INFO: Adding section to room {
+"room_id": "1",
+"name": "Kult rom",
+"capacity":13
+"sections:":{[{
+ "section_id": 0,
+ "section_name": "Hei",
+}, {
+ "section_id": 0,
+ "section_name": " hva",
+}, {
+ "section_id": 0,
+ "section_name": " skjer",
+}]}"
+"}
+2021-05-13T16:07:50.065220 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T16:07:50.065426 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T16:10:23.189326 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T16:10:24.301992 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T16:10:34.389675 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 17
+2021-05-13T16:10:34.389999 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 17
+2021-05-13T16:10:34.392065 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section {
+ "section_id": 17,
+ "section_name": " hva",
+}
+2021-05-13T16:10:34.392337 class IDATT2105.Reservation.repo.SectionRepo INFO: Finding room with room_id 1
+2021-05-13T16:10:34.656087 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 17
+2021-05-13T16:10:41.066242 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T16:10:41.066493 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T16:12:04.746495 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T16:12:05.916820 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T16:13:07.908283 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T16:13:09.015586 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T16:13:10.799520 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T16:13:10.799755 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T16:13:31.768077 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T16:13:32.897941 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T16:13:53.637427 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T16:13:54.740855 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T16:17:45.040446 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T16:17:46.204076 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T16:18:38.840038 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T16:18:39.949460 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T16:19:13.084651 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T16:19:14.266887 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T16:20:33.640315 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-13T16:20:33.641165 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " s",
+}]
+2021-05-13T16:20:33.641500 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "Nytt rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " s",
+}]"
+"}
+2021-05-13T16:20:39.468501 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T16:20:39.468718 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T16:20:50.753880 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 20
+2021-05-13T16:20:50.754223 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 20
+2021-05-13T16:20:50.755927 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section {
+ "section_id": 20,
+ "section_name": " dette funker",
+}
+2021-05-13T16:20:50.756254 class IDATT2105.Reservation.repo.SectionRepo INFO: Finding room with room_id 2
+2021-05-13T16:20:51.015236 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 20
+2021-05-13T16:20:55.761414 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T16:20:55.761647 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T16:35:18.895897 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T16:35:20.366901 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T16:35:37.474273 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T16:35:38.561026 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T16:35:48.997172 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-13T16:35:49.001289 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " s",
+}]
+2021-05-13T16:35:49.006735 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "Nytt rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " s",
+}]"
+"}
+2021-05-13T16:36:22.941109 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-13T16:36:22.947525 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " s",
+}]
+2021-05-13T16:36:22.953155 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "Nytt rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " s",
+}]"
+"}
+2021-05-13T16:36:36.955168 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-13T16:36:36.961117 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " s",
+}]
+2021-05-13T16:36:36.967143 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "Nytt rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " s",
+}]"
+"}
+2021-05-13T16:37:27.753006 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-13T16:37:27.759011 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " s",
+}]
+2021-05-13T16:37:27.764600 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "Nytt rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " s",
+}]"
+"}
+2021-05-13T16:38:05.720566 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-13T16:38:05.720780 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " s",
+}]
+2021-05-13T16:38:05.721251 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "Nytt rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " s",
+}]"
+"}
+2021-05-13T16:39:30.201611 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-13T16:39:30.207290 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " s",
+}]
+2021-05-13T16:39:30.212553 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "Nytt rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " s",
+}]"
+"}
+2021-05-13T16:40:04.431542 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T16:40:04.431772 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T16:40:48.026491 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 1
+2021-05-13T16:40:48.027180 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 1
+2021-05-13T16:40:48.029906 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section {
+ "section_id": 1,
+ "section_name": " s",
+}
+2021-05-13T16:40:48.030234 class IDATT2105.Reservation.repo.SectionRepo INFO: Finding room with room_id 1
+2021-05-13T16:40:48.333377 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed deleting sectionException [EclipseLink-4002] (Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`olelok`.`Room_Section`, CONSTRAINT `FK_Room_Section_sections_section_id` FOREIGN KEY (`sections_section_id`) REFERENCES `Section` (`section_id`))
+Error Code: 1451
+Call: DELETE FROM Section WHERE (section_id = ?)
+	bind => [1 parameter bound]
+Query: DeleteObjectQuery({
+ "section_id": 1,
+ "section_name": " s",
+})
+2021-05-13T16:41:56.684566 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-13T16:41:56.690759 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " s",
+}]
+2021-05-13T16:41:56.696153 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "Nytt rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " s",
+}]"
+"}
+2021-05-13T16:42:27.707516 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 3
+2021-05-13T16:42:27.707839 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 3
+2021-05-13T16:42:27.714498 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section {
+ "section_id": 3,
+ "section_name": "test",
+}
+2021-05-13T16:42:27.736052 class IDATT2105.Reservation.repo.SectionRepo INFO: Finding room with room_id 1
+2021-05-13T16:42:27.986348 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 3
+2021-05-13T16:42:32.950158 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T16:42:32.950378 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T16:42:57.495275 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T16:42:58.572351 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T16:43:09.381449 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 2
+2021-05-13T16:43:09.381799 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 2
+2021-05-13T16:43:09.470202 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section {
+ "section_id": 2,
+ "section_name": " dette funker",
+}
+2021-05-13T16:43:09.470729 class IDATT2105.Reservation.repo.SectionRepo INFO: Finding room with room_id 1
+2021-05-13T16:43:09.743991 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 2
+2021-05-13T16:43:16.200756 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T16:43:16.200962 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T16:46:01.627785 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T16:46:02.741696 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T16:46:11.183761 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 1
+2021-05-13T16:46:11.184156 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 1
+2021-05-13T16:46:11.272301 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section {
+ "section_id": 1,
+ "section_name": " s",
+}
+2021-05-13T16:46:11.272751 class IDATT2105.Reservation.repo.SectionRepo INFO: Finding room with room_id 1
+2021-05-13T16:46:11.552869 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 1
+2021-05-13T16:46:15.895582 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T16:46:15.895777 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T16:49:44.562816 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T16:49:44.563147 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T16:50:39.190091 class IDATT2105.Reservation.service.SectionService INFO: Finding section with section_id 1
+2021-05-13T16:50:39.193224 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 1
+2021-05-13T16:50:40.357812 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section null
+2021-05-13T16:50:52.138499 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-13T16:50:52.141485 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " s",
+}]
+2021-05-13T16:50:52.146843 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "Nytt rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " s",
+}]"
+"}
+2021-05-13T16:50:56.583174 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T16:50:56.583401 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T16:51:00.688659 class IDATT2105.Reservation.service.SectionService INFO: Finding section with section_id 6
+2021-05-13T16:51:00.688876 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 6
+2021-05-13T16:51:00.689806 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section {
+ "section_id": 6,
+ "section_name": "test",
+}
+2021-05-13T16:51:07.253283 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 6
+2021-05-13T16:51:07.253528 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 6
+2021-05-13T16:51:07.254035 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section {
+ "section_id": 6,
+ "section_name": "test",
+}
+2021-05-13T16:51:07.254294 class IDATT2105.Reservation.repo.SectionRepo INFO: Finding room with room_id 2
+2021-05-13T16:51:07.507621 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 6
+2021-05-13T16:51:11.693521 class IDATT2105.Reservation.service.SectionService INFO: Finding section with section_id 6
+2021-05-13T16:51:11.693737 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 6
+2021-05-13T16:51:11.723863 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section null
+2021-05-13T16:51:29.371460 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T16:51:29.371667 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T17:00:02.911196 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T17:00:04.058353 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T17:00:14.426752 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-13T17:00:14.430136 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " s",
+}]
+2021-05-13T17:00:14.435714 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "Nytt rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " s",
+}]"
+"}
+2021-05-13T17:00:18.120854 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T17:00:18.121074 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T17:00:40.630608 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T17:00:41.738573 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T17:00:51.521946 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 9
+2021-05-13T17:00:51.522276 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 9
+2021-05-13T17:00:51.612156 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section {
+ "section_id": 9,
+ "section_name": " dette funker",
+}
+2021-05-13T17:00:51.612631 class IDATT2105.Reservation.repo.SectionRepo INFO: Finding room with room_id 3
+2021-05-13T17:00:51.842095 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 9
+2021-05-13T17:00:56.508465 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T17:00:56.508666 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T17:01:56.877070 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T17:01:58.022474 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T17:02:24.865436 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 5
+2021-05-13T17:02:24.865788 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 5
+2021-05-13T17:02:24.949725 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section {
+ "section_id": 5,
+ "section_name": " s",
+}
+2021-05-13T17:02:24.950252 class IDATT2105.Reservation.repo.SectionRepo INFO: Finding room with room_id 2
+2021-05-13T17:02:24.955470 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed deleting sectionCannot merge an Entity that has been removed: {
+ "section_id": 5,
+ "section_name": " s",
+}
+2021-05-13T17:03:59.340547 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 5
+2021-05-13T17:03:59.340833 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 5
+2021-05-13T17:03:59.341660 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section {
+ "section_id": 5,
+ "section_name": " s",
+}
+2021-05-13T17:03:59.341870 class IDATT2105.Reservation.repo.SectionRepo INFO: Finding room with room_id 2
+2021-05-13T17:03:59.342850 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed deleting sectionCannot merge an Entity that has been removed: {
+ "section_id": 5,
+ "section_name": " s",
+}
+2021-05-13T17:04:55.028092 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 5
+2021-05-13T17:04:56.155025 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 5
+2021-05-13T17:04:56.257430 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section {
+ "section_id": 5,
+ "section_name": " s",
+}
+2021-05-13T17:04:56.258524 class IDATT2105.Reservation.repo.SectionRepo INFO: Finding room with room_id 2
+2021-05-13T17:04:56.263902 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed deleting sectionCannot merge an Entity that has been removed: {
+ "section_id": 5,
+ "section_name": " s",
+}
+2021-05-13T17:05:12.695740 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 5
+2021-05-13T17:05:13.789922 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 5
+2021-05-13T17:05:13.900458 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section {
+ "section_id": 5,
+ "section_name": " s",
+}
+2021-05-13T17:05:13.901596 class IDATT2105.Reservation.repo.SectionRepo INFO: Finding room with room_id 2
+2021-05-13T17:05:13.906512 class IDATT2105.Reservation.repo.SectionRepo INFO: Failed deleting sectionCannot merge an Entity that has been removed: {
+ "section_id": 5,
+ "section_name": " s",
+}
+2021-05-13T17:10:33.826762 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T17:10:34.969469 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T17:10:42.032488 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 5
+2021-05-13T17:10:42.032869 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 5
+2021-05-13T17:10:42.116725 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section {
+ "section_id": 5,
+ "section_name": " s",
+}
+2021-05-13T17:10:42.117175 class IDATT2105.Reservation.repo.SectionRepo INFO: Finding room with room_id 2
+2021-05-13T17:10:42.255289 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 5
+2021-05-13T17:10:46.200337 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T17:10:46.200548 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T17:13:55.352106 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T17:13:56.517992 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T17:14:01.998909 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 4
+2021-05-13T17:14:01.999286 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 4
+2021-05-13T17:14:02.092501 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section {
+ "section_id": 4,
+ "section_name": " dette funker",
+}
+2021-05-13T17:14:02.092946 class IDATT2105.Reservation.repo.SectionRepo INFO: Finding room with room_id 2
+2021-05-13T17:14:02.094390 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 4
+2021-05-13T17:14:08.026916 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T17:14:08.027128 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T17:17:49.635374 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-13T17:17:49.642507 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " s",
+}]
+2021-05-13T17:17:49.648347 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "Nytt rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " s",
+}]"
+"}
+2021-05-13T17:17:54.467057 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T17:17:54.467309 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T17:18:11.875092 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 10
+2021-05-13T17:18:11.875912 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 10
+2021-05-13T17:18:11.877746 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section {
+ "section_id": 10,
+ "section_name": " dette funker",
+}
+2021-05-13T17:18:11.878138 class IDATT2105.Reservation.repo.SectionRepo INFO: Finding room with room_id 4
+2021-05-13T17:18:11.986192 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 10
+2021-05-13T17:18:45.433948 class IDATT2105.Reservation.service.SectionService INFO: Finding section with section_id 10
+2021-05-13T17:18:45.436966 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 10
+2021-05-13T17:18:46.615355 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section null
+2021-05-13T17:18:54.519482 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T17:18:54.519709 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T17:19:06.456493 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 12
+2021-05-13T17:19:06.456986 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 12
+2021-05-13T17:19:06.543791 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section {
+ "section_id": 12,
+ "section_name": " s",
+}
+2021-05-13T17:19:06.544387 class IDATT2105.Reservation.repo.SectionRepo INFO: Finding room with room_id 4
+2021-05-13T17:19:06.665162 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 12
+2021-05-13T17:19:18.339860 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T17:19:18.340123 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T17:20:00.975656 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 11
+2021-05-13T17:20:00.975980 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 11
+2021-05-13T17:20:00.976435 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section {
+ "section_id": 11,
+ "section_name": "test",
+}
+2021-05-13T17:20:00.976607 class IDATT2105.Reservation.repo.SectionRepo INFO: Finding room with room_id 4
+2021-05-13T17:20:01.217107 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 11
+2021-05-13T17:20:05.720616 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T17:20:05.720842 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T17:20:21.493947 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T17:20:21.494938 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T17:20:30.306709 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 4
+2021-05-13T17:20:30.306999 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 4
+2021-05-13T17:20:30.398740 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section {
+ "section_id": 4,
+ "section_name": " dette funker",
+}
+2021-05-13T17:20:30.399011 class IDATT2105.Reservation.repo.SectionRepo INFO: Finding room with room_id 2
+2021-05-13T17:20:30.508604 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 4
+2021-05-13T17:20:34.392798 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T17:20:34.393009 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T17:21:57.645550 class IDATT2105.Reservation.controller.RoomController INFO: splitting sections
+2021-05-13T17:21:57.652235 class IDATT2105.Reservation.controller.RoomController INFO: final section list: [{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " s",
+}]
+2021-05-13T17:21:57.658332 class IDATT2105.Reservation.service.RoomService INFO: Adding new room {
+"room_id": "0",
+"name": "Nytt rom",
+"capacity":13
+"sections:":[{
+ "section_id": 0,
+ "section_name": "test",
+}, {
+ "section_id": 0,
+ "section_name": " dette funker",
+}, {
+ "section_id": 0,
+ "section_name": " s",
+}]"
+"}
+2021-05-13T17:22:02.031668 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T17:22:02.032 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+2021-05-13T17:22:11.424011 class IDATT2105.Reservation.service.SectionService INFO: Deleting section with section_id 3
+2021-05-13T17:22:11.424557 class IDATT2105.Reservation.repo.SectionRepo INFO: finding section 3
+2021-05-13T17:22:11.430084 class IDATT2105.Reservation.repo.SectionRepo INFO: Found section {
+ "section_id": 3,
+ "section_name": " s",
+}
+2021-05-13T17:22:11.430399 class IDATT2105.Reservation.repo.SectionRepo INFO: Finding room with room_id 1
+2021-05-13T17:22:11.553470 class IDATT2105.Reservation.repo.SectionRepo INFO: Sucessfully delete section with id 3
+2021-05-13T17:22:16.572293 class IDATT2105.Reservation.service.RoomService INFO: Getting all rooms
+2021-05-13T17:22:16.572531 class IDATT2105.Reservation.repo.ProjectRepo INFO: Getting all the rooms
+=======
 >>>>>>> 7cf47df760c53063b6fab79a500d66b6ecc56c04
+>>>>>>> 82dc6367bf7cbcac19904ebe82a749f1b923c010
