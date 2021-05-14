@@ -11,6 +11,7 @@ import Section from '../interfaces/Section';
 import Calendar from '../components/CalendarComponents/Calendar';
 import styled from 'styled-components';
 import InfoIcon from '@material-ui/icons/Info';
+import RoomCard from '../components/RoomCard';
 
 const StyledHeader = styled.h1`
   margin-top: 6rem;
@@ -104,6 +105,7 @@ const RoomPage: React.FC<RoomPageProps> = () => {
         />
       </div>
       <Calendar date={selectedDate} />
+      <RoomCard />
     </div>
   );
 };

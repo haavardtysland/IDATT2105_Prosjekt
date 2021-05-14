@@ -6,7 +6,7 @@ import Circle from './Circle';
 const TransformDiv = styled.div`
   transition: transform 450ms;
   :hover {
-    transform: scale(1.08);
+    transform: scale(1.04);
   }
 `;
 interface TimeCardProps {
