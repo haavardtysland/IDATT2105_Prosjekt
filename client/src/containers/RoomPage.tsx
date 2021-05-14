@@ -104,6 +104,9 @@ const RoomPage: React.FC<RoomPageProps> = () => {
         />
       </div>
       <Calendar date={new Date('2021-05-12')} />
+      <button onClick={() => console.log(selectedDate)}>
+        log selected date
+      </button>
     </div>
   );
 };

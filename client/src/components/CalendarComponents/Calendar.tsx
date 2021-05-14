@@ -60,6 +60,7 @@ const Calendar: React.FC<CalendarProps> = ({ date }: CalendarProps) => {
     }
     return arr;
   });
+  const [currentDate, setCurrentDate] = useState<Date>(date);
 
   const setTimeArr = (): string[] => {
     let hour = 7;
@@ -84,7 +85,16 @@ const Calendar: React.FC<CalendarProps> = ({ date }: CalendarProps) => {
 
   const times = setTimeArr();
   const renderTimeCards = times.map((time, key: number) => {
-    return <TimeCard key={key} time={time} reset={reset} />;
+    return (
+      <TimeCard
+        key={key}
+        time={time}
+        reset={reset}
+        isMarkedArr={isMarkedArr}
+        setIsMarkedArr={setIsMarkedArr}
+        index={key}
+      />
+    );
   });
 
   return (
@@ -104,8 +114,8 @@ const Calendar: React.FC<CalendarProps> = ({ date }: CalendarProps) => {
           color="textSecondary"
           gutterBottom
         >
-          {getDayOfWeek(date.getDay())} {date.getDay()}.{date.getMonth()}.
-          {date.getFullYear()}
+          {getDayOfWeek(currentDate.getDay())} {currentDate.getDate()}.
+          {currentDate.getMonth() + 1}.{currentDate.getFullYear()}
         </Typography>
         <Divider variant="fullWidth" />
         <GridList cellHeight={60} cols={8} style={{ padding: '10px' }}>
@@ -130,6 +140,9 @@ const Calendar: React.FC<CalendarProps> = ({ date }: CalendarProps) => {
           </Popup>
         </ButtonsDiv>
         <Button onClick={() => console.log(isMarkedArr)}>Log marked arr</Button>
+        <Button onClick={() => console.log(date + '\n' + currentDate)}>
+          Log date
+        </Button>
       </CardContent>
     </Card>
   );
