@@ -1,4 +1,4 @@
 package IDATT2105.Reservation.repo;
 
-public class ReservationService {
+public class ReservationRepo {
 }
