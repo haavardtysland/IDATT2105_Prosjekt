@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import AddUserForm from '../components/AddUserForm';
+import CreateUserForm from '../components/CreateUserForm';
 import Checkbox from '@material-ui/core/Checkbox';
 import { Typography, Button } from '@material-ui/core';
 
@@ -21,16 +21,16 @@ function AddUser() {
   const [email, setEmail] = useState<string>('');
   const [date, setDate] = useState<Date>(new Date());
   const [phone, setPhone] = useState<number>(0);
-  
+
   return (
     <Container>
-      <AddUserForm
+      <CreateUserForm
         changeFirstname={(name) => setFirstname(name)}
         changeSurname={(name) => setSurname(name)}
         changeEmail={(name) => setEmail(name)}
         changeDate={(date) => setDate(date)}
         changePhone={(num) => setPhone(num)}
-      ></AddUserForm>
+      ></CreateUserForm>
       <Flex>
         <Typography
           style={{ textAlign: 'center', marginTop: '1.2rem' }}

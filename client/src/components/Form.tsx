@@ -7,7 +7,7 @@ import {
   MuiPickersUtilsProvider,
 } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
-import TimePicker from './TimePicker';
+import TimePicker from './Timepicker';
 
 const Container = styled.div`
   display: flex;
