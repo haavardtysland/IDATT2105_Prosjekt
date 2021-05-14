@@ -1,7 +1,5 @@
 package IDATT2105.Reservation.controller;
 
-
-<<<<<<< HEAD
 import static IDATT2105.Reservation.controller.ControllerUtil.formatJson;
 import static IDATT2105.Reservation.controller.ControllerUtil.getRandomID;
 import static IDATT2105.Reservation.controller.ControllerUtil.getRandomPassword;
@@ -12,10 +10,8 @@ import IDATT2105.Reservation.models.User;
 import IDATT2105.Reservation.service.ReservationService;
 import IDATT2105.Reservation.service.SectionService;
 import IDATT2105.Reservation.service.UserService;
-=======
 import IDATT2105.Reservation.service.ReservationService;
 import IDATT2105.Reservation.service.RoomService;
->>>>>>> 45ff69f6f68dc3936f300a4f0b6490c3a9c52913
 import IDATT2105.Reservation.util.Logger;
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -28,15 +24,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-<<<<<<< HEAD
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-=======
 import org.springframework.web.bind.annotation.CrossOrigin;
->>>>>>> 45ff69f6f68dc3936f300a4f0b6490c3a9c52913
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @CrossOrigin(origins = "*")
