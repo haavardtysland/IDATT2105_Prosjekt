@@ -5742,3 +5742,17 @@ Query: DeleteObjectQuery({
 2021-05-14T13:05:19.457808 class IDATT2105.Reservation.controller.RoomController INFO: Something went wrong during deletion of room with room_id 1
 2021-05-14T13:05:19.460902 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
 >>>>>>> 45ff69f6f68dc3936f300a4f0b6490c3a9c52913
+2021-05-14T15:45:04.786876300 class IDATT2105.Reservation.controller.ReservationController INFO: Received GetMapping at '/reservation/{userID}' with 1819766832
+2021-05-14T15:45:04.795872300 class IDATT2105.Reservation.service.ReservationService INFO: getting all reservations for a particular user  with: 1819766832
+2021-05-15T10:12:12.191742400 class IDATT2105.Reservation.controller.ReservationController INFO: Received GetMapping at '/reservation/{userID}' with 1819766832
+2021-05-15T10:12:12.196747400 class IDATT2105.Reservation.service.ReservationService INFO: getting all reservations for a particular user  with: 1819766832
+2021-05-15T10:41:20.400777700 class IDATT2105.Reservation.controller.ReservationController INFO: Received GetMapping at '/reservation/{sectionID}' with 1
+2021-05-15T10:41:20.406781200 class IDATT2105.Reservation.service.ReservationService INFO: getting all reservations for a particular section with: 1
+2021-05-15T10:42:42.532327800 class IDATT2105.Reservation.controller.ReservationController INFO: Received GetMapping at '/reservation/{sectionID}' with 1
+2021-05-15T10:42:42.539320800 class IDATT2105.Reservation.service.ReservationService INFO: getting all reservations for a particular room with: 1
+2021-05-15T10:44:12.359917700 class IDATT2105.Reservation.controller.ReservationController INFO: Received GetMapping at '/reservation/{sectionID}' with 1
+2021-05-15T10:44:12.401915700 class IDATT2105.Reservation.service.ReservationService INFO: getting all reservations for a particular room with: 1
+2021-05-15T10:48:54.177143100 class IDATT2105.Reservation.controller.ReservationController INFO: Received GetMapping at '/reservation/{sectionID}' with 1
+2021-05-15T10:48:54.178140900 class IDATT2105.Reservation.service.ReservationService INFO: getting all reservations for a particular room with: 1
+2021-05-15T10:55:32.095273100 class IDATT2105.Reservation.controller.ReservationController INFO: Received GetMapping at '/reservation/{sectionID}' with 1
+2021-05-15T10:55:32.102276400 class IDATT2105.Reservation.service.ReservationService INFO: getting all reservations for a particular room with: 1

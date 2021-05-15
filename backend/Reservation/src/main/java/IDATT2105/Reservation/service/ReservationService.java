@@ -50,6 +50,11 @@ public class ReservationService {
     return repo.getReservationsForSection(sectionId);
   }
 
+  public List<Reservation> getReservationsForRoom(int roomId){
+    log.info("getting all reservations for a particular room with: " + roomId);
+    return repo.getReservationsForRoom(roomId);
+  }
+
  /* public User getReservation(String email) {
     log.info("getting user by email: " + email);
     return repo.findReservationByEmail(email);

@@ -110,6 +110,27 @@ public class ReservationController {
     }
   }
 
+  @GetMapping(value = "/{roomId}/room", produces = "application/json")
+  public ResponseEntity getAllReservationsForRoom(@PathVariable Integer roomId) {
+    log.debug("Received GetMapping at '/reservation/{sectionID}' with " + roomId);
+    try {
+      List<Reservation> reservations = reservationService.getReservationsForRoom(roomId);
+      return ResponseEntity
+          .ok()
+          .body(reservations.toString());
+    } catch (Exception e) {
+      e.printStackTrace();
+      log.error("An unexpected error was caught while getting all reservations for room: " +
+          e.getCause() + " with message " + e.getMessage());
+      HashMap<String, String> body = new HashMap<>();
+      body.put("error", "something went wrong");
+
+      return ResponseEntity
+          .badRequest()
+          .body(formatJson(body));
+    }
+  }
+
   @PostMapping(value = "", consumes = "application/json", produces = "application/json")
   public ResponseEntity registerReservation(@RequestBody Map<String, Object> map) {
 

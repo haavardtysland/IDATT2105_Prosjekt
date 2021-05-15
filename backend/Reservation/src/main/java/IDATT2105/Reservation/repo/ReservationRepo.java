@@ -121,6 +121,24 @@ public class ReservationRepo extends ProjectRepo {
     return new ArrayList<>(allRes);
   }
 
+  public ArrayList<Reservation> getReservationsForRoom(int roomId){
+    EntityManager em = getEm();
+    List<Reservation> allRes = null;
+    try{
+      Query q = em.createNativeQuery("SELECT * FROM RESERVATION R join SECTION S on(S.section_id = R.section_id) join ROOM Ro on(Ro.room_id = S.Room_room_id) where room_id = ?1", Reservation.class);
+      q.setParameter(1, roomId);
+      allRes = q.getResultList();
+    } catch(Exception e) {
+
+    } finally {
+      em.close();
+    }
+    if(allRes == null) {
+      return new ArrayList<>();
+    }
+    return new ArrayList<>(allRes);
+  }
+
   public ArrayList<Reservation> getReservations(){
     EntityManager em = getEm();
     List<Reservation> allRes = null;
