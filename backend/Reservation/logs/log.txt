@@ -5403,3 +5403,7 @@ Query: DeleteObjectQuery({
 2021-05-14T13:05:19.460902 class IDATT2105.Reservation.controller.ControllerUtil INFO: formatting json
 2021-05-14T16:03:15.849101 class IDATT2105.Reservation.controller.UserController INFO: Received GetMapping at '/user'
 2021-05-14T16:03:15.852621 class IDATT2105.Reservation.service.UserService INFO: getting all users
+2021-05-14T23:23:14.364306 class IDATT2105.Reservation.controller.UserController INFO: Received GetMapping at '/user'
+2021-05-14T23:23:14.366780 class IDATT2105.Reservation.service.UserService INFO: getting all users
+2021-05-14T23:23:45.039086 class IDATT2105.Reservation.controller.UserController INFO: Received GetMapping at '/user'
+2021-05-14T23:23:45.040208 class IDATT2105.Reservation.service.UserService INFO: getting all users
