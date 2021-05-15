@@ -43,7 +43,7 @@ function MainPage() {
 
   const getAllRooms = () => {
     axios.get('/room').then((response) => {
-      console.log(JSON.parse(response.data));
+      console.log(response.data);
       setRooms(response.data);
     });
   };
