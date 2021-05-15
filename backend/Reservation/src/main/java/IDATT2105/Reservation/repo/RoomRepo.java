@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,6 +64,38 @@ public class RoomRepo extends ProjectRepo {
             return new ArrayList<>();
         }
         return new ArrayList<>(allRooms);
+    }
+
+    public ArrayList<Room> getAvailableRooms(Timestamp start, Timestamp end, int capacity){
+        EntityManager em = getEm();
+        List<Integer> section_ids;
+        List<Room> availableRooms = new ArrayList<>();
+        try{
+            log.info("Getting all the available rooms between " + start + " and " + end + " from the db");
+            em.getTransaction().begin();
+            Query q = em.createNativeQuery("SELECT section_id FROM ROOM r JOIN SECTION s ON r.room_id = s.ROOM_room_id AND s.section_id IN (SELECT r.section_id FROM RESERVATION r JOIN SECTION s ON (s.section_id = r.section_id AND s.capacity >= ?1 ) WHERE r.from_date >= ?2 AND to_date <= ?3);");
+            q.setParameter(1, capacity);
+            q.setParameter(2, start);
+            q.setParameter(3, end);
+            section_ids = q.getResultList();
+            ArrayList<Room> allRooms = getRooms();
+            for(int i = 0; i < allRooms.size(); i++){
+                Room currentRoom = allRooms.get(i);
+                System.out.println("Rom: " + allRooms.get(i).getRoom_id());
+                for(int j = 0; j < currentRoom.getSections().size(); j++){
+                    Section section = currentRoom.getSections().get(j);
+                    System.out.println("alle: " + section.getSectionId());
+                    if(!section_ids.contains(section.getSectionId()) && !availableRooms.contains(currentRoom)){
+                       availableRooms.add(currentRoom);
+                    }
+                }
+            }
+            System.out.println(section_ids.toString());
+            em.getTransaction().commit();
+        } catch(Exception e) {
+            log.info("Getting all the available rooms between " + start + " and " + end + " from the db failed due to " + e);
+        }
+        return new ArrayList<>(availableRooms);
     }
 
     public boolean addSection(Room room) {

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import static IDATT2105.Reservation.controller.ControllerUtil.formatJson;
 
 
+import java.sql.Timestamp;
 import java.util.*;
 
 @CrossOrigin(origins = "*")
@@ -135,6 +136,30 @@ public class RoomController {
         header.add("STATUS", "400 BAD REQUEST");
         return ResponseEntity.ok().headers(header).body(formatJson(body));
     }
+
+
+   @GetMapping(value = "/available/{from_date}/{to_date}/{capacity}")
+    public ResponseEntity getAvailableRooms(@PathVariable String from_date, @PathVariable String to_date, @PathVariable String capacity){
+        List<Room> rooms;
+        HttpHeaders header = new HttpHeaders();
+        long start = Long.parseLong(from_date);
+        long end = Long.parseLong(to_date);
+        int room_capacity = Integer.parseInt(capacity);
+        Timestamp start_time = new Timestamp(start);
+        Timestamp end_time = new Timestamp(end);
+        long now = new Date().getTime();
+        try{
+            rooms = roomService.getAvailableRooms(start_time, end_time, room_capacity);
+            header.add("STATUS", "200 OK ");
+            return ResponseEntity.ok().headers(header).body("{\"rooms\": \n" + rooms.toString() + "\n}");
+        } catch(Exception e){
+            log.info("Could not get available rooms due to " + e.getMessage());
+            HashMap<String, String> body = new HashMap<>();
+            header.add("STATUS", "400 BAD REQUEST");
+            return ResponseEntity.badRequest().headers(header).body(formatJson(body));
+        }
+    }
+
 
     /**
      * Getting all the rooms in the database
