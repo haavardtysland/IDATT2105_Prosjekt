@@ -5756,3 +5756,5 @@ Query: DeleteObjectQuery({
 2021-05-15T10:48:54.178140900 class IDATT2105.Reservation.service.ReservationService INFO: getting all reservations for a particular room with: 1
 2021-05-15T10:55:32.095273100 class IDATT2105.Reservation.controller.ReservationController INFO: Received GetMapping at '/reservation/{sectionID}' with 1
 2021-05-15T10:55:32.102276400 class IDATT2105.Reservation.service.ReservationService INFO: getting all reservations for a particular room with: 1
+2021-05-15T11:34:23.036037900 class IDATT2105.Reservation.controller.ReservationController INFO: Received GetMapping at '/reservation'
+2021-05-15T11:34:23.048038 class IDATT2105.Reservation.service.ReservationService INFO: getting all reservations
