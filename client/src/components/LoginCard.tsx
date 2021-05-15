@@ -16,7 +16,6 @@ const LoginCardContainer = styled.div`
 
 interface Props {
   onLogin: () => void;
-  onNewUser: () => void; 
   onChangeUsername: (e: ChangeEvent<HTMLInputElement>) => void;
   onChangePassword: (e: ChangeEvent<HTMLInputElement>) => void;
   onKeyDown: (e: any) => void;
@@ -24,7 +23,6 @@ interface Props {
 
 const LoginCard = ({
   onLogin,
-  onNewUser,
   onChangeUsername,
   onChangePassword,
   onKeyDown,
@@ -35,7 +33,7 @@ const LoginCard = ({
       <form>
         <TextField
           style={{ width: '100%', marginBottom: 24 }}
-          label="Username"
+          label="Email"
           onChange={onChangeUsername}
           variant="outlined"
           onKeyDown={onKeyDown}
@@ -50,20 +48,12 @@ const LoginCard = ({
         />
       </form>
       <Button
-        style={{ width: '100%', height:'50px' }}
+        style={{ width: '100%', height: '50px' }}
         variant="contained"
         color="secondary"
         onClick={onLogin}
       >
         LOG IN
-      </Button>
-      <Button
-        style={{ width: '100%', marginTop:'15px', height:'50px'}}
-        variant="contained"
-        color="secondary"
-        onClick={onNewUser}
-      >
-        CREATE NEW USER
       </Button>
     </LoginCardContainer>
   );

@@ -10,6 +10,8 @@ const Container = styled.div`
   padding-bottom: 3rem;
   width: 60%;
   margin-top: 2rem;
+  width: 100%;
+  height: 100%;
 `;
 
 interface Props {
