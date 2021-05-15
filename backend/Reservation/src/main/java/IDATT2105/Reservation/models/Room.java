@@ -85,7 +85,7 @@ public class Room {
                 "\n\"room_id\": "  + room_id  +
                 ",\n\"name\": " + "\"" + name + "\"" +
                 ",\n\"capacity\":" + capacity +
-                ",\n\"sections:\":" + sections  +
+                ",\n\"sections:\":" + sections.toString()  +
                 "\n}";
     }
 }

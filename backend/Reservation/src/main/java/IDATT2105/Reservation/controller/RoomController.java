@@ -148,7 +148,7 @@ public class RoomController {
         try {
             rooms = roomService.getRooms();
             header.add("Status", "200 OK");
-            return ResponseEntity.ok().headers(header).body("\"rooms\": \n" + rooms.toString() + "\n");
+            return ResponseEntity.ok().headers(header).body("{\"rooms\": \n" + rooms.toString() + "\n}");
         } catch (Exception e) {
             e.printStackTrace();
             log.error("An unexpected error was caught while getting all the rooms " + e.getCause() + " with message " + e.getMessage());
