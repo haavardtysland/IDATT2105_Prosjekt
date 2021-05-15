@@ -31,7 +31,14 @@ const timeFilter = (
   });
 };
 
+const capFilter = (reservations: Reservation[], capFilter: number[]) => {
+  return reservations.filter(
+    (r: Reservation) => r.capacity >= capFilter[0] && r.capacity <= capFilter[1]
+  );
+};
+
 export const FilterFunctions = {
   descFilter,
   timeFilter,
+  capFilter,
 };

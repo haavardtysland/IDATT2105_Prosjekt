@@ -52,6 +52,7 @@ const ReservationPage: React.FC = () => {
   const [descFilter, setDescFilter] = useState<string>('');
   const [timeFilterFrom, setTimeFilterFrom] = useState<string>('');
   const [timeFilterTo, setTimeFilterTo] = useState<string>('');
+  const [capFilter, setCapFilter] = React.useState<number[]>([20, 37]);
 
   /*
   const getAllReservations = async () => {
@@ -83,9 +84,10 @@ const ReservationPage: React.FC = () => {
         timeFilterFrom,
         timeFilterTo
       );
+      filteredReservations = FilterFunctions.capFilter(reservations, capFilter);
       setCurrentReservations(filteredReservations);
     }
-  }, [descFilter, timeFilterFrom, timeFilterTo]);
+  }, [descFilter, timeFilterFrom, timeFilterTo, capFilter]);
 
   const renderReservations = currentReservations.map(
     (reservation, key: number) => {
@@ -116,6 +118,8 @@ const ReservationPage: React.FC = () => {
               setTimeFilterFrom={setTimeFilterFrom}
               timeFilterTo={timeFilterTo}
               setTimeFilterTo={setTimeFilterTo}
+              capFilter={capFilter}
+              setCapFilter={setCapFilter}
             />
           </div>
           <Divider variant="fullWidth" />

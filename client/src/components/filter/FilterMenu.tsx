@@ -3,6 +3,7 @@ import { FilterFunctions } from './FilterFunctions';
 import { Button, FormLabel, TextField, Typography } from '@material-ui/core';
 import DescFilter from './DescFilter';
 import TimeFilter from './TimeFilter';
+import CapacityFilter from './CapacityFilter';
 
 interface FilterMenuProps {
   descFilter: string;
@@ -11,6 +12,8 @@ interface FilterMenuProps {
   setTimeFilterFrom: React.Dispatch<React.SetStateAction<string>>;
   timeFilterTo: string;
   setTimeFilterTo: React.Dispatch<React.SetStateAction<string>>;
+  capFilter: number[];
+  setCapFilter: React.Dispatch<React.SetStateAction<number[]>>;
 }
 
 const FilterMenu: React.FC<FilterMenuProps> = ({
@@ -20,11 +23,14 @@ const FilterMenu: React.FC<FilterMenuProps> = ({
   setTimeFilterFrom,
   timeFilterTo,
   setTimeFilterTo,
+  capFilter,
+  setCapFilter,
 }: FilterMenuProps) => {
   const handleReset = () => {
     setDescFilter('');
     setTimeFilterFrom('');
     setTimeFilterTo('');
+    setCapFilter([5, 100]);
   };
   return (
     <div>
@@ -38,6 +44,7 @@ const FilterMenu: React.FC<FilterMenuProps> = ({
         timeFilterTo={timeFilterTo}
         setTimeFilterTo={setTimeFilterTo}
       />
+      <CapacityFilter capFilter={capFilter} setCapFilter={setCapFilter} />
       <Button onClick={handleReset} variant="outlined">
         Reset
       </Button>
