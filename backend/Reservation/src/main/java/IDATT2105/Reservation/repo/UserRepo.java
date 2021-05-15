@@ -71,6 +71,7 @@ public class UserRepo extends ProjectRepo {
     return new ArrayList<>(allUsers);
   }
 
+
   public boolean addUser(User user){
     log.info("adding a user" + user.getUserId() + " | " + user.getSurname() + ' ' + user.toString());
     EntityManager em = getEm();
