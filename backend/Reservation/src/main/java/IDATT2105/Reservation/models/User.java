@@ -179,8 +179,6 @@ public class User {
   }*/
 
 
-
-
   public String toJSON() {
     return "\n  {" +
         "\n     \"userId\":" + userId + "," +

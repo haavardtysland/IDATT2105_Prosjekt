@@ -79,4 +79,13 @@ public class Section {
             "\n}";
   }
 
+  public String toJSON() {
+    return
+        "{" +
+            "\n \"section_id\": " + section_id + "," +
+            "\n \"section_name\": \"" + section_name + "\"," +
+            "\n\"capacity\":" + capacity +
+            "\n}";
+  }
+
 }
