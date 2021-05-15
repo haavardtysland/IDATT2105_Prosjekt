@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import CreateUserForm from '../components/CreateUserForm';
+import CreateUserForm from '../../components/CreateUserForm';
 import Checkbox from '@material-ui/core/Checkbox';
 import { Typography, Button } from '@material-ui/core';
-import axios from '../axios';
+import axios from '../../axios';
 
 const Container = styled.div`
   padding-top: 7%;
