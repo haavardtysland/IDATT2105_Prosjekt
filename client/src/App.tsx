@@ -1,12 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import React, { createContext, useMemo, useState } from 'react';
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  from,
-  HttpLink,
-} from '@apollo/client';
+
 
 import { BrowserRouter } from 'react-router-dom';
 import Routes from './Routes';
