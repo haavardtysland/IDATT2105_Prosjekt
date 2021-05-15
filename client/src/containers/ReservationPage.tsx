@@ -28,6 +28,7 @@ enum SortOptions {
   DateEarlyLate = 4,
 }
 
+//TODO: filter multiple things at the same time
 const ReservationPage: React.FC = () => {
   const { user } = useContext(UserContext);
   const [sortOption, setSortOption] = React.useState<number>(0);
