@@ -1,8 +1,8 @@
 import { Button } from '@material-ui/core';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import CreateRoomForm from '../components/CreateRoomForm';
-import axios from '../axios';
+import CreateRoomForm from '../../components/CreateRoomForm';
+import axios from '../../axios';
 
 const Container = styled.div`
   padding-top: 7%;

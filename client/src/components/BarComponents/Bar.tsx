@@ -38,7 +38,9 @@ function Bar() {
           <Button onClick={() => history.push('/mineBestillinger')}>
             <Typography variant="h6">Se bestillinger</Typography>
           </Button>
-          <SettingsIcon></SettingsIcon>
+          <Button onClick={() => history.push('/administrate')}>
+            <Typography variant="h6">Administrer</Typography>
+          </Button>
           <DropDownList />
         </Toolbar>
       </AppBar>
