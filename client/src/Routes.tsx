@@ -7,7 +7,6 @@ import Login from './containers/Login';
 import MainPage from './containers/MainPage';
 import RoomPage from './containers/RoomPage';
 import ReservationPage from './containers/ReservationPage';
-import AdministrateRoutes from './containers/AdminContainers/AdministrateRoutes';
 import RoomAdministration from './containers/AdminContainers/RoomAdministration';
 import UserAdministration from './containers/AdminContainers/UserAdministration';
 import ReservationAdministration from './containers/AdminContainers/ReservationAdministration';
@@ -17,15 +16,13 @@ export default (
     <Route exact path="/" component={Login} />
     <div>
       <Bar></Bar>
-      <Route exact path="/administrate" component={AdministrateRoutes}>
-        <Route exact path="/administrate/room" component={RoomAdministration} />
-        <Route exact path="/administrate/user" component={UserAdministration} />
-        <Route
-          exact
-          path="/administarte/reservation"
-          component={ReservationAdministration}
-        />
-      </Route>
+      <Route exact path="/administrate/room" component={RoomAdministration} />
+      <Route exact path="/administrate/user" component={UserAdministration} />
+      <Route
+        exact
+        path="/administarte/reservation"
+        component={ReservationAdministration}
+      />
       <Route exact path="/mainPage" component={MainPage} />
       <Route exact path="/RoomPage" component={RoomPage} />
       <Route exact path="/addUser" component={CreateUser} />

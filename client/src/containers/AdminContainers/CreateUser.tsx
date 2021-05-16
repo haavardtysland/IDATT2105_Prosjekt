@@ -33,14 +33,22 @@ function AddUser() {
       isAdmin != undefined &&
       phone != undefined
     ) {
-      axios.post('/user', {
-        firstName: firstname,
-        surName: surname,
-        email: email,
-        isAdmin: isAdmin,
-        validDate: date.toISOString().slice(0, 10),
-        phoneNumber: phone,
-      });
+      axios
+        .post('/user', {
+          firstName: firstname,
+          surName: surname,
+          email: email,
+          isAdmin: isAdmin,
+          validDate: date.toISOString().slice(0, 10),
+          phoneNumber: phone,
+        })
+        .then((response) => {
+          if (response.data.error) {
+            alert(response.data.error);
+          } else {
+            alert('Du opprettet brukeren');
+          }
+        });
     } else {
       alert('Fyll inn alle felt');
       console.log(firstname);

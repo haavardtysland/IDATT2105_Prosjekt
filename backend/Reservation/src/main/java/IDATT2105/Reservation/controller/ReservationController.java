@@ -13,6 +13,7 @@ import IDATT2105.Reservation.service.UserService;
 import IDATT2105.Reservation.service.ReservationService;
 import IDATT2105.Reservation.service.RoomService;
 import IDATT2105.Reservation.util.Logger;
+import IDATT2105.Reservation.util.ReservationTokenRequired;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -117,7 +118,7 @@ public class ReservationController {
       List<Reservation> reservations = reservationService.getReservationsForRoom(roomId);
       return ResponseEntity
           .ok()
-          .body(reservations.toString());
+          .body("{\"reservations\": \n" + reservations.toString() + "\n}");
     } catch (Exception e) {
       e.printStackTrace();
       log.error("An unexpected error was caught while getting all reservations for room: " +
@@ -131,6 +132,17 @@ public class ReservationController {
     }
   }
 
+  /**
+   * postmapping example
+  {
+    "user_id":1819766832,
+    "section_id": 1,
+    "from_date":"2012-11-12 00:00:00.0",
+    "to_date": "2018-11-12 12:30:11.0",
+    "capacity": 3,
+    "description": "Test description"
+}
+   */
   @PostMapping(value = "", consumes = "application/json", produces = "application/json")
   public ResponseEntity registerReservation(@RequestBody Map<String, Object> map) {
 
@@ -235,6 +247,7 @@ public class ReservationController {
         .body(formatJson(body));
   }
 
+  @ReservationTokenRequired
   @DeleteMapping("/{reservationId}")
   public ResponseEntity deleteReservation(@PathVariable Integer reservationId) {
     log.info("recieved deletemapping to reservation with id " + reservationId);

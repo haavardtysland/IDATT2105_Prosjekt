@@ -10,7 +10,7 @@
 }
 */
 export default interface User {
-  userId: string;
+  userId: number;
   firstName: string;
   surname: string;
   email: string;

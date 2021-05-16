@@ -110,13 +110,13 @@ public class Reservation {
   public String toString() {
     return
         "{" +
-            "\n\"reservationId\": " + reservation_id +
+            "\n\"reservationId\": " + reservation_id + "," +
             "\n \"section\": " + section.toJSON() + "," +
             "\n \"from_date\":" + from_date + "," +
             "\n \"to_date\": " + to_date + "," +
             "\n \"user\": " + user.toJSON() + "," +
             "\n \"capacity\": " + capacity + ","+
-            "\n \"description\": " + description + "," +
+            "\n \"description\": " + description +
             "\n}";
   }
 }

@@ -45,7 +45,7 @@ public class UserController {
       List<User> users = userService.getUsers();
       return ResponseEntity
           .ok()
-          .body(users.toString());
+          .body("{\"users\": \n" + users.toString() + "\n}");
     } catch (Exception e) {
       e.printStackTrace();
       log.error("An unexpected error was caught while getting all users: " +
