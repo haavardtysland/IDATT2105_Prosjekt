@@ -12,14 +12,14 @@ public class Reservation {
   @Column(name = "reservation_id")
   @GeneratedValue(strategy = GenerationType.AUTO)
   private int reservation_id;
-  @OneToOne
+  @ManyToOne
   @JoinColumn(name = "section_id")
   private Section section;
   @Column(name = "from_date")
   private Timestamp from_date;
   @Column(name = "to_date")
   private Timestamp to_date;
-  @OneToOne
+  @ManyToOne
   @JoinColumn(name = "user_id")
   private User user;
   @Column(name = "capacity")
@@ -62,7 +62,7 @@ public class Reservation {
     return section;
   }
 
-  public void setSectionId(int sectionId) {
+  public void setSection(Section section) {
     this.section = section;
   }
 
@@ -86,7 +86,7 @@ public class Reservation {
     return user;
   }
 
-  public void setUser(int userId) {
+  public void setUser(User user) {
     this.user = user;
   }
 

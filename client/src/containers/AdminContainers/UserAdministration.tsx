@@ -4,6 +4,8 @@ import AdministrateButtons from '../../components/AdministrateButtons';
 import axios from '../../axios';
 import User from '../../interfaces/User';
 import UserGrid from '../../components/user_components/UserGrid';
+import ChangeRoom from '../../components/ChangeRoom';
+import Room from '../../interfaces/Room';
 const Container = styled.div`
   padding-top: 8%;
   padding-right: 3%;
@@ -11,6 +13,7 @@ const Container = styled.div`
 `;
 function UserAdministration() {
   const [users, setUsers] = useState<User[]>([]);
+  
 
   const loadUsers = () => {
     axios.get('/user').then((response) => {
@@ -37,6 +40,7 @@ function UserAdministration() {
         resendPassword={resendPassword}
         users={users}
       ></UserGrid>
+      
     </Container>
   );
 }
