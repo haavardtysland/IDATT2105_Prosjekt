@@ -2,7 +2,7 @@ import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import LoginCard from '../components/LoginCard';
 import { useHistory } from 'react-router-dom';
-import { UserContext } from '../App';
+import { Context } from '../Context';
 import axios from '../axios';
 
 const LoginContainer = styled.div`
@@ -28,7 +28,7 @@ const Login = () => {
   const history = useHistory();
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const { setUser } = useContext(UserContext);
+  const { setUser } = useContext(Context.UserContext);
 
   const onLogin = () => {
     axios
@@ -39,6 +39,7 @@ const Login = () => {
       .then((response) => {
         if (response.data && !response.data.error) {
           console.log(response.data);
+          setUser(response.data);
           history.push('/mainPage');
         }
         if (response.data.error) {
