@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import static IDATT2105.Reservation.controller.ControllerUtil.formatJson;
+import static IDATT2105.Reservation.controller.ControllerUtil.getRandomID;
 
 
 import java.util.ArrayList;
@@ -34,13 +35,15 @@ public class SectionController {
     /**
      *
      * @param map which is sent by the client on the format:
+     *            "sections": [
      *            {
-     *            "section_name": ""
-     *            }
+     *            "section_name": STRING,
+     *            "capacity": INT
+     *            }]
      * @param room_id the room that the admin wants to add sections to
      * @return true if the sections can be added, false if not
      */
-    @PostMapping(value="{room_id}/add", produces="application/json")
+    @PostMapping(value="{room_id}", produces="application/json")
     public @ResponseBody
     ResponseEntity addSections(@RequestBody HashMap<String, Object> map, @PathVariable String room_id) {
         Map<String, String> body = new HashMap<>();
@@ -56,6 +59,7 @@ public class SectionController {
          ArrayList<Section> sections = new ArrayList<>();
          for(LinkedHashMap section : sectionList) {
              Section newSection = new Section();
+             newSection.setSectionId(getRandomID());
              newSection.setRoom(room);
              newSection.setSectionName(section.get("section_name").toString());
              newSection.setCapacity(Integer.parseInt(section.get("capacity").toString()));
@@ -70,7 +74,7 @@ public class SectionController {
          }
         boolean result =  roomService.addSection(room);
         if(result){
-            log.info("Sucesfully added section to room " + id);
+            log.info("Sucesfully added sections to room " + id);
             header.add("Status", "200 OK");
             return ResponseEntity.ok().headers(header).body(formatJson(body));
         } else {
