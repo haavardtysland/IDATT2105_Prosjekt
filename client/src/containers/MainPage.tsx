@@ -1,5 +1,5 @@
 import { Button, TextField, Typography } from '@material-ui/core';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Calendar } from '@material-ui/pickers';
 import Form from '../components/Form';
@@ -7,6 +7,7 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import axios from '../axios';
 import Room from '../interfaces/Room';
 import RoomGrid from '../components/RoomGrid';
+import { Context } from '../Context';
 
 const Container = styled.div`
   padding-top: 8%;
