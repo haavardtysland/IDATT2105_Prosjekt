@@ -134,7 +134,6 @@ public class ReservationControllerTest {
 		System.out.println("Test 4");
 		String room_id = mockMvc.perform(MockMvcRequestBuilders.delete("/room/" + room1.getRoom_id()).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
 
-		System.out.println(room_id);
 		assert(room_id.equals("{}"));
 	}
 }

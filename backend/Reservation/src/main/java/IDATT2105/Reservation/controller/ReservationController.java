@@ -312,7 +312,7 @@ public class ReservationController {
     reservation.setDescription(map.get("description").toString());
     reservation.setFromDate(Timestamp.valueOf(map.get("from_date").toString()));
     reservation.setFromDate(Timestamp.valueOf(map.get("to_date").toString()));
-    reservation.setSectionId(Integer.parseInt(map.get("section_id").toString()));
+    //reservation.setSectionId(Integer.parseInt(map.get("section_id").toString()));
 
 
     log.info("new reservation: " + reservation.getReservation_id());
