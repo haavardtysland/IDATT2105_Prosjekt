@@ -56,7 +56,8 @@ public class RoomRepo extends ProjectRepo {
             allRooms = q.getResultList();
             em.getTransaction().commit();
         } catch(Exception e) {
-
+            log.info("Getting all rooms failed due to " + e);
+            em.getTransaction().rollback();
         } finally {
             em.close();
         }
@@ -154,9 +155,6 @@ public class RoomRepo extends ProjectRepo {
             for(int i = 0; i < room.getSections().size(); i++){
                 Section section = room.getSections().get(i);
                 room.removeSection(section);
-                em.createQuery("DELETE FROM Reservation r WHERE r.section = ?1 ", Reservation.class)
-                        .setParameter(1, section)
-                        .executeUpdate(); //sletter alle instanser av section i reservasjoner
             }
             Room tempRoom = em.merge(room);
             em.remove(tempRoom);

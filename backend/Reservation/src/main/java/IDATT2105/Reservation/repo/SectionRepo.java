@@ -105,6 +105,27 @@ public class SectionRepo extends ProjectRepo {
         }
     }
 
+    public ArrayList<Section> getSections(){
+        EntityManager em = getEm();
+        List<Section> allSections = null;
+        try{
+            log.info("Getting all the rooms");
+            em.getTransaction().begin();
+            Query q = em.createNativeQuery("SELECT * FROM SECTION", Section.class);
+            allSections = q.getResultList();
+            em.getTransaction().commit();
+        } catch(Exception e) {
+            log.info("Getting all sections failed due to " + e);
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+        if(allSections == null) {
+            return new ArrayList<>();
+        }
+        return new ArrayList<>(allSections);
+    }
+
 
     public boolean deleteSection(int section_id) {
         EntityManager em = getEm();

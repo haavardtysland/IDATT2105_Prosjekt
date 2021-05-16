@@ -59,6 +59,7 @@ public class UserController {
     }
   }
 
+
   @DeleteMapping("/{id}")
   public ResponseEntity deleteUser(@PathVariable Integer id) {
     //todo return activity-objects and user id's affected by this user being deleted

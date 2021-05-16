@@ -47,19 +47,13 @@ const ReservationPage: React.FC = () => {
       toDate: '05-21-2021 15:00:00',
     },
   ]);
+  //const [reservations, setReservations] = useState<Reservation[]>([]);
   const [currentReservations, setCurrentReservations] =
     useState<Reservation[]>(reservations);
   const [descFilter, setDescFilter] = useState<string>('');
   const [timeFilterFrom, setTimeFilterFrom] = useState<string>('');
   const [timeFilterTo, setTimeFilterTo] = useState<string>('');
   const [capFilter, setCapFilter] = React.useState<number[]>([20, 37]);
-
-  /*
-  const getAllReservations = async () => {
-    ///user/${userid}/reservation
-    const request = await axios.get(`/user/${userId}`);
-  };
-  */
 
   useEffect(() => {
     if (sortOption === SortOptions.CapacityHighLow) {
@@ -101,6 +95,21 @@ const ReservationPage: React.FC = () => {
       return <ReservationCard key={key} reservation={reservation} />;
     }
   );
+
+  const getReservationsUser = async () => {
+    try {
+      const request = await axios.get(`/reservation/${user.user.id}/user`);
+      console.log(request);
+      setReservations(request.data);
+      return request;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getReservationsUser();
+  }, []);
 
   return (
     <div>
