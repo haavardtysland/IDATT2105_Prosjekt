@@ -4,6 +4,7 @@ import AdministrateButtons from '../../components/AdministrateButtons';
 import Room from '../../interfaces/Room';
 import axios from '../../axios';
 import RoomGrid from '../../components/RoomGrid';
+import ChangeRoom from '../../components/ChangeRoom';
 const Container = styled.div`
   padding-top: 8%;
   padding-right: 3%;
@@ -11,6 +12,8 @@ const Container = styled.div`
 `;
 function RoomAdministration() {
   const [rooms, setRooms] = useState<Room[]>();
+  const [openPopup, setOpenPopup] = useState<boolean>(false);
+  const [currentRoom, setCurrentRoom] = useState<Room>();
 
   const getAllRooms = () => {
     axios.get('/room').then((response) => {
@@ -19,12 +22,26 @@ function RoomAdministration() {
     });
   };
 
+  const changeRoom = (shesh: string) => {
+    console.log('endrer rommet ' + shesh);
+  };
+
+  const onRoomClick = (room: Room) => {
+    setCurrentRoom(room);
+    setOpenPopup(!openPopup);
+  };
+
   useEffect(getAllRooms, []);
 
   return (
     <Container>
       <AdministrateButtons />
-      {rooms && <RoomGrid rooms={rooms}></RoomGrid>}
+      {rooms && <RoomGrid onRoomClick={onRoomClick} rooms={rooms}></RoomGrid>}
+      <ChangeRoom 
+        room={currentRoom}
+        openPopup={openPopup}
+        setOpenPopup={setOpenPopup}
+      ></ChangeRoom>
     </Container>
   );
 }

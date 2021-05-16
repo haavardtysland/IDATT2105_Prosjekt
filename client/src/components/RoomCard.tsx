@@ -63,11 +63,6 @@ const RoomCard: React.FC<RoomCardProps> = ({
             Kapasitet: {room.capacity}
           </Typography>
         </CardContent>
-        <CardActions>
-          <Button size="small" color="primary">
-            <DeleteOutlineIcon />
-          </Button>
-        </CardActions>
       </Card>
     </TransformDiv>
   );

@@ -8,6 +8,7 @@ import {
 } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import SectionAdder from './SectionAdder';
+import Room from '../interfaces/Room';
 
 const Container = styled.div`
   display: flex;
@@ -25,12 +26,18 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface Props {
+  room?: Room;
   nameChange: (name: string) => void;
   capacityChange: (cap: number) => void;
   sectionsChange: (sections: any[]) => void;
 }
 
-function CreateRoomForm({ nameChange, capacityChange, sectionsChange }: Props) {
+function CreateRoomForm({
+  nameChange,
+  capacityChange,
+  sectionsChange,
+  room,
+}: Props) {
   const classes = useStyles();
 
   const [roomname, setRoomname] = useState<string>('');
@@ -45,6 +52,13 @@ function CreateRoomForm({ nameChange, capacityChange, sectionsChange }: Props) {
   };
 
   useEffect(() => {
+    if (room) {
+      setRoomname(room?.name);
+      setCapacity(room?.capacity);
+    }
+  }, [room]);
+
+  useEffect(() => {
     nameChange(roomname);
     capacityChange(capacity);
   }, [roomname, capacity]);
@@ -55,6 +69,7 @@ function CreateRoomForm({ nameChange, capacityChange, sectionsChange }: Props) {
         Skriv inn romnavn
       </Typography>
       <TextField
+        value={roomname}
         variant="outlined"
         className={classes.textField}
         id="standard-number"
@@ -71,6 +86,7 @@ function CreateRoomForm({ nameChange, capacityChange, sectionsChange }: Props) {
         Skriv max kapasitet
       </Typography>
       <TextField
+        value={capacity}
         variant="outlined"
         type="number"
         className={classes.textField}

@@ -18,12 +18,13 @@ const Container = styled.div`
 
 interface Props {
   rooms: Room[];
+  onRoomClick: (room: Room) => void;
+  changeRoom?: (room: Room) => void;
 }
 
-const RoomGrid = ({ rooms }: Props) => {
+const RoomGrid = ({ rooms, onRoomClick, changeRoom }: Props) => {
   const [page, setPage] = useState<number>(1);
   const [currentRooms, setCurrentRooms] = useState<Room[]>(rooms);
-  const history = useHistory();
 
   useEffect(() => {
     const startIndex = (page - 1) * 12;
@@ -33,11 +34,6 @@ const RoomGrid = ({ rooms }: Props) => {
 
   const onPageChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
-  };
-
-  const onRoomClick = (room: Room) => {
-    console.log(room);
-    history.push('/RoomPage');
   };
 
   return (

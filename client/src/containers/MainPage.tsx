@@ -8,6 +8,7 @@ import axios from '../axios';
 import Room from '../interfaces/Room';
 import RoomGrid from '../components/RoomGrid';
 import { Context } from '../Context';
+import { useHistory } from 'react-router';
 
 const Container = styled.div`
   padding-top: 8%;
@@ -37,6 +38,7 @@ function MainPage() {
   const [toTime, setToTime] = useState<number>();
   const [minCapacity, setMinCapacity] = useState<number>();
   const [rooms, setRooms] = useState<Room[]>();
+  const history = useHistory();
 
   const getAllRooms = () => {
     axios.get('/room').then((response) => {
@@ -59,6 +61,11 @@ function MainPage() {
     }
   };
 
+  const onRoomClick = (room: Room) => {
+    console.log(room);
+    history.push('/RoomPage');
+  };
+
   return (
     <Container>
       <Form
@@ -74,7 +81,7 @@ function MainPage() {
           Vis alle rom
         </Button>
       </Flex>
-      {rooms && <RoomGrid rooms={rooms}></RoomGrid>}
+      {rooms && <RoomGrid onRoomClick={onRoomClick} rooms={rooms}></RoomGrid>}
     </Container>
   );
 }
