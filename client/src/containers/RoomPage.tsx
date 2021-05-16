@@ -12,6 +12,7 @@ import Calendar from '../components/CalendarComponents/Calendar';
 import styled from 'styled-components';
 import InfoIcon from '@material-ui/icons/Info';
 import RoomCard from '../components/RoomCard';
+import axios from 'axios';
 
 const StyledHeader = styled.h1`
   margin-top: 6rem;
