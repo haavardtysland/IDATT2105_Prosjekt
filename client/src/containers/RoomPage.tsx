@@ -37,6 +37,7 @@ const RoomPage: React.FC<RoomPageProps> = () => {
     room_id: -1,
     section_id: -1,
     section_name: '',
+    capacity: -1,
   });
   const [selectedDate, setSelectedDate] = React.useState<Date>(
     new Date('2014-08-18T21:11:54')
@@ -47,6 +48,7 @@ const RoomPage: React.FC<RoomPageProps> = () => {
     capacity: 10, //antall plasser
     sections: [
       {
+        capacity: 1,
         room_id: 1,
         section_id: 1,
         section_name: 'Seksjon 1',
