@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useContext, useState } from 'react';
 import Room from '../interfaces/Room';
 import {
   Divider,
@@ -12,7 +12,7 @@ import Calendar from '../components/CalendarComponents/Calendar';
 import styled from 'styled-components';
 import InfoIcon from '@material-ui/icons/Info';
 import RoomCard from '../components/RoomCard';
-import axios from 'axios';
+import { Context } from '../Context';
 
 const StyledHeader = styled.h1`
   margin-top: 6rem;
@@ -29,11 +29,7 @@ const StyledTextField = withStyles({
   },
 })(TextField);
 
-interface RoomPageProps {
-  room?: Room;
-}
-
-const RoomPage: React.FC<RoomPageProps> = () => {
+const RoomPage: React.FC = () => {
   const [currentSection, setCurrentSection] = useState<Section>({
     room_id: -1,
     section_id: -1,
@@ -54,6 +50,7 @@ const RoomPage: React.FC<RoomPageProps> = () => {
       },
     ],
   };
+  const { roomContext } = useContext(Context.RoomContext);
 
   const handleChangeCurrentSection = (event: ChangeEvent<HTMLInputElement>) => {
     const tmp = room.sections.find(
@@ -114,6 +111,7 @@ const RoomPage: React.FC<RoomPageProps> = () => {
           sections: [],
         }}
       />
+      <button onClick={() => console.log(roomContext)}>log room context</button>
     </div>
   );
 };

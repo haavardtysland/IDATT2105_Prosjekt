@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { GridList } from '@material-ui/core';
 import styled from 'styled-components';
 import Pageination from '@material-ui/lab/Pagination';
@@ -6,6 +6,7 @@ import Room from '../interfaces/Room';
 import RoomCard from './RoomCard';
 import { useHistory } from 'react-router';
 import User from '../interfaces/User';
+import { Context } from '../Context';
 
 const Container = styled.div`
   padding: 1rem;
@@ -24,6 +25,7 @@ const RoomGrid = ({ rooms }: Props) => {
   const [page, setPage] = useState<number>(1);
   const [currentRooms, setCurrentRooms] = useState<Room[]>(rooms);
   const history = useHistory();
+  const { room, setRoom } = useContext(Context.RoomContext);
 
   useEffect(() => {
     const startIndex = (page - 1) * 12;
@@ -37,6 +39,7 @@ const RoomGrid = ({ rooms }: Props) => {
 
   const onRoomClick = (room: Room) => {
     console.log(room);
+    setRoom(room);
     history.push('/RoomPage');
   };
 
@@ -68,6 +71,7 @@ const RoomGrid = ({ rooms }: Props) => {
         count={Math.ceil(rooms.length / 12)}
         size="large"
       />
+      <button onClick={() => console.log(room)}>log room context</button>
     </Container>
   );
 };
