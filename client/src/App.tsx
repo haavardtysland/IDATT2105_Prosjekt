@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import React, { createContext, useMemo, useState } from 'react';
-
+import React, { createContext, useEffect, useMemo, useState } from 'react';
 
 import { BrowserRouter } from 'react-router-dom';
 import Routes from './Routes';

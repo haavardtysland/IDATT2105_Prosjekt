@@ -12,11 +12,12 @@ import styled from 'styled-components';
 import roomPic from '../assets/room.jpg';
 import roomPic2 from '../assets/room1.jpg';
 import roomPic3 from '../assets/room3.jpg';
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 
 const useStyles = makeStyles({
   root: {
     maxWidth: 200,
-    maxHeight: 250,
+    maxHeight: 300,
     margin: '5% auto 5% auto',
   },
   media: {
@@ -38,6 +39,8 @@ interface RoomCardProps {
 const RoomCard: React.FC<RoomCardProps> = ({ room }: RoomCardProps) => {
   const classes = useStyles();
 
+  //TODO: delete room when clicked on button
+
   return (
     <TransformDiv>
       <Card className={classes.root}>
@@ -54,16 +57,11 @@ const RoomCard: React.FC<RoomCardProps> = ({ room }: RoomCardProps) => {
             Kapasitet: {room.capacity}
           </Typography>
         </CardContent>
-        {/*
         <CardActions>
           <Button size="small" color="primary">
-            Share
-          </Button>
-          <Button size="small" color="primary">
-            Learn More
+            <DeleteOutlineIcon />
           </Button>
         </CardActions>
-        */}
       </Card>
     </TransformDiv>
   );
