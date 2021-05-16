@@ -33,13 +33,20 @@ interface Section {
 
 interface Props {
   sectionsChange: (sections: Section[]) => void;
+  setSection?: Section[];
 }
 
-function SectionAdder({ sectionsChange }: Props) {
+function SectionAdder({ sectionsChange, setSection }: Props) {
   const classes = useStyles();
   const [capacity, setCapacity] = useState<number>();
   const [name, setName] = useState<string>();
   const [sections, setSections] = useState<Section[]>([]);
+
+  useEffect(() => {
+    if (setSection) {
+      setSections(setSection);
+    }
+  }, [setSection]);
 
   useEffect(() => {
     sectionsChange(sections);

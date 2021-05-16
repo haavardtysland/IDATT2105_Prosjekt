@@ -36,10 +36,26 @@ const RoomPage: React.FC = () => {
     room_id: -1,
     section_id: -1,
     section_name: '',
+    capacity: -1,
   });
   const [selectedDate, setSelectedDate] = React.useState<Date>(
     new Date('2014-08-18T21:11:54')
   );
+
+  const room: Room = {
+    room_id: 1,
+    name: 'Room 1',
+    capacity: 10, //antall plasser
+    sections: [
+      {
+        capacity: 1,
+        room_id: 1,
+        section_id: 1,
+        section_name: 'Seksjon 1',
+      },
+    ],
+  };
+
 
   const handleChangeCurrentSection = (event: ChangeEvent<HTMLInputElement>) => {
     if (room !== undefined) {
