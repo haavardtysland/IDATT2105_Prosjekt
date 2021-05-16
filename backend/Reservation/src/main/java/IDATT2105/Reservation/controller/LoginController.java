@@ -35,8 +35,9 @@ public class LoginController {
       log.info("logged in user with email " + map.get("email").toString());
       String id =
           String.valueOf(userService.getUser(map.get("email").toString()).getUserId());
-      body.put("id",
-          id);
+      String isAdmin = String.valueOf(userService.getUser(map.get("email").toString()).getIsAdmin());
+      body.put("id", id);
+      body.put("isAdmin", isAdmin);
       /*body.put("token",
           String.valueOf(securityService.createToken(id, (1000 * 60 * 60 * 24))));*/
       header.add("Status", "200 OK");

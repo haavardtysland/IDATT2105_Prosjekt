@@ -12,7 +12,7 @@ public class Reservation {
   @Column(name = "reservation_id")
   @GeneratedValue(strategy = GenerationType.AUTO)
   private int reservation_id;
-  @OneToOne(cascade = CascadeType.ALL)
+  @OneToOne
   @JoinColumn(name = "section_id")
   private Section section;
   @Column(name = "from_date")
@@ -110,13 +110,13 @@ public class Reservation {
   public String toString() {
     return
         "{" +
-            "\n\"reservationId\": " + reservation_id +
+            "\n\"reservationId\": " + reservation_id + "," +
             "\n \"section\": " + section.toJSON() + "," +
             "\n \"from_date\":" + from_date + "," +
             "\n \"to_date\": " + to_date + "," +
             "\n \"user\": " + user.toJSON() + "," +
             "\n \"capacity\": " + capacity + ","+
-            "\n \"description\": " + description + "," +
+            "\n \"description\": " + description +
             "\n}";
   }
 }
