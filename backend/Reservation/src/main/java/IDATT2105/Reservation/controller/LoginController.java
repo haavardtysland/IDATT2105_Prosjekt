@@ -3,6 +3,7 @@ package IDATT2105.Reservation.controller;
 import static IDATT2105.Reservation.controller.ControllerUtil.formatJson;
 
 import IDATT2105.Reservation.models.User;
+import IDATT2105.Reservation.service.SecurityService;
 import IDATT2105.Reservation.service.UserService;
 import IDATT2105.Reservation.util.Logger;
 import java.util.HashMap;
@@ -23,8 +24,8 @@ public class LoginController {
   private static Logger log = new Logger(LoginController.class.toString());
   @Autowired
   private UserService userService;
- /* @Autowired
-  private SecurityService securityService;*/
+  @Autowired
+  private SecurityService securityService;
 
  @PostMapping("")
   private ResponseEntity loginUser(@RequestBody Map<String, Object> map) {
@@ -41,7 +42,7 @@ public class LoginController {
         String isAdmin = String.valueOf(userService.getUser(map.get("email").toString()).getIsAdmin());
         body.put("id", id);
         body.put("isAdmin", isAdmin);
-      /*body.put("token",
+       /* body.put("token",
           String.valueOf(securityService.createToken(id, (1000 * 60 * 60 * 24))));*/
         header.add("Status", "200 OK");
         return ResponseEntity.ok()
@@ -49,8 +50,8 @@ public class LoginController {
                 .body(formatJson(body));
       } else {
         log.info("Password was wrong for user with email " + map.get("email").toString());
-
-      /*body.put("token",
+/*
+      body.put("token",
           String.valueOf(securityService.createToken(id, (1000 * 60 * 60 * 24))));*/
         header.add("Status", "400 BAD REQUEST");
         body.put("error", "Passordet er feil");

@@ -4,6 +4,7 @@ package IDATT2105.Reservation.controller;
 import static IDATT2105.Reservation.controller.ControllerUtil.formatJson;
 import static IDATT2105.Reservation.controller.ControllerUtil.getRandomID;
 import static IDATT2105.Reservation.controller.ControllerUtil.getRandomPassword;
+import static IDATT2105.Reservation.controller.ControllerUtil.validateStringMap;
 
 /*
 import static IDATT2106.team6.Gidd.Constants.*;
@@ -13,8 +14,11 @@ import static IDATT2106.team6.Gidd.web.ControllerUtil.validateStringMap;*/
 import IDATT2105.Reservation.models.User;
 import IDATT2105.Reservation.service.UserService;
 
+import IDATT2105.Reservation.util.PathTokenRequired;
+import IDATT2105.Reservation.util.PathTwoTokenRequired;
 import IDATT2105.Reservation.util.SendEmailService;
 import java.sql.Date;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +40,6 @@ public class UserController {
 
   @Autowired
   private SendEmailService sendEmailService;
-
 
   @GetMapping(value = "", produces = "application/json")
   public ResponseEntity getAllUsers() {
@@ -83,6 +86,20 @@ public class UserController {
         .headers(header).body(formatJson(body));
   }
 
+  /**
+   * {
+   *     "firstName":"mattias",
+   *     "surName":"my",
+   *     "email": "mathimyr@stud.ntnu.no",
+   *     "isAdmin": true,
+   *     "validDate": "2022-11-12",
+   *     "phoneNumber": 1231231
+   * }
+   *
+   * @param map
+   * @return
+   */
+
   @PostMapping("")
   public ResponseEntity registerUser(@RequestBody HashMap<String, Object> map) {
     log.info("recieved postmapping to /user: " + map.toString());
@@ -104,7 +121,6 @@ public class UserController {
         map.get("email").toString(),
         Boolean.parseBoolean(map.get("isAdmin").toString()),
         Date.valueOf(map.get("validDate").toString()),
-        //map.get("password").toString(),
         randomPassword,
         Integer.parseInt(map.get("phoneNumber").toString()));
     log.info("created user with id: " + result.getUserId());
@@ -121,7 +137,7 @@ public class UserController {
       //body.put("token", securityService
         //  .createToken(String.valueOf(result.getUserId()), (1000 * 60 * 60 * 24)));
 
-      sendEmailService.sendEmail(result.getEmail(), randomPassword);
+      sendEmailService.sendUserEmail(result.getEmail(), randomPassword);
       return ResponseEntity
           .ok()
           .headers(header)
@@ -135,4 +151,100 @@ public class UserController {
         .headers(header)
         .body(formatJson(body));
   }
+
+  /**
+   * put like this:
+   * {
+   *     "firstName":"mattias",
+   *     "surName":"my",
+   *     "email": "mathimyr@stud.ntnu.no",
+   *     "isAdmin": true,
+   *     "validDate": "2022-11-12",
+   *     "phoneNumber": 1231231
+   * }
+   * @param map
+   * @param id
+   * @return
+   */
+  @PutMapping(value = "/edit/{id}")
+  public ResponseEntity editUser(@RequestBody Map<String, Object> map, @PathVariable Integer id) {
+    log.info("receieved a put mapping for user with id: " + id);
+    Map<String, String> body = new HashMap<>();
+    HttpHeaders header = new HttpHeaders();
+    header.add("Content-Type", "application/json; charset=UTF-8");
+
+
+    if (map.get("newEmail") == null || map.get("newEmail").equals("")) {
+      map.put("newEmail", map.get("email"));
+    }
+
+    if (!validateStringMap(map)) {
+      log.error(
+          "returning error about null/blank fields in user put mapping " + map.toString());
+      body.put("error", "one or more json-fields is null/blank");
+      return ResponseEntity.badRequest().body(formatJson(body));
+    }
+
+    try {
+      Integer.parseInt(map.get("phoneNumber").toString());
+    } catch (NumberFormatException e) {
+      log.error("phone number cannot be parsed to number " + map.toString());
+      body.put("error", "phone number is not numeric");
+      return ResponseEntity.badRequest().body(formatJson(body));
+    } catch (Exception e) {
+      log.error("An unexpected message was caught when parsing phoneNumber: " +
+          e.getMessage() + " local: " + e.getLocalizedMessage());
+      body.put("Error", "Something went wrong");
+      return ResponseEntity
+          .badRequest()
+          .body(formatJson(body));
+    }
+
+    try {
+      String randomPassword = getRandomPassword();
+      boolean result = userService.editUser(
+          id,
+          map.get("firstName").toString(),
+          map.get("surName").toString(),
+          map.get("newEmail").toString(),
+          Boolean.parseBoolean(map.get("isAdmin").toString()),
+          Date.valueOf(map.get("validDate").toString()),
+          randomPassword,
+          Integer.parseInt(map.get("phoneNumber").toString()));
+
+      log.info("edited user " + id);
+      if (result) {
+        log.info("created user");
+        header.add("Status", "201 CREATED");
+
+        body.put("id", String.valueOf(id));
+
+        sendEmailService.sendEditUserEmail(map.get("newEmail").toString(), randomPassword);
+        return ResponseEntity.ok()
+            .headers(header)
+            .body(formatJson(body));
+      }
+    } catch (NullPointerException e) {
+      log.debug("A NullPointerException was caught while attempting to edit user");
+      body.put("error", "invalid input");
+      return ResponseEntity
+          .badRequest()
+          .body(formatJson(body));
+    } catch (Exception e) {
+      log.debug("An error was caught while attempting to edit user: " +
+          e.getMessage() + " | Local: " + e.getLocalizedMessage());
+      body.put("error", "Something went wrong");
+      return ResponseEntity.badRequest().body(formatJson(body));
+    }
+
+    log.error("User could not be edited, are you sure the user exists");
+    header.add("Status", "400 BAD REQUEST");
+    body.put("error", "could not edit user are you sure the user exists?");
+    return ResponseEntity
+        .badRequest()
+        .body(formatJson(body));
+  }
+
+
+
 }

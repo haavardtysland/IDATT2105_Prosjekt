@@ -174,4 +174,21 @@ public class ReservationRepo extends ProjectRepo {
       em.close();
     }
   }
+
+  public boolean updateReservation(Reservation reservation) {
+    EntityManager em = getEm();
+    log.info("updating reservation " + reservation.getReservation_id());
+    try {
+      em.getTransaction().begin();
+      em.merge(reservation);
+      em.getTransaction().commit();
+      log.info("reservation updated successfully");
+      return true;
+    } catch (Exception e) {
+      log.error("updating reservation failed due to: " + e.getMessage());
+      return false;
+    } finally {
+      em.close();
+    }
+  }
 }

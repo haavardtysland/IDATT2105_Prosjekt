@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
@@ -43,6 +44,7 @@ public class ReservationControllerTest {
 	private Section section2;
 	private Section section3;
 	private Section section4;
+	User adminUser;
 
 	@BeforeAll
 	public void beforeAll() throws Exception{
@@ -55,6 +57,8 @@ public class ReservationControllerTest {
 		section2 = new Section(2, "Seksjon 2", 50);
 		section3 = new Section(3, "Seksjon 3", 10);
 		section4 = new Section(4, "Seksjon 4", 10);
+
+		adminUser = new User(1, "Admin", "User", "admin@gmail.com", true, new Date(1652306400000L), "123", 12312312);
 
 		room1.getSections().add(section1);
 		room1.getSections().add(section2);
@@ -103,7 +107,7 @@ public class ReservationControllerTest {
 	@Test
 	@Order(3)
 	public void addSectionTest() throws Exception{
-		System.out.println("Test 2");
+		System.out.println("Test 3");
 		String section_id = mockMvc.perform(MockMvcRequestBuilders.post("/section/" + room1.getRoom_id()).contentType(MediaType.APPLICATION_JSON).content(
 				"{\n" +
 					"\"sections\" : [{\n" +
@@ -114,14 +118,22 @@ public class ReservationControllerTest {
 		)).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
 	}
 
-	/*
+	/*@Test
+	@Order(4)
+	public void registerUserTest() throws Exception{
+		System.out.println("Test 4");
+		String result = mockMvc.perform(MockMvcRequestBuilders.post("/user").contentType(MediaType.APPLICATION_JSON).content(
+		))
+	}*/
+
+
+
 	@Test
 	@Order(4)
-	public void deleteSectionsTest() throws Exception{
-		System.out.println("Test 3");
+	public void deleteRoom() throws Exception {
+		System.out.println("Test 4");
+		String room_id = mockMvc.perform(MockMvcRequestBuilders.delete("/room/" + room1.getRoom_id()).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
 
-		String response = mockMvc.perform(MockMvcRequestBuilders.delete("/section/" + section2.getSectionId())).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
-		assert(response.equals("{}"));
-
-	}*/
+		assert(room_id.equals("{}"));
+	}
 }

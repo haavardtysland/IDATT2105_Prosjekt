@@ -35,6 +35,11 @@ public class ReservationService {
     return repo.deleteReservation(id);
   }
 
+  public boolean editReservation(Reservation reservation) {
+    log.info("editing reservation " + reservation.getReservation_id());
+    return repo.updateReservation(reservation);
+  }
+
   public boolean registerReservation(Reservation reservation) {
     log.info("adding new Reservation: " + reservation.getReservation_id()+ " from: " + reservation.getUser().getEmail());
     return repo.addReservation(reservation);
