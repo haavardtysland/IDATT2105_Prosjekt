@@ -42,13 +42,8 @@ function AddUser() {
           validDate: date.toISOString().slice(0, 10),
           phoneNumber: phone,
         })
-        .then((response) => {
-          if (response.data.error) {
-            alert(response.data.error);
-          } else {
-            alert('Du opprettet brukeren');
-          }
-        });
+        .then(() => alert('Du opprettet brukeren'))
+        .catch((err) => alert(err.response.data.error));
     } else {
       alert('Fyll inn alle felt');
       console.log(firstname);
