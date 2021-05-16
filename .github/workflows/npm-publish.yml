@@ -5,12 +5,13 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-env: 
-  working-directory: ./client
+
   
 
 jobs:
   build:
+    env: 
+      working-directory: ./client
 
     runs-on: ubuntu-latest
 
