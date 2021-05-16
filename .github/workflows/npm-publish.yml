@@ -5,6 +5,9 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+env: 
+  working-directory: ./client
+  
 
 jobs:
   build:
