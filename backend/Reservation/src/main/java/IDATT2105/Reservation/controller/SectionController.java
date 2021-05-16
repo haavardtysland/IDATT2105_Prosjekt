@@ -20,7 +20,7 @@ import java.util.*;
 
 @CrossOrigin(origins = "*")
 @Controller
-@RequestMapping(value="/section/")
+@RequestMapping(value="/section")
 public class SectionController {
 
     Logger log = new Logger(SectionController.class.toString());
@@ -41,7 +41,7 @@ public class SectionController {
      * @param room_id the room that the admin wants to add sections to
      * @return true if the sections can be added, false if not
      */
-    @PostMapping(value="{room_id}", produces="application/json")
+    @PostMapping(value="/{room_id}", produces="application/json")
     public @ResponseBody
     ResponseEntity addSections(@RequestBody HashMap<String, Object> map, @PathVariable String room_id) {
         Map<String, String> body = new HashMap<>();
@@ -98,7 +98,7 @@ public class SectionController {
      *     }
      * ]
      */
-    @GetMapping(value="{section_id}/taken", produces="application/json")
+    @GetMapping(value="/{section_id}/taken", produces="application/json")
     public ResponseEntity getSectionAvailability(@PathVariable String section_id){
         List<ReservationTime> reservationTimes;
         Map<String, String> body = new HashMap<>();
@@ -122,7 +122,25 @@ public class SectionController {
         }
     }
 
-    @GetMapping(value="{section_id}", produces="application/json")
+    @GetMapping(value="", produces="application/json")
+    public ResponseEntity getSections(){
+        List<Section> sections;
+        HttpHeaders header = new HttpHeaders();
+        try {
+            sections = sectionService.getSections();
+            header.add("STATUS", "200 OK");
+            return ResponseEntity.ok().headers(header).body("{\"sections\": \n" + sections.toString() + "\n}");
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("An unexpected error was caught while getting all the sections " + e.getCause() + " with message " + e.getMessage());
+            HashMap<String, String> body = new HashMap<>();
+            header.add("STATUS", "400 BAD REQUEST");
+            body.put("error", "something went wrong");
+            return ResponseEntity.badRequest().headers(header).body(formatJson(body));
+        }
+    }
+
+    @GetMapping(value="/{section_id}", produces="application/json")
     public ResponseEntity getSection(@PathVariable String section_id){
         Section section;
         Map<String, String> body = new HashMap<>();

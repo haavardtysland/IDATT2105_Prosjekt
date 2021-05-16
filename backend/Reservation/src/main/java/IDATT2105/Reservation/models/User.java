@@ -34,6 +34,8 @@ public class User {
   private Date validDate;
   @Column(name = "phoneNumber")
   private int phoneNumber;
+  @OneToMany(targetEntity = Reservation.class, mappedBy="user", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<Reservation> reservations;
   private String salt;
 
   public User() {
@@ -166,17 +168,20 @@ public class User {
 
 
 
-
-  /*public List<ReservationUser> getReservations() {
-    return reservations;
+  public void removeReservation(Reservation reservation) {
+    for(int i = 0; i < this.reservations.size(); i++) {
+      if(this.reservations.get(i).getReservation_id() == reservation.getReservation_id()) {
+        this.reservations.remove(i);
+      }
+    }
+    reservation.setSection(null);
   }
-  public void addActivity(ReservationUser reservationUser) {
-    this.reservations.add(reservationUser);
+
+  public void addReservation(Reservation reservation) {
+    reservation.setUser(this);
+    this.reservations.add(reservation);
   }
 
-  public void setReservations(List<ReservationUser> reservations) {
-    this.reservations = reservations;
-  }*/
 
 
   public String toJSON() {
