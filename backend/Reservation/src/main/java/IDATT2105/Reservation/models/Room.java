@@ -1,6 +1,7 @@
 package IDATT2105.Reservation.models;
 
 import org.eclipse.persistence.annotations.CascadeOnDelete;
+import org.eclipse.persistence.annotations.PrivateOwned;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -91,7 +92,7 @@ public class Room {
                 "\n\"room_id\": "  + room_id  +
                 ",\n\"name\": " + "\"" + name + "\"" +
                 ",\n\"capacity\":" + capacity +
-                ",\n\"sections:\"" + sections.toString()  +
+                ",\n\"sections\":" + sections.toString()  +
                 "\n}";
     }
 }
