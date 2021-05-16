@@ -38,7 +38,7 @@ function Bar() {
           <Button onClick={() => history.push('/mineBestillinger')}>
             <Typography variant="h6">Se bestillinger</Typography>
           </Button>
-          <Button onClick={() => history.push('/administrate')}>
+          <Button onClick={() => history.push('/administrate/room')}>
             <Typography variant="h6">Administrer</Typography>
           </Button>
           <DropDownList />

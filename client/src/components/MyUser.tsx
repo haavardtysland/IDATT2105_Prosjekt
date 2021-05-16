@@ -60,7 +60,7 @@ const MyUser: React.FC<Props> = ({ openPopup, setOpenPopup }: Props) => {
   });
   */
   const [currentUser, setCurrentUser] = useState<User>({
-    userId: '12312313',
+    userId: 12312313,
     firstName: 'William',
     surname: 'Forbrigd',
     email: 'hansw0701@gmail.com',

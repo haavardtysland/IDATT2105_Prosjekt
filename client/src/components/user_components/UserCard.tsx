@@ -7,11 +7,9 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Room from '../interfaces/Room';
 import styled from 'styled-components';
-import roomPic from '../assets/room.jpg';
-import roomPic2 from '../assets/room1.jpg';
-import roomPic3 from '../assets/room3.jpg';
+import User from '../../interfaces/User';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles({
   root: {
@@ -22,53 +20,50 @@ const useStyles = makeStyles({
   },
 });
 
+const Flex = styled.div`
+  display: flex;
+`;
+
 const TransformDiv = styled.div`
   transition: transform 450ms;
   margin: 1rem;
   width: 25%;
   min-width: 10rem;
-  height: 20%;
+  min-height: 12%;
+  height: 12%;
   :hover {
     transform: scale(1.08);
   }
 `;
 
-interface RoomCardProps {
-  room: Room;
+interface Props {
+  user: User;
+  deleteUser: (userId: number) => void;
+  resendPassword: (userId: number) => void;
 }
 
-const RoomCard: React.FC<RoomCardProps> = ({ room }: RoomCardProps) => {
+const UserCard = ({ user, deleteUser, resendPassword }: Props) => {
   const classes = useStyles();
 
   return (
     <TransformDiv>
       <Card className={classes.root}>
-        <CardMedia
-          className={classes.media}
-          image={roomPic}
-          title={room.name}
-        />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {room.name}
+            {user.email}
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Kapasitet: {room.capacity}
-          </Typography>
+          <Flex>
+            <Button onClick={() => deleteUser(user.userId)}>
+              <DeleteIcon />
+            </Button>
+            <Button onClick={() => resendPassword(user.userId)}>
+              Resend passord
+            </Button>
+          </Flex>
         </CardContent>
-        {/*
-        <CardActions>
-          <Button size="small" color="primary">
-            Share
-          </Button>
-          <Button size="small" color="primary">
-            Learn More
-          </Button>
-        </CardActions>
-        */}
       </Card>
     </TransformDiv>
   );
 };
 
-export default RoomCard;
+export default UserCard;
