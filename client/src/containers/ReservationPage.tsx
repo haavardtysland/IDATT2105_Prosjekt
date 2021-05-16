@@ -6,7 +6,7 @@ import { SortFunctions } from '../components/sorting/SortFunctions';
 import Reservation from '../interfaces/Reservation';
 import SortMenu from '../components/sorting/SortMenu';
 import axios from '../axios';
-import { UserContext } from '../App';
+import { UserContext } from '../UserContext';
 import FilterMenu from '../components/filter/FilterMenu';
 import { FilterFunctions } from '../components/filter/FilterFunctions';
 
@@ -29,7 +29,7 @@ enum SortOptions {
 }
 
 const ReservationPage: React.FC = () => {
-  const { user } = useContext(UserContext);
+  const user = useContext(UserContext);
   const [sortOption, setSortOption] = React.useState<number>(0);
   const [reservations, setReservations] = useState<Reservation[]>([
     {
@@ -138,6 +138,7 @@ const ReservationPage: React.FC = () => {
         log reservations
       </button>
       <button onClick={() => console.log(descFilter)}>log desc</button>
+      <button onClick={() => console.log(user)}>log user</button>
     </div>
   );
 };

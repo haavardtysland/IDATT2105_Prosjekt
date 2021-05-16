@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import React, { createContext, useEffect, useMemo, useState } from 'react';
+import React, { createContext, useMemo, useState } from 'react';
 
 import { BrowserRouter } from 'react-router-dom';
 import Routes from './Routes';
-
-export const UserContext = createContext<any>(null);
+import { UserContext } from './UserContext';
 
 function App() {
   const [user, setUser] = useState<string>('');

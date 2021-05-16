@@ -2,7 +2,7 @@ import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import LoginCard from '../components/LoginCard';
 import { useHistory } from 'react-router-dom';
-import { UserContext } from '../App';
+import { UserContext } from '../UserContext';
 import axios from '../axios';
 
 const LoginContainer = styled.div`
