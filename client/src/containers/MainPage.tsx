@@ -37,15 +37,25 @@ function MainPage() {
   const [minCapacity, setMinCapacity] = useState<number>();
   const [rooms, setRooms] = useState<Room[]>();
 
-  const getAvailible = () => {
-    console.log(1);
-  };
-
   const getAllRooms = () => {
     axios.get('/room').then((response) => {
-      console.log(response.data['rooms']);
       setRooms(response.data['rooms']);
     });
+  };
+
+  const getAvailibeRooms = () => {
+    if (toTime && fromTime && minCapacity) {
+      axios
+        .get(`/room/${fromTime}/${toTime}/${minCapacity}`)
+        .then((response) => {
+          setRooms(response.data['rooms']);
+          if (response.data.error) {
+            alert(response.data.error);
+          }
+        });
+    } else {
+      alert('Alle felter må fylles ut');
+    }
   };
 
   return (
@@ -56,7 +66,9 @@ function MainPage() {
         changeMinCapacity={(num) => setMinCapacity(num)}
       ></Form>
       <Flex>
-        <Button className={classes.button}>Vis ledige rom</Button>
+        <Button onClick={getAvailibeRooms} className={classes.button}>
+          Vis ledige rom
+        </Button>
         <Button onClick={getAllRooms} className={classes.button}>
           Vis alle rom
         </Button>

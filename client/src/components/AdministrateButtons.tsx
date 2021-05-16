@@ -1,17 +1,16 @@
-import { Button, Typography } from '@material-ui/core';
+import {
+  Button,
+  createStyles,
+  makeStyles,
+  Theme,
+  Typography,
+} from '@material-ui/core';
 import React from 'react';
+import { useHistory } from 'react-router';
 import styled from 'styled-components';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { Route, useHistory, Switch } from 'react-router';
-import RoomAdministration from './RoomAdministration';
-import UserAdministration from './UserAdministration';
-import ReservationAdministration from './ReservationAdministration';
 
 const Container = styled.div`
   display: flex;
-  padding-top: 7%;
-  padding-right: 3%;
-  padding-left: 3%;
   justify-content: center;
 `;
 
@@ -27,7 +26,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-function Administrate() {
+function AdministrateButtons() {
   const classes = useStyles();
   const history = useHistory();
   return (
@@ -60,4 +59,4 @@ function Administrate() {
   );
 }
 
-export default Administrate;
+export default AdministrateButtons;

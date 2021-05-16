@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
 import { GridList } from '@material-ui/core';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import User from '../../interfaces/User';
+import UserCard from './UserCard';
 import Pageination from '@material-ui/lab/Pagination';
-import Room from '../interfaces/Room';
-import RoomCard from './RoomCard';
+import axios from 'axios';
 
 const Container = styled.div`
   padding: 1rem;
@@ -15,18 +16,20 @@ const Container = styled.div`
 `;
 
 interface Props {
-  rooms: Room[];
+  users: User[];
+  deleteUser: (userId: number) => void;
+  resendPassword: (userId: number) => void;
 }
 
-const RoomGrid = ({ rooms }: Props) => {
+function UserGrid({ users, deleteUser, resendPassword }: Props) {
   const [page, setPage] = useState<number>(1);
-  const [currentRooms, setCurrentRooms] = useState<Room[]>(rooms);
+  const [currentUsers, setCurrentUsers] = useState<User[]>(users);
 
   useEffect(() => {
     const startIndex = (page - 1) * 12;
     const endIndex = page * 12;
-    setCurrentRooms(rooms.slice(startIndex, endIndex));
-  }, [page, rooms]);
+    setCurrentUsers(users.slice(startIndex, endIndex));
+  }, [page, users]);
 
   const onPageChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
@@ -42,8 +45,13 @@ const RoomGrid = ({ rooms }: Props) => {
         }}
         cols={3}
       >
-        {currentRooms.map((room, index) => (
-          <RoomCard key={index} room={room}></RoomCard>
+        {users.map((user, index) => (
+          <UserCard
+            deleteUser={deleteUser}
+            resendPassword={resendPassword}
+            key={index}
+            user={user}
+          ></UserCard>
         ))}
       </GridList>
       <Pageination
@@ -53,10 +61,11 @@ const RoomGrid = ({ rooms }: Props) => {
           marginBottom: '3rem',
         }}
         onChange={onPageChange}
-        count={Math.ceil(rooms.length / 12)}
+        count={Math.ceil(users.length / 12)}
         size="large"
       />
     </Container>
   );
-};
-export default RoomGrid;
+}
+
+export default UserGrid;
