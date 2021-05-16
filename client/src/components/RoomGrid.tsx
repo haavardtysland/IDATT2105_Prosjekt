@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import Pageination from '@material-ui/lab/Pagination';
 import Room from '../interfaces/Room';
 import RoomCard from './RoomCard';
+import { useHistory } from 'react-router';
+import User from '../interfaces/User';
 
 const Container = styled.div`
   padding: 1rem;
@@ -21,6 +23,7 @@ interface Props {
 const RoomGrid = ({ rooms }: Props) => {
   const [page, setPage] = useState<number>(1);
   const [currentRooms, setCurrentRooms] = useState<Room[]>(rooms);
+  const history = useHistory();
 
   useEffect(() => {
     const startIndex = (page - 1) * 12;
@@ -30,6 +33,11 @@ const RoomGrid = ({ rooms }: Props) => {
 
   const onPageChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
+  };
+
+  const onRoomClick = (room: Room) => {
+    console.log(room);
+    history.push('/RoomPage');
   };
 
   return (
@@ -43,7 +51,11 @@ const RoomGrid = ({ rooms }: Props) => {
         cols={3}
       >
         {currentRooms.map((room, index) => (
-          <RoomCard key={index} room={room}></RoomCard>
+          <RoomCard
+            onReservationClick={() => onRoomClick(room)}
+            key={index}
+            room={room}
+          ></RoomCard>
         ))}
       </GridList>
       <Pageination
