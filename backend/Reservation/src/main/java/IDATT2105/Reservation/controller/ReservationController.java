@@ -13,6 +13,7 @@ import IDATT2105.Reservation.service.UserService;
 import IDATT2105.Reservation.service.ReservationService;
 import IDATT2105.Reservation.service.RoomService;
 import IDATT2105.Reservation.util.Logger;
+import IDATT2105.Reservation.util.ReservationTokenRequired;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -246,6 +247,7 @@ public class ReservationController {
         .body(formatJson(body));
   }
 
+  @ReservationTokenRequired
   @DeleteMapping("/{reservationId}")
   public ResponseEntity deleteReservation(@PathVariable Integer reservationId) {
     log.info("recieved deletemapping to reservation with id " + reservationId);
