@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { GridList } from '@material-ui/core';
 import styled from 'styled-components';
 import Pageination from '@material-ui/lab/Pagination';
@@ -6,6 +6,7 @@ import Room from '../interfaces/Room';
 import RoomCard from './RoomCard';
 import { useHistory } from 'react-router';
 import User from '../interfaces/User';
+import { Context } from '../Context';
 
 const Container = styled.div`
   padding: 1rem;

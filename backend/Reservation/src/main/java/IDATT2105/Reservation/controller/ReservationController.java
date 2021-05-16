@@ -104,7 +104,6 @@ public class ReservationController {
           e.getCause() + " with message " + e.getMessage());
       HashMap<String, String> body = new HashMap<>();
       body.put("error", "something went wrong");
-
       return ResponseEntity
           .badRequest()
           .body(formatJson(body));
@@ -168,8 +167,26 @@ public class ReservationController {
             .body(formatJson(body));
       }
 
+      Timestamp start =  Timestamp.valueOf(map.get("from_date").toString());
+      Timestamp end =  Timestamp.valueOf(map.get("to_date").toString());
+      Long start_ms = start.getTime();
+      Long end_ms = end.getTime();
+      if(section.getCapacity() < Integer.parseInt(map.get("capacity").toString())){
+        body.put("error", "Kapasiteten til seksjonen er ikke stor nok");
+        return ResponseEntity.badRequest().body(formatJson(body));
+      }
+
+      for(int i = 0; i < section.getReservations().size(); i++){
+        Reservation res = section.getReservations().get(i);
+        Long booked_start = res.getFromDate().getTime();
+        Long booked_end = res.getToDate().getTime();
+        if(start_ms >= booked_start && start_ms <=booked_end || end_ms >= booked_start && end_ms <= booked_end){
+          body.put("error", "Denne seksjonen har allerede en booking som overstrider dette tidspunktet");
+          return ResponseEntity.badRequest().body(formatJson(body));
+        }
+      }
+
       newReservation = mapToReservation(map, -1, user, section);
-      // creates one or multiple activities based on repeat
       return createReservation(user, newReservation, map, body, headers);
 
     } catch (InvalidAttributesException e) {
@@ -233,13 +250,11 @@ public class ReservationController {
    */
   private ResponseEntity createReservation(User user, Reservation reservation, Map<String, Object> map,
                                         HashMap<String, String> body, HttpHeaders headers) {
-
       Reservation temp = new Reservation(reservation);
       int newId = newReservationValidId(temp);
       temp.setReservation_id(newId);
       log.debug("new reservation id: " + newId);
       log.info("Reservation created successfully");
-
       body.put("reservationId",String.valueOf(temp.getReservation_id()));
 
     return ResponseEntity
@@ -247,7 +262,7 @@ public class ReservationController {
         .body(formatJson(body));
   }
 
-  @ReservationTokenRequired
+  //@ReservationTokenRequired
   @DeleteMapping("/{reservationId}")
   public ResponseEntity deleteReservation(@PathVariable Integer reservationId) {
     log.info("recieved deletemapping to reservation with id " + reservationId);

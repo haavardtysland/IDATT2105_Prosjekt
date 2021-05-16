@@ -35,4 +35,9 @@ public class SectionService {
         return this.repo.getSectionAvailability(section_id);
     }
 
+    public ArrayList<Section> getSections(){
+        log.info("Getting all the sections");
+        return this.repo.getSections();
+    }
+
 }

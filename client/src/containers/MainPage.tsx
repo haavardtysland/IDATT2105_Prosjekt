@@ -1,7 +1,6 @@
-import { Button, TextField, Typography } from '@material-ui/core';
-import React, { useContext, useEffect, useState } from 'react';
+import { Button } from '@material-ui/core';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
-import { Calendar } from '@material-ui/pickers';
 import Form from '../components/Form';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import axios from '../axios';
@@ -39,6 +38,7 @@ function MainPage() {
   const [minCapacity, setMinCapacity] = useState<number>();
   const [rooms, setRooms] = useState<Room[]>();
   const history = useHistory();
+  const { room, setRoom } = useContext(Context.RoomContext);
 
   const getAllRooms = () => {
     axios.get('/room').then((response) => {
@@ -61,7 +61,8 @@ function MainPage() {
     }
   };
 
-  const onRoomClick = (room: Room) => {
+  const onRoomClick = (newRoom: Room) => {
+    setRoom(newRoom);
     console.log(room);
     history.push('/RoomPage');
   };

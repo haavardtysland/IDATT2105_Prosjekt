@@ -3,6 +3,8 @@ package IDATT2105.Reservation.models;
 import org.eclipse.persistence.annotations.CascadeOnDelete;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Section {
@@ -19,6 +21,9 @@ public class Section {
   @CascadeOnDelete
   @ManyToOne(targetEntity = Room.class)
   private Room room;
+
+  @OneToMany(targetEntity = Reservation.class, mappedBy="section", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<Reservation> reservations;
 
   public Section(int section_id, String section_name, int capacity) {
     this.section_id = section_id;
@@ -71,8 +76,27 @@ public class Section {
     this.capacity = capacity;
   }
 
+  public List<Reservation> getReservations() {
+    return reservations;
+  }
 
+  public void setReservations(List<Reservation> reservations) {
+    this.reservations = reservations;
+  }
 
+  public void removeReservation(Reservation reservation) {
+    for(int i = 0; i < this.reservations.size(); i++) {
+      if(this.reservations.get(i).getReservation_id() == reservation.getReservation_id()) {
+        this.reservations.remove(i);
+      }
+    }
+    reservation.setSection(null);
+  }
+
+  public void addReservation(Reservation reservation) {
+    reservation.setSection(this);
+    this.reservations.add(reservation);
+  }
 
   @Override
   public String toString() {
