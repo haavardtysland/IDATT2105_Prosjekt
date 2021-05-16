@@ -11,8 +11,6 @@ import static IDATT2106.team6.Gidd.web.ControllerUtil.getRandomID;
 import static IDATT2106.team6.Gidd.web.ControllerUtil.parsePhone;
 import static IDATT2106.team6.Gidd.web.ControllerUtil.validateStringMap;*/
 import IDATT2105.Reservation.models.User;
-import IDATT2105.Reservation.repo.RoomRepo;
-import IDATT2105.Reservation.repo.UserRepo;
 import IDATT2105.Reservation.service.UserService;
 
 import IDATT2105.Reservation.util.SendEmailService;
@@ -47,7 +45,7 @@ public class UserController {
       List<User> users = userService.getUsers();
       return ResponseEntity
           .ok()
-          .body(users.toString());
+          .body("{\"users\": \n" + users.toString() + "\n}");
     } catch (Exception e) {
       e.printStackTrace();
       log.error("An unexpected error was caught while getting all users: " +
@@ -118,6 +116,7 @@ public class UserController {
       header.add("Status", "201 CREATED");
 
       body.put("userId", String.valueOf(result.getUserId()));
+      body.put("isAdmin", String.valueOf(result.getIsAdmin()));
       //body.put("token", securityService
         //  .createToken(String.valueOf(result.getUserId()), (1000 * 60 * 60 * 24)));
 
@@ -135,6 +134,4 @@ public class UserController {
         .headers(header)
         .body(formatJson(body));
   }
-
-
 }

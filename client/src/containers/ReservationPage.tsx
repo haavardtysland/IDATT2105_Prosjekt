@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ReservationCard from '../components/ReservationCard';
 import { Divider, Typography } from '@material-ui/core';
 import styled from 'styled-components';
 import { SortFunctions } from '../components/sorting/SortFunctions';
 import Reservation from '../interfaces/Reservation';
 import SortMenu from '../components/sorting/SortMenu';
+import axios from '../axios';
+import { UserContext } from '../App';
+import FilterMenu from '../components/filter/FilterMenu';
+import { FilterFunctions } from '../components/filter/FilterFunctions';
 
 const LeftContainer = styled.div`
   margin-left: 2%;
@@ -24,8 +28,8 @@ enum SortOptions {
   DateEarlyLate = 4,
 }
 
-//TODO: make filter menu and filter functions
 const ReservationPage: React.FC = () => {
+  const { user } = useContext(UserContext);
   const [sortOption, setSortOption] = React.useState<number>(0);
   const [reservations, setReservations] = useState<Reservation[]>([
     {
@@ -43,47 +47,89 @@ const ReservationPage: React.FC = () => {
       toDate: '05-21-2021 15:00:00',
     },
   ]);
+  const [currentReservations, setCurrentReservations] =
+    useState<Reservation[]>(reservations);
+  const [descFilter, setDescFilter] = useState<string>('');
+  const [timeFilterFrom, setTimeFilterFrom] = useState<string>('');
+  const [timeFilterTo, setTimeFilterTo] = useState<string>('');
+  const [capFilter, setCapFilter] = React.useState<number[]>([20, 37]);
 
-  //Method for testing
   /*
-  const calcDateDiff = () => {
-    const timeDiff1 =
-      new Date(reservations[0].toDate).getTime() -
-      new Date(reservations[0].fromDate).getTime();
-    const timeDiff2 =
-      new Date(reservations[1].toDate).getTime() -
-      new Date(reservations[1].fromDate).getTime();
-    const differenceInDays1 = timeDiff1 / (1000 * 3600);
-    const differenceInDays2 = timeDiff2 / (1000 * 3600 * 24);
-    console.log(differenceInDays1);
-    console.log(differenceInDays2);
+  const getAllReservations = async () => {
+    ///user/${userid}/reservation
+    const request = await axios.get(`/user/${userId}`);
   };
   */
 
   useEffect(() => {
     if (sortOption === SortOptions.CapacityHighLow) {
-      setReservations(SortFunctions.sortCapacityHighLow);
+      setCurrentReservations(SortFunctions.sortCapacityHighLow);
     } else if (sortOption == SortOptions.CapacityLowHigh) {
-      setReservations(SortFunctions.sortCapacityLowHigh);
+      setCurrentReservations(SortFunctions.sortCapacityLowHigh);
     } else if (sortOption === SortOptions.DateLateEarly) {
-      setReservations(SortFunctions.sortDateLateEarly);
+      setCurrentReservations(SortFunctions.sortDateLateEarly);
     } else if (sortOption === SortOptions.DateEarlyLate) {
-      setReservations(SortFunctions.sortDateEarlyLate);
+      setCurrentReservations(SortFunctions.sortDateEarlyLate);
     }
   }, [sortOption]);
 
-  const renderReservations = reservations.map((reservation, key: number) => {
-    return <ReservationCard key={key} reservation={reservation} />;
-  });
+  useEffect(() => {
+    if (reservations) {
+      const filter1 = FilterFunctions.descFilter(reservations, descFilter);
+      const filter2 = FilterFunctions.timeFilter(
+        reservations,
+        timeFilterFrom,
+        timeFilterTo
+      );
+      const filter3 = FilterFunctions.capFilter(reservations, capFilter);
+      const filteredReservations: Reservation[] = [];
+      for (const r1 of filter1) {
+        for (const r2 of filter2) {
+          for (const r3 of filter3) {
+            if (r1 === r2 && r2 === r3) {
+              filteredReservations.push(r1);
+            }
+          }
+        }
+      }
+      setCurrentReservations(filteredReservations);
+    }
+  }, [descFilter, timeFilterFrom, timeFilterTo, capFilter]);
+
+  const renderReservations = currentReservations.map(
+    (reservation, key: number) => {
+      return <ReservationCard key={key} reservation={reservation} />;
+    }
+  );
 
   return (
     <div>
-      <div style={{ marginTop: '10rem', display: 'flex' }}>
+      <Typography
+        variant="h5"
+        style={{ marginTop: '6rem', marginLeft: '1rem' }}
+      >
+        Mine Reservasjoner
+      </Typography>
+      <div style={{ marginTop: '1rem', display: 'flex' }}>
         <LeftContainer>
-          <Typography variant="h5">Mine Reservasjoner</Typography>
-          <div style={{ marginTop: '5%' }}>
+          <Divider variant="fullWidth" />
+          <div style={{ marginTop: '5%', marginBottom: '5%' }}>
             <SortMenu sortOption={sortOption} setSortOption={setSortOption} />
           </div>
+          <Divider variant="fullWidth" />
+          <div style={{ marginTop: '5%', marginBottom: '5%' }}>
+            <FilterMenu
+              descFilter={descFilter}
+              setDescFilter={setDescFilter}
+              timeFilterFrom={timeFilterFrom}
+              setTimeFilterFrom={setTimeFilterFrom}
+              timeFilterTo={timeFilterTo}
+              setTimeFilterTo={setTimeFilterTo}
+              capFilter={capFilter}
+              setCapFilter={setCapFilter}
+            />
+          </div>
+          <Divider variant="fullWidth" />
         </LeftContainer>
         <Divider orientation="vertical" flexItem />
         <RightContainer>{renderReservations}</RightContainer>
@@ -91,6 +137,7 @@ const ReservationPage: React.FC = () => {
       <button onClick={() => console.log(reservations)}>
         log reservations
       </button>
+      <button onClick={() => console.log(descFilter)}>log desc</button>
     </div>
   );
 };

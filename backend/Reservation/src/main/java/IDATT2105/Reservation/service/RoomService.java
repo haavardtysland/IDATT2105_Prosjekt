@@ -6,7 +6,9 @@ import IDATT2105.Reservation.util.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class RoomService {
@@ -44,4 +46,8 @@ public class RoomService {
         return this.repo.deleteRoom(room_id);
     }
 
+    public ArrayList<Room> getAvailableRooms(Timestamp start, Timestamp end, int capacity){
+        log.info("Getting all available rooms from");
+        return this.repo.getAvailableRooms(start, end, capacity);
+    }
 }

@@ -5,7 +5,7 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import Radio, { RadioProps } from '@material-ui/core/Radio';
 import { cyan } from '@material-ui/core/colors';
-import { withStyles } from '@material-ui/core';
+import { Typography, withStyles } from '@material-ui/core';
 
 const BlueRadio = withStyles({
   root: {
@@ -33,7 +33,9 @@ const SortMenu: React.FC<SortMenuProps> = ({
   };
   return (
     <FormControl component="fieldset">
-      <FormLabel component="legend">Sorter</FormLabel>
+      <Typography style={{ margin: '5% 0', fontWeight: 'bold' }}>
+        Sorter
+      </Typography>
       <RadioGroup value={sortOption} onChange={handleChangeSortOption}>
         <FormControlLabel
           value={1}
