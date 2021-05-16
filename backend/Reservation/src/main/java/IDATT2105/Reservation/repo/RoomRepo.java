@@ -83,7 +83,7 @@ public class RoomRepo extends ProjectRepo {
                 Room currentRoom = allRooms.get(i);
                 for(int j = 0; j < currentRoom.getSections().size(); j++){
                     Section section = currentRoom.getSections().get(j);
-                    if(!section_ids.contains(section.getSectionId()) && !availableRooms.contains(currentRoom)){
+                    if(!section_ids.contains(section.getSectionId()) && !availableRooms.contains(currentRoom) && currentRoom.getCapacity() >= capacity){
                        availableRooms.add(currentRoom);
                     }
                 }
@@ -130,7 +130,6 @@ public class RoomRepo extends ProjectRepo {
 
     public Room getRoom(int room_id) {
         EntityManager em = getEm();
-        Room room;
         try{
             log.info("Finding room with room_id " + room_id);
             return em.find(Room.class, room_id);

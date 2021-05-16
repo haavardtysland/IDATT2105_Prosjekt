@@ -10,7 +10,6 @@ import java.util.List;
 @Entity
 public class Room {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "room_id")
     private int room_id;
     @Column(name = "name")
@@ -20,6 +19,14 @@ public class Room {
     @CascadeOnDelete
     @OneToMany(targetEntity = Section.class, mappedBy="room", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Section> sections = new ArrayList<>();
+
+    public Room(int room_id, String name, int capacity) {
+        this.room_id = room_id;
+        this.name = name;
+        this.capacity = capacity;
+    }
+
+    public Room(){}
 
     public int getRoom_id() {
         return room_id;
