@@ -28,7 +28,6 @@ enum SortOptions {
   DateEarlyLate = 4,
 }
 
-//TODO: filter multiple things at the same time
 const ReservationPage: React.FC = () => {
   const { user } = useContext(UserContext);
   const [sortOption, setSortOption] = React.useState<number>(0);
@@ -76,16 +75,23 @@ const ReservationPage: React.FC = () => {
 
   useEffect(() => {
     if (reservations) {
-      let filteredReservations = FilterFunctions.descFilter(
-        reservations,
-        descFilter
-      );
-      filteredReservations = FilterFunctions.timeFilter(
+      const filter1 = FilterFunctions.descFilter(reservations, descFilter);
+      const filter2 = FilterFunctions.timeFilter(
         reservations,
         timeFilterFrom,
         timeFilterTo
       );
-      filteredReservations = FilterFunctions.capFilter(reservations, capFilter);
+      const filter3 = FilterFunctions.capFilter(reservations, capFilter);
+      const filteredReservations: Reservation[] = [];
+      for (const r1 of filter1) {
+        for (const r2 of filter2) {
+          for (const r3 of filter3) {
+            if (r1 === r2 && r2 === r3) {
+              filteredReservations.push(r1);
+            }
+          }
+        }
+      }
       setCurrentReservations(filteredReservations);
     }
   }, [descFilter, timeFilterFrom, timeFilterTo, capFilter]);
