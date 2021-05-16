@@ -188,7 +188,7 @@ public class User {
         "\n     \"isAdmin\":" + '\"' + isAdmin + '\"' + "," +
         "\n     \"validDate\":" + '\"' + validDate + '\"' + "," +
         "\n     \"password\":" + '\"' + password + '\"' + "," +
-        "\n     \"phoneNumber\":" + '\"' + phoneNumber + '\"' + "," +
+        "\n     \"phoneNumber\":" + '\"' + phoneNumber + '\"' +
         "\n }";
   }
 
@@ -201,7 +201,7 @@ public class User {
         "\n     \"isAdmin\":" + '\"' + isAdmin + '\"' + "," +
         "\n     \"validDate\":" + '\"' + validDate + '\"' + "," +
         "\n     \"password\":" + '\"' + password + '\"'+ "," +
-        "\n     \"phoneNumber\":" + '\"' + phoneNumber + '\"' + "," +
+        "\n     \"phoneNumber\":" + '\"' + phoneNumber + '\"' +
         "\n }";
   }
 
