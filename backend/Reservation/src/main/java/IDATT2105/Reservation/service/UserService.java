@@ -1,5 +1,6 @@
 package IDATT2105.Reservation.service;
 
+import IDATT2105.Reservation.models.Reservation;
 import IDATT2105.Reservation.models.User;
 import IDATT2105.Reservation.repo.UserRepo;
 import IDATT2105.Reservation.util.Logger;
@@ -29,9 +30,9 @@ public class UserService {
     return repo.findUserByEmail(email);
   }
 
-  public boolean login(String email, String password) {
+  public User login(String email) {
     log.info("logging in user with email " + email.trim());
-    return getUser(email.trim()).verifyPassword(password);
+    return getUser(email.trim());
   }
 
   public User registerUser(int id, String firstname, String surname, String email, Boolean isAdmin, Date validDate, String password, int phoneNumber) {

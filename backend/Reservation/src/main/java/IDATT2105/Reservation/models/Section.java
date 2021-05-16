@@ -7,7 +7,6 @@ import javax.persistence.*;
 @Entity
 public class Section {
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "section_id")
   private int section_id;
 
@@ -21,13 +20,19 @@ public class Section {
   @ManyToOne(targetEntity = Room.class)
   private Room room;
 
-  public Section() {
+  public Section(int section_id, String section_name, int capacity) {
+    this.section_id = section_id;
+    this.section_name = section_name;
+    this.capacity = capacity;
   }
 
-  public Section(String name, Room room) {
+  public Section(String name, int capacity, Room room) {
     this.section_name = name;
+    this.capacity = capacity;
     this.room = room;
   }
+
+  public Section(){}
 
   public Section(String name) {
     this.section_name = name;
@@ -43,7 +48,7 @@ public class Section {
   }
 
   public String getSectionName() {
-    return section_name;
+    return this.section_name;
   }
 
   public void setSectionName(String sectionName) {
@@ -76,6 +81,15 @@ public class Section {
             "\n \"section_id\": " + section_id + "," +
             "\n \"section_name\": \"" + section_name + "\"," +
                 "\n\"capacity\":" + capacity +
+            "\n}";
+  }
+
+  public String toJSON() {
+    return
+        "{" +
+            "\n \"section_id\": " + section_id + "," +
+            "\n \"section_name\": \"" + section_name + "\"," +
+            "\n\"capacity\":" + capacity +
             "\n}";
   }
 

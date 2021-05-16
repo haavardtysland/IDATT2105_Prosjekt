@@ -1,6 +1,9 @@
 package IDATT2105.Reservation.models;
 
+
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.eclipse.persistence.annotations.CascadeOnDelete;
 import javax.persistence.*;
@@ -162,6 +165,20 @@ public class User {
   }
 
 
+
+
+  /*public List<ReservationUser> getReservations() {
+    return reservations;
+  }
+  public void addActivity(ReservationUser reservationUser) {
+    this.reservations.add(reservationUser);
+  }
+
+  public void setReservations(List<ReservationUser> reservations) {
+    this.reservations = reservations;
+  }*/
+
+
   public String toJSON() {
     return "\n  {" +
         "\n     \"userId\":" + userId + "," +
@@ -171,7 +188,7 @@ public class User {
         "\n     \"isAdmin\":" + '\"' + isAdmin + '\"' + "," +
         "\n     \"validDate\":" + '\"' + validDate + '\"' + "," +
         "\n     \"password\":" + '\"' + password + '\"' + "," +
-        "\n     \"phoneNumber\":" + '\"' + phoneNumber + '\"' + "," +
+        "\n     \"phoneNumber\":" + '\"' + phoneNumber + '\"' +
         "\n }";
   }
 
@@ -184,7 +201,7 @@ public class User {
         "\n     \"isAdmin\":" + '\"' + isAdmin + '\"' + "," +
         "\n     \"validDate\":" + '\"' + validDate + '\"' + "," +
         "\n     \"password\":" + '\"' + password + '\"'+ "," +
-        "\n     \"phoneNumber\":" + '\"' + phoneNumber + '\"' + "," +
+        "\n     \"phoneNumber\":" + '\"' + phoneNumber + '\"' +
         "\n }";
   }
 
