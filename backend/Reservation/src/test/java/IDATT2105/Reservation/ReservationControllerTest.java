@@ -97,7 +97,7 @@ public class ReservationControllerTest {
 		JSONObject room = (JSONObject) parser.parse(roomInfo);
 		int recievied_id = room.getAsNumber("room_id").intValue();
 		assert(room1.getRoom_id() == recievied_id);
-		
+
 	}
 
 	@Test
