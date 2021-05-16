@@ -104,7 +104,6 @@ public class ReservationController {
           e.getCause() + " with message " + e.getMessage());
       HashMap<String, String> body = new HashMap<>();
       body.put("error", "something went wrong");
-
       return ResponseEntity
           .badRequest()
           .body(formatJson(body));
@@ -247,7 +246,7 @@ public class ReservationController {
         .body(formatJson(body));
   }
 
-  @ReservationTokenRequired
+  //@ReservationTokenRequired
   @DeleteMapping("/{reservationId}")
   public ResponseEntity deleteReservation(@PathVariable Integer reservationId) {
     log.info("recieved deletemapping to reservation with id " + reservationId);

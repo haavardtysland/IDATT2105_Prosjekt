@@ -1,7 +1,6 @@
 package IDATT2105.Reservation.models;
 
 import org.eclipse.persistence.annotations.CascadeOnDelete;
-import org.eclipse.persistence.annotations.PrivateOwned;
 
 import javax.persistence.*;
 import java.util.ArrayList;
