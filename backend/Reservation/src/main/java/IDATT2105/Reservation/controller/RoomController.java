@@ -137,8 +137,14 @@ public class RoomController {
         return ResponseEntity.ok().headers(header).body(formatJson(body));
     }
 
-
-   @GetMapping(value = "/available/{from_date}/{to_date}/{capacity}")
+    /**
+     * Getting all the available rooms within the parameters
+     * @param from_date the starting time of the search
+     * @param to_date the end time of the search
+     * @param capacity The wanted capacity
+     * @return A ResponseEntity with the rooms that are available
+     */
+   @GetMapping(value = "/available/{from_date}/{to_date}/{capacity}", produces="application/json")
     public ResponseEntity getAvailableRooms(@PathVariable String from_date, @PathVariable String to_date, @PathVariable String capacity){
         List<Room> rooms;
         HttpHeaders header = new HttpHeaders();
@@ -159,6 +165,7 @@ public class RoomController {
             return ResponseEntity.badRequest().headers(header).body(formatJson(body));
         }
     }
+
 
 
     /**

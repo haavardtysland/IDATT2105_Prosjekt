@@ -78,19 +78,16 @@ public class RoomRepo extends ProjectRepo {
             q.setParameter(2, start);
             q.setParameter(3, end);
             section_ids = q.getResultList();
-            ArrayList<Room> allRooms = getRooms();
+            List<Room> allRooms = getRooms();
             for(int i = 0; i < allRooms.size(); i++){
                 Room currentRoom = allRooms.get(i);
-                System.out.println("Rom: " + allRooms.get(i).getRoom_id());
                 for(int j = 0; j < currentRoom.getSections().size(); j++){
                     Section section = currentRoom.getSections().get(j);
-                    System.out.println("alle: " + section.getSectionId());
                     if(!section_ids.contains(section.getSectionId()) && !availableRooms.contains(currentRoom)){
                        availableRooms.add(currentRoom);
                     }
                 }
             }
-            System.out.println(section_ids.toString());
             em.getTransaction().commit();
         } catch(Exception e) {
             log.info("Getting all the available rooms between " + start + " and " + end + " from the db failed due to " + e);
