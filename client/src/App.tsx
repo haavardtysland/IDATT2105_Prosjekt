@@ -3,18 +3,27 @@ import React, { createContext, useMemo, useState } from 'react';
 
 import { BrowserRouter } from 'react-router-dom';
 import Routes from './Routes';
-import { UserContext } from './UserContext';
+import { Context } from './Context';
+import User from './interfaces/User';
 
 function App() {
-  const [user, setUser] = useState<string>('');
+  const [user, setUser] = useState<User>({
+    userId: -1,
+    firstName: '',
+    surname: '',
+    email: '',
+    isAdmin: false,
+    validDate: new Date(),
+    phoneNumber: '',
+  });
   const value = useMemo(() => ({ user, setUser }), [user, setUser]);
 
   return (
-    <UserContext.Provider value={value}>
+    <Context.UserContext.Provider value={value}>
       <BrowserRouter>
         <div className="App">{Routes}</div>
       </BrowserRouter>
-    </UserContext.Provider>
+    </Context.UserContext.Provider>
   );
 }
 
