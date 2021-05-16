@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import LoginCard from '../components/LoginCard';
 import { useHistory } from 'react-router-dom';
 import { UserContext } from '../App';
+import axios from '../axios';
 
 const LoginContainer = styled.div`
   width: 100%;
@@ -29,14 +30,21 @@ const Login = () => {
   const [password, setPassword] = useState<string>('');
   const { setUser } = useContext(UserContext);
 
- 
-
   const onLogin = () => {
-    history.push('/mainPage');
-  };
-
-  const onNewUser = () => {
-    history.push('/newUser');
+    axios
+      .post('/login', {
+        email: username,
+        password: password,
+      })
+      .then((response) => {
+        if (response.data && !response.data.error) {
+          console.log(response.data);
+          history.push('/mainPage');
+        }
+        if (response.data.error) {
+          alert(response.data.error);
+        }
+      });
   };
 
   const onChangeUsername = (event: ChangeEvent<HTMLInputElement>) => {
@@ -60,7 +68,6 @@ const Login = () => {
         onChangeUsername={onChangeUsername}
         onChangePassword={onChangePassword}
         onKeyDown={onKeyDown}
-        onNewUser={onNewUser}
       ></LoginCard>
     </LoginContainer>
   );
