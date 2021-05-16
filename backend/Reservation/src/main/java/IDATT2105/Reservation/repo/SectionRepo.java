@@ -1,13 +1,18 @@
 package IDATT2105.Reservation.repo;
 
+import IDATT2105.Reservation.models.Reservation;
 import IDATT2105.Reservation.models.Room;
 import IDATT2105.Reservation.models.Section;
-import IDATT2105.Reservation.models.User;
 import IDATT2105.Reservation.util.Logger;
+import IDATT2105.Reservation.util.ReservationTime;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Repository
@@ -78,6 +83,47 @@ public class SectionRepo extends ProjectRepo {
             em.close();
         }
 
+    }
+
+    public ArrayList<ReservationTime> getSectionAvailability(int section_id){
+        EntityManager em = getEm();
+        ArrayList<ReservationTime> reservationTimes = new ArrayList<>();
+        try{
+            log.info("Finding the taken time slots for section: " + section_id);
+            Query q = em.createNativeQuery("SELECT reservation_id FROM RESERVATION where section_id = ?1");
+            q.setParameter(1, section_id);
+            List<Integer> ids = q.getResultList();
+            for(int id : ids) {
+                Reservation reservation = em.find(Reservation.class, id);
+                ReservationTime reservationTime = new ReservationTime(reservation.getFromDate().getTime(), reservation.getToDate().getTime());
+                reservationTimes.add(reservationTime);
+            }
+            return reservationTimes;
+        } catch(Exception e){
+            log.info("Finding taken time slots for section: " + section_id + " failed due to " + e);
+            return null;
+        }
+    }
+
+    public ArrayList<Section> getSections(){
+        EntityManager em = getEm();
+        List<Section> allSections = null;
+        try{
+            log.info("Getting all the rooms");
+            em.getTransaction().begin();
+            Query q = em.createNativeQuery("SELECT * FROM SECTION", Section.class);
+            allSections = q.getResultList();
+            em.getTransaction().commit();
+        } catch(Exception e) {
+            log.info("Getting all sections failed due to " + e);
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+        if(allSections == null) {
+            return new ArrayList<>();
+        }
+        return new ArrayList<>(allSections);
     }
 
 

@@ -1,5 +1,5 @@
 import { Button, TextField, Typography } from '@material-ui/core';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Calendar } from '@material-ui/pickers';
 import Form from '../components/Form';
@@ -43,8 +43,8 @@ function MainPage() {
 
   const getAllRooms = () => {
     axios.get('/room').then((response) => {
-      console.log(response.data);
-      setRooms(response.data);
+      console.log(response.data['rooms']);
+      setRooms(response.data['rooms']);
     });
   };
 

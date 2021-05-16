@@ -182,18 +182,23 @@ public class RoomController {
         HttpHeaders header = new HttpHeaders();
         try {
             rooms = roomService.getRooms();
-            header.add("Status", "200 OK");
+            header.add("STATUS", "200 OK");
             return ResponseEntity.ok().headers(header).body("{\"rooms\": \n" + rooms.toString() + "\n}");
         } catch (Exception e) {
             e.printStackTrace();
             log.error("An unexpected error was caught while getting all the rooms " + e.getCause() + " with message " + e.getMessage());
             HashMap<String, String> body = new HashMap<>();
-            header.add("Status", "400 BAD REQUEST");
+            header.add("STATUS", "400 BAD REQUEST");
             body.put("error", "something went wrong");
             return ResponseEntity.badRequest().headers(header).body(formatJson(body));
         }
     }
 
+    /**
+     * Delete a room
+     * @param room_id
+     * @return ResponseEntity based on if the room could be deleted
+     */
     @DeleteMapping(value="/{room_id}")
     public @ResponseBody
     ResponseEntity deleteRoom(@PathVariable String room_id){
