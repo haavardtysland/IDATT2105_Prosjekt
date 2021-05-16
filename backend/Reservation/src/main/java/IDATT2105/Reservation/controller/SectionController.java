@@ -6,6 +6,7 @@ import IDATT2105.Reservation.models.Section;
 import IDATT2105.Reservation.service.RoomService;
 import IDATT2105.Reservation.service.SectionService;
 import IDATT2105.Reservation.util.Logger;
+import IDATT2105.Reservation.util.ReservationTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +16,7 @@ import static IDATT2105.Reservation.controller.ControllerUtil.formatJson;
 import static IDATT2105.Reservation.controller.ControllerUtil.getRandomID;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 @CrossOrigin(origins = "*")
 @Controller
@@ -82,6 +80,45 @@ public class SectionController {
             header.add("Status", "400 BAD REQUEST");
             body.put("error", "Something went wrong while adding sections to room " + id);
             return ResponseEntity.ok().headers(header).body(formatJson(body));
+        }
+    }
+
+    /**
+     * Getting all the taken times for a section
+     * @param section_id section_id of the section you would like to check
+     * @return A json object on the form:
+     * "times": [
+     *     {
+     *         "start": 1352674800000,
+     *         "end": "1352674800000"
+     *     },
+     *     {
+     *         "start": 1605135600000,
+     *         "end": "1605135600000"
+     *     }
+     * ]
+     */
+    @GetMapping(value="{section_id}/taken", produces="application/json")
+    public ResponseEntity getSectionAvailability(@PathVariable String section_id){
+        List<ReservationTime> reservationTimes;
+        Map<String, String> body = new HashMap<>();
+        HttpHeaders header = new HttpHeaders();
+        try{
+            log.info("Getting section with section id " + section_id);
+            int id = Integer.parseInt(section_id);
+            reservationTimes = sectionService.getSectionAvailability(id);
+            if(reservationTimes == null) {
+                header.add("STATUS", "400 BAD REQUEST");
+                body.put("error", "Are you sure there is a section with id " + id + "?")          ;
+                return ResponseEntity.ok().headers(header).body(formatJson(body));
+            }
+            header.add("STATUS", "200 OK");
+            return ResponseEntity.ok().headers(header).body("\"times\": \n " + reservationTimes.toString());
+        }  catch(Exception e) {
+            log.info("Something went wrong while getting section with section_id " + section_id);
+            header.add("STATUS", "400 BAD REQUEST");
+            body.put("error", "Something went wrong while getting section with section_id " + section_id);
+            return ResponseEntity.badRequest().headers(header).body(formatJson(body));
         }
     }
 

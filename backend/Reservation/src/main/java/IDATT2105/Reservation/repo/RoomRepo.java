@@ -151,7 +151,8 @@ public class RoomRepo extends ProjectRepo {
                 em.getTransaction().rollback();
                 return false;
             }
-            for(Section section: room.getSections()){
+            for(int i = 0; i < room.getSections().size(); i++){
+                Section section = room.getSections().get(i);
                 room.removeSection(section);
                 em.createQuery("DELETE FROM Reservation r WHERE r.section = ?1 ", Reservation.class)
                         .setParameter(1, section)
@@ -163,7 +164,7 @@ public class RoomRepo extends ProjectRepo {
             log.info("Succesfully deleted room with room_id " + room_id);
             return true;
         }  catch(Exception e){
-            log.info("Failed deleting room " + e.getMessage());
+            log.info("Failed deleting room " + e);
             em.getTransaction().rollback();
             return false;
         } finally{
