@@ -36,15 +36,19 @@ const TransformDiv = styled.div`
 
 interface RoomCardProps {
   room: Room;
+  onReservationClick?: () => void;
 }
 
-const RoomCard: React.FC<RoomCardProps> = ({ room }: RoomCardProps) => {
+const RoomCard: React.FC<RoomCardProps> = ({
+  room,
+  onReservationClick,
+}: RoomCardProps) => {
   const classes = useStyles();
 
   //TODO: delete room when clicked on button
 
   return (
-    <TransformDiv>
+    <TransformDiv onClick={onReservationClick}>
       <Card className={classes.root}>
         <CardMedia
           className={classes.media}
