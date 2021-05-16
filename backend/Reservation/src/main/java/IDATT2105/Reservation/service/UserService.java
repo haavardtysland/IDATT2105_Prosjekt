@@ -31,9 +31,33 @@ public class UserService {
   }
 
   public User login(String email) {
-    log.info("logging in user with email " + email.trim());
-    return getUser(email.trim());
+      log.info("logging in user with email " + email.trim());
+      return getUser(email.trim());
   }
+
+  /**
+   * This method is used when a user wants to update their user settings. It gets passed new
+   * values from the {@link IDATT2106.team6.Gidd.web.UserController controller}, which are then used to
+   * create a new User object which is passed into the {@link UserRepo repo} to be merged.
+   *
+   * @return result from {@link UserRepo#updateUser(User) repo} or false if an exception is caught
+   * @see UserService#editUser(User)
+   */
+  public boolean editUser(int id, String firstname, String surname, String email, Boolean isAdmin, Date validDate, String password, int phoneNumber) {
+    try {
+      log.debug("In editUser");
+      User newUser =
+          new User(id,firstname,surname,email, isAdmin,validDate,  password, phoneNumber);
+      log.info("updating user with id: " + newUser.getUserId());
+
+      return repo.updateUser(newUser);
+    } catch (Exception e) {
+      log.debug("An error was caught while updating user " + e.getMessage() + " | Local; " +
+          e.getLocalizedMessage());
+    }
+    return false;
+  }
+
 
   public User registerUser(int id, String firstname, String surname, String email, Boolean isAdmin, Date validDate, String password, int phoneNumber) {
 

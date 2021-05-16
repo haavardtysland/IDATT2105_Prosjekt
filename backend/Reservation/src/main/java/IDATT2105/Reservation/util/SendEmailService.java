@@ -15,12 +15,23 @@ public class SendEmailService {
   @Autowired
   private JavaMailSender javaMailSender;
 
-  public void sendEmail(String email, String password){
+  public void sendUserEmail(String email, String password){
     log.info("sending mail");
     SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
     simpleMailMessage.setFrom("reservasjonapp@gmail.com");
     simpleMailMessage.setTo(email);
     simpleMailMessage.setSubject("Reservasjon brukernavn og passord");
+    simpleMailMessage.setText("Ditt brukernavn : " + email + "\n" + "Ditt passord: " + password);
+    javaMailSender.send(simpleMailMessage);
+    log.info("sending sent");
+  }
+
+  public void sendEditUserEmail(String email, String password){
+    log.info("sending mail");
+    SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+    simpleMailMessage.setFrom("reservasjonapp@gmail.com");
+    simpleMailMessage.setTo(email);
+    simpleMailMessage.setSubject("Brukeren din har no blit endret. Nytt passord og brukernavn");
     simpleMailMessage.setText("Ditt brukernavn : " + email + "\n" + "Ditt passord: " + password);
     javaMailSender.send(simpleMailMessage);
     log.info("sending sent");

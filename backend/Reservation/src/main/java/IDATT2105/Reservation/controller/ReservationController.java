@@ -13,10 +13,12 @@ import IDATT2105.Reservation.service.UserService;
 import IDATT2105.Reservation.service.ReservationService;
 import IDATT2105.Reservation.service.RoomService;
 import IDATT2105.Reservation.util.Logger;
+import IDATT2105.Reservation.util.MapTokenRequired;
 import IDATT2105.Reservation.util.ReservationTokenRequired;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +31,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -76,7 +79,7 @@ public class ReservationController {
       List<Reservation> reservations = reservationService.getReservationsForUser(userId);
       return ResponseEntity
           .ok()
-          .body(reservations.toString());
+          .body("{\"reservations\": \n" + reservations.toString() + "\n}");
     } catch (Exception e) {
       e.printStackTrace();
       log.error("An unexpected error was caught while getting all reservations for user: " +
@@ -143,6 +146,7 @@ public class ReservationController {
     "description": "Test description"
 }
    */
+
   @PostMapping(value = "", consumes = "application/json", produces = "application/json")
   public ResponseEntity registerReservation(@RequestBody Map<String, Object> map) {
 
@@ -247,7 +251,7 @@ public class ReservationController {
         .body(formatJson(body));
   }
 
-  @ReservationTokenRequired
+
   @DeleteMapping("/{reservationId}")
   public ResponseEntity deleteReservation(@PathVariable Integer reservationId) {
     log.info("recieved deletemapping to reservation with id " + reservationId);
@@ -276,5 +280,55 @@ public class ReservationController {
 
     body.put("error", "no reservation was deleted, are you sure the reservation exists");
     return ResponseEntity.badRequest().headers(header).body(formatJson(body));
+  }
+
+  @PutMapping(value = "/{id}", consumes = "application/json", produces = "application/json")
+  public ResponseEntity editReservation(@PathVariable("id") int resId,
+                                     @RequestBody Map<String, Object> map
+  ) {
+    log.info("received putMapping to /reservation/{id}");
+    User user = userService.getUser(Integer.parseInt(map.get("user_id").toString()));
+    log.debug("User with id received");
+    Reservation reservation = reservationService.getReservation(resId);
+
+
+    HttpHeaders headers = new HttpHeaders();
+    HashMap<String, String> body = new HashMap<>();
+
+    headers.add("Content-Type", "application/json; charset=UTF-8");
+    if (reservation == null || user == null) {
+      body.put("error", "user or reservation is null");
+      log.error("reservation or user is null, returning error");
+      log.debug("Reservation: " + (reservation == null));
+      log.debug("User: " + (user == null));
+      return ResponseEntity
+          .badRequest()
+          .headers(headers)
+          .body(formatJson(body));
+    }
+    log.info("old reservation " + reservation.getReservation_id());
+
+    reservation.setCapacity(Integer.parseInt(map.get("capacity").toString()));
+    reservation.setDescription(map.get("description").toString());
+    reservation.setFromDate(Timestamp.valueOf(map.get("from_date").toString()));
+    reservation.setFromDate(Timestamp.valueOf(map.get("to_date").toString()));
+    reservation.setSectionId(Integer.parseInt(map.get("section_id").toString()));
+
+
+    log.info("new reservation: " + reservation.getReservation_id());
+    boolean edited = reservationService.editReservation(reservation);
+    if (!edited) {
+      body.put("error", "reservation was not edited");
+      log.info("reservation is not edited returning error");
+      return ResponseEntity
+          .badRequest()
+          .headers(headers)
+          .body("didnt work here either sad");
+    }
+
+    return ResponseEntity
+        .ok()
+        .headers(headers)
+        .body(reservation.toString());
   }
 }

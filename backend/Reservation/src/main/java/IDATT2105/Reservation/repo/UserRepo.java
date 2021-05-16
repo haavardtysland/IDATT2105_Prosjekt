@@ -137,4 +137,23 @@ public class UserRepo extends ProjectRepo {
         em.close();
       }
     }
+
+
+  public boolean updateUser(User user){
+    log.info("updating user " + user.getUserId());
+    EntityManager em = getEm();
+
+    try{
+      em.getTransaction().begin();
+      em.merge(user);
+      em.getTransaction().commit();
+      log.info("successfully updated user " + user.getUserId());
+      return true;
+    }catch(Exception e){
+      log.error("updating user: " + user.getUserId() + " failed due to " + e.getMessage());
+      return false;
+    }finally {
+      em.close();
+    }
+  }
   }
