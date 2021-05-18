@@ -1,8 +1,6 @@
 package IDATT2105.Reservation;
 
-import IDATT2105.Reservation.models.Room;
-import IDATT2105.Reservation.models.Section;
-import IDATT2105.Reservation.models.User;
+import IDATT2105.Reservation.models.*;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import net.minidev.json.parser.JSONParser;
@@ -16,6 +14,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
@@ -44,8 +43,10 @@ public class ReservationControllerTest {
 	private Section section2;
 	private Section section3;
 	private Section section4;
-	User adminUser;
-	User newUser;
+	private User adminUser;
+	private User newUser;
+	private Reservation reservation;
+	private Message message;
 
 	@BeforeAll
 	public void beforeAll() throws Exception{
@@ -61,6 +62,9 @@ public class ReservationControllerTest {
 
 		adminUser = new User(1, "Admin", "User", "admin@gmail.com", true, new Date(1652306400000L), "123", 12312312);
 		newUser = new User(1, "New", "User", "new@gmail.com", false, new Date(1652306400000L), "123", 12312312);
+
+		reservation = new Reservation();
+		message = new Message();
 
 		room1.getSections().add(section1);
 		room1.getSections().add(section2);
@@ -106,7 +110,7 @@ public class ReservationControllerTest {
 		JSONArray array = ((JSONArray) parser.parse(csv));
 
 		for(int i = 0; i < room1.getSections().size(); i++){
-
+			room1.getSections().get(i).setSectionId((Integer.parseInt(((JSONObject)array.get(i)).get("section_id").toString())));
 		}
 
 		assert(room1.getRoom_id() == recievied_id);
@@ -115,6 +119,20 @@ public class ReservationControllerTest {
 
 	@Test
 	@Order(3)
+	public void getSectionTest() throws Exception{
+		System.out.println("Test 3");
+		String sectionInfo = mockMvc.perform(MockMvcRequestBuilders.get("/section/" + room1.getSections().get(0).getSectionId()).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(MockMvcResultMatchers.jsonPath("$.section_id").exists())
+				.andExpect(MockMvcResultMatchers.jsonPath("$.section_id").isNotEmpty())
+				.andReturn().getResponse().getContentAsString();
+
+		JSONParser parser = new JSONParser();
+		JSONObject section = (JSONObject) parser.parse(sectionInfo);
+		int recievied_id = section.getAsNumber("section_id").intValue();
+		assert(recievied_id == section1.getSectionId());
+	}
+
+	@Test
+	@Order(4)
 	public void addSectionTest() throws Exception{
 		System.out.println("Test 3");
 		String section_id = mockMvc.perform(MockMvcRequestBuilders.post("/section/" + room1.getRoom_id()).contentType(MediaType.APPLICATION_JSON).content(
@@ -128,7 +146,7 @@ public class ReservationControllerTest {
 	}
 
 	@Test
-	@Order(4)
+	@Order(5)
 	public void registerUserTest() throws Exception{
 		System.out.println("Test 4");
 		String result = mockMvc.perform(MockMvcRequestBuilders.post("/user").contentType(MediaType.APPLICATION_JSON).content(
@@ -148,7 +166,7 @@ public class ReservationControllerTest {
 	}
 
 	@Test
-	@Order(5)
+	@Order(6)
 	public void registerUserWithAlreadyRegisteredEmail() throws Exception{
 		System.out.println("Test 5");
 		String error = mockMvc.perform(MockMvcRequestBuilders.post("/user").contentType(MediaType.APPLICATION_JSON).content(
@@ -167,33 +185,132 @@ public class ReservationControllerTest {
 		assert("En bruker med en emailen finnes allerede".equals(JSONError.get("error")));
 	}
 
-/*
+
 	@Test
-	@Order(6)
+	@Order(7)
 	public void registerReservationTest() throws Exception {
 		System.out.println("Test 6");
+		reservation.setFromDate(Timestamp.valueOf("2021-05-05 12:00:00.0"));
+		reservation.setFromDate(Timestamp.valueOf("2021-05-05 12:00:00.0"));
+		reservation.setToDate(Timestamp.valueOf("2021-06-05 12:00:00.0"));
+		reservation.setCapacity(10);
+		reservation.setDescription("Test reservasjon");
+
 		String reservation_id = mockMvc.perform(MockMvcRequestBuilders.post("/reservation").contentType(MediaType.APPLICATION_JSON).content(
 				"{" +
 						"\n \"user_id\": " + newUser.getUserId() + "," +
-						"\n \"section_id\":" + room1.getSections().get(0).getSectionId() + "," +
-						"\n \"from_date\": " + "2021-05-05 12:00:00" + "," +
-						"\n \"to_date\": " + "2021-06-05 12:00:00" + "," +
+						"\n \"section_id\": " + room1.getSections().get(0).getSectionId() + "," +
+						"\n \"from_date\": " + "\"" + "2021-05-05 12:00:00.0" + "\"" + "," +
+						"\n \"to_date\": " + "\"" + "2021-06-05 12:00:00.0" + "\"" + "," +
 						"\n \"capacity\": " + 10 + ","+
-						"\n \"description\": " + "Test reservasjon" +
+						"\n \"description\": " + "\"" + "Test reservasjon" + "\"" +
 						"\n}"
 		)).andExpect(status().isOk()).andExpect(MockMvcResultMatchers.jsonPath("$.reservationId").exists()).andExpect(MockMvcResultMatchers.jsonPath("$.reservationId").isNotEmpty()).andReturn().getResponse().getContentAsString();
-	}*/
+
+		JSONParser parser = new JSONParser();
+		JSONObject idJson = (JSONObject) parser.parse(reservation_id);
+		reservation.setReservation_id(idJson.getAsNumber("reservationId").intValue());
+		reservation.setUser(newUser);
+		reservation.setSection(section1);
+		section1.addReservation(reservation);
+		newUser.addReservation(reservation);
+	}
+
 	@Test
-	@Order(6)
+	@Order(8)
+	public void getReservationsForUserTest() throws Exception{
+		System.out.println("Test 7");
+		String reservationInfo = mockMvc.perform(MockMvcRequestBuilders.get("/reservation/" + newUser.getUserId() + "/user").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(MockMvcResultMatchers.jsonPath("$.reservations").exists())
+				.andExpect(MockMvcResultMatchers.jsonPath("$.reservations").isNotEmpty())
+				.andReturn().getResponse().getContentAsString();
+
+		JSONParser parser = new JSONParser();
+		JSONObject json = (JSONObject) parser.parse(reservationInfo);
+		String csv = json.get("reservations").toString();
+		JSONArray jsonArray = (JSONArray) parser.parse(csv);
+
+		assert((Integer.parseInt(((JSONObject)jsonArray.get(0)).get("reservationId").toString())) == reservation.getReservation_id());
+	}
+
+	@Test
+	@Order(9)
+	public void getReservationsForSectionTest() throws Exception{
+		System.out.println("Test 8");
+		String reservationInfo = mockMvc.perform(MockMvcRequestBuilders.get("/reservation/" + room1.getSections().get(0).getSectionId() + "/section").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(MockMvcResultMatchers.jsonPath("$.reservations").exists())
+				.andExpect(MockMvcResultMatchers.jsonPath("$.reservations").isNotEmpty())
+				.andReturn().getResponse().getContentAsString();
+
+		JSONParser parser = new JSONParser();
+		JSONObject json = (JSONObject) parser.parse(reservationInfo);
+		String csv = json.get("reservations").toString();
+		JSONArray jsonArray = (JSONArray) parser.parse(csv);
+
+		assert((Integer.parseInt(((JSONObject)jsonArray.get(0)).get("reservationId").toString())) == reservation.getReservation_id());
+	}
+
+
+	@Test
+	@Order(10)
+	public void getReservationsForRoomTest() throws Exception{
+		System.out.println("Test 8");
+		String reservationInfo = mockMvc.perform(MockMvcRequestBuilders.get("/reservation/" + room1.getRoom_id() + "/room").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(MockMvcResultMatchers.jsonPath("$.reservations").exists())
+				.andExpect(MockMvcResultMatchers.jsonPath("$.reservations").isNotEmpty())
+				.andReturn().getResponse().getContentAsString();
+
+		JSONParser parser = new JSONParser();
+		JSONObject json = (JSONObject) parser.parse(reservationInfo);
+		String csv = json.get("reservations").toString();
+		JSONArray jsonArray = (JSONArray) parser.parse(csv);
+
+		assert((Integer.parseInt(((JSONObject)jsonArray.get(0)).get("reservationId").toString())) == reservation.getReservation_id());
+	}
+
+	@Test
+	@Order(11)
+	public void getSectionStatistics() throws Exception{
+		System.out.println("Test 11");
+		Long start = section1.getReservations().get(0).getFromDate().getTime();
+		Long end = section1.getReservations().get(0).getToDate().getTime();
+		Long duration = end - start;
+		String time = mockMvc.perform(MockMvcRequestBuilders.get("/section/" + section1.getSectionId() + "/" + start + "/" + end).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(MockMvcResultMatchers.jsonPath("$.time").exists())
+				.andExpect(MockMvcResultMatchers.jsonPath("$.time").isNotEmpty())
+				.andReturn().getResponse().getContentAsString();
+
+		JSONParser parser = new JSONParser();
+		JSONObject info = (JSONObject) parser.parse(time);
+		Long recievedTime = Long.parseLong(info.get("time").toString());
+
+		assert(recievedTime.equals(duration));
+	}
+
+	@Test
+	@Order(12)
+	public void addMessage() throws Exception{
+		message.setUser(newUser);
+		message.setMessage("Test melding");
+
+		String messageId = mockMvc.perform(MockMvcRequestBuilders.post("/section/" + section1.getSectionId() + "/message").contentType(MediaType.APPLICATION_JSON).content(
+				"{" +
+						"\"user_id\" : " + newUser.getUserId() + ",\n" +
+						"\"message\" : " + "\"" + message.getMessage() + "\"" + "\n" +
+						"}"
+		)).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
+
+		JSONParser parser = new JSONParser();
+		JSONObject info = (JSONObject) parser.parse(messageId);
+		System.out.println(info.toString());
+
+	}
+	@Test
+	@Order(13)
 	public void deleteUserTest() throws Exception{
 		System.out.println("Test 5");
 		String user_id = mockMvc.perform(MockMvcRequestBuilders.delete("/user/" + newUser.getUserId()).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
 		System.out.println(user_id.toString());
 	}
 
-
 	@Test
-	@Order(7)
+	@Order(14)
 	public void deleteRoomTest() throws Exception {
 		System.out.println("Test 4");
 		String room_id = mockMvc.perform(MockMvcRequestBuilders.delete("/room/" + room1.getRoom_id()).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();

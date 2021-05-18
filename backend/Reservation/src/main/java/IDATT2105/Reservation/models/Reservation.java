@@ -1,5 +1,7 @@
 package IDATT2105.Reservation.models;
 
+import org.eclipse.persistence.annotations.CascadeOnDelete;
+
 import java.sql.Time;
 import java.sql.Timestamp;
 import javax.annotation.processing.Generated;
@@ -12,14 +14,16 @@ public class Reservation {
   @Column(name = "reservation_id")
   @GeneratedValue(strategy = GenerationType.AUTO)
   private int reservation_id;
-  @ManyToOne
+  @CascadeOnDelete
+  @ManyToOne(targetEntity = Section.class)
   @JoinColumn(name = "section_id")
   private Section section;
   @Column(name = "from_date")
   private Timestamp from_date;
   @Column(name = "to_date")
   private Timestamp to_date;
-  @ManyToOne
+  @CascadeOnDelete
+  @ManyToOne(targetEntity = User.class)
   @JoinColumn(name = "user_id")
   private User user;
   @Column(name = "capacity")

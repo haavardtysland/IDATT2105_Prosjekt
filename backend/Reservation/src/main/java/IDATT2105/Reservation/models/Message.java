@@ -1,5 +1,7 @@
 package IDATT2105.Reservation.models;
 
+import org.eclipse.persistence.annotations.CascadeOnDelete;
+
 import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,11 +15,13 @@ public class Message {
   @Column(name = "message_id")
   private int messageId;
 
-  @ManyToOne
+  @CascadeOnDelete
+  @ManyToOne(targetEntity = User.class)
   @JoinColumn(name = "user_id")
   private User user;
 
-  @ManyToOne
+  @CascadeOnDelete
+  @ManyToOne(targetEntity = Section.class)
   @JoinColumn(name = "section_id")
   private Section section;
 

@@ -45,7 +45,8 @@ public class UserRepo extends ProjectRepo {
     User user = null;
 
     try {
-      return user = em.find(User.class, userId);
+      user = em.find(User.class, userId);
+      return user;
     }catch (Exception e){
       log.error("finding user " + userId + " failed due to " + e.getMessage());
       return null;

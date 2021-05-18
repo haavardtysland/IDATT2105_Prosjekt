@@ -90,7 +90,7 @@ public class UserController {
     log.error("unable to delete user with id: " + id);
     body.put("error", "deletion failed, are you sure the user with id " + id + " exists?");
     header.add("Status", "400 BAD REQUEST");
-    return ResponseEntity.ok()
+    return ResponseEntity.badRequest()
         .headers(header).body(formatJson(body));
   }
 
