@@ -1,9 +1,6 @@
 package IDATT2105.Reservation;
 
-import IDATT2105.Reservation.models.Reservation;
-import IDATT2105.Reservation.models.Room;
-import IDATT2105.Reservation.models.Section;
-import IDATT2105.Reservation.models.User;
+import IDATT2105.Reservation.models.*;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import net.minidev.json.parser.JSONParser;
@@ -17,6 +14,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
@@ -48,6 +46,7 @@ public class ReservationControllerTest {
 	private User adminUser;
 	private User newUser;
 	private Reservation reservation;
+	private Message message;
 
 	@BeforeAll
 	public void beforeAll() throws Exception{
@@ -65,6 +64,7 @@ public class ReservationControllerTest {
 		newUser = new User(1, "New", "User", "new@gmail.com", false, new Date(1652306400000L), "123", 12312312);
 
 		reservation = new Reservation();
+		message = new Message();
 
 		room1.getSections().add(section1);
 		room1.getSections().add(section2);
@@ -190,6 +190,12 @@ public class ReservationControllerTest {
 	@Order(7)
 	public void registerReservationTest() throws Exception {
 		System.out.println("Test 6");
+		reservation.setFromDate(Timestamp.valueOf("2021-05-05 12:00:00.0"));
+		reservation.setFromDate(Timestamp.valueOf("2021-05-05 12:00:00.0"));
+		reservation.setToDate(Timestamp.valueOf("2021-06-05 12:00:00.0"));
+		reservation.setCapacity(10);
+		reservation.setDescription("Test reservasjon");
+
 		String reservation_id = mockMvc.perform(MockMvcRequestBuilders.post("/reservation").contentType(MediaType.APPLICATION_JSON).content(
 				"{" +
 						"\n \"user_id\": " + newUser.getUserId() + "," +
@@ -204,6 +210,10 @@ public class ReservationControllerTest {
 		JSONParser parser = new JSONParser();
 		JSONObject idJson = (JSONObject) parser.parse(reservation_id);
 		reservation.setReservation_id(idJson.getAsNumber("reservationId").intValue());
+		reservation.setUser(newUser);
+		reservation.setSection(section1);
+		section1.addReservation(reservation);
+		newUser.addReservation(reservation);
 	}
 
 	@Test
@@ -258,10 +268,11 @@ public class ReservationControllerTest {
 	@Test
 	@Order(11)
 	public void getSectionStatistics() throws Exception{
-		Long start = room1.getSections().get(0).getReservations().get(0).getFromDate().getTime();
-		Long end = room1.getSections().get(0).getReservations().get(0).getToDate().getTime();
+		System.out.println("Test 11");
+		Long start = section1.getReservations().get(0).getFromDate().getTime();
+		Long end = section1.getReservations().get(0).getToDate().getTime();
 		Long duration = end - start;
-		String time = mockMvc.perform(MockMvcRequestBuilders.get("/section/" + room1.getSections().get(0).getSectionId() + "/" + start + "/" + end).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(MockMvcResultMatchers.jsonPath("$.time").exists())
+		String time = mockMvc.perform(MockMvcRequestBuilders.get("/section/" + section1.getSectionId() + "/" + start + "/" + end).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(MockMvcResultMatchers.jsonPath("$.time").exists())
 				.andExpect(MockMvcResultMatchers.jsonPath("$.time").isNotEmpty())
 				.andReturn().getResponse().getContentAsString();
 
@@ -269,20 +280,37 @@ public class ReservationControllerTest {
 		JSONObject info = (JSONObject) parser.parse(time);
 		Long recievedTime = Long.parseLong(info.get("time").toString());
 
-		assert(recievedTime == duration);
+		assert(recievedTime.equals(duration));
 	}
+
 	@Test
 	@Order(12)
+	public void addMessage() throws Exception{
+		message.setUser(newUser);
+		message.setMessage("Test melding");
+
+		String messageId = mockMvc.perform(MockMvcRequestBuilders.post("/section/" + section1.getSectionId() + "/message").contentType(MediaType.APPLICATION_JSON).content(
+				"{" +
+						"\"user_id\" : " + newUser.getUserId() + ",\n" +
+						"\"message\" : " + "\"" + message.getMessage() + "\"" + "\n" +
+						"}"
+		)).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
+
+		JSONParser parser = new JSONParser();
+		JSONObject info = (JSONObject) parser.parse(messageId);
+		System.out.println(info.toString());
+
+	}
+	@Test
+	@Order(13)
 	public void deleteUserTest() throws Exception{
 		System.out.println("Test 5");
 		String user_id = mockMvc.perform(MockMvcRequestBuilders.delete("/user/" + newUser.getUserId()).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
 		System.out.println(user_id.toString());
-
-
 	}
 
 	@Test
-	@Order(13)
+	@Order(14)
 	public void deleteRoomTest() throws Exception {
 		System.out.println("Test 4");
 		String room_id = mockMvc.perform(MockMvcRequestBuilders.delete("/room/" + room1.getRoom_id()).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();

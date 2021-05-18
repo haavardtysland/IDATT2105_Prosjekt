@@ -66,6 +66,7 @@ public class SectionController {
             Timestamp currentTime = new Timestamp(new Date().getTime());
             message.setTimeCreated(currentTime);
             section.addMessage(message);
+            user.addMessage(message);
 
         boolean result =  sectionService.addMessage(section);
         if(result){

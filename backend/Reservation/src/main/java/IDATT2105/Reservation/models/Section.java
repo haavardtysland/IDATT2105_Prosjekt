@@ -22,11 +22,13 @@ public class Section {
   @ManyToOne(targetEntity = Room.class)
   private Room room;
 
+  @CascadeOnDelete
   @OneToMany(targetEntity = Reservation.class, mappedBy="section", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-  private List<Reservation> reservations;
+  private List<Reservation> reservations = new ArrayList<>();
 
+  @CascadeOnDelete
   @OneToMany(targetEntity = Message.class, mappedBy="section", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-  private List<Message> messages;
+  private List<Message> messages = new ArrayList<>();
 
   public Section( String section_name, int capacity) {
     this.section_name = section_name;
@@ -124,13 +126,13 @@ public class Section {
 
   @Override
   public String toString() {
-    return
-        "{" +
-            "\n \"section_id\": " + section_id + "," +
-            "\n \"section_name\": \"" + section_name + "\"," +
-            "\n\"capacity\":" + capacity + "," +
-            "\n\"messages\":" + messages.toString() +
-            "\n}";
+      return
+              "{" +
+                      "\n \"section_id\": " + section_id + "," +
+                      "\n \"section_name\": \"" + section_name + "\"," +
+                      "\n\"capacity\":" + capacity + "," +
+                      "\n\"messages\":" + messages.toString() +
+                      "\n}";
   }
 
   public String toJSON() {
