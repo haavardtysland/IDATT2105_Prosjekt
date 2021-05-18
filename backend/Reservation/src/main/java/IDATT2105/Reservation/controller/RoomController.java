@@ -158,7 +158,6 @@ public class RoomController {
         int room_capacity = Integer.parseInt(capacity);
         Timestamp start_time = new Timestamp(start);
         Timestamp end_time = new Timestamp(end);
-        long now = new Date().getTime();
         try{
             rooms = roomService.getAvailableRooms(start_time, end_time, room_capacity);
             header.add("STATUS", "200 OK ");
