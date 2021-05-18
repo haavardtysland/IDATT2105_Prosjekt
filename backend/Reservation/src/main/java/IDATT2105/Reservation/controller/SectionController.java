@@ -156,7 +156,7 @@ public class SectionController {
                 return ResponseEntity.ok().headers(header).body(formatJson(body));
             }
             header.add("STATUS", "200 OK");
-            return ResponseEntity.ok().headers(header).body("{\n\"hours\": " + hours_used + "\n}");
+            return ResponseEntity.ok().headers(header).body("{\n\"time\": " + hours_used + "\n}");
         }  catch(Exception e) {
             log.info("Something went wrong while getting section with section_id " + section_id);
             header.add("STATUS", "400 BAD REQUEST");
@@ -198,7 +198,7 @@ public class SectionController {
                 return ResponseEntity.badRequest().headers(header).body(formatJson(body));
             }
             header.add("STATUS", "200 OK");
-            return ResponseEntity.ok().headers(header).body("\"section\": \n " + section.toString());
+            return ResponseEntity.ok().headers(header).body(section.toString());
         }  catch(Exception e) {
             log.info("Something went wrong while getting section with section_id " + section_id);
             header.add("STATUS", "400 BAD REQUEST");

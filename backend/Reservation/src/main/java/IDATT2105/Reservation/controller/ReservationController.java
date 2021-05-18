@@ -100,7 +100,7 @@ public class ReservationController {
       List<Reservation> reservations = reservationService.getReservationsForSection(sectionId);
       return ResponseEntity
           .ok()
-          .body(reservations.toString());
+          .body("{\"reservations\": \n" + reservations.toString() + "\n}");
     } catch (Exception e) {
       e.printStackTrace();
       log.error("An unexpected error was caught while getting all reservations for section: " +
