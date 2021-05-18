@@ -185,7 +185,7 @@ public class ReservationController {
           .headers(headers)
           .body(formatJson(body));
     } catch (IllegalArgumentException e) {
-      log.error("user is already registered to the reservasjon");
+      log.error("user is already registered to the reservation");
       body.put("error", "user is already registered: " + e.getMessage());
       return ResponseEntity
           .badRequest()

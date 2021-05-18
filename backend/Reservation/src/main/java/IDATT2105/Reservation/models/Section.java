@@ -25,8 +25,7 @@ public class Section {
   @OneToMany(targetEntity = Reservation.class, mappedBy="section", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
   private List<Reservation> reservations;
 
-  public Section(int section_id, String section_name, int capacity) {
-    this.section_id = section_id;
+  public Section(String section_name, int capacity) {
     this.section_name = section_name;
     this.capacity = capacity;
   }
