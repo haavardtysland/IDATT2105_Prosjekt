@@ -145,9 +145,7 @@ const Calendar: React.FC<CalendarProps> = ({ date }: CalendarProps) => {
             openPopup={openPopup}
             setOpenPopup={setOpenPopup}
           >
-            {/*
-            <ReservationForm timeFrom="" timeTo="" />
-            */}
+            <ReservationForm />
           </Popup>
         </ButtonsDiv>
         <Button onClick={() => console.log(isMarkedArr)}>Log marked arr</Button>
