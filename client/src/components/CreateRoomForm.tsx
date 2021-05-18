@@ -2,11 +2,7 @@ import { TextField, Typography, Button } from '@material-ui/core';
 import React, { ChangeEvent, Fragment, useEffect, useState } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import styled from 'styled-components';
-import {
-  KeyboardDatePicker,
-  MuiPickersUtilsProvider,
-} from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
+import DeleteIcon from '@material-ui/icons/Delete';
 import SectionAdder from './SectionAdder';
 import Room from '../interfaces/Room';
 
@@ -113,11 +109,7 @@ function CreateRoomForm({
           sectionsChange={sectionsChange}
         ></SectionAdder>
       </Container>
-      {room && (
-        <Flex>
-          <Button onClick={() => console.log(room)}>Oppdater rom</Button>
-        </Flex>
-      )}
+     
     </Fragment>
   );
 }

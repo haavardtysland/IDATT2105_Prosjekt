@@ -13,7 +13,6 @@ const Container = styled.div`
 `;
 function UserAdministration() {
   const [users, setUsers] = useState<User[]>([]);
-  
 
   const loadUsers = () => {
     axios.get('/user').then((response) => {
@@ -27,8 +26,19 @@ function UserAdministration() {
       .then(() => setUsers(users.filter((user) => user.userId != userId)));
   };
 
-  const resendPassword = (userId: number) => {
-    console.log('snekker');
+  const resendPassword = (user: User) => {
+    axios
+      .put(`user/edit/${user.userId}`, {
+        firstName: user.firstName,
+        surName: user.surname,
+        email: user.email,
+        isAdmin: user.isAdmin,
+        validDate: user.validDate,
+        password: true, //if true send new password. if false use the oldone.
+        phoneNumber: user.phoneNumber,
+      })
+      .then(() => alert(`${user.email} har fått tilsendt et nytt passord`))
+      .catch((err) => alert(err.data.error));
   };
 
   useEffect(loadUsers, []);
@@ -40,7 +50,6 @@ function UserAdministration() {
         resendPassword={resendPassword}
         users={users}
       ></UserGrid>
-      
     </Container>
   );
 }
