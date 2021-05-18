@@ -13,7 +13,6 @@ import {
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import Popup from '../Popup';
-import MyUser from '../MyUser';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -26,13 +25,25 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-//interface DropDownListProps {}
+interface DropDownListProps {
+  listItems?: string[];
+  openPopup: boolean;
+  setOpenPopup: React.Dispatch<React.SetStateAction<boolean>>;
+  childrens?: React.ReactNode[];
+  children: React.ReactNode;
+}
 
-const DropDownList: React.FC = () => {
+const DropDownList: React.FC<DropDownListProps> = ({
+  listItems,
+  openPopup,
+  setOpenPopup,
+  childrens,
+  children,
+}: DropDownListProps) => {
   const classes = useStyles();
   const anchorRef = useRef<HTMLButtonElement>(null);
   const [open, setOpen] = useState(false);
-  const [openPopup, setOpenPopup] = useState<boolean>(false);
+  //const [openPopup, setOpenPopup] = useState<boolean>(false);
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -96,15 +107,20 @@ const DropDownList: React.FC = () => {
                   id="menu-list-grow"
                   onKeyDown={handleListKeyDown}
                 >
-                  <MenuItem onClick={() => setOpenPopup(!openPopup)}>
-                    Min Profil
-                  </MenuItem>
+                  {listItems?.map((item, key: number) => (
+                    <MenuItem
+                      key={key}
+                      onClick={() => setOpenPopup(!openPopup)}
+                    >
+                      {item}
+                    </MenuItem>
+                  ))}
                   <Popup
                     title="Min Profil"
                     openPopup={openPopup}
                     setOpenPopup={setOpenPopup}
                   >
-                    <MyUser openPopup={openPopup} setOpenPopup={setOpenPopup} />
+                    {children}
                   </Popup>
                 </MenuList>
               </ClickAwayListener>

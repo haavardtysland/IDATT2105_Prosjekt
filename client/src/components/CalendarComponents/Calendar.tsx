@@ -13,6 +13,7 @@ import getDayOfWeek from './GetDayOfWeek';
 import styled from 'styled-components';
 import Popup from '../Popup';
 import ReservationForm from '../ReservationForm';
+import Section from '../../interfaces/Section';
 
 const ButtonsDiv = styled.div`
   display: flex;
@@ -46,9 +47,13 @@ const useStyles = makeStyles({
 
 interface CalendarProps {
   date: Date;
+  section: Section;
 }
 
-const Calendar: React.FC<CalendarProps> = ({ date }: CalendarProps) => {
+const Calendar: React.FC<CalendarProps> = ({
+  date,
+  section,
+}: CalendarProps) => {
   const length = 24;
   const classes = useStyles();
   const [reset, setReset] = useState<boolean>(false);
@@ -81,8 +86,30 @@ const Calendar: React.FC<CalendarProps> = ({ date }: CalendarProps) => {
     }
     return times;
   };
-
   const times = setTimeArr();
+  const [selectedTimes, setSelectedTimes] = useState<string[]>([]);
+
+  const updateIsMarkedArr = (index: number) => {
+    const items = [...isMarkedArr];
+    let item = items[index];
+    item = !item;
+    items[index] = item;
+    setIsMarkedArr(items);
+  };
+
+  const updateSelectedTimes = () => {
+    for (const i in isMarkedArr) {
+      if (isMarkedArr[i] === true && selectedTimes.indexOf(times[i]) === -1)
+        selectedTimes.push(times[i]);
+      else if (
+        isMarkedArr[i] === false &&
+        selectedTimes.indexOf(times[i]) !== -1
+      ) {
+        const index = selectedTimes.indexOf(times[i]);
+        selectedTimes.splice(index, 1);
+      }
+    }
+  };
 
   const renderTimeCards = times.map((time, key: number) => {
     return (
@@ -93,6 +120,8 @@ const Calendar: React.FC<CalendarProps> = ({ date }: CalendarProps) => {
         isMarkedArr={isMarkedArr}
         setIsMarkedArr={setIsMarkedArr}
         index={key}
+        updateIsMarkedArr={(index: number) => updateIsMarkedArr(index)}
+        updateSelectedTimes={updateSelectedTimes}
       />
     );
   });
@@ -132,14 +161,27 @@ const Calendar: React.FC<CalendarProps> = ({ date }: CalendarProps) => {
             Fjern valgte tider
           </StyledButton>
           <Popup
-            title="Reserver"
+            title={`Reserver for ${section.section_name}`}
             openPopup={openPopup}
             setOpenPopup={setOpenPopup}
           >
-            <ReservationForm timeFrom="" timeTo="" />
+            <ReservationForm
+              times={times}
+              selectedTimes={selectedTimes}
+              setSelectedTimes={setSelectedTimes}
+              isMarkedArr={isMarkedArr}
+              setIsMarkedArr={setIsMarkedArr}
+              updateIsMarkedArr={(index: number) => updateIsMarkedArr(index)}
+              updateSelectedTimes={updateSelectedTimes}
+              openPopup={openPopup}
+              setOpenPopup={setOpenPopup}
+            />
           </Popup>
         </ButtonsDiv>
         <Button onClick={() => console.log(isMarkedArr)}>Log marked arr</Button>
+        <Button onClick={() => console.log(selectedTimes)}>
+          Log selected times
+        </Button>
       </CardContent>
     </Card>
   );
