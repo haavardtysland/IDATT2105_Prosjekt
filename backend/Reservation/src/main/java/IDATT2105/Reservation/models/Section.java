@@ -25,7 +25,10 @@ public class Section {
   @OneToMany(targetEntity = Reservation.class, mappedBy="section", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
   private List<Reservation> reservations;
 
-  public Section(String section_name, int capacity) {
+  @OneToMany(targetEntity = Message.class, mappedBy="section", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<Message> messages;
+
+  public Section( String section_name, int capacity) {
     this.section_name = section_name;
     this.capacity = capacity;
   }
@@ -75,6 +78,28 @@ public class Section {
     this.capacity = capacity;
   }
 
+
+  public List<Message> getMessages() {
+    return messages;
+  }
+  public void setMessages(List<Message> messages) {
+    this.messages = messages;
+  }
+
+  public void removeMessages(Message message) {
+    for(int i = 0; i < this.messages.size(); i++) {
+      if(this.messages.get(i).getMessageId() == message.getMessageId()) {
+        this.messages.remove(i);
+      }
+    }
+    message.setSection(null);
+  }
+
+  public void addMessage(Message message) {
+    message.setSection(this);
+    this.messages.add(message);
+  }
+
   public List<Reservation> getReservations() {
     return reservations;
   }
@@ -103,16 +128,17 @@ public class Section {
         "{" +
             "\n \"section_id\": " + section_id + "," +
             "\n \"section_name\": \"" + section_name + "\"," +
-                "\n\"capacity\":" + capacity +
+            "\n\"capacity\":" + capacity + "," +
+            "\n\"messages\":" + messages.toString() +
             "\n}";
   }
 
   public String toJSON() {
-    return
-        "{" +
+    return "\n {" +
             "\n \"section_id\": " + section_id + "," +
             "\n \"section_name\": \"" + section_name + "\"," +
-            "\n\"capacity\":" + capacity +
+            "\n\"capacity\":" + capacity + "," +
+            "\n\"messages\":" + messages.toString() +
             "\n}";
   }
 

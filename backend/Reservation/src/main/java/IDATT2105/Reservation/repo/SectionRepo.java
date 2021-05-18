@@ -1,5 +1,6 @@
 package IDATT2105.Reservation.repo;
 
+import IDATT2105.Reservation.models.Message;
 import IDATT2105.Reservation.models.Reservation;
 import IDATT2105.Reservation.models.Room;
 import IDATT2105.Reservation.models.Section;
@@ -43,6 +44,23 @@ public class SectionRepo extends ProjectRepo {
             return true;
         } catch(Exception e) {
             log.info("Failed adding section" + e.getMessage());
+            em.getTransaction().rollback();
+            return false;
+        } finally {
+            em.close();
+        }
+    }
+
+    public boolean addMessage(Section section) {
+        EntityManager em = getEm();
+        try{
+            em.getTransaction().begin();
+            em.merge(section);
+            em.getTransaction().commit();
+            log.info("Sucessfully added message " + section);
+            return true;
+        } catch(Exception e) {
+            log.info("Failed adding message" + e.getMessage());
             em.getTransaction().rollback();
             return false;
         } finally {

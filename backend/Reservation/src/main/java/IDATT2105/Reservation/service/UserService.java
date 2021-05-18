@@ -37,11 +37,11 @@ public class UserService {
 
   /**
    * This method is used when a user wants to update their user settings. It gets passed new
-   * values from the {@link IDATT2106.team6.Gidd.web.UserController controller}, which are then used to
+   * values from the {@link IDATT2105.Reservation.controller.UserController IDATT2106.team6.Gidd.web.UserController controller}, which are then used to
    * create a new User object which is passed into the {@link UserRepo repo} to be merged.
    *
    * @return result from {@link UserRepo#updateUser(User) repo} or false if an exception is caught
-   * @see UserService#editUser(User)
+   * @see UserService#editUser(int, String, String, String, Boolean, Date, String, int)
    */
   public boolean editUser(int id, String firstname, String surname, String email, Boolean isAdmin, Date validDate, String password, int phoneNumber) {
     try {
