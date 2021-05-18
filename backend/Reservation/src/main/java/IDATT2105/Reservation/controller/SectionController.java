@@ -16,6 +16,7 @@ import static IDATT2105.Reservation.controller.ControllerUtil.formatJson;
 import static IDATT2105.Reservation.controller.ControllerUtil.getRandomID;
 
 
+import java.sql.Timestamp;
 import java.util.*;
 
 @CrossOrigin(origins = "*")
@@ -114,6 +115,48 @@ public class SectionController {
             }
             header.add("STATUS", "200 OK");
             return ResponseEntity.ok().headers(header).body("\"times\": \n " + reservationTimes.toString());
+        }  catch(Exception e) {
+            log.info("Something went wrong while getting section with section_id " + section_id);
+            header.add("STATUS", "400 BAD REQUEST");
+            body.put("error", "Something went wrong while getting section with section_id " + section_id);
+            return ResponseEntity.badRequest().headers(header).body(formatJson(body));
+        }
+    }
+
+    /**
+     * Getting all the taken times for a section
+     * @param section_id section_id of the section you would like to check
+     * @return A json object on the form:
+     * "times": [
+     *     {
+     *         "start": 1352674800000,
+     *         "end": "1352674800000"
+     *     },
+     *     {
+     *         "start": 1605135600000,
+     *         "end": "1605135600000"
+     *     }
+     * ]
+     */
+    @GetMapping(value="/{section_id}/{from_date}/{to_date}", produces="application/json")
+    public ResponseEntity getSectionStatistics(@PathVariable String section_id, @PathVariable String from_date, @PathVariable String to_date){
+        Map<String, String> body = new HashMap<>();
+        HttpHeaders header = new HttpHeaders();
+        try{
+            log.info("Getting section with section id " + section_id);
+            int id = Integer.parseInt(section_id);
+            long start = Long.parseLong(from_date);
+            long end = Long.parseLong(to_date);
+            Timestamp start_time = new Timestamp(start);
+            Timestamp end_time = new Timestamp(end);
+            Long hours_used = sectionService.getSectionStatistics(id, start_time, end_time);
+            if(hours_used == -1L) {
+                header.add("STATUS", "400 BAD REQUEST");
+                body.put("error", "Are you sure there is a section with id " + id + "?")          ;
+                return ResponseEntity.ok().headers(header).body(formatJson(body));
+            }
+            header.add("STATUS", "200 OK");
+            return ResponseEntity.ok().headers(header).body("{\n\"hours\": " + hours_used + "\n}");
         }  catch(Exception e) {
             log.info("Something went wrong while getting section with section_id " + section_id);
             header.add("STATUS", "400 BAD REQUEST");

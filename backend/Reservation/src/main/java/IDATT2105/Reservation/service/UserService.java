@@ -25,14 +25,14 @@ public class UserService {
     return repo.getUsers();
   }
 
-  public User getUser(String email) {
+  public User getUserByEmail(String email) {
     log.info("getting user by email: " + email);
     return repo.findUserByEmail(email);
   }
 
   public User login(String email) {
       log.info("logging in user with email " + email.trim());
-      return getUser(email.trim());
+      return getUserByEmail(email.trim());
   }
 
   /**

@@ -105,6 +105,45 @@ public class SectionRepo extends ProjectRepo {
         }
     }
 
+    public Long getSectionStatistics(int section_id, Timestamp start, Timestamp end){
+        EntityManager em = getEm();
+        Long hours_used = 0L;
+        try{
+            log.info("Finding statistics for section with section_id :" + section_id);
+            em.getTransaction().begin();
+            Section section = em.find(Section.class, section_id);
+            if(section == null){
+                log.info("No section with that section_id was found");
+                return -1L;
+            }
+            Query q = em.createNativeQuery("SELECT reservation_id FROM RESERVATION where section_id = ?1");
+            q.setParameter(1, section_id);
+
+            List<Integer> ids = q.getResultList();
+            for(int id : ids) {
+                Reservation reservation = em.find(Reservation.class, id);
+                if(reservation.getFromDate().getTime() >= start.getTime() && reservation.getFromDate().getTime() < end.getTime()){
+                    if(reservation.getToDate().getTime() > end.getTime()){
+                        System.out.println(reservation.getFromDate().getTime());
+                        System.out.println(end.getTime());
+                        hours_used += (end.getTime() - reservation.getFromDate().getTime());
+                    } else {
+                        hours_used += (reservation.getToDate().getTime() -  reservation.getFromDate().getTime());
+                    }
+                }
+                else if(!(reservation.getToDate().getTime() > end.getTime()) && !(reservation.getToDate().getTime() < start.getTime())) {
+                    hours_used += (reservation.getToDate().getTime() - start.getTime());
+                } else{
+                    hours_used += (end.getTime() - start.getTime());
+                }
+            }
+            return hours_used;
+        } catch(Exception e){
+            log.info("Something went wrong while getting statistics for seciton with section_id " + section_id);
+            return -1L;
+        }
+    }
+
     public ArrayList<Section> getSections(){
         EntityManager em = getEm();
         List<Section> allSections = null;
@@ -131,6 +170,7 @@ public class SectionRepo extends ProjectRepo {
         EntityManager em = getEm();
         try{
                 em.getTransaction().begin();
+
                 Section section = findSection(section_id);
             if(section != null) {
                 int room_id = section.getRoom().getRoom_id();

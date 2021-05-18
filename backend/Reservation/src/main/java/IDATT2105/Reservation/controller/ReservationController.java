@@ -172,6 +172,7 @@ public class ReservationController {
             .body(formatJson(body));
       }
 
+
       newReservation = mapToReservation(map, -1, user, section);
       // creates one or multiple activities based on repeat
       return createReservation(user, newReservation, map, body, headers);
@@ -184,7 +185,7 @@ public class ReservationController {
           .headers(headers)
           .body(formatJson(body));
     } catch (IllegalArgumentException e) {
-      log.error("user is already registered to the reservasjon");
+      log.error("user is already registered to the reservation");
       body.put("error", "user is already registered: " + e.getMessage());
       return ResponseEntity
           .badRequest()
