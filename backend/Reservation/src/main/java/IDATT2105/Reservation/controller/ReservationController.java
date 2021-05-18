@@ -58,7 +58,7 @@ public class ReservationController {
       List<Reservation> reservations = reservationService.getReservations();
       return ResponseEntity
           .ok()
-          .body(reservations.toString());
+          .body("{\"reservations\": \n" + reservations.toString() + "\n}");
     } catch (Exception e) {
       e.printStackTrace();
       log.error("An unexpected error was caught while getting all reservations: " +
@@ -100,7 +100,7 @@ public class ReservationController {
       List<Reservation> reservations = reservationService.getReservationsForSection(sectionId);
       return ResponseEntity
           .ok()
-          .body(reservations.toString());
+          .body("{\"reservations\": \n" + reservations.toString() + "\n}");
     } catch (Exception e) {
       e.printStackTrace();
       log.error("An unexpected error was caught while getting all reservations for section: " +
@@ -172,8 +172,8 @@ public class ReservationController {
             .body(formatJson(body));
       }
 
-
       newReservation = mapToReservation(map, -1, user, section);
+
       // creates one or multiple activities based on repeat
       return createReservation(user, newReservation, map, body, headers);
 
@@ -245,6 +245,9 @@ public class ReservationController {
       log.debug("new reservation id: " + newId);
       log.info("Reservation created successfully");
 
+      //add the reservation to reservationlist in the section
+      reservation.getSection().addReservation(reservation);
+
       body.put("reservationId",String.valueOf(temp.getReservation_id()));
 
     return ResponseEntity
@@ -266,6 +269,8 @@ public class ReservationController {
     }
 
     if (reservationService.deleteReservation(reservationId)) {
+      //removes the reservation from the section
+      reservation.getSection().removeReservation(reservation);
       log.debug("The deletion was successful");
       header.add("Status", "200 OK");
       header.add("Content-Type", "application/json; charset=UTF-8");
@@ -308,13 +313,12 @@ public class ReservationController {
           .body(formatJson(body));
     }
     log.info("old reservation " + reservation.getReservation_id());
-
+    //reservationService.getReservation(resId).getSection().getSectionId()
     reservation.setCapacity(Integer.parseInt(map.get("capacity").toString()));
     reservation.setDescription(map.get("description").toString());
     reservation.setFromDate(Timestamp.valueOf(map.get("from_date").toString()));
     reservation.setFromDate(Timestamp.valueOf(map.get("to_date").toString()));
-    //reservation.setSectionId(Integer.parseInt(map.get("section_id").toString()));
-
+    reservation.setSection(sectionService.getSection(Integer.parseInt(map.get("section_id").toString())));
 
     log.info("new reservation: " + reservation.getReservation_id());
     boolean edited = reservationService.editReservation(reservation);

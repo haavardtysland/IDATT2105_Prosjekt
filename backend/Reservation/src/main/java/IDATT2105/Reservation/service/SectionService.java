@@ -1,5 +1,6 @@
 package IDATT2105.Reservation.service;
 
+import IDATT2105.Reservation.models.Message;
 import IDATT2105.Reservation.models.Section;
 import IDATT2105.Reservation.repo.SectionRepo;
 import IDATT2105.Reservation.util.Logger;
@@ -19,6 +20,11 @@ public class SectionService {
     public boolean addSection(Section section) {
         log.info("Adding new section " + section);
         return this.repo.addSection(section);
+    }
+
+    public boolean addMessage(Section section) {
+        log.info("Adding new  Message " + section);
+        return this.repo.addMessage(section);
     }
 
     public Section getSection(int section_id) {

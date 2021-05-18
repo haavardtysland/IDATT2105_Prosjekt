@@ -45,7 +45,8 @@ public class UserRepo extends ProjectRepo {
     User user = null;
 
     try {
-      return user = em.find(User.class, userId);
+      user = em.find(User.class, userId);
+      return user;
     }catch (Exception e){
       log.error("finding user " + userId + " failed due to " + e.getMessage());
       return null;
@@ -122,21 +123,22 @@ public class UserRepo extends ProjectRepo {
     }
   }
 
-    public User findUserByEmail(String email){
-      EntityManager em = getEm();
-      log.info("finding user by email " + email);
-      try{
-        TypedQuery q = em.createQuery("SELECT a FROM User a WHERE a.email = ?1", User.class);
-        q.setParameter(1, email);
-        log.info("found single result with email: " + email);
-        return (User)q.getSingleResult();
-      }catch (Exception e){
-        log.error("finding user with email " + email + " failed due to " + e.getMessage());
-        return null;
-      }finally {
-        em.close();
-      }
+  public User findUserByEmail(String email){
+    EntityManager em = getEm();
+    log.info("finding user by email " + email);
+    try{
+      TypedQuery q = em.createQuery("SELECT a FROM User a WHERE a.email = ?1", User.class);
+      q.setParameter(1, email);
+      log.info("found single result with email: " + email);
+      return (User)q.getSingleResult();
+    }catch (Exception e){
+      log.error("finding user with email " + email + " failed due to " + e.getMessage());
+      return null;
+    }finally {
+      em.close();
     }
+  }
+
 
 
   public boolean updateUser(User user){

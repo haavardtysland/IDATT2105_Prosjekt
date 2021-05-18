@@ -43,7 +43,7 @@ public class UserController {
 
   @GetMapping(value = "", produces = "application/json")
   public ResponseEntity getAllUsers() {
-    log.debug("Received GetMapping at '/user'");
+    log.info("Received GetMapping at '/user'");
     try {
       List<User> users = userService.getUsers();
       return ResponseEntity
@@ -62,11 +62,24 @@ public class UserController {
     }
   }
 
+  @GetMapping(value = "{userId}", produces = "application/json")
+  public ResponseEntity GetUser(@PathVariable String userId){
+      HttpHeaders header = new HttpHeaders();
+      Map<String, String> body = new HashMap();
+      int id = Integer.parseInt(userId);
+      User user = userService.getUser(id);
+      if(user == null){
+        header.add("STATUS", "400 BAD REQUEST");
+        body.put("error", "Finner ingen bruker med denne id");
+        return ResponseEntity.badRequest().headers(header).body(formatJson(body));
+      }
+      header.add("STATUS", "200 OK");
+      return ResponseEntity.ok().headers(header).body("{\"user\": \n" + user.toString() + "\n}");
+  }
+
 
   @DeleteMapping("/{id}")
   public ResponseEntity deleteUser(@PathVariable Integer id) {
-    //todo return activity-objects and user id's affected by this user being deleted
-    // aka the activities this user has created
     log.info("recieved deletemapping to user with id " + id);
     HttpHeaders header = new HttpHeaders();
     boolean result = userService.deleteUser(id);
@@ -74,7 +87,7 @@ public class UserController {
 
     if (result) {
       log.info("deletion successful");
-      header.add("Status", "200 OK");
+      header.add("STATUS", "200 OK");
       return ResponseEntity.ok()
           .headers(header).body(formatJson(body));
     }
@@ -82,7 +95,7 @@ public class UserController {
     log.error("unable to delete user with id: " + id);
     body.put("error", "deletion failed, are you sure the user with id " + id + " exists?");
     header.add("Status", "400 BAD REQUEST");
-    return ResponseEntity.ok()
+    return ResponseEntity.badRequest()
         .headers(header).body(formatJson(body));
   }
 
@@ -105,8 +118,8 @@ public class UserController {
     log.info("recieved postmapping to /user: " + map.toString());
     Map<String, String> body = new HashMap<>();
 
-    if (userService.getUser(map.get("email").toString()) != null) {
-      body.put("error", "a user with that email already exists!");
+    if (userService.getUserByEmail(map.get("email").toString()) != null) {
+      body.put("error", "En bruker med en emailen finnes allerede");
 
       return ResponseEntity
           .badRequest()

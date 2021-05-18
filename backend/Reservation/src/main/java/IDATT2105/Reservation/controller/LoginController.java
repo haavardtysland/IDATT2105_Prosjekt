@@ -6,6 +6,7 @@ import IDATT2105.Reservation.models.User;
 import IDATT2105.Reservation.service.SecurityService;
 import IDATT2105.Reservation.service.UserService;
 import IDATT2105.Reservation.util.Logger;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,11 +36,14 @@ public class LoginController {
         userService.login(map.get("email").toString());
     Map<String, String> body = new HashMap<>();
     if (user != null) {
-      if(user.verifyPassword(map.get("password").toString())){
+      long millis=System.currentTimeMillis();
+      Date currentDate=new java.sql.Date(millis);
+      System.out.println(currentDate);
+      if(user.verifyPassword(map.get("password").toString()) && user.getValidDate().after(currentDate)){
         log.info("logged in user with email " + map.get("email").toString());
         String id =
-                String.valueOf(userService.getUser(map.get("email").toString()).getUserId());
-        String isAdmin = String.valueOf(userService.getUser(map.get("email").toString()).getIsAdmin());
+                String.valueOf(userService.getUserByEmail(map.get("email").toString()).getUserId());
+        String isAdmin = String.valueOf(userService.getUserByEmail(map.get("email").toString()).getIsAdmin());
         body.put("id", id);
         body.put("isAdmin", isAdmin);
        /* body.put("token",
@@ -50,11 +54,12 @@ public class LoginController {
                 .body(formatJson(body));
       } else {
         log.info("Password was wrong for user with email " + map.get("email").toString());
+        log.info("the user may not be valid anymore. ValidDate= " + String.valueOf(userService.getUserByEmail(map.get("email").toString()).getValidDate()));
 /*
       body.put("token",
           String.valueOf(securityService.createToken(id, (1000 * 60 * 60 * 24))));*/
         header.add("Status", "400 BAD REQUEST");
-        body.put("error", "Passordet er feil");
+        body.put("error", "Passordet er feil eller brukeren har utgått");
         return ResponseEntity.ok()
                 .headers(header)
                 .body(formatJson(body));

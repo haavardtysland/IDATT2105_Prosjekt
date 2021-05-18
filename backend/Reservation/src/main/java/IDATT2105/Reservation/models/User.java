@@ -34,8 +34,13 @@ public class User {
   private Date validDate;
   @Column(name = "phoneNumber")
   private int phoneNumber;
+  @CascadeOnDelete
   @OneToMany(targetEntity = Reservation.class, mappedBy="user", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-  private List<Reservation> reservations;
+  private List<Reservation> reservations = new ArrayList<>();
+
+  @CascadeOnDelete
+  @OneToMany(targetEntity = Message.class, mappedBy="user", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<Message> messages = new ArrayList<>();
   private String salt;
 
   public User() {
@@ -182,7 +187,19 @@ public class User {
     this.reservations.add(reservation);
   }
 
+  public void removeMesage(Message message) {
+    for(int i = 0; i < this.messages.size(); i++) {
+      if(this.messages.get(i).getMessageId() == message.getMessageId()) {
+        this.reservations.remove(i);
+      }
+    }
+    message.setUser(null);
+  }
 
+  public void addMessage(Message message) {
+    message.setUser(this);
+    this.messages.add(message);
+  }
 
   public String toJSON() {
     return "\n  {" +

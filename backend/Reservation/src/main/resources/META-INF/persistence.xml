@@ -9,6 +9,7 @@
         <class>IDATT2105.Reservation.models.User</class>
         <class>IDATT2105.Reservation.models.Section</class>
         <class>IDATT2105.Reservation.models.Reservation</class>
+        <class>IDATT2105.Reservation.models.Message</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
             <property name="eclipselink.ddl-generation" value="create-tables"/>

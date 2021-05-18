@@ -25,23 +25,23 @@ public class UserService {
     return repo.getUsers();
   }
 
-  public User getUser(String email) {
+  public User getUserByEmail(String email) {
     log.info("getting user by email: " + email);
     return repo.findUserByEmail(email);
   }
 
   public User login(String email) {
       log.info("logging in user with email " + email.trim());
-      return getUser(email.trim());
+      return getUserByEmail(email.trim());
   }
 
   /**
    * This method is used when a user wants to update their user settings. It gets passed new
-   * values from the {@link IDATT2106.team6.Gidd.web.UserController controller}, which are then used to
+   * values from the {@link IDATT2105.Reservation.controller.UserController IDATT2106.team6.Gidd.web.UserController controller}, which are then used to
    * create a new User object which is passed into the {@link UserRepo repo} to be merged.
    *
    * @return result from {@link UserRepo#updateUser(User) repo} or false if an exception is caught
-   * @see UserService#editUser(User)
+   * @see UserService#editUser(int, String, String, String, Boolean, Date, String, int)
    */
   public boolean editUser(int id, String firstname, String surname, String email, Boolean isAdmin, Date validDate, String password, int phoneNumber) {
     try {
