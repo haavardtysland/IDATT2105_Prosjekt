@@ -172,6 +172,7 @@ public class ReservationController {
             .body(formatJson(body));
       }
 
+
       newReservation = mapToReservation(map, -1, user, section);
       // creates one or multiple activities based on repeat
       return createReservation(user, newReservation, map, body, headers);

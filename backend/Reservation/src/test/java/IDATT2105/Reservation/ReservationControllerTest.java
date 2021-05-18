@@ -45,6 +45,7 @@ public class ReservationControllerTest {
 	private Section section3;
 	private Section section4;
 	User adminUser;
+	User newUser;
 
 	@BeforeAll
 	public void beforeAll() throws Exception{
@@ -59,6 +60,7 @@ public class ReservationControllerTest {
 		section4 = new Section(4, "Seksjon 4", 10);
 
 		adminUser = new User(1, "Admin", "User", "admin@gmail.com", true, new Date(1652306400000L), "123", 12312312);
+		newUser = new User(1, "New", "User", "new@gmail.com", false, new Date(1652306400000L), "123", 12312312);
 
 		room1.getSections().add(section1);
 		room1.getSections().add(section2);
@@ -118,18 +120,37 @@ public class ReservationControllerTest {
 		)).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
 	}
 
-	/*@Test
+	@Test
 	@Order(4)
 	public void registerUserTest() throws Exception{
 		System.out.println("Test 4");
 		String result = mockMvc.perform(MockMvcRequestBuilders.post("/user").contentType(MediaType.APPLICATION_JSON).content(
-		))
-	}*/
+		"\n  {" +
+        "\n     \"firstName\":" + '\"' + newUser.getFirstName() + '\"' + "," +
+        "\n     \"surName\":" + '\"' + newUser.getSurname() + '\"' + "," +
+        "\n     \"email\":" + '\"' + newUser.getEmail() + '\"' + "," +
+        "\n     \"isAdmin\":" +  newUser.getIsAdmin()  + "," +
+        "\n     \"validDate\":" + '\"' + newUser.getValidDate() + '\"' + "," +
+        "\n     \"phoneNumber\":"  + newUser.getPhoneNumber()  +
+        "\n }"
+		)).andExpect(status().isOk()).andExpect(MockMvcResultMatchers.jsonPath("$.userId").exists()).andExpect(MockMvcResultMatchers.jsonPath("$.userId").isNotEmpty()).andReturn().getResponse().getContentAsString();
 
+		JSONParser parser = new JSONParser();
+		JSONObject idJson = (JSONObject) parser.parse(result);
+		newUser.setId(idJson.getAsNumber("userId").intValue());
+	}
+
+	@Test
+	@Order(5)
+	public void deleteUserTest() throws Exception{
+		System.out.println("Test 5");
+		String user_id = mockMvc.perform(MockMvcRequestBuilders.delete("/user/" + newUser.getUserId()).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
+		System.out.println(user_id.toString());
+	}
 
 
 	@Test
-	@Order(4)
+	@Order(6)
 	public void deleteRoom() throws Exception {
 		System.out.println("Test 4");
 		String room_id = mockMvc.perform(MockMvcRequestBuilders.delete("/room/" + room1.getRoom_id()).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
