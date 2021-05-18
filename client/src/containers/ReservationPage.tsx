@@ -6,7 +6,7 @@ import { SortFunctions } from '../components/sorting/SortFunctions';
 import Reservation from '../interfaces/Reservation';
 import SortMenu from '../components/sorting/SortMenu';
 import axios from '../axios';
-import { UserContext } from '../App';
+import { Context } from '../Context';
 import FilterMenu from '../components/filter/FilterMenu';
 import { FilterFunctions } from '../components/filter/FilterFunctions';
 
@@ -29,7 +29,7 @@ enum SortOptions {
 }
 
 const ReservationPage: React.FC = () => {
-  const { user } = useContext(UserContext);
+  const user = useContext(Context.UserContext);
   const [sortOption, setSortOption] = React.useState<number>(0);
   const [reservations, setReservations] = useState<Reservation[]>([
     {
@@ -47,19 +47,13 @@ const ReservationPage: React.FC = () => {
       toDate: '05-21-2021 15:00:00',
     },
   ]);
+  //const [reservations, setReservations] = useState<Reservation[]>([]);
   const [currentReservations, setCurrentReservations] =
     useState<Reservation[]>(reservations);
   const [descFilter, setDescFilter] = useState<string>('');
   const [timeFilterFrom, setTimeFilterFrom] = useState<string>('');
   const [timeFilterTo, setTimeFilterTo] = useState<string>('');
   const [capFilter, setCapFilter] = React.useState<number[]>([20, 37]);
-
-  /*
-  const getAllReservations = async () => {
-    ///user/${userid}/reservation
-    const request = await axios.get(`/user/${userId}`);
-  };
-  */
 
   useEffect(() => {
     if (sortOption === SortOptions.CapacityHighLow) {
@@ -102,6 +96,21 @@ const ReservationPage: React.FC = () => {
     }
   );
 
+  const getReservationsUser = async () => {
+    try {
+      const request = await axios.get(`/reservation/${user.user.id}/user`);
+      console.log(request);
+      setReservations(request.data);
+      return request;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getReservationsUser();
+  }, []);
+
   return (
     <div>
       <Typography
@@ -134,10 +143,6 @@ const ReservationPage: React.FC = () => {
         <Divider orientation="vertical" flexItem />
         <RightContainer>{renderReservations}</RightContainer>
       </div>
-      <button onClick={() => console.log(reservations)}>
-        log reservations
-      </button>
-      <button onClick={() => console.log(descFilter)}>log desc</button>
     </div>
   );
 };

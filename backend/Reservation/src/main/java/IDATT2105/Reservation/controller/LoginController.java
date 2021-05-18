@@ -42,8 +42,8 @@ public class LoginController {
       if(user.verifyPassword(map.get("password").toString()) && user.getValidDate().after(currentDate)){
         log.info("logged in user with email " + map.get("email").toString());
         String id =
-                String.valueOf(userService.getUser(map.get("email").toString()).getUserId());
-        String isAdmin = String.valueOf(userService.getUser(map.get("email").toString()).getIsAdmin());
+                String.valueOf(userService.getUserByEmail(map.get("email").toString()).getUserId());
+        String isAdmin = String.valueOf(userService.getUserByEmail(map.get("email").toString()).getIsAdmin());
         body.put("id", id);
         body.put("isAdmin", isAdmin);
        /* body.put("token",

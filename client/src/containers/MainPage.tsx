@@ -1,12 +1,13 @@
-import { Button, TextField, Typography } from '@material-ui/core';
-import React, { useEffect, useState } from 'react';
+import { Button } from '@material-ui/core';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
-import { Calendar } from '@material-ui/pickers';
 import Form from '../components/Form';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import axios from '../axios';
 import Room from '../interfaces/Room';
 import RoomGrid from '../components/RoomGrid';
+import { Context } from '../Context';
+import { useHistory } from 'react-router';
 
 const Container = styled.div`
   padding-top: 8%;
@@ -36,16 +37,34 @@ function MainPage() {
   const [toTime, setToTime] = useState<number>();
   const [minCapacity, setMinCapacity] = useState<number>();
   const [rooms, setRooms] = useState<Room[]>();
-
-  const getAvailible = () => {
-    console.log(1);
-  };
+  const history = useHistory();
+  const { room, setRoom } = useContext(Context.RoomContext);
 
   const getAllRooms = () => {
     axios.get('/room').then((response) => {
-      console.log(response.data['rooms']);
       setRooms(response.data['rooms']);
     });
+  };
+
+  const getAvailibeRooms = () => {
+    if (toTime && fromTime && minCapacity) {
+      axios
+        .get(`/room/${fromTime}/${toTime}/${minCapacity}`)
+        .then((response) => {
+          setRooms(response.data['rooms']);
+          if (response.data.error) {
+            alert(response.data.error);
+          }
+        });
+    } else {
+      alert('Alle felter må fylles ut');
+    }
+  };
+
+  const onRoomClick = (newRoom: Room) => {
+    setRoom(newRoom);
+    console.log(room);
+    history.push('/RoomPage');
   };
 
   return (
@@ -56,12 +75,14 @@ function MainPage() {
         changeMinCapacity={(num) => setMinCapacity(num)}
       ></Form>
       <Flex>
-        <Button className={classes.button}>Vis ledige rom</Button>
+        <Button onClick={getAvailibeRooms} className={classes.button}>
+          Vis ledige rom
+        </Button>
         <Button onClick={getAllRooms} className={classes.button}>
           Vis alle rom
         </Button>
       </Flex>
-      {rooms && <RoomGrid rooms={rooms}></RoomGrid>}
+      {rooms && <RoomGrid onRoomClick={onRoomClick} rooms={rooms}></RoomGrid>}
     </Container>
   );
 }

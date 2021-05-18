@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useContext, useState } from 'react';
 import Room from '../interfaces/Room';
 import {
   Divider,
@@ -11,7 +11,7 @@ import Section from '../interfaces/Section';
 import Calendar from '../components/CalendarComponents/Calendar';
 import styled from 'styled-components';
 import InfoIcon from '@material-ui/icons/Info';
-import RoomCard from '../components/RoomCard';
+import { Context } from '../Context';
 
 const StyledHeader = styled.h1`
   margin-top: 6rem;
@@ -28,37 +28,41 @@ const StyledTextField = withStyles({
   },
 })(TextField);
 
-interface RoomPageProps {
-  room?: Room;
-}
-
-const RoomPage: React.FC<RoomPageProps> = () => {
+//TODO: show available times for the current section and the current selected date
+//TODO: fix popup to reserve marked times.
+const RoomPage: React.FC = () => {
+  const { room } = useContext(Context.RoomContext);
   const [currentSection, setCurrentSection] = useState<Section>({
     room_id: -1,
     section_id: -1,
     section_name: '',
+    capacity: -1,
   });
   const [selectedDate, setSelectedDate] = React.useState<Date>(
     new Date('2014-08-18T21:11:54')
   );
-  const room: Room = {
+
+  /*const room: Room = {
     room_id: 1,
     name: 'Room 1',
     capacity: 10, //antall plasser
     sections: [
       {
+        capacity: 1,
         room_id: 1,
         section_id: 1,
         section_name: 'Seksjon 1',
       },
     ],
-  };
+  };*/
 
   const handleChangeCurrentSection = (event: ChangeEvent<HTMLInputElement>) => {
-    const tmp = room.sections.find(
-      (section) => section.section_id === +event.target.value
-    );
-    if (tmp !== undefined) setCurrentSection(tmp);
+    if (room !== undefined) {
+      const tmp = room['sections:'].find(
+        (section: Section) => section.section_id === +event.target.value
+      );
+      if (tmp !== undefined) setCurrentSection(tmp);
+    }
   };
 
   const handleChangeDate = (event: ChangeEvent<HTMLInputElement>) => {
@@ -86,11 +90,12 @@ const RoomPage: React.FC<RoomPageProps> = () => {
           onChange={handleChangeCurrentSection}
           value={currentSection}
         >
-          {room.sections.map((section, key: number) => (
-            <MenuItem value={section.section_id} key={key}>
-              {section.section_name}
-            </MenuItem>
-          ))}
+          {room !== undefined &&
+            room['sections:'].map((section: Section, key: number) => (
+              <MenuItem value={section.section_id} key={key}>
+                {section.section_name}
+              </MenuItem>
+            ))}
         </StyledTextField>
         <TextField
           style={{ marginTop: '5%', marginLeft: '15%' }}
@@ -104,15 +109,13 @@ const RoomPage: React.FC<RoomPageProps> = () => {
           onChange={handleChangeDate}
         />
       </div>
-      <Calendar date={selectedDate} />
-      <RoomCard
-        room={{
-          room_id: 123,
-          name: 'Room 1',
-          capacity: 100,
-          sections: [],
-        }}
-      />
+      {currentSection.room_id !== -1 && <Calendar date={selectedDate} />}
+      <button onClick={() => console.log(room['sections:'])}>
+        log context sections
+      </button>
+      <button onClick={() => console.log(currentSection)}>
+        log current sectionms
+      </button>
     </div>
   );
 };

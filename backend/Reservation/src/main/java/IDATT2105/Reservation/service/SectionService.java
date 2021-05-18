@@ -8,6 +8,7 @@ import IDATT2105.Reservation.util.ReservationTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 @Service
@@ -44,6 +45,11 @@ public class SectionService {
     public ArrayList<Section> getSections(){
         log.info("Getting all the sections");
         return this.repo.getSections();
+    }
+
+    public Long getSectionStatistics(int section_id, Timestamp start, Timestamp end){
+        log.info("Getting statistics for section with section_id " + section_id);
+        return this.repo.getSectionStatistics(section_id, start, end);
     }
 
 }

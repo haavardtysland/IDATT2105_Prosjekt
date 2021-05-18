@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import CreateUserForm from '../../components/CreateUserForm';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -33,14 +33,17 @@ function AddUser() {
       isAdmin != undefined &&
       phone != undefined
     ) {
-      axios.post('/user', {
-        firstName: firstname,
-        surName: surname,
-        email: email,
-        isAdmin: isAdmin,
-        validDate: date.toISOString().slice(0, 10),
-        phoneNumber: phone,
-      });
+      axios
+        .post('/user', {
+          firstName: firstname,
+          surName: surname,
+          email: email,
+          isAdmin: isAdmin,
+          validDate: date.toISOString().slice(0, 10),
+          phoneNumber: phone,
+        })
+        .then(() => alert('Du opprettet brukeren'))
+        .catch((err) => alert(err.response.data.error));
     } else {
       alert('Fyll inn alle felt');
       console.log(firstname);

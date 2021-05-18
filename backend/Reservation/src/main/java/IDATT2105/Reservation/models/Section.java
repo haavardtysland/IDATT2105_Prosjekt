@@ -28,8 +28,7 @@ public class Section {
   @OneToMany(targetEntity = Message.class, mappedBy="section", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
   private List<Message> messages;
 
-  public Section(int section_id, String section_name, int capacity) {
-    this.section_id = section_id;
+  public Section( String section_name, int capacity) {
     this.section_name = section_name;
     this.capacity = capacity;
   }
