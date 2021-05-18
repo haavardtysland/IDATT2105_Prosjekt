@@ -1,8 +1,8 @@
-import React, { useContext, useEffect } from 'react';
-import TextField, { Button, withStyles } from '@material-ui/core';
+import React, { useContext, useEffect, useState } from 'react';
+import TextField, { Button, Typography, withStyles } from '@material-ui/core';
 import styled from 'styled-components';
 import User from '../interfaces/User';
-import axios from 'axios';
+import axios from '../axios';
 import { Context } from '../Context';
 
 const ButtonsContainer = styled.div`
@@ -24,10 +24,20 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
   times,
 }: ReservationFormProps) => {
   const { user } = useContext(Context.UserContext);
+  const [currentUser, setCurrentUser] = useState<User>({
+    userId: -1,
+    firstName: '',
+    surname: '',
+    email: '',
+    isAdmin: false,
+    validDate: new Date(),
+    phoneNumber: '',
+  });
   const getUser = async () => {
     try {
       const request = await axios.get(`/user/${user.id}`);
       console.log(request);
+      setCurrentUser(request.data['user']);
       return request;
     } catch (error) {
       console.log(error);
@@ -39,12 +49,15 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
   }, []);
   return (
     <div>
-      <div>hei</div>
+      <Typography>
+        {currentUser.userId !== -1 &&
+          currentUser.firstName + ' ' + currentUser.surname + ' '}
+        ønsker å reservere de følgende tidene:
+      </Typography>
 
       <ButtonsContainer>
         <StyledButton variant="outlined">Bekreft</StyledButton>
         <StyledButton variant="outlined">Avbryt</StyledButton>
-        <button onClick={() => console.log(user)}>log user</button>
       </ButtonsContainer>
     </div>
   );
