@@ -95,7 +95,9 @@ const RoomPage: React.FC = () => {
           onChange={handleChangeDate}
         />
       </div>
-      {currentSection.room_id !== -1 && <Calendar date={selectedDate} />}
+      {currentSection.room_id !== -1 && (
+        <Calendar date={selectedDate} section={currentSection} />
+      )}
       <button onClick={() => console.log(room['sections:'])}>
         log context sections
       </button>

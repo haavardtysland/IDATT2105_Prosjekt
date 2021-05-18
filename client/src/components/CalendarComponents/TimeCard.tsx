@@ -14,7 +14,11 @@ interface TimeCardProps {
   reset: boolean;
   isMarkedArr: boolean[];
   setIsMarkedArr: React.Dispatch<React.SetStateAction<boolean[]>>;
+  //selectedTimes: string[];
+  //setSelectedTimes: React.Dispatch<React.SetStateAction<string[]>>;
   index: number;
+  updateIsMarkedArr: (index: number) => void;
+  updateSelectedTimes: () => void;
 }
 
 const TimeCard: React.FC<TimeCardProps> = ({
@@ -23,24 +27,18 @@ const TimeCard: React.FC<TimeCardProps> = ({
   isMarkedArr,
   setIsMarkedArr,
   index,
+  updateIsMarkedArr,
+  updateSelectedTimes,
 }: TimeCardProps) => {
   const [backgroundcolor, setBackgroundcolor] = useState<string>('');
 
   const handleIsMarked = () => {
-    if (backgroundcolor === 'lightgrey') {
-      setBackgroundcolor('white');
-    } else {
+    if (isMarkedArr[index] === false) {
       setBackgroundcolor('lightgrey');
+    } else {
+      setBackgroundcolor('white');
     }
-    updateIsMarkedArr();
-  };
-
-  const updateIsMarkedArr = () => {
-    const items = [...isMarkedArr];
-    let item = items[index];
-    item = !item;
-    items[index] = item;
-    setIsMarkedArr(items);
+    updateIsMarkedArr(index);
   };
 
   useEffect(() => {
@@ -53,6 +51,10 @@ const TimeCard: React.FC<TimeCardProps> = ({
       return arr;
     });
   }, [reset]);
+
+  useEffect(() => {
+    updateSelectedTimes();
+  }, [isMarkedArr]);
 
   return (
     <Tooltip title="ledig">
