@@ -54,7 +54,7 @@ public class LoginController {
                 .body(formatJson(body));
       } else {
         log.info("Password was wrong for user with email " + map.get("email").toString());
-        log.info("the user may not be valid anymore. ValidDate= " + String.valueOf(userService.getUser(map.get("email").toString()).getValidDate()));
+        log.info("the user may not be valid anymore. ValidDate= " + String.valueOf(userService.getUserByEmail(map.get("email").toString()).getValidDate()));
 /*
       body.put("token",
           String.valueOf(securityService.createToken(id, (1000 * 60 * 60 * 24))));*/

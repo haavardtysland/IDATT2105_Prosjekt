@@ -54,7 +54,7 @@ public class SecurityController {
 
   /**
    * If this method gets to run, it will always return true since
-   * {@link IDATT2106.team6.Gidd.util.TokenRequiredAspect#mapTokenRequiredWithAnnotation(ProceedingJoinPoint, MapTokenRequired)}
+   * {@link IDATT2105.Reservation.util.TokenRequiredAspect#mapTokenRequiredWithAnnotation(ProceedingJoinPoint, MapTokenRequired)}
    * always will be called before this one is.
    */
   @MapTokenRequired

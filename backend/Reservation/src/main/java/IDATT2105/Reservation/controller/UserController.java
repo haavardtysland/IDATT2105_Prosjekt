@@ -6,11 +6,6 @@ import static IDATT2105.Reservation.controller.ControllerUtil.getRandomID;
 import static IDATT2105.Reservation.controller.ControllerUtil.getRandomPassword;
 import static IDATT2105.Reservation.controller.ControllerUtil.validateStringMap;
 
-/*
-import static IDATT2106.team6.Gidd.Constants.*;
-import static IDATT2106.team6.Gidd.web.ControllerUtil.getRandomID;
-import static IDATT2106.team6.Gidd.web.ControllerUtil.parsePhone;
-import static IDATT2106.team6.Gidd.web.ControllerUtil.validateStringMap;*/
 import IDATT2105.Reservation.models.User;
 import IDATT2105.Reservation.service.UserService;
 
@@ -173,6 +168,7 @@ public class UserController {
    *     "email": "mathimyr@stud.ntnu.no",
    *     "isAdmin": true,
    *     "validDate": "2022-11-12",
+   *     "password": true,  //if true send new password. if false use the old one.
    *     "phoneNumber": 1231231
    * }
    * @param map
@@ -190,6 +186,7 @@ public class UserController {
     if (map.get("newEmail") == null || map.get("newEmail").equals("")) {
       map.put("newEmail", map.get("email"));
     }
+
 
     if (!validateStringMap(map)) {
       log.error(
@@ -215,6 +212,10 @@ public class UserController {
 
     try {
       String randomPassword = getRandomPassword();
+      String password = userService.getUser(id).getPassword();
+      if(Boolean.parseBoolean(map.get("password").toString())){
+        password = randomPassword;
+      }
       boolean result = userService.editUser(
           id,
           map.get("firstName").toString(),
@@ -222,17 +223,18 @@ public class UserController {
           map.get("newEmail").toString(),
           Boolean.parseBoolean(map.get("isAdmin").toString()),
           Date.valueOf(map.get("validDate").toString()),
-          randomPassword,
+          password,
           Integer.parseInt(map.get("phoneNumber").toString()));
 
       log.info("edited user " + id);
       if (result) {
-        log.info("created user");
+        log.info("updated user");
         header.add("Status", "201 CREATED");
 
         body.put("id", String.valueOf(id));
-
-        sendEmailService.sendEditUserEmail(map.get("newEmail").toString(), randomPassword);
+        if(Boolean.parseBoolean(map.get("password").toString())) {
+          sendEmailService.sendEditUserEmail(map.get("newEmail").toString(), randomPassword);
+        }
         return ResponseEntity.ok()
             .headers(header)
             .body(formatJson(body));
@@ -259,5 +261,95 @@ public class UserController {
   }
 
 
+  /**
+   * put like this:
+   * {
+   *     "firstName":"mattias",
+   *     "surName":"my",
+   *     "email": "mathimyr@stud.ntnu.no",
+   *     "isAdmin": true,
+   *     "validDate": "2022-11-12",
+   *     "password": "123123",
+   *     "phoneNumber": 1231231
+   * }
+   * @param map
+   * @param id
+   * @return
+   */
+  @PutMapping(value = "/edit/{id}/user")
+  public ResponseEntity editUserNotAdmin(@RequestBody Map<String, Object> map, @PathVariable Integer id) {
+    log.info("receieved a put mapping for user with id: " + id);
+    Map<String, String> body = new HashMap<>();
+    HttpHeaders header = new HttpHeaders();
+    header.add("Content-Type", "application/json; charset=UTF-8");
 
+
+    if (map.get("newEmail") == null || map.get("newEmail").equals("")) {
+      map.put("newEmail", map.get("email"));
+    }
+
+
+    if (!validateStringMap(map)) {
+      log.error(
+          "returning error about null/blank fields in user put mapping " + map.toString());
+      body.put("error", "one or more json-fields is null/blank");
+      return ResponseEntity.badRequest().body(formatJson(body));
+    }
+
+    try {
+      Integer.parseInt(map.get("phoneNumber").toString());
+    } catch (NumberFormatException e) {
+      log.error("phone number cannot be parsed to number " + map.toString());
+      body.put("error", "phone number is not numeric");
+      return ResponseEntity.badRequest().body(formatJson(body));
+    } catch (Exception e) {
+      log.error("An unexpected message was caught when parsing phoneNumber: " +
+          e.getMessage() + " local: " + e.getLocalizedMessage());
+      body.put("Error", "Something went wrong");
+      return ResponseEntity
+          .badRequest()
+          .body(formatJson(body));
+    }
+
+    try {
+      boolean result = userService.editUser(
+          id,
+          map.get("firstName").toString(),
+          map.get("surName").toString(),
+          map.get("newEmail").toString(),
+          Boolean.parseBoolean(map.get("isAdmin").toString()),
+          Date.valueOf(map.get("validDate").toString()),
+          map.get("password").toString(),
+          Integer.parseInt(map.get("phoneNumber").toString()));
+
+      log.info("edited user " + id);
+      if (result) {
+        log.info("updated user");
+        header.add("Status", "201 CREATED");
+
+        body.put("id", String.valueOf(id));
+        return ResponseEntity.ok()
+            .headers(header)
+            .body(formatJson(body));
+      }
+    } catch (NullPointerException e) {
+      log.debug("A NullPointerException was caught while attempting to edit user");
+      body.put("error", "invalid input");
+      return ResponseEntity
+          .badRequest()
+          .body(formatJson(body));
+    } catch (Exception e) {
+      log.debug("An error was caught while attempting to edit user: " +
+          e.getMessage() + " | Local: " + e.getLocalizedMessage());
+      body.put("error", "Something went wrong");
+      return ResponseEntity.badRequest().body(formatJson(body));
+    }
+
+    log.error("User could not be edited, are you sure the user exists");
+    header.add("Status", "400 BAD REQUEST");
+    body.put("error", "could not edit user are you sure the user exists?");
+    return ResponseEntity
+        .badRequest()
+        .body(formatJson(body));
+  }
 }
