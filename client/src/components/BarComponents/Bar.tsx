@@ -40,20 +40,28 @@ function Bar() {
           <Typography onClick={() => history.push('/mainPage')} variant="h4">
             Romreservasjon fra helvete
           </Typography>
-          <Button onClick={() => history.push('/mineBestillinger')}>
-            <Typography variant="h6">Se bestillinger</Typography>
-          </Button>
+          <MenuItem>
+            <Button onClick={() => history.push('/mineBestillinger')}>
+              <Typography variant="h6">Se bestillinger</Typography>
+            </Button>
+          </MenuItem>
           {admin && (
             <Fragment>
-              <Button onClick={() => history.push('/addUser')}>
-                <Typography variant="h6">Legg til brukere</Typography>
-              </Button>
-              <Button onClick={() => history.push('/addRoom')}>
-                <Typography variant="h6">Legg til rom</Typography>
-              </Button>
-              <Button onClick={() => history.push('/administrate/room')}>
-                <Typography variant="h6">Administrer</Typography>
-              </Button>
+              <MenuItem>
+                <Button onClick={() => history.push('/addUser')}>
+                  <Typography variant="h6">Legg til brukere</Typography>
+                </Button>
+              </MenuItem>
+              <MenuItem>
+                <Button onClick={() => history.push('/addRoom')}>
+                  <Typography variant="h6">Legg til rom</Typography>
+                </Button>
+              </MenuItem>
+              <MenuItem>
+                <Button onClick={() => history.push('/administrate/room')}>
+                  <Typography variant="h6">Administrer</Typography>
+                </Button>
+              </MenuItem>
             </Fragment>
           )}
           <DropDownList
