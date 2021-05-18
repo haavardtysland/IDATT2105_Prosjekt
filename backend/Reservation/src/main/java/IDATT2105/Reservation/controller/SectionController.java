@@ -1,12 +1,16 @@
 package IDATT2105.Reservation.controller;
 
 
+import IDATT2105.Reservation.models.Message;
 import IDATT2105.Reservation.models.Room;
 import IDATT2105.Reservation.models.Section;
+import IDATT2105.Reservation.models.User;
 import IDATT2105.Reservation.service.RoomService;
 import IDATT2105.Reservation.service.SectionService;
+import IDATT2105.Reservation.service.UserService;
 import IDATT2105.Reservation.util.Logger;
 import IDATT2105.Reservation.util.ReservationTime;
+import java.sql.Timestamp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +33,51 @@ public class SectionController {
     private SectionService sectionService;
     @Autowired
     private RoomService roomService;
+    @Autowired
+    private UserService userService;
+
+    /**
+     * Adding a massage to section
+     * @param map
+     * @param section_id
+     * @return
+     */
+    @PostMapping(value="/{section_id}/message", produces="application/json")
+    public @ResponseBody
+    ResponseEntity addMessage(@RequestBody HashMap<String, Object> map, @PathVariable String section_id) {
+        Map<String, String> body = new HashMap<>();
+        HttpHeaders header = new HttpHeaders();
+        int id = Integer.parseInt(section_id);
+        Section section = sectionService.getSection(id);
+        if(section == null){
+            header.add("Status", "400 BAD REQUEST");
+            body.put("error", "Adding message to section " + id + " failed, are you sure the section exists?");
+            return ResponseEntity.badRequest().headers(header).body(formatJson(body));
+        }
+       // System.out.println(map.get("messages").getClass());
+        //String newMessage = map.get("message").toString();
+        Message message = new Message();
+            message.setMessageId(getRandomID());
+            User user = userService.getUser(Integer.parseInt(map.get("user_id").toString()));
+            message.setUser(user);
+            message.setSection(section);
+            message.setMessage(map.get("message").toString());
+            Timestamp currentTime = new Timestamp(new Date().getTime());
+            message.setTimeCreated(currentTime);
+            section.addMessage(message);
+
+        boolean result =  sectionService.addMessage(section);
+        if(result){
+            log.info("Sucesfully added message to section " + id);
+            header.add("Status", "200 OK");
+            return ResponseEntity.ok().headers(header).body(formatJson(body));
+        } else {
+            log.info("Something went wrong while adding message to section " + id);
+            header.add("Status", "400 BAD REQUEST");
+            body.put("error", "Something went wrong while adding message to section " + id);
+            return ResponseEntity.ok().headers(header).body(formatJson(body));
+        }
+    }
 
     /**
      *
