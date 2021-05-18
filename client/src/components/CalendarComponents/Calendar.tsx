@@ -84,6 +84,15 @@ const Calendar: React.FC<CalendarProps> = ({ date }: CalendarProps) => {
 
   const times = setTimeArr();
 
+  const getSelectedTimes = (): string[] => {
+    const markedTimes: string[] = [];
+    for (const marked in isMarkedArr) {
+      if (isMarkedArr[marked] === true) markedTimes.push(times[marked]);
+      console.log(marked);
+    }
+    return markedTimes;
+  };
+
   const renderTimeCards = times.map((time, key: number) => {
     return (
       <TimeCard
@@ -136,10 +145,13 @@ const Calendar: React.FC<CalendarProps> = ({ date }: CalendarProps) => {
             openPopup={openPopup}
             setOpenPopup={setOpenPopup}
           >
+            {/*
             <ReservationForm timeFrom="" timeTo="" />
+            */}
           </Popup>
         </ButtonsDiv>
         <Button onClick={() => console.log(isMarkedArr)}>Log marked arr</Button>
+        <Button onClick={() => console.log(times)}>Log marked arr</Button>
       </CardContent>
     </Card>
   );

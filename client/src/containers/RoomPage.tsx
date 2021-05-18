@@ -42,23 +42,9 @@ const RoomPage: React.FC = () => {
     new Date('2014-08-18T21:11:54')
   );
 
-  /*const room: Room = {
-    room_id: 1,
-    name: 'Room 1',
-    capacity: 10, //antall plasser
-    sections: [
-      {
-        capacity: 1,
-        room_id: 1,
-        section_id: 1,
-        section_name: 'Seksjon 1',
-      },
-    ],
-  };*/
-
   const handleChangeCurrentSection = (event: ChangeEvent<HTMLInputElement>) => {
     if (room !== undefined) {
-      const tmp = room['sections:'].find(
+      const tmp = room['sections'].find(
         (section: Section) => section.section_id === +event.target.value
       );
       if (tmp !== undefined) setCurrentSection(tmp);
@@ -91,7 +77,7 @@ const RoomPage: React.FC = () => {
           value={currentSection}
         >
           {room !== undefined &&
-            room['sections:'].map((section: Section, key: number) => (
+            room['sections'].map((section: Section, key: number) => (
               <MenuItem value={section.section_id} key={key}>
                 {section.section_name}
               </MenuItem>

@@ -12,18 +12,26 @@ import {
   Toolbar,
   Typography,
 } from '@material-ui/core';
-import React, { Fragment, useContext, useEffect, useRef } from 'react';
+import React, {
+  Fragment,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import SettingsIcon from '@material-ui/icons/Settings';
 import styled from 'styled-components';
 import DropDownList from './DropDownList';
 import { useHistory } from 'react-router';
 import { Context } from '../../Context';
+import MyUser from '../MyUser';
 
 function Bar() {
   const history = useHistory();
   const { user } = useContext(Context.UserContext);
   const admin = useRef(user.isAdmin);
+  const [openPopup, setOpenPopup] = useState<boolean>(false);
 
   return (
     <div>
@@ -48,7 +56,13 @@ function Bar() {
               </Button>
             </Fragment>
           )}
-          <DropDownList />
+          <DropDownList
+            listItems={['Min Profil']}
+            openPopup={openPopup}
+            setOpenPopup={setOpenPopup}
+          >
+            <MyUser openPopup={openPopup} setOpenPopup={setOpenPopup} />
+          </DropDownList>
         </Toolbar>
       </AppBar>
     </div>
