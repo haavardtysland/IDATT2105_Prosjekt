@@ -21,7 +21,10 @@ interface ReservationFormProps {
   setSelectedTimes: React.Dispatch<React.SetStateAction<string[]>>;
   isMarkedArr: boolean[];
   setIsMarkedArr: React.Dispatch<React.SetStateAction<boolean[]>>;
-  //onClickTime: (index: number) => void;
+  updateIsMarkedArr: (index: number) => void;
+  updateSelectedTimes: () => void;
+  openPopup: boolean;
+  setOpenPopup: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const ReservationForm: React.FC<ReservationFormProps> = ({
@@ -30,8 +33,11 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
   setSelectedTimes,
   isMarkedArr,
   setIsMarkedArr,
-}: //onClickTime,
-ReservationFormProps) => {
+  updateIsMarkedArr,
+  updateSelectedTimes,
+  openPopup,
+  setOpenPopup,
+}: ReservationFormProps) => {
   const { user } = useContext(Context.UserContext);
   const [currentUser, setCurrentUser] = useState<User>({
     userId: -1,
@@ -45,6 +51,8 @@ ReservationFormProps) => {
   const [currentTimes, setCurrentTimes] = useState<string[]>(
     selectedTimes !== undefined ? selectedTimes : []
   );
+  const [deleteTime, setDeleteTime] = useState<string>('');
+
   const getUser = async () => {
     try {
       const request = await axios.get(`/user/${user.id}`);
@@ -60,8 +68,11 @@ ReservationFormProps) => {
     console.log(index);
     if (selectedTimes !== undefined) {
       if (currentTimes.length === 1) {
+        setDeleteTime(currentTimes[0]);
         setCurrentTimes([]);
+        setOpenPopup(!openPopup);
       } else {
+        setDeleteTime(currentTimes[index]);
         setCurrentTimes(
           currentTimes.filter((time) => time !== selectedTimes[index])
         );
@@ -69,26 +80,14 @@ ReservationFormProps) => {
     }
   };
 
-  const updateIsMarkedArr = (index: number) => {
-    const items = [...isMarkedArr];
-    let item = items[index];
-    item = !item;
-    items[index] = item;
-    setIsMarkedArr(items);
-  };
-
   useEffect(() => {
     getUser();
   }, []);
 
   useEffect(() => {
-    if (selectedTimes !== undefined) {
+    if (selectedTimes !== undefined && deleteTime !== '') {
       setSelectedTimes(currentTimes);
-      //const prev = [...isMarkedArr];
-
-      currentTimes.forEach((time) => {
-        updateIsMarkedArr(times.indexOf(time));
-      });
+      updateIsMarkedArr(times.indexOf(deleteTime));
     }
   }, [currentTimes]);
 
@@ -116,6 +115,7 @@ ReservationFormProps) => {
         <button onClick={() => console.log(isMarkedArr)}>
           Log is marked arr
         </button>
+        <button onClick={() => console.log(deleteTime)}>log delete time</button>
       </ButtonsContainer>
     </div>
   );

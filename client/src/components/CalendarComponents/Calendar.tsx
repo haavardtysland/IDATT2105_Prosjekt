@@ -166,12 +166,15 @@ const Calendar: React.FC<CalendarProps> = ({
             setOpenPopup={setOpenPopup}
           >
             <ReservationForm
-              //onClickTime={(index: number) => onClickTime(index)}
               times={times}
               selectedTimes={selectedTimes}
               setSelectedTimes={setSelectedTimes}
               isMarkedArr={isMarkedArr}
               setIsMarkedArr={setIsMarkedArr}
+              updateIsMarkedArr={(index: number) => updateIsMarkedArr(index)}
+              updateSelectedTimes={updateSelectedTimes}
+              openPopup={openPopup}
+              setOpenPopup={setOpenPopup}
             />
           </Popup>
         </ButtonsDiv>
