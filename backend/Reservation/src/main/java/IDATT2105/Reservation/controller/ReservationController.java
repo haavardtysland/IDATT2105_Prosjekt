@@ -114,6 +114,31 @@ public class ReservationController {
     }
   }
 
+  @GetMapping(value ="/{sectionId}/section/{from}/{to}", produces = "application/json")
+  public ResponseEntity getReservationsForSectionOnTimeframe(@PathVariable Integer sectionId, @PathVariable String from, @PathVariable String to){
+    log.debug("Received GetMapping at '/reservation/{sectionID}' with " + sectionId);
+    try {
+      long start = Long.parseLong(from);
+      long end = Long.parseLong(to);
+      Timestamp start_time = new Timestamp(start);
+      Timestamp end_time = new Timestamp(end);
+      List<Reservation> reservations = reservationService.getReservationsForSectionOnTimeframe(sectionId, start_time, end_time);
+      return ResponseEntity
+              .ok()
+              .body("{\"reservations\": \n" + reservations.toString() + "\n}");
+    } catch (Exception e) {
+      e.printStackTrace();
+      log.error("An unexpected error was caught while getting all reservations for section: " +
+              e.getCause() + " with message " + e.getMessage());
+      HashMap<String, String> body = new HashMap<>();
+      body.put("error", "something went wrong");
+
+      return ResponseEntity
+              .badRequest()
+              .body(formatJson(body));
+    }
+  }
+
   @GetMapping(value = "/{roomId}/room", produces = "application/json")
   public ResponseEntity getAllReservationsForRoom(@PathVariable Integer roomId) {
     log.debug("Received GetMapping at '/reservation/{sectionID}' with " + roomId);
@@ -174,6 +199,19 @@ public class ReservationController {
 
       newReservation = mapToReservation(map, -1, user, section);
 
+      List<Reservation> allReservations = reservationService.getReservationsForSection(section.getSectionId());
+      for(Reservation res : allReservations){
+        if(res.getFromDate().getTime() > newReservation.getFromDate().getTime() && res.getToDate().getTime() < newReservation.getToDate().getTime()
+        || res.getFromDate().getTime() <= newReservation.getFromDate().getTime() && res.getToDate().getTime() < newReservation.getFromDate().getTime()
+        || res.getFromDate().getTime() < newReservation.getToDate().getTime() && res.getToDate().getTime() > newReservation.getToDate().getTime()
+        || res.getFromDate().getTime() == newReservation.getFromDate().getTime() && res.getToDate().getTime() == newReservation.getToDate().getTime()){
+            log.info("This section is already reserved in this timeframe");
+            headers.add("Status", "400 Bad Request");
+            body.put("error", "Tidspunktet er allerede reservert");
+            return ResponseEntity.badRequest().headers(headers).body(formatJson(body));
+
+        }
+      }
       // creates one or multiple activities based on repeat
       return createReservation(user, newReservation, map, body, headers);
 
