@@ -89,7 +89,7 @@ public class Message {
         "{" +
             "\n\"messageId\": " + messageId + "," +
             "\n \"user\": " + user.toJSON() + "," +
-            "\n \"message\":" + message + "," +
+            "\n \"message\":" + '\"' + message + '\"' + "," +
             "\n \"timecreated\":" + (timeCreated == null ? "null" : timeCreated.getTime()) +
             "\n}";
   }

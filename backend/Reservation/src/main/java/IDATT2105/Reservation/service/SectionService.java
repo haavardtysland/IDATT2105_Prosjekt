@@ -37,6 +37,11 @@ public class SectionService {
         return this.repo.deleteSection(section_id);
     }
 
+    public boolean deleteMessage(int message_id) {
+        log.info("Deleting message with message_id " + message_id);
+        return this.repo.deleteMessage(message_id);
+    }
+
     public ArrayList<ReservationTime> getSectionAvailability(int section_id){
         log.info("Getting reservation times for a section");
         return this.repo.getSectionAvailability(section_id);
