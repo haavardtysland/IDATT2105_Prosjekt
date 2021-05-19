@@ -12,7 +12,7 @@ import TimeCard from './TimeCard';
 import getDayOfWeek from './GetDayOfWeek';
 import styled from 'styled-components';
 import Popup from '../Popup';
-import ReservationForm from '../ReservationForm';
+import ReservationForm from '../reservation_components/ReservationForm';
 import Section from '../../interfaces/Section';
 
 const ButtonsDiv = styled.div`

@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import AdministrateButtons from '../../components/AdministrateButtons';
 import Room from '../../interfaces/Room';
 import axios from '../../axios';
-import RoomGrid from '../../components/RoomGrid';
-import ChangeRoom from '../../components/ChangeRoom';
+import RoomGrid from '../../components/room_components/RoomGrid';
+import ChangeRoom from '../../components/room_components/ChangeRoom';
 import Section from '../../interfaces/Section';
 const Container = styled.div`
   padding-top: 8%;

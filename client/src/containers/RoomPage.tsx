@@ -8,7 +8,7 @@ import {
   withStyles,
 } from '@material-ui/core';
 import Section from '../interfaces/Section';
-import Calendar from '../components/CalendarComponents/Calendar';
+import Calendar from '../components/calendar_components/Calendar';
 import styled from 'styled-components';
 import InfoIcon from '@material-ui/icons/Info';
 import { Context } from '../Context';

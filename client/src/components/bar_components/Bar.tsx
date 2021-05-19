@@ -25,7 +25,7 @@ import styled from 'styled-components';
 import DropDownList from './DropDownList';
 import { useHistory } from 'react-router';
 import { Context } from '../../Context';
-import MyUser from '../MyUser';
+import MyUser from '../user_components/MyUser';
 
 function Bar() {
   const history = useHistory();

@@ -4,7 +4,7 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import styled from 'styled-components';
 import DeleteIcon from '@material-ui/icons/Delete';
 import SectionAdder from './SectionAdder';
-import Room from '../interfaces/Room';
+import Room from '../../interfaces/Room';
 
 const Container = styled.div`
   display: flex;
@@ -109,7 +109,6 @@ function CreateRoomForm({
           sectionsChange={sectionsChange}
         ></SectionAdder>
       </Container>
-     
     </Fragment>
   );
 }
