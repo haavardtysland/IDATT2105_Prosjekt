@@ -102,63 +102,42 @@ const Calendar: React.FC<CalendarProps> = ({
     item = !item;
     items[index] = item;
     setIsMarkedArr(items);
-    /*
-    if (index === 0 && noMarked === 0) {
-      if (item === false) {
-        item = !item;
-        setNoMarked(noMarked + 1);
-      }
-    } else if (
-      (noMarked === 0 && index !== 0) ||
-      index !== isMarkedArr.length - 1
-    ) {
-      if (item === false) {
-        item = !item;
-        setNoMarked(noMarked + 1);
-      }
+  };
+
+  const updateToTrue = (index: number, item: boolean, items: boolean[]) => {
+    if (item === false) {
+      item = !item;
+      items[index] = item;
+      setNoMarked(noMarked + 1);
+    }
+  };
+  const updateToFalse = (index: number, item: boolean, items: boolean[]) => {
+    if (item === true) {
+      item = !item;
+      items[index] = item;
+      setNoMarked(noMarked - 1);
+    }
+  };
+  //TODO: fix what is updated.
+  const updateMarked = (index: number, items: boolean[]) => {
+    const item = items[index];
+    if (noMarked === 0) {
+      updateToTrue(index, item, items);
     } else if (index === 0 && isMarkedArr[index + 1] === true) {
-      if (item === false) {
-        item = !item;
-        setNoMarked(noMarked + 1);
-      }
-    } else if (
-      isMarkedArr[index - 1] === true &&
-      isMarkedArr[index + 1] === true
-    ) {
-      if (item === false) {
-        item = !item;
-        setNoMarked(noMarked + 1);
-      }
-    } else if (index === isMarkedArr.length - 1 && noMarked === 0) {
-      if (item === false) {
-        item = !item;
-        setNoMarked(noMarked + 1);
-      }
+      updateToTrue(index, item, items);
     } else if (
       index === isMarkedArr.length - 1 &&
       isMarkedArr[index - 1] === true
     ) {
-      if (item === false) {
-        item = !item;
-        setNoMarked(noMarked + 1);
-      }
-    } else if (isMarkedArr[index - 1] === true) {
-      if (item === false) {
-        item = !item;
-        setNoMarked(noMarked + 1);
-      }
-    } else if (isMarkedArr[index + 1] === true) {
-      if (item === false) {
-        item = !item;
-        setNoMarked(noMarked + 1);
-      }
+      updateToTrue(index, item, items);
+    } else if (
+      isMarkedArr[index - 1] === true ||
+      isMarkedArr[index + 1] === true
+    ) {
+      updateToTrue(index, item, items);
     } else {
-      if (item === true) {
-        item = !item;
-        setNoMarked(noMarked - 1);
-      }
+      updateToFalse(index, item, items);
     }
-    */
   };
 
   const updateIsMarkedArrFromTo = (fromIndex: number, toIndex: number) => {
@@ -300,9 +279,7 @@ const Calendar: React.FC<CalendarProps> = ({
           const toIndex: number = times.indexOf(toTime);
           if (fromIndex >= 0 && toIndex <= isMarkedArr.length - 1) {
             for (let i = fromIndex; i < toIndex; i++) {
-              let item = items[i];
-              item = true;
-              items[i] = item;
+              updateMarked(i, items);
             }
           }
         }
