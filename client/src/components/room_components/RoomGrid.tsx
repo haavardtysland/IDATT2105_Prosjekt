@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { GridList } from '@material-ui/core';
+import { GridList, TextField } from '@material-ui/core';
 import styled from 'styled-components';
 import Pageination from '@material-ui/lab/Pagination';
 import Room from '../../interfaces/Room';
@@ -37,8 +37,26 @@ const RoomGrid = ({ rooms, onRoomClick, changeRoom }: Props) => {
     setPage(value);
   };
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCurrentRooms(titleFilter(rooms, event.target.value));
+  };
+
+  const titleFilter = (rooms: Room[], titleSearch: string): Room[] => {
+    return rooms.filter((room: Room) => {
+      if (titleSearch == '') {
+        return room;
+      } else if (
+        room.name != null &&
+        room.name.toLowerCase().includes(titleSearch.toLocaleLowerCase())
+      ) {
+        return room;
+      }
+    });
+  };
+
   return (
     <Container>
+      <TextField placeholder="Search" onChange={handleChange}></TextField>
       <GridList
         style={{
           display: 'flex',
