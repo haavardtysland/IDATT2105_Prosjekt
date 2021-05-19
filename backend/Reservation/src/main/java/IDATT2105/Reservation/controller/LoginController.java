@@ -28,7 +28,7 @@ public class LoginController {
   @Autowired
   private SecurityService securityService;
 
- @PostMapping(value = "" , produces="application/json")
+ @PostMapping("")
   private ResponseEntity loginUser(@RequestBody Map<String, Object> map) {
     log.info("recieved postmapping to /login " + map.toString());
     HttpHeaders header = new HttpHeaders();
@@ -46,32 +46,31 @@ public class LoginController {
         String isAdmin = String.valueOf(userService.getUserByEmail(map.get("email").toString()).getIsAdmin());
         body.put("id", id);
         body.put("isAdmin", isAdmin);
-       /* body.put("token",
-          String.valueOf(securityService.createToken(id, (1000 * 60 * 60 * 24))));*/
+        body.put("token",
+          String.valueOf(securityService.createToken(id, (1000 * 60 * 60 * 24))));
         header.add("Status", "200 OK");
         return ResponseEntity.ok()
                 .headers(header)
                 .body(formatJson(body));
-      } else {
+      }else if(!user.verifyPassword(map.get("password").toString())){
         log.info("Password was wrong for user with email " + map.get("email").toString());
+        header.add("Status", "403 Forbidden");
+        body.put("error", "Passordet er feil");
+
+        return ResponseEntity.status(403)
+            .headers(header).body(formatJson(body));
+      } else {
         log.info("the user may not be valid anymore. ValidDate= " + String.valueOf(userService.getUserByEmail(map.get("email").toString()).getValidDate()));
-/*
-      body.put("token",
-          String.valueOf(securityService.createToken(id, (1000 * 60 * 60 * 24))));*/
-        header.add("Status", "400 BAD REQUEST");
-        body.put("error", "Passordet er feil eller brukeren er ikke gyldig lenger");
-        return ResponseEntity.badRequest()
-                .headers(header)
-                .body(formatJson(body));
+       body.put("error", "Brukeren er utgått");
+       header.add("Status", "403 Forbidden");
+        return ResponseEntity.status(403)
+            .headers(header).body(formatJson(body));
       }
     }
     log.error("unable to login user with email: " + map.get("email").toString());
     header.add("Status", "403 Forbidden");
     body.put("error", "Finnes ingen bruker med denne email-en " + map.get("email").toString());
-    return ResponseEntity.badRequest()
+    return ResponseEntity.ok()
         .headers(header).body(formatJson(body));
   }
-
-
-
 }

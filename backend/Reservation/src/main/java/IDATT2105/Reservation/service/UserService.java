@@ -35,6 +35,11 @@ public class UserService {
       return getUserByEmail(email.trim());
   }
 
+  public boolean login(String email, String password) {
+    log.info("logging in user with email " + email.trim());
+    return getUserByEmail(email.trim()).verifyPassword(password);
+  }
+
   /**
    * This method is used when a user wants to update their user settings. It gets passed new
    * values from the {@link IDATT2105.Reservation.controller.UserController IDATT2106.team6.Gidd.web.UserController controller}, which are then used to

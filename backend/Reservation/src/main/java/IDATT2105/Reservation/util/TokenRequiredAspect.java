@@ -11,9 +11,11 @@ import IDATT2106.team6.Gidd.service.SecurityServiceImpl;
  */
 
 import IDATT2105.Reservation.models.Reservation;
+import IDATT2105.Reservation.models.User;
 import IDATT2105.Reservation.service.ReservationService;
 import IDATT2105.Reservation.service.SecurityServiceImpl;
 
+import IDATT2105.Reservation.service.UserService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
@@ -46,6 +48,9 @@ public class TokenRequiredAspect {
 
  @Autowired
  private ReservationService reservationService;
+
+  @Autowired
+  private UserService userService;
 
   /**
    * Called when a method with the {@link MapTokenRequired} annotation is called.
@@ -117,89 +122,16 @@ public class TokenRequiredAspect {
     return handleToken(pjp, subject);
   }
 
-  /*
+
   /**
-   * Called when a method with the {@link GroupTokenRequired} annotation is called.
-   * This specific annotation is used the subject, or the relevant groupId, is
-   * the first integer argument of the given JoinPoint. Since no userId is passed for
-   * these methods, this method instead finds the group in question and checks if the
-   * token passed belongs to the owner of the group.
+   * Called when a method with the {@link ReservationTokenRequired} annotation is called.
+   * This specific annotation is used the subject, or the relevant reservationId, is
+   * the first integer argument of the given JoinPoint.
+   * but checks for the user that created the given reservation.
    *
    * @param pjp the method that would otherwise be called if not for the annotation
    * @return the result of {@link #handleToken(ProceedingJoinPoint, String)}
    */
-  /*
-  @Around("@annotation(groupTokenRequired)")
-  public Object groupTokenRequiredWithAnnotation(ProceedingJoinPoint pjp,
-                                                 GroupTokenRequired groupTokenRequired)
-      throws Throwable {
-    log.info("Around groupTokenRequiredWithAnnotation");
-    Object[] args = pjp.getArgs();
-    String subject = "";
-    FriendGroup group = null;
-    if (args[0] instanceof Integer) {
-      group = friendGroupService.getFriendGroup((int) args[0]);
-    }
-    if (group == null) {
-      HashMap<String, String> body = new HashMap<>();
-      body.put("error", "that group does not exist");
-      return ResponseEntity
-          .badRequest()
-          .body(body);
-    }
-    subject = String.valueOf(group.getOwner().getUserId());
-    return handleToken(pjp, subject);
-  }
-
-  /**
-   * Called when a method with the {@link GroupMemberTokenRequired} annotation is called.
-   * This specific annotation is used the subject, or the relevant groupId, is
-   * the first integer argument of the given JoinPoint. This method is similar to
-   * {@link #groupTokenRequiredWithAnnotation(ProceedingJoinPoint, GroupTokenRequired)}, but
-   * will also check the groups normal members in addition to the owner.
-   *
-   * @param pjp the method that would otherwise be called if not for the annotation
-   * @return the result of {@link #handleToken(ProceedingJoinPoint, String)}
-   */
-
-  /*
-  @Around("@annotation(groupMemberTokenRequired)")
-  public Object groupMemberTokenRequiredWithAnnotation(ProceedingJoinPoint pjp,
-                                                       GroupMemberTokenRequired groupMemberTokenRequired)
-      throws Throwable {
-    log.info("Around groupMemberTokenRequiredWithAnnotation");
-    Object[] args = pjp.getArgs();
-    List<String> subjects = new ArrayList<>();
-    FriendGroup group = null;
-    if (args[0] instanceof Integer) {
-      group = friendGroupService.getFriendGroup((int) args[0]);
-    }
-    if (group == null) {
-      HashMap<String, String> body = new HashMap<>();
-      body.put("error", "that group does not exist");
-      return ResponseEntity
-          .badRequest()
-          .body(body);
-    }
-    for (User u : group.getUsers()) {
-      subjects.add(String.valueOf(u.getUserId()));
-    }
-    subjects.add(String.valueOf(group.getOwner().getUserId()));
-    return handleTokenArr(pjp, subjects);
-  }
-
-  /**
-   * Called when a method with the {@link ActivityTokenRequired} annotation is called.
-   * This specific annotation is used the subject, or the relevant activityId, is
-   * the first integer argument of the given JoinPoint. This method is similar to
-   * {@link #groupTokenRequiredWithAnnotation(ProceedingJoinPoint, GroupTokenRequired)},
-   * but checks for the user that created the given activity, instead of a group owner.
-   *
-   * @param pjp the method that would otherwise be called if not for the annotation
-   * @return the result of {@link #handleToken(ProceedingJoinPoint, String)}
-   */
-
-
   @Around("@annotation(reservationTokenRequired)")
   public Object reservationTokenRequiredWithAnnotation(ProceedingJoinPoint pjp,
                                                     ReservationTokenRequired reservationTokenRequired)
@@ -213,7 +145,7 @@ public class TokenRequiredAspect {
     }
     if (reservation == null) {
       HashMap<String, String> body = new HashMap<>();
-      body.put("error", "that activity does not exist");
+      body.put("error", "that reservation does not exist");
       return ResponseEntity
           .badRequest()
           .body(body);
@@ -259,12 +191,16 @@ public class TokenRequiredAspect {
             .badRequest()
             .body(body);
       }
-      if (!claims.getSubject().equalsIgnoreCase(subject)) {
-        log.error("Subject does not match token");
-        body.put("error", "subject mismatch");
-        return ResponseEntity
-            .badRequest()
-            .body(body);
+      User user = userService.getUser(Integer.parseInt(claims.getSubject()));
+      if(user.getIsAdmin()){
+        return pjp.proceed();
+      }
+      else if (!claims.getSubject().equalsIgnoreCase(subject)) {
+          log.error("Subject does not match token");
+          body.put("error", "subject mismatch");
+          return ResponseEntity
+              .badRequest()
+              .body(body);
       } else {
         return pjp.proceed();
       }

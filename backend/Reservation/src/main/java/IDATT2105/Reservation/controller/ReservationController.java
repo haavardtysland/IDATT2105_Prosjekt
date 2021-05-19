@@ -14,6 +14,8 @@ import IDATT2105.Reservation.service.ReservationService;
 import IDATT2105.Reservation.service.RoomService;
 import IDATT2105.Reservation.util.Logger;
 import IDATT2105.Reservation.util.MapTokenRequired;
+import IDATT2105.Reservation.util.PathTokenRequired;
+import IDATT2105.Reservation.util.PathTwoTokenRequired;
 import IDATT2105.Reservation.util.ReservationTokenRequired;
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -309,11 +311,10 @@ public class ReservationController {
         .body(formatJson(body));
   }
 
-
+  //@ReservationTokenRequired //denne funker for de som har laget reservasjonen
   @DeleteMapping("/{reservationId}")
   public ResponseEntity deleteReservation(@PathVariable Integer reservationId) {
     log.info("recieved deletemapping to reservation with id " + reservationId);
-    //User user = userService.getUser(reservationId);  må kanskje fikse noe greier her
     Map<String, String> body = new HashMap<>();
     HttpHeaders header = new HttpHeaders();
     Reservation reservation = reservationService.getReservation(reservationId);
@@ -341,7 +342,7 @@ public class ReservationController {
     body.put("error", "no reservation was deleted, are you sure the reservation exists");
     return ResponseEntity.badRequest().headers(header).body(formatJson(body));
   }
-
+ // @ReservationTokenRequired
   @PutMapping(value = "/{id}", consumes = "application/json", produces = "application/json")
   public ResponseEntity editReservation(@PathVariable("id") int resId,
                                      @RequestBody Map<String, Object> map
@@ -367,7 +368,6 @@ public class ReservationController {
           .body(formatJson(body));
     }
     log.info("old reservation " + reservation.getReservation_id());
-    //reservationService.getReservation(resId).getSection().getSectionId()
     reservation.setCapacity(Integer.parseInt(map.get("capacity").toString()));
     reservation.setDescription(map.get("description").toString());
     reservation.setFromDate(Timestamp.valueOf(map.get("from_date").toString()));
