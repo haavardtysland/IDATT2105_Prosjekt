@@ -1,17 +1,10 @@
 import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
-import {
-  Button,
-  Typography,
-  withStyles,
-  TextField,
-  AccordionSummary,
-} from '@material-ui/core';
+import { Button, Typography, withStyles, TextField } from '@material-ui/core';
 import styled from 'styled-components';
 import User from '../../interfaces/User';
 import axios from '../../axios';
 import { Context } from '../../Context';
 import Section from '../../interfaces/Section';
-import { Description } from '@material-ui/icons';
 import Reservation from '../../interfaces/Reservation';
 
 const ButtonsContainer = styled.div`
@@ -36,6 +29,7 @@ interface ReservationFormProps {
   setOpenPopup: React.Dispatch<React.SetStateAction<boolean>>;
   section: Section;
   date: Date;
+  getReservationsForSelectionDate: () => void;
 }
 
 const ReservationForm: React.FC<ReservationFormProps> = ({
@@ -50,6 +44,7 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
   setOpenPopup,
   section,
   date,
+  getReservationsForSelectionDate,
 }: ReservationFormProps) => {
   const { user } = useContext(Context.UserContext);
   const [currentUser, setCurrentUser] = useState<User>({
@@ -58,14 +53,16 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
     surname: '',
     email: '',
     isAdmin: false,
-    validDate: new Date(),
+    validDate: '',
     phoneNumber: '',
   });
   const [currentTimes, setCurrentTimes] = useState<string[]>(
     selectedTimes !== undefined ? selectedTimes : []
   );
   const [fromDate, setFromDate] = useState<string>(currentTimes[0]);
-  const [toDate, setToDate] = useState<string>(currentTimes[0]);
+  const [toDate, setToDate] = useState<string>(
+    currentTimes[currentTimes.length - 1]
+  );
   const [deleteTime, setDeleteTime] = useState<string>('');
   const [desc, setDesc] = useState<string>('');
   const [capacity, setCapacity] = useState<string>('');
@@ -88,9 +85,10 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
 
   const getUser = async () => {
     try {
+      console.log(user);
       const request = await axios.get(`/user/${user.id}`);
       console.log(request);
-      setCurrentUser(request.data['user']);
+      setCurrentUser(request.data);
       return request;
     } catch (error) {
       console.log(error);
@@ -125,9 +123,18 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
   //'2021-11-12 09:00:00.0'
   const postReservation = async () => {
     try {
-      const dateFormat = `${date.getFullYear()}-${
-        date.getMonth() + 1
-      }-${date.getDay()}`;
+      let dateFormat = '';
+      if (String(date.getMonth() + 1).length === 1) {
+        dateFormat = `${date.getFullYear()}-0${
+          date.getMonth() + 1
+        }-${date.getDate()}`;
+      } else {
+        dateFormat = `${date.getFullYear()}-${
+          date.getMonth() + 1
+        }-${date.getDate()}`;
+      }
+
+      console.log(dateFormat);
       const object = {
         user_id: currentUser.userId,
         section_id: section.section_id,
@@ -139,10 +146,11 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
       console.log(object);
       const request = await axios.post('/reservation', object);
       console.log(request);
-      //TODO: mark the reserved times.
+      getReservationsForSelectionDate();
+      setOpenPopup(!openPopup);
       return request;
     } catch (err) {
-      console.log(err);
+      alert(err.response.data.error);
     }
   };
 
@@ -202,6 +210,8 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
           Log is marked arr
         </button>
         <button onClick={() => console.log(deleteTime)}>log delete time</button>
+        <button onClick={() => console.log(currentUser)}>log user</button>
+        <button onClick={() => console.log(date)}>log date</button>
       </ButtonsContainer>
     </div>
   );

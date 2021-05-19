@@ -184,7 +184,27 @@ const Calendar: React.FC<CalendarProps> = ({
       .catch((err) => console.log(err));
   };
 
-  //const getReservationForSectionDate = () => {};
+  //"/{sectionId}/section/{from}/{to}"
+  const getReservationForSectionDate = () => {
+    const dateFormat = `${date.getFullYear()}-${
+      date.getMonth() + 1
+    }-${date.getDate()}`;
+    const from: string = dateFormat + ` 07:30:00.0`;
+    const to: string = dateFormat + ` 19:00:00.0`;
+    const fromDate = new Date(from);
+    const toDate = new Date(to);
+    axios
+      .get(
+        `/reservation/${
+          section.section_id
+        }/section/${fromDate.getTime()}/${toDate.getTime()}`
+      )
+      .then((response) => {
+        console.log(response);
+        setReservations(response.data['reservations']);
+      })
+      .catch((err) => console.log(err));
+  };
 
   const getDateFromString = (str: string) => {
     let index = -1;
@@ -200,6 +220,18 @@ const Calendar: React.FC<CalendarProps> = ({
       const split: string[] = sub2.trim().split(':');
       return new Date(sub1 + ' ' + split[0] + ':' + split[1]);
     } else return new Date();
+  };
+
+  const getStringFromDate = (date: Date) => {
+    return (
+      getDayOfWeek(date.getDay()) +
+      ' ' +
+      date.getDate() +
+      '.' +
+      (date.getMonth() + 1) +
+      '.' +
+      date.getFullYear()
+    );
   };
 
   const getTimeFromString = (str: string) => {
@@ -232,9 +264,10 @@ const Calendar: React.FC<CalendarProps> = ({
   };
 
   useEffect(() => {
-    getReservationsForSection();
+    getReservationForSectionDate();
   }, [section, date]);
 
+  /*
   useEffect(() => {
     if (reservations !== [] && reservations !== undefined) {
       for (const i in reservations) {
@@ -258,6 +291,7 @@ const Calendar: React.FC<CalendarProps> = ({
       }
     }
   }, [reservations]);
+  */
 
   useEffect(() => {
     let count = 0;
@@ -304,8 +338,7 @@ const Calendar: React.FC<CalendarProps> = ({
           gutterBottom
         >
           {section.section_name + ' '}
-          {getDayOfWeek(date.getDay())} {date.getDate()}.{date.getMonth() + 1}.
-          {date.getFullYear()}
+          {getStringFromDate(date)}
         </Typography>
         <Divider variant="fullWidth" />
         <GridList cellHeight={60} cols={8} style={{ padding: '10px' }}>
@@ -322,7 +355,9 @@ const Calendar: React.FC<CalendarProps> = ({
             Fjern valgte tider
           </StyledButton>
           <Popup
-            title={`Reserver for ${section.section_name}`}
+            title={`Reserver for ${section.section_name} ${getStringFromDate(
+              date
+            )}`}
             openPopup={openPopup}
             setOpenPopup={setOpenPopup}
           >
@@ -338,6 +373,7 @@ const Calendar: React.FC<CalendarProps> = ({
               setOpenPopup={setOpenPopup}
               section={section}
               date={date}
+              getReservationsForSelectionDate={getReservationForSectionDate}
             />
           </Popup>
         </ButtonsDiv>

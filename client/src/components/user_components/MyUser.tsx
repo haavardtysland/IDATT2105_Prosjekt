@@ -65,7 +65,7 @@ const MyUser: React.FC<Props> = ({ openPopup, setOpenPopup }: Props) => {
     surname: 'Forbrigd',
     email: 'hansw0701@gmail.com',
     isAdmin: false,
-    validDate: new Date('2021-05-13'),
+    validDate: '2021-05-13',
     phoneNumber: '41744440',
   });
   const [firstName, setFirstName] = useState<string>('');
