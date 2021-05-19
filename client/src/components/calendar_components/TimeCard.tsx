@@ -31,11 +31,23 @@ const TimeCard: React.FC<TimeCardProps> = ({
   const [backgroundcolor, setBackgroundcolor] = useState<string>('');
 
   const handleIsMarked = () => {
+    /*
+    console.log(isMarkedArr);
+    for (let i = 0; i < isMarkedArr.length; i++) {
+      if (
+        isMarkedArr[i - 1] === true &&
+        isMarkedArr[i + 1] === true &&
+        i === index
+      ) {
+        updateIsMarkedArr(index);
+      } else if()
+    }
+    */
     updateIsMarkedArr(index);
-    updateColors();
+    updateColor();
   };
 
-  const updateColors = () => {
+  const updateColor = () => {
     if (isMarkedArr[index] === false) {
       setBackgroundcolor('white');
     } else {
@@ -56,7 +68,7 @@ const TimeCard: React.FC<TimeCardProps> = ({
 
   useEffect(() => {
     updateSelectedTimes();
-    updateColors();
+    updateColor();
   }, [isMarkedArr]);
 
   return (

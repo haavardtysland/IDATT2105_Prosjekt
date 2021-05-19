@@ -14,6 +14,8 @@ import styled from 'styled-components';
 import Popup from '../Popup';
 import ReservationForm from '../reservation_components/ReservationForm';
 import Section from '../../interfaces/Section';
+import axios from '../../axios';
+import Reservation from '../../interfaces/Reservation';
 
 const ButtonsDiv = styled.div`
   display: flex;
@@ -65,6 +67,7 @@ const Calendar: React.FC<CalendarProps> = ({
     }
     return arr;
   });
+  const [noMarked, setNoMarked] = useState<number>(0);
 
   const setTimeArr = (): string[] => {
     let hour = 7;
@@ -88,6 +91,7 @@ const Calendar: React.FC<CalendarProps> = ({
   };
   const times = setTimeArr();
   const [selectedTimes, setSelectedTimes] = useState<string[]>([]);
+  const [reservations, setReservations] = useState<Reservation[]>([]);
 
   const updateIsMarkedArr = (index: number) => {
     const items = [...isMarkedArr];
@@ -95,6 +99,63 @@ const Calendar: React.FC<CalendarProps> = ({
     item = !item;
     items[index] = item;
     setIsMarkedArr(items);
+    /*
+    if (index === 0 && noMarked === 0) {
+      if (item === false) {
+        item = !item;
+        setNoMarked(noMarked + 1);
+      }
+    } else if (
+      (noMarked === 0 && index !== 0) ||
+      index !== isMarkedArr.length - 1
+    ) {
+      if (item === false) {
+        item = !item;
+        setNoMarked(noMarked + 1);
+      }
+    } else if (index === 0 && isMarkedArr[index + 1] === true) {
+      if (item === false) {
+        item = !item;
+        setNoMarked(noMarked + 1);
+      }
+    } else if (
+      isMarkedArr[index - 1] === true &&
+      isMarkedArr[index + 1] === true
+    ) {
+      if (item === false) {
+        item = !item;
+        setNoMarked(noMarked + 1);
+      }
+    } else if (index === isMarkedArr.length - 1 && noMarked === 0) {
+      if (item === false) {
+        item = !item;
+        setNoMarked(noMarked + 1);
+      }
+    } else if (
+      index === isMarkedArr.length - 1 &&
+      isMarkedArr[index - 1] === true
+    ) {
+      if (item === false) {
+        item = !item;
+        setNoMarked(noMarked + 1);
+      }
+    } else if (isMarkedArr[index - 1] === true) {
+      if (item === false) {
+        item = !item;
+        setNoMarked(noMarked + 1);
+      }
+    } else if (isMarkedArr[index + 1] === true) {
+      if (item === false) {
+        item = !item;
+        setNoMarked(noMarked + 1);
+      }
+    } else {
+      if (item === true) {
+        item = !item;
+        setNoMarked(noMarked - 1);
+      }
+    }
+    */
   };
 
   const updateSelectedTimes = () => {
@@ -110,6 +171,32 @@ const Calendar: React.FC<CalendarProps> = ({
       }
     }
   };
+
+  const getReservationsForSection = () => {
+    axios
+      .get(`/reservation/${section.section_id}/section`)
+      .then((response) => {
+        console.log(response);
+        setReservations(response.data['reservations']);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    //get the available reservations for that section
+    //"/{sectionId}/section"
+    getReservationsForSection();
+  }, []);
+
+  useEffect(() => {
+    let count = 0;
+    for (const marked of isMarkedArr) {
+      if (marked === true) {
+        count++;
+      }
+    }
+    setNoMarked(count);
+  }, [isMarkedArr]);
 
   const renderTimeCards = times.map((time, key: number) => {
     return (
@@ -175,6 +262,8 @@ const Calendar: React.FC<CalendarProps> = ({
               updateSelectedTimes={updateSelectedTimes}
               openPopup={openPopup}
               setOpenPopup={setOpenPopup}
+              section={section}
+              date={date}
             />
           </Popup>
         </ButtonsDiv>
@@ -182,6 +271,10 @@ const Calendar: React.FC<CalendarProps> = ({
         <Button onClick={() => console.log(selectedTimes)}>
           Log selected times
         </Button>
+        <button onClick={() => console.log(noMarked)}>log no marked</button>
+        <button onClick={() => console.log(reservations)}>
+          log reservations
+        </button>
       </CardContent>
     </Card>
   );
