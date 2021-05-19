@@ -88,7 +88,7 @@ public class Section {
     this.messages = messages;
   }
 
-  public void removeMessages(Message message) {
+  public void removeMessage(Message message) {
     for(int i = 0; i < this.messages.size(); i++) {
       if(this.messages.get(i).getMessageId() == message.getMessageId()) {
         this.messages.remove(i);

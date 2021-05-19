@@ -37,8 +37,30 @@ public class SectionController {
     @Autowired
     private UserService userService;
 
+    @DeleteMapping(value="/message/{message_id}")
+    public @ResponseBody
+    ResponseEntity deleteMessage(@PathVariable String message_id) {
+        Map<String, String> body = new HashMap<>();
+        HttpHeaders header = new HttpHeaders();
+        int messageId = Integer.parseInt(message_id);
+        boolean result =  sectionService.deleteMessage(messageId);
+        if(result){
+            log.info("Deleting message with messageId " + messageId);
+            header.add("STATUS", "200 OK");
+            return ResponseEntity.ok().headers(header).body(formatJson(body));
+        }
+        log.info("Something went wrong during deletion of message with messageId " + messageId);
+        body.put("error", "message could not be deleted");
+        header.add("STATUS", "400 BAD REQUEST");
+        return ResponseEntity.badRequest().headers(header).body(formatJson(body));
+    }
+
     /**
      * Adding a massage to section
+     *  {
+     *     "user_id": 1819766832,
+     *     "message": "test"
+     * }
      * @param map
      * @param section_id
      * @return
