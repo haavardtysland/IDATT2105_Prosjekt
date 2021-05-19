@@ -18,7 +18,7 @@ const Container = styled.div`
 interface Props {
   users: User[];
   deleteUser: (userId: number) => void;
-  resendPassword: (userId: number) => void;
+  resendPassword: (user: User) => void;
 }
 
 function UserGrid({ users, deleteUser, resendPassword }: Props) {
@@ -47,8 +47,8 @@ function UserGrid({ users, deleteUser, resendPassword }: Props) {
       >
         {users.map((user, index) => (
           <UserCard
-            deleteUser={deleteUser}
-            resendPassword={resendPassword}
+            deleteUser={() => deleteUser(user.userId)}
+            resendPassword={() => resendPassword(user)}
             key={index}
             user={user}
           ></UserCard>

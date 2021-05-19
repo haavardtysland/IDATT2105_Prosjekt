@@ -38,7 +38,7 @@ const TransformDiv = styled.div`
 
 interface Props {
   user: User;
-  deleteUser: (userId: number) => void;
+  deleteUser: (userId: User) => void;
   resendPassword: (userId: number) => void;
 }
 
@@ -53,7 +53,7 @@ const UserCard = ({ user, deleteUser, resendPassword }: Props) => {
             {user.email}
           </Typography>
           <Flex>
-            <Button onClick={() => deleteUser(user.userId)}>
+            <Button onClick={() => deleteUser(user)}>
               <DeleteIcon />
             </Button>
             <Button onClick={() => resendPassword(user.userId)}>

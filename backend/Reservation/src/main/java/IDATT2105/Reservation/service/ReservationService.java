@@ -60,6 +60,11 @@ public class ReservationService {
     return repo.getReservationsForRoom(roomId);
   }
 
+  public List<Reservation> getReservationsForSectionOnTimeframe(int sectionId, Timestamp start, Timestamp end){
+    log.info("Getting all reservations within a timeframe for a particular section " + sectionId + "between " + start + " and " + end) ;
+    return repo.getReservationsForSectionOnTimeframe(sectionId, start, end);
+  }
+
  /* public User getReservation(String email) {
     log.info("getting user by email: " + email);
     return repo.findReservationByEmail(email);

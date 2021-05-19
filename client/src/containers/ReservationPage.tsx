@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import ReservationCard from '../components/ReservationCard';
+import ReservationCard from '../components/reservation_components/ReservationCard';
 import { Divider, Typography } from '@material-ui/core';
 import styled from 'styled-components';
 import { SortFunctions } from '../components/sorting/SortFunctions';

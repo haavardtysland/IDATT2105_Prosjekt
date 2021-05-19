@@ -1,7 +1,7 @@
 import { Button } from '@material-ui/core';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import CreateRoomForm from '../../components/CreateRoomForm';
+import CreateRoomForm from '../../components/room_components/CreateRoomForm';
 import axios from '../../axios';
 
 const Container = styled.div`

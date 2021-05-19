@@ -57,8 +57,8 @@ public class UserController {
     }
   }
 
-  @GetMapping(value = "{userId}", produces = "application/json")
-  public ResponseEntity GetUser(@PathVariable String userId){
+  @GetMapping(value = "/{userId}", produces = "application/json")
+  public ResponseEntity getUser(@PathVariable String userId){
       HttpHeaders header = new HttpHeaders();
       Map<String, String> body = new HashMap();
       int id = Integer.parseInt(userId);
@@ -69,7 +69,7 @@ public class UserController {
         return ResponseEntity.badRequest().headers(header).body(formatJson(body));
       }
       header.add("STATUS", "200 OK");
-      return ResponseEntity.ok().headers(header).body("{\"user\": \n" + user.toString() + "\n}");
+      return ResponseEntity.ok().headers(header).body(user.toString());
   }
 
 
@@ -112,6 +112,8 @@ public class UserController {
   public ResponseEntity registerUser(@RequestBody HashMap<String, Object> map) {
     log.info("recieved postmapping to /user: " + map.toString());
     Map<String, String> body = new HashMap<>();
+    HttpHeaders header = new HttpHeaders();
+
 
     if (userService.getUserByEmail(map.get("email").toString()) != null) {
       body.put("error", "En bruker med en emailen finnes allerede");
@@ -122,6 +124,14 @@ public class UserController {
     }
 
     String randomPassword = getRandomPassword();
+    try {
+      sendEmailService.sendUserEmail(map.get("email").toString(), randomPassword);
+    }    catch(Exception e){
+      log.info("Mailen er ugyldig");
+      header.add("Status", "400 Bad Request");
+      body.put("error", "Ugyldig email");
+      return ResponseEntity.badRequest().headers(header).body(formatJson(body));
+    }
     User result = userService.registerUser(
         getRandomID(),
         map.get("firstName").toString(),
@@ -132,7 +142,6 @@ public class UserController {
         randomPassword,
         Integer.parseInt(map.get("phoneNumber").toString()));
     log.info("created user with id: " + result.getUserId());
-    HttpHeaders header = new HttpHeaders();
 
     header.add("Content-Type", "application/json; charset=UTF-8");
     log.info("created user " + result.getUserId() + " | " + result.getEmail());
@@ -142,20 +151,20 @@ public class UserController {
 
       body.put("userId", String.valueOf(result.getUserId()));
       body.put("isAdmin", String.valueOf(result.getIsAdmin()));
-
-      sendEmailService.sendUserEmail(result.getEmail(), randomPassword);
+      //body.put("token", securityService
+      //  .createToken(String.valueOf(result.getUserId()), (1000 * 60 * 60 * 24)));
       return ResponseEntity
-          .ok()
-          .headers(header)
-          .body(formatJson(body));
+              .ok()
+              .headers(header)
+              .body(formatJson(body));
+    } else {
+      header.add("Status", "400 BAD REQUEST");
+      body.put("error", "Created user is null");
+      return ResponseEntity
+              .ok()
+              .headers(header)
+              .body(formatJson(body));
     }
-    log.error("Created user is null");
-    header.add("Status", "400 BAD REQUEST");
-    body.put("error", "Created user is null");
-    return ResponseEntity
-        .ok()
-        .headers(header)
-        .body(formatJson(body));
   }
 
   /**
@@ -173,7 +182,6 @@ public class UserController {
    * @param id
    * @return
    */
-  //@PathTwoTokenRequired
   @PutMapping(value = "/edit/{id}")
   public ResponseEntity editUser(@RequestBody Map<String, Object> map, @PathVariable Integer id) {
     log.info("receieved a put mapping for user with id: " + id);
@@ -269,14 +277,13 @@ public class UserController {
    *     "isAdmin": true,
    *     "validDate": "2022-11-12",
    *     "password": "123123",
-   *     "newpassword":"aqsdasda"
+   *     "newpassword": "sda",
    *     "phoneNumber": 1231231
    * }
    * @param map
    * @param id
    * @return
    */
-  //@PathTwoTokenRequired
   @PutMapping(value = "/edit/{id}/user")
   public ResponseEntity editUserNotAdmin(@RequestBody Map<String, Object> map, @PathVariable Integer id) {
     log.info("receieved a put mapping for user with id: " + id);
@@ -333,7 +340,7 @@ public class UserController {
           id,
           map.get("firstName").toString(),
           map.get("surName").toString(),
-          map.get("email").toString(),
+          map.get("newEmail").toString(),
           Boolean.parseBoolean(map.get("isAdmin").toString()),
           Date.valueOf(map.get("validDate").toString()),
           map.get("newpassword").toString(),
