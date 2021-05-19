@@ -6,6 +6,7 @@ import IDATT2105.Reservation.service.UserService;
 import IDATT2105.Reservation.util.Logger;
 import IDATT2105.Reservation.util.SendEmailService;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -109,6 +110,30 @@ public class ReservationRepo extends ProjectRepo {
       //User user = userRepo.findUser(userId);
       Query q = em.createNativeQuery("SELECT * FROM RESERVATION where section_id = ?1 ", Reservation.class);
       q.setParameter(1, sectionId);
+      allRes = q.getResultList();
+    } catch(Exception e) {
+      log.info("Something went wrong while getting reservations for section " + e);
+      return new ArrayList<>();
+    } finally {
+      em.close();
+    }
+    if(allRes == null) {
+      return new ArrayList<>();
+    }
+    return new ArrayList<>(allRes);
+  }
+
+  public ArrayList<Reservation> getReservationsForSectionOnTimeframe(int sectionId, Timestamp start, Timestamp end){
+    EntityManager em = getEm();
+    List<Reservation> allRes = null;
+    try{
+      //User user = userRepo.findUser(userId);
+      Query q = em.createNativeQuery("SELECT * FROM RESERVATION where section_id = ?1 AND from_date BETWEEN ?2 AND ?3 AND to_date BETWEEN ?4 AND ?5", Reservation.class);
+      q.setParameter(1, sectionId);
+      q.setParameter(2, start);
+      q.setParameter(3, end);
+      q.setParameter(4, start);
+      q.setParameter(5, end);
       allRes = q.getResultList();
     } catch(Exception e) {
 
