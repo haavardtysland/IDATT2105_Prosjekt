@@ -72,6 +72,11 @@ public class ReservationController {
     }
   }
 
+  /**
+   * Get all the reservations for a user
+   * @param userId the id of the user
+   * @return A list of the reservations this user has
+   */
   @GetMapping(value = "/{userId}/user", produces = "application/json")
   public ResponseEntity getAllReservationsForUser(@PathVariable Integer userId) {
     log.debug("Received GetMapping at '/reservation/{userID}' with " + userId);
@@ -93,6 +98,11 @@ public class ReservationController {
     }
   }
 
+  /**
+   * Getting all the reservations for a section
+   * @param sectionId the id of the section
+   * @return A list of reservations
+   */
   @GetMapping(value = "/{sectionId}/section", produces = "application/json")
   public ResponseEntity getAllReservationsForSection(@PathVariable Integer sectionId) {
     log.debug("Received GetMapping at '/reservation/{sectionID}' with " + sectionId);
@@ -114,6 +124,13 @@ public class ReservationController {
     }
   }
 
+  /**
+   * Get the reservations of a section within at timeframe
+   * @param sectionId the id of the section
+   * @param from the start time, as ms since epoch
+   * @param to the end time, as ms since epoch
+   * @return
+   */
   @GetMapping(value ="/{sectionId}/section/{from}/{to}", produces = "application/json")
   public ResponseEntity getReservationsForSectionOnTimeframe(@PathVariable Integer sectionId, @PathVariable String from, @PathVariable String to){
     log.debug("Received GetMapping at '/reservation/{sectionID}' with " + sectionId);
@@ -202,14 +219,13 @@ public class ReservationController {
       List<Reservation> allReservations = reservationService.getReservationsForSection(section.getSectionId());
       for(Reservation res : allReservations){
         if(res.getFromDate().getTime() > newReservation.getFromDate().getTime() && res.getToDate().getTime() < newReservation.getToDate().getTime()
-        || res.getFromDate().getTime() <= newReservation.getFromDate().getTime() && res.getToDate().getTime() < newReservation.getFromDate().getTime()
+        || res.getFromDate().getTime() < newReservation.getFromDate().getTime() && res.getToDate().getTime() > newReservation.getFromDate().getTime()
         || res.getFromDate().getTime() < newReservation.getToDate().getTime() && res.getToDate().getTime() > newReservation.getToDate().getTime()
         || res.getFromDate().getTime() == newReservation.getFromDate().getTime() && res.getToDate().getTime() == newReservation.getToDate().getTime()){
             log.info("This section is already reserved in this timeframe");
             headers.add("Status", "400 Bad Request");
             body.put("error", "Tidspunktet er allerede reservert");
             return ResponseEntity.badRequest().headers(headers).body(formatJson(body));
-
         }
       }
       // creates one or multiple activities based on repeat
@@ -224,7 +240,7 @@ public class ReservationController {
           .body(formatJson(body));
     } catch (IllegalArgumentException e) {
       log.error("user is already registered to the reservasjon");
-      body.put("error", "user is already registered: " + e.getMessage());
+      body.put("error",  e.getMessage());
       return ResponseEntity
           .badRequest()
           .body(formatJson(body));

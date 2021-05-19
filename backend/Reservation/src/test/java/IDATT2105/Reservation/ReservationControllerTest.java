@@ -212,6 +212,29 @@ public class ReservationControllerTest {
 
 	@Test
 	@Order(8)
+	public void editAdminUserTest() throws Exception{
+		System.out.println("Test 8");
+		//Sends new password to the user, which is only accessible for the admin, admin can also change other info
+		String result = mockMvc.perform(MockMvcRequestBuilders.put("/user/edit/" + newUser.getUserId()).contentType(MediaType.APPLICATION_JSON).content(
+				"\n  {" +
+						"\n     \"firstName\":" + '\"' + newUser.getFirstName() + '\"' + "," +
+						"\n     \"surName\":" + '\"' + newUser.getSurname() + '\"' + "," +
+						"\n     \"email\":" + '\"' + newUser.getEmail() + '\"' + "," +
+						"\n     \"isAdmin\":" +  newUser.getIsAdmin()  + "," +
+						"\n     \"validDate\":" + '\"' + newUser.getValidDate() + '\"' + "," +
+						"\n     \"password\":" + '\"' + false + '\"' + "," +
+						"\n     \"phoneNumber\":"  + "51525303"  +
+						"\n }"
+		)).andExpect(status().isOk()).andExpect(MockMvcResultMatchers.jsonPath("$.id").exists()).andExpect(MockMvcResultMatchers.jsonPath("$.id").isNotEmpty()).andReturn().getResponse().getContentAsString();
+
+
+		JSONParser parser = new JSONParser();
+		JSONObject idJson = (JSONObject) parser.parse(result);
+		assert(idJson.getAsNumber("id").intValue()) == (newUser.getUserId());
+	}
+
+	@Test
+	@Order(8)
 	public void getUserTest() throws Exception{
 		System.out.println("Test 9");
 
@@ -303,6 +326,33 @@ public class ReservationControllerTest {
 		section1.addReservation(reservation);
 		newUser.addReservation(reservation);
 	}
+
+	@Test
+	@Order(8)
+	public void registerDuplicateReservationTest() throws Exception{
+			System.out.println("Test 6");
+			reservation.setFromDate(Timestamp.valueOf("2021-05-05 12:00:00.0"));
+			reservation.setFromDate(Timestamp.valueOf("2021-05-05 12:00:00.0"));
+			reservation.setToDate(Timestamp.valueOf("2021-06-05 12:00:00.0"));
+			reservation.setCapacity(10);
+			reservation.setDescription("Test reservasjon");
+
+			String error = mockMvc.perform(MockMvcRequestBuilders.post("/reservation").contentType(MediaType.APPLICATION_JSON).content(
+					"{" +
+							"\n \"user_id\": " + newUser.getUserId() + "," +
+							"\n \"section_id\": " + room1.getSections().get(0).getSectionId() + "," +
+							"\n \"from_date\": " + "\"" + "2021-05-05 12:00:00.0" + "\"" + "," +
+							"\n \"to_date\": " + "\"" + "2021-06-05 12:00:00.0" + "\"" + "," +
+							"\n \"capacity\": " + 10 + ","+
+							"\n \"description\": " + "\"" + "Test reservasjon" + "\"" +
+							"\n}"
+			)).andExpect(status().isBadRequest()).andReturn().getResponse().getContentAsString();
+
+
+		JSONParser parser = new JSONParser();
+		JSONObject JSONError = (JSONObject) parser.parse(error);
+		assert("Tidspunktet er allerede reservert".equals(JSONError.get("error")));
+		}
 
 	@Test
 	@Order(9)
