@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router';
-import Bar from './components/BarComponents/Bar';
+import Bar from './components/bar_components/Bar';
 import CreateRoom from './containers/AdminContainers/CreateRoom';
 import CreateUser from './containers/AdminContainers/CreateUser';
 import Login from './containers/Login';

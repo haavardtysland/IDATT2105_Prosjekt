@@ -4,7 +4,7 @@ import AdministrateButtons from '../../components/AdministrateButtons';
 import axios from '../../axios';
 import User from '../../interfaces/User';
 import UserGrid from '../../components/user_components/UserGrid';
-import ChangeRoom from '../../components/ChangeRoom';
+import ChangeRoom from '../../components/room_components/ChangeRoom';
 import Room from '../../interfaces/Room';
 const Container = styled.div`
   padding-top: 8%;

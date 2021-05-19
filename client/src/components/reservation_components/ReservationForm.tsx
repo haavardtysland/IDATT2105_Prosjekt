@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import TextField, { Button, Typography, withStyles } from '@material-ui/core';
 import styled from 'styled-components';
-import User from '../interfaces/User';
-import axios from '../axios';
-import { Context } from '../Context';
+import User from '../../interfaces/User';
+import axios from '../../axios';
+import { Context } from '../../Context';
 
 const ButtonsContainer = styled.div`
   display: flex;

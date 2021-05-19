@@ -7,8 +7,8 @@ import {
   withStyles,
 } from '@material-ui/core';
 import React from 'react';
-import Reservation from '../interfaces/Reservation';
-import roomPic from '../assets/room.jpg';
+import Reservation from '../../interfaces/Reservation';
+import roomPic from '../../assets/room.jpg';
 import styled from 'styled-components';
 
 interface ReservationCardProps {

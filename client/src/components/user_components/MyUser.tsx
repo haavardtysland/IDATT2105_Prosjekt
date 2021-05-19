@@ -18,8 +18,8 @@ import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 //import { UserContext } from '../UserContext';
 //import axios from '../axios';
 import { useHistory } from 'react-router-dom';
-import Popup from './Popup';
-import User from '../interfaces/User';
+import Popup from '../Popup';
+import User from '../../interfaces/User';
 import EditIcon from '@material-ui/icons/Edit';
 //import config from '../Config';
 

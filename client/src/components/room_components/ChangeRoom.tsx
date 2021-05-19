@@ -1,9 +1,9 @@
 import { Button } from '@material-ui/core';
 import React, { useState } from 'react';
-import Room from '../interfaces/Room';
+import Room from '../../interfaces/Room';
 import CreateRoomForm from './CreateRoomForm';
-import CreateUserForm from './CreateUserForm';
-import Popup from './Popup';
+import CreateUserForm from '../user_components/CreateUserForm';
+import Popup from '../Popup';
 import DeleteIcon from '@material-ui/icons/Delete';
 import styled from 'styled-components';
 
