@@ -1,6 +1,7 @@
 import { Card, CardContent, Typography, Tooltip } from '@material-ui/core';
 import React, { useState, useEffect, forwardRef } from 'react';
 import styled from 'styled-components';
+import Reservation from '../../interfaces/Reservation';
 import Circle from './Circle';
 
 const TransformDiv = styled.div`
@@ -17,6 +18,8 @@ interface TimeCardProps {
   index: number;
   updateIsMarkedArr: (index: number) => void;
   updateSelectedTimes: () => void;
+  reservations: Reservation[];
+  getTimeFromString: (str: string) => string;
 }
 
 const TimeCard: React.FC<TimeCardProps> = ({
@@ -27,6 +30,8 @@ const TimeCard: React.FC<TimeCardProps> = ({
   index,
   updateIsMarkedArr,
   updateSelectedTimes,
+  reservations,
+  getTimeFromString,
 }: TimeCardProps) => {
   const [backgroundcolor, setBackgroundcolor] = useState<string>('');
   const [circleColor, setCircleColor] = useState<string>('');
@@ -37,12 +42,21 @@ const TimeCard: React.FC<TimeCardProps> = ({
   };
 
   const updateColors = () => {
+    checkIfReserverd();
     if (isMarkedArr[index] === false) {
       setBackgroundcolor('white');
-      setCircleColor('green');
     } else {
       setBackgroundcolor('lightgrey');
-      setCircleColor('red');
+    }
+  };
+
+  const checkIfReserverd = () => {
+    for (const i in reservations) {
+      if (getTimeFromString(reservations[i].from_date) === time) {
+        setCircleColor('red');
+      } else {
+        setCircleColor('green');
+      }
     }
   };
 
@@ -63,16 +77,14 @@ const TimeCard: React.FC<TimeCardProps> = ({
   }, [isMarkedArr]);
 
   return (
-    <Tooltip title="ledig">
-      <TransformDiv onClick={handleIsMarked} style={{ padding: '3px' }}>
-        <Card style={{ backgroundColor: backgroundcolor }}>
-          <CardContent>
-            <Typography>{time}</Typography>
-            <Circle color={circleColor} />
-          </CardContent>
-        </Card>
-      </TransformDiv>
-    </Tooltip>
+    <TransformDiv onClick={handleIsMarked} style={{ padding: '3px' }}>
+      <Card style={{ backgroundColor: backgroundcolor }}>
+        <CardContent>
+          <Typography>{time}</Typography>
+          <Circle color={circleColor} />
+        </CardContent>
+      </Card>
+    </TransformDiv>
   );
 };
 

@@ -184,6 +184,8 @@ const Calendar: React.FC<CalendarProps> = ({
       .catch((err) => console.log(err));
   };
 
+  //const getReservationForSectionDate = () => {};
+
   const getDateFromString = (str: string) => {
     let index = -1;
     for (let i = 0; i < str.length; i++) {
@@ -198,6 +200,22 @@ const Calendar: React.FC<CalendarProps> = ({
       const split: string[] = sub2.trim().split(':');
       return new Date(sub1 + ' ' + split[0] + ':' + split[1]);
     } else return new Date();
+  };
+
+  const getTimeFromString = (str: string) => {
+    let index = -1;
+    for (let i = 0; i < str.length; i++) {
+      if (str[i] === ' ') {
+        index = i;
+        break;
+      }
+    }
+    if (index !== -1) {
+      const sub1: string = str.substring(0, index);
+      const sub2: string = str.substring(index);
+      const split: string[] = sub2.trim().split(':');
+      return split[0] + ':' + split[1];
+    } else return '';
   };
 
   const sameDay = (date1: Date, date2: Date) => {
@@ -262,6 +280,8 @@ const Calendar: React.FC<CalendarProps> = ({
         index={key}
         updateIsMarkedArr={(index: number) => updateIsMarkedArr(index)}
         updateSelectedTimes={updateSelectedTimes}
+        reservations={reservations}
+        getTimeFromString={(str: string) => getTimeFromString(str)}
       />
     );
   });
