@@ -48,7 +48,7 @@ interface Props {
 
 const UserCard = ({ user, deleteUser, resendPassword, renewAccess }: Props) => {
   const classes = useStyles();
-  const [date, setDate] = useState<Date>(user.validDate);
+  const [date, setDate] = useState<Date>(new Date(user.validDate));
 
   const onChangeDate = (event: Date | null) => {
     if (event) {
