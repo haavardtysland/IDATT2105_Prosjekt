@@ -12,6 +12,7 @@ import axios from '../../axios';
 import { Context } from '../../Context';
 import Section from '../../interfaces/Section';
 import { Description } from '@material-ui/icons';
+import Reservation from '../../interfaces/Reservation';
 
 const ButtonsContainer = styled.div`
   display: flex;

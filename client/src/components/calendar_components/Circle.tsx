@@ -1,14 +1,18 @@
 import React from 'react';
 
-function Circle() {
+interface CircleProps {
+  color: string;
+}
+
+function Circle({ color }: CircleProps) {
   const circleStyle = {
     padding: 3,
     margin: 6,
     display: 'inline-block',
-    backgroundColor: 'green',
+    backgroundColor: color,
     borderRadius: '50%',
-    width: 1,
-    height: 1,
+    width: 2,
+    height: 2,
     left: 0,
     top: 0,
   };

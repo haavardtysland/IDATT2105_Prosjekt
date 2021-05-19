@@ -29,29 +29,20 @@ const TimeCard: React.FC<TimeCardProps> = ({
   updateSelectedTimes,
 }: TimeCardProps) => {
   const [backgroundcolor, setBackgroundcolor] = useState<string>('');
+  const [circleColor, setCircleColor] = useState<string>('');
 
   const handleIsMarked = () => {
-    /*
-    console.log(isMarkedArr);
-    for (let i = 0; i < isMarkedArr.length; i++) {
-      if (
-        isMarkedArr[i - 1] === true &&
-        isMarkedArr[i + 1] === true &&
-        i === index
-      ) {
-        updateIsMarkedArr(index);
-      } else if()
-    }
-    */
     updateIsMarkedArr(index);
-    updateColor();
+    updateColors();
   };
 
-  const updateColor = () => {
+  const updateColors = () => {
     if (isMarkedArr[index] === false) {
       setBackgroundcolor('white');
+      setCircleColor('green');
     } else {
       setBackgroundcolor('lightgrey');
+      setCircleColor('red');
     }
   };
 
@@ -68,7 +59,7 @@ const TimeCard: React.FC<TimeCardProps> = ({
 
   useEffect(() => {
     updateSelectedTimes();
-    updateColor();
+    updateColors();
   }, [isMarkedArr]);
 
   return (
@@ -77,7 +68,7 @@ const TimeCard: React.FC<TimeCardProps> = ({
         <Card style={{ backgroundColor: backgroundcolor }}>
           <CardContent>
             <Typography>{time}</Typography>
-            <Circle />
+            <Circle color={circleColor} />
           </CardContent>
         </Card>
       </TransformDiv>

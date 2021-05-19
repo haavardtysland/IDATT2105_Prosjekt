@@ -16,6 +16,7 @@ import ReservationForm from '../reservation_components/ReservationForm';
 import Section from '../../interfaces/Section';
 import axios from '../../axios';
 import Reservation from '../../interfaces/Reservation';
+import { fi } from 'date-fns/locale';
 
 const ButtonsDiv = styled.div`
   display: flex;
@@ -92,6 +93,7 @@ const Calendar: React.FC<CalendarProps> = ({
   const times = setTimeArr();
   const [selectedTimes, setSelectedTimes] = useState<string[]>([]);
   const [reservations, setReservations] = useState<Reservation[]>([]);
+  const [bookedTimes, setBookedTimes] = useState<string[]>([]);
 
   const updateIsMarkedArr = (index: number) => {
     const items = [...isMarkedArr];
@@ -182,11 +184,62 @@ const Calendar: React.FC<CalendarProps> = ({
       .catch((err) => console.log(err));
   };
 
+  const getDateFromString = (str: string) => {
+    let index = -1;
+    for (let i = 0; i < str.length; i++) {
+      if (str[i] === ' ') {
+        index = i;
+        break;
+      }
+    }
+    if (index !== -1) {
+      const sub1: string = str.substring(0, index);
+      const sub2: string = str.substring(index);
+      const split: string[] = sub2.trim().split(':');
+      return new Date(sub1 + ' ' + split[0] + ':' + split[1]);
+    } else return new Date();
+  };
+
+  const sameDay = (date1: Date, date2: Date) => {
+    if (
+      date1.getFullYear() === date2.getFullYear() &&
+      date1.getMonth() == date2.getMonth() &&
+      date1.getDay() === date2.getDay()
+    ) {
+      console.log('same day');
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   useEffect(() => {
-    //get the available reservations for that section
-    //"/{sectionId}/section"
     getReservationsForSection();
-  }, []);
+  }, [section, date]);
+
+  useEffect(() => {
+    if (reservations !== [] && reservations !== undefined) {
+      for (const i in reservations) {
+        const fromDate = getDateFromString(reservations[i].from_date);
+        const toDate = getDateFromString(reservations[i].to_date);
+        if (sameDay(fromDate, toDate) && sameDay(toDate, date)) {
+          const fromTime: string = fromDate.toTimeString().substring(0, 5);
+          const toTime: string = toDate.toTimeString().substring(0, 5);
+          console.log(fromTime);
+          console.log(toTime);
+          const fromIndex: number = times.indexOf(fromTime);
+          const toIndex: number = times.indexOf(toTime);
+          if (fromIndex >= 0 && toIndex <= isMarkedArr.length - 1) {
+            console.log(fromIndex);
+            console.log(toIndex);
+            for (let i = fromIndex; i < toIndex; i++) {
+              updateIsMarkedArr(i);
+            }
+          }
+        }
+      }
+    }
+  }, [reservations]);
 
   useEffect(() => {
     let count = 0;
@@ -230,6 +283,7 @@ const Calendar: React.FC<CalendarProps> = ({
           color="textSecondary"
           gutterBottom
         >
+          {section.section_name + ' '}
           {getDayOfWeek(date.getDay())} {date.getDate()}.{date.getMonth() + 1}.
           {date.getFullYear()}
         </Typography>
