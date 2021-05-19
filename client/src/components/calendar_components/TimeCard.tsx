@@ -18,8 +18,13 @@ interface TimeCardProps {
   index: number;
   updateIsMarkedArr: (index: number) => void;
   updateSelectedTimes: () => void;
-  reservations: Reservation[];
+  //reservations: Reservation[];
   getTimeFromString: (str: string) => string;
+  times: string[];
+  date: Date;
+  bookedTimes: boolean[];
+  setBookedTimes: React.Dispatch<React.SetStateAction<boolean[]>>;
+  updateBookedTimesFromTo: (fromIndex: number, toIndex: number) => void;
 }
 
 const TimeCard: React.FC<TimeCardProps> = ({
@@ -30,19 +35,23 @@ const TimeCard: React.FC<TimeCardProps> = ({
   index,
   updateIsMarkedArr,
   updateSelectedTimes,
-  reservations,
+  //reservations,
   getTimeFromString,
+  bookedTimes,
+  setBookedTimes,
+  updateBookedTimesFromTo,
 }: TimeCardProps) => {
   const [backgroundcolor, setBackgroundcolor] = useState<string>('');
-  const [circleColor, setCircleColor] = useState<string>('');
+  const [circleColor, setCircleColor] = useState<string>('green');
 
   const handleIsMarked = () => {
-    updateIsMarkedArr(index);
-    updateColors();
+    if (bookedTimes[index] === false) {
+      updateIsMarkedArr(index);
+      updateColors();
+    }
   };
 
   const updateColors = () => {
-    checkIfReserverd();
     if (isMarkedArr[index] === false) {
       setBackgroundcolor('white');
     } else {
@@ -50,13 +59,11 @@ const TimeCard: React.FC<TimeCardProps> = ({
     }
   };
 
-  const checkIfReserverd = () => {
-    for (const i in reservations) {
-      if (getTimeFromString(reservations[i].from_date) === time) {
-        setCircleColor('red');
-      } else {
-        setCircleColor('green');
-      }
+  const checkIfReserved = () => {
+    if (bookedTimes[index] === true) {
+      setCircleColor('red');
+    } else {
+      setCircleColor('green');
     }
   };
 
@@ -75,6 +82,10 @@ const TimeCard: React.FC<TimeCardProps> = ({
     updateSelectedTimes();
     updateColors();
   }, [isMarkedArr]);
+
+  useEffect(() => {
+    checkIfReserved();
+  }, [bookedTimes]);
 
   return (
     <TransformDiv onClick={handleIsMarked} style={{ padding: '3px' }}>

@@ -30,6 +30,7 @@ interface ReservationFormProps {
   section: Section;
   date: Date;
   getReservationsForSelectionDate: () => void;
+  updateIsMarkedArrFromTo: (fromIndex: number, toIndex: number) => void;
 }
 
 const ReservationForm: React.FC<ReservationFormProps> = ({
@@ -45,6 +46,7 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
   section,
   date,
   getReservationsForSelectionDate,
+  updateIsMarkedArrFromTo,
 }: ReservationFormProps) => {
   const { user } = useContext(Context.UserContext);
   const [currentUser, setCurrentUser] = useState<User>({
@@ -61,7 +63,9 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
   );
   const [fromDate, setFromDate] = useState<string>(currentTimes[0]);
   const [toDate, setToDate] = useState<string>(
-    currentTimes[currentTimes.length - 1]
+    currentTimes.length === 1
+      ? times[times.indexOf(currentTimes[0]) + 1]
+      : currentTimes[currentTimes.length - 1]
   );
   const [deleteTime, setDeleteTime] = useState<string>('');
   const [desc, setDesc] = useState<string>('');
@@ -147,6 +151,7 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
       const request = await axios.post('/reservation', object);
       console.log(request);
       getReservationsForSelectionDate();
+      updateIsMarkedArrFromTo(times.indexOf(fromDate), times.indexOf(toDate));
       setOpenPopup(!openPopup);
       return request;
     } catch (err) {
@@ -174,7 +179,9 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
         <ul>
           {currentTimes?.map((time, key: number) => (
             <li onClick={deleteListItem.bind(this, key)} key={key}>
-              {time}
+              {times.indexOf(time) !== times.length - 1
+                ? `${time} til ${times[times.indexOf(time) + 1]}`
+                : `${time} til 19:30`}
             </li>
           ))}
         </ul>
@@ -212,6 +219,9 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
         <button onClick={() => console.log(deleteTime)}>log delete time</button>
         <button onClick={() => console.log(currentUser)}>log user</button>
         <button onClick={() => console.log(date)}>log date</button>
+        <button onClick={() => console.log(currentTimes)}>
+          log current times
+        </button>
       </ButtonsContainer>
     </div>
   );

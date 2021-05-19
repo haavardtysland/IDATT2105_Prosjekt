@@ -16,7 +16,7 @@ import ReservationForm from '../reservation_components/ReservationForm';
 import Section from '../../interfaces/Section';
 import axios from '../../axios';
 import Reservation from '../../interfaces/Reservation';
-import { fi } from 'date-fns/locale';
+import { SortFunctions } from '../sorting/SortFunctions';
 
 const ButtonsDiv = styled.div`
   display: flex;
@@ -61,13 +61,14 @@ const Calendar: React.FC<CalendarProps> = ({
   const classes = useStyles();
   const [reset, setReset] = useState<boolean>(false);
   const [openPopup, setOpenPopup] = useState<boolean>(false);
-  const [isMarkedArr, setIsMarkedArr] = useState<boolean[]>(() => {
+  const getFalseArr = () => {
     const arr: boolean[] = [];
     for (let i = 0; i < length; i++) {
       arr.push(false);
     }
     return arr;
-  });
+  };
+  const [isMarkedArr, setIsMarkedArr] = useState<boolean[]>(getFalseArr());
   const [noMarked, setNoMarked] = useState<number>(0);
 
   const setTimeArr = (): string[] => {
@@ -93,7 +94,7 @@ const Calendar: React.FC<CalendarProps> = ({
   const times = setTimeArr();
   const [selectedTimes, setSelectedTimes] = useState<string[]>([]);
   const [reservations, setReservations] = useState<Reservation[]>([]);
-  const [bookedTimes, setBookedTimes] = useState<string[]>([]);
+  const [bookedTimes, setBookedTimes] = useState<boolean[]>(getFalseArr());
 
   const updateIsMarkedArr = (index: number) => {
     const items = [...isMarkedArr];
@@ -158,6 +159,26 @@ const Calendar: React.FC<CalendarProps> = ({
       }
     }
     */
+  };
+
+  const updateIsMarkedArrFromTo = (fromIndex: number, toIndex: number) => {
+    const items = [...isMarkedArr];
+    for (let i = fromIndex; i < toIndex; i++) {
+      let item = items[i];
+      item = !item;
+      items[i] = item;
+    }
+    setIsMarkedArr(items);
+  };
+
+  const updateBookedTimesFromTo = (fromIndex: number, toIndex: number) => {
+    const items = [...bookedTimes];
+    for (let i = fromIndex; i < toIndex; i++) {
+      let item = items[i];
+      item = !item;
+      items[i] = item;
+    }
+    setBookedTimes(items);
   };
 
   const updateSelectedTimes = () => {
@@ -256,7 +277,6 @@ const Calendar: React.FC<CalendarProps> = ({
       date1.getMonth() == date2.getMonth() &&
       date1.getDay() === date2.getDay()
     ) {
-      console.log('same day');
       return true;
     } else {
       return false;
@@ -267,31 +287,29 @@ const Calendar: React.FC<CalendarProps> = ({
     getReservationForSectionDate();
   }, [section, date]);
 
-  /*
   useEffect(() => {
     if (reservations !== [] && reservations !== undefined) {
+      const items = [...bookedTimes];
       for (const i in reservations) {
         const fromDate = getDateFromString(reservations[i].from_date);
         const toDate = getDateFromString(reservations[i].to_date);
         if (sameDay(fromDate, toDate) && sameDay(toDate, date)) {
           const fromTime: string = fromDate.toTimeString().substring(0, 5);
           const toTime: string = toDate.toTimeString().substring(0, 5);
-          console.log(fromTime);
-          console.log(toTime);
           const fromIndex: number = times.indexOf(fromTime);
           const toIndex: number = times.indexOf(toTime);
           if (fromIndex >= 0 && toIndex <= isMarkedArr.length - 1) {
-            console.log(fromIndex);
-            console.log(toIndex);
             for (let i = fromIndex; i < toIndex; i++) {
-              updateIsMarkedArr(i);
+              let item = items[i];
+              item = true;
+              items[i] = item;
             }
           }
         }
+        setBookedTimes(items);
       }
     }
-  }, [reservations]);
-  */
+  }, [reservations, date, section]);
 
   useEffect(() => {
     let count = 0;
@@ -314,8 +332,15 @@ const Calendar: React.FC<CalendarProps> = ({
         index={key}
         updateIsMarkedArr={(index: number) => updateIsMarkedArr(index)}
         updateSelectedTimes={updateSelectedTimes}
-        reservations={reservations}
+        //reservations={reservations}
         getTimeFromString={(str: string) => getTimeFromString(str)}
+        times={times}
+        date={date}
+        bookedTimes={bookedTimes}
+        setBookedTimes={setBookedTimes}
+        updateBookedTimesFromTo={(fromIndex: number, toIndex: number) =>
+          updateBookedTimesFromTo(fromIndex, toIndex)
+        }
       />
     );
   });
@@ -348,6 +373,7 @@ const Calendar: React.FC<CalendarProps> = ({
           <StyledButton
             variant="outlined"
             onClick={() => setOpenPopup(!openPopup)}
+            disabled={noMarked === 0 ? true : false}
           >
             Reserver tidene
           </StyledButton>
@@ -363,7 +389,7 @@ const Calendar: React.FC<CalendarProps> = ({
           >
             <ReservationForm
               times={times}
-              selectedTimes={selectedTimes}
+              selectedTimes={SortFunctions.sortSelectedTimes(selectedTimes)}
               setSelectedTimes={setSelectedTimes}
               isMarkedArr={isMarkedArr}
               setIsMarkedArr={setIsMarkedArr}
@@ -374,10 +400,16 @@ const Calendar: React.FC<CalendarProps> = ({
               section={section}
               date={date}
               getReservationsForSelectionDate={getReservationForSectionDate}
+              updateIsMarkedArrFromTo={(fromIndex: number, toIndex: number) =>
+                updateIsMarkedArrFromTo(fromIndex, toIndex)
+              }
             />
           </Popup>
         </ButtonsDiv>
         <Button onClick={() => console.log(isMarkedArr)}>Log marked arr</Button>
+        <Button onClick={() => console.log(bookedTimes)}>
+          log booked times
+        </Button>
         <Button onClick={() => console.log(selectedTimes)}>
           Log selected times
         </Button>

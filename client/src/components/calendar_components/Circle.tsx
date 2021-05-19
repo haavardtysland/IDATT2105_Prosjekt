@@ -11,10 +11,12 @@ function Circle({ color }: CircleProps) {
     display: 'inline-block',
     backgroundColor: color,
     borderRadius: '50%',
-    width: 2,
-    height: 2,
+    width: 3,
+    height: 3,
     left: 0,
     top: 0,
+    marginLeft: '35%',
+    marginRight: 'auto',
   };
   return <div style={circleStyle}></div>;
 }

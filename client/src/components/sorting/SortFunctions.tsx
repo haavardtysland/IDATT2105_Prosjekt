@@ -39,9 +39,18 @@ const sortDateEarlyLate = (reservations: Reservation[]) => {
   ];
 };
 
+const sortSelectedTimes = (selectedTimes: string[]): string[] => {
+  return [
+    ...selectedTimes.sort((s1: string, s2: string): number =>
+      s1 > s2 ? 1 : -1
+    ),
+  ];
+};
+
 export const SortFunctions = {
   sortCapacityHighLow,
   sortCapacityLowHigh,
   sortDateLateEarly,
   sortDateEarlyLate,
+  sortSelectedTimes,
 };
