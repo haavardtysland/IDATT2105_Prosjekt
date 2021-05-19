@@ -1,4 +1,5 @@
 import Reservation from '../../interfaces/Reservation';
+import Room from '../../interfaces/Room';
 
 const descFilter = (reservations: Reservation[], desc: string) => {
   return reservations.filter((r: Reservation) => {
