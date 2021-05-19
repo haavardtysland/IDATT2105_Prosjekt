@@ -69,7 +69,7 @@ public class UserController {
         return ResponseEntity.badRequest().headers(header).body(formatJson(body));
       }
       header.add("STATUS", "200 OK");
-      return ResponseEntity.ok().headers(header).body("{\"user\": \n" + user.toString() + "\n}");
+      return ResponseEntity.ok().headers(header).body(user.toString());
   }
 
 

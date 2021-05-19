@@ -120,7 +120,7 @@ public class Reservation {
             "\n \"to_date\": " + to_date + "," +
             "\n \"user\": " + user.toJSON() + "," +
             "\n \"capacity\": " + capacity + ","+
-            "\n \"description\": " + description +
+            "\n \"description\": + \"" + description +  "\"" +
             "\n}";
   }
 }

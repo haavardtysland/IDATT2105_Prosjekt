@@ -28,7 +28,7 @@ public class LoginController {
   @Autowired
   private SecurityService securityService;
 
- @PostMapping("")
+ @PostMapping(value = "" , produces="application/json")
   private ResponseEntity loginUser(@RequestBody Map<String, Object> map) {
     log.info("recieved postmapping to /login " + map.toString());
     HttpHeaders header = new HttpHeaders();
@@ -59,8 +59,8 @@ public class LoginController {
       body.put("token",
           String.valueOf(securityService.createToken(id, (1000 * 60 * 60 * 24))));*/
         header.add("Status", "400 BAD REQUEST");
-        body.put("error", "Passordet er feil eller brukeren har utgått");
-        return ResponseEntity.ok()
+        body.put("error", "Passordet er feil eller brukeren er ikke gyldig lenger");
+        return ResponseEntity.badRequest()
                 .headers(header)
                 .body(formatJson(body));
       }
@@ -68,7 +68,7 @@ public class LoginController {
     log.error("unable to login user with email: " + map.get("email").toString());
     header.add("Status", "403 Forbidden");
     body.put("error", "Finnes ingen bruker med denne email-en " + map.get("email").toString());
-    return ResponseEntity.ok()
+    return ResponseEntity.badRequest()
         .headers(header).body(formatJson(body));
   }
 
