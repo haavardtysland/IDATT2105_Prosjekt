@@ -62,7 +62,7 @@ public class UserRepo extends ProjectRepo {
       Query q = em.createNativeQuery("SELECT * FROM USER", User.class);
       allUsers = q.getResultList();
     } catch(Exception e) {
-
+      log.error("finding all users failed due to " + e.getMessage());
     } finally {
       em.close();
     }

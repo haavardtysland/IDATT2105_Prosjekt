@@ -4,6 +4,7 @@ import IDATT2105.Reservation.models.Message;
 import IDATT2105.Reservation.models.Reservation;
 import IDATT2105.Reservation.models.Room;
 import IDATT2105.Reservation.models.Section;
+import IDATT2105.Reservation.models.User;
 import IDATT2105.Reservation.util.Logger;
 import IDATT2105.Reservation.util.ReservationTime;
 import org.springframework.stereotype.Repository;
@@ -89,6 +90,23 @@ public class SectionRepo extends ProjectRepo {
         }
     }
 
+    public Message findMessage(int message_id) {
+        log.info("finding message " + message_id);
+        EntityManager em = getEm();
+        Message message = null;
+
+        try {
+            message = em.find(Message.class, message_id);
+            log.info("Found message " + message);
+            return message;
+        } catch (Exception e) {
+            log.error("finding user " + message_id + " failed due to " + e.getMessage());
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+
     public Room getRoomBySectionID(int room_id) {
         EntityManager em = getEm();
         try{
@@ -102,6 +120,7 @@ public class SectionRepo extends ProjectRepo {
         }
 
     }
+
 
     public ArrayList<ReservationTime> getSectionAvailability(int section_id){
         EntityManager em = getEm();
@@ -205,6 +224,35 @@ public class SectionRepo extends ProjectRepo {
             }
         } catch(Exception e) {
             log.info("Failed deleting section" + e.getMessage());
+            em.getTransaction().rollback();
+            return false;
+        } finally {
+            em.close();
+        }
+    }
+
+    public boolean deleteMessage(int message_id) {
+        EntityManager em = getEm();
+        try{
+            em.getTransaction().begin();
+
+            Message message = findMessage(message_id);
+            if(message != null) {
+                Section section = message.getSection();
+                section.removeMessage(message);
+                User user = message.getUser();
+                user.removeMesage(message);
+                em.merge(section);
+                em.getTransaction().commit();
+                log.info("Successfully delete message with id " + message_id);
+                return true;
+            } else {
+                log.info("message to be deleted " + message_id + " not found");
+                em.getTransaction().rollback();
+                return false;
+            }
+        } catch(Exception e) {
+            log.info("Failed deleting message " + e.getMessage());
             em.getTransaction().rollback();
             return false;
         } finally {
