@@ -340,7 +340,7 @@ public class UserController {
           id,
           map.get("firstName").toString(),
           map.get("surName").toString(),
-          map.get("newEmail").toString(),
+          map.get("email").toString(),
           Boolean.parseBoolean(map.get("isAdmin").toString()),
           Date.valueOf(map.get("validDate").toString()),
           map.get("newpassword").toString(),
