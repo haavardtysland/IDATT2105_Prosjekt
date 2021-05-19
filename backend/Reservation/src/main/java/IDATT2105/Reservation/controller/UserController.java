@@ -142,8 +142,6 @@ public class UserController {
 
       body.put("userId", String.valueOf(result.getUserId()));
       body.put("isAdmin", String.valueOf(result.getIsAdmin()));
-      //body.put("token", securityService
-        //  .createToken(String.valueOf(result.getUserId()), (1000 * 60 * 60 * 24)));
 
       sendEmailService.sendUserEmail(result.getEmail(), randomPassword);
       return ResponseEntity
@@ -175,6 +173,7 @@ public class UserController {
    * @param id
    * @return
    */
+  //@PathTwoTokenRequired
   @PutMapping(value = "/edit/{id}")
   public ResponseEntity editUser(@RequestBody Map<String, Object> map, @PathVariable Integer id) {
     log.info("receieved a put mapping for user with id: " + id);
@@ -270,12 +269,14 @@ public class UserController {
    *     "isAdmin": true,
    *     "validDate": "2022-11-12",
    *     "password": "123123",
+   *     "newpassword":"aqsdasda"
    *     "phoneNumber": 1231231
    * }
    * @param map
    * @param id
    * @return
    */
+  //@PathTwoTokenRequired
   @PutMapping(value = "/edit/{id}/user")
   public ResponseEntity editUserNotAdmin(@RequestBody Map<String, Object> map, @PathVariable Integer id) {
     log.info("receieved a put mapping for user with id: " + id);
@@ -283,11 +284,27 @@ public class UserController {
     HttpHeaders header = new HttpHeaders();
     header.add("Content-Type", "application/json; charset=UTF-8");
 
-
-    if (map.get("newEmail") == null || map.get("newEmail").equals("")) {
-      map.put("newEmail", map.get("email"));
+    try {
+      if (!userService.login(map.get("email").toString(), map.get("password").toString())) {
+        log.debug("Someone tried to edit a user with an invalid email or password ");
+        body.put("error", "Invalid Email or Password");
+        return ResponseEntity
+            .badRequest()
+            .headers(header)
+            .body(formatJson(body));
+      }
+    } catch (NullPointerException e) {
+      log.error("A NullPointerException was caught while editing user");
+      body.put("error", "Invalid Email or Password");
+      return ResponseEntity
+          .badRequest()
+          .headers(header)
+          .body(formatJson(body));
     }
 
+    if (map.get("newpassword") == null || map.get("newpassword").equals("")) {
+      map.put("newpassword", map.get("password"));
+    }
 
     if (!validateStringMap(map)) {
       log.error(
@@ -316,10 +333,10 @@ public class UserController {
           id,
           map.get("firstName").toString(),
           map.get("surName").toString(),
-          map.get("newEmail").toString(),
+          map.get("email").toString(),
           Boolean.parseBoolean(map.get("isAdmin").toString()),
           Date.valueOf(map.get("validDate").toString()),
-          map.get("password").toString(),
+          map.get("newpassword").toString(),
           Integer.parseInt(map.get("phoneNumber").toString()));
 
       log.info("edited user " + id);
