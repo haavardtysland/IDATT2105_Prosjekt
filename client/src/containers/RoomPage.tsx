@@ -28,9 +28,6 @@ const StyledTextField = withStyles({
   },
 })(TextField);
 
-//TODO: show available times for the current section and the current selected date
-//TODO: fix popup to reserve marked times.
-//TODO: make sure the user can only book 3 coherent times.
 const RoomPage: React.FC = () => {
   const { room } = useContext(Context.RoomContext);
   const [currentSection, setCurrentSection] = useState<Section>({

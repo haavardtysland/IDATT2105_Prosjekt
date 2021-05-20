@@ -30,7 +30,7 @@ const FilterMenu: React.FC<FilterMenuProps> = ({
     setDescFilter('');
     setTimeFilterFrom('');
     setTimeFilterTo('');
-    setCapFilter([5, 100]);
+    setCapFilter([1, 100]);
   };
   return (
     <div>

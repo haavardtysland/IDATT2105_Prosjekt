@@ -31,24 +31,6 @@ enum SortOptions {
 const ReservationPage: React.FC = () => {
   const user = useContext(Context.UserContext);
   const [sortOption, setSortOption] = React.useState<number>(0);
-  /*
-  const [reservations, setReservations] = useState<Reservation[]>([
-    {
-      reservationId: 1,
-      capacity: 10,
-      description: 'Reserverer dette rommet shamener',
-      from_date: '05-15-2021 13:50:00',
-      to_date: '05-15-2021 16:00:00',
-    },
-    {
-      reservationId: 2,
-      capacity: 20,
-      description: 'hva skjer babajan',
-      from_date: '05-10-2021 12:00:00',
-      to_date: '05-21-2021 15:00:00',
-    },
-  ]);
-  */
   const [reservations, setReservations] = useState<Reservation[]>([]);
   const [currentReservations, setCurrentReservations] =
     useState<Reservation[]>(reservations);
@@ -92,17 +74,11 @@ const ReservationPage: React.FC = () => {
     }
   }, [descFilter, timeFilterFrom, timeFilterTo, capFilter]);
 
-  const renderReservations = currentReservations.map(
-    (reservation, key: number) => {
-      return <ReservationCard key={key} reservation={reservation} />;
-    }
-  );
-
   const getReservationsUser = async () => {
     try {
       const request = await axios.get(`/reservation/${user.user.id}/user`);
       console.log(request);
-      setReservations(request.data);
+      setReservations(request.data.reservations);
       return request;
     } catch (err) {
       console.log(err);
@@ -113,12 +89,25 @@ const ReservationPage: React.FC = () => {
     getReservationsUser();
   }, []);
 
+  useEffect(() => {
+    setCurrentReservations(reservations);
+  }, [reservations]);
+
+  const renderReservations = currentReservations.map(
+    (reservation, key: number) => {
+      return (
+        <ReservationCard
+          key={key}
+          reservation={reservation}
+          getReservationsUser={getReservationsUser}
+        />
+      );
+    }
+  );
+
   return (
     <div>
-      <Typography
-        variant="h5"
-        style={{ marginTop: '11%', marginLeft: '1rem' }}
-      >
+      <Typography variant="h5" style={{ marginTop: '11%', marginLeft: '1rem' }}>
         Mine Reservasjoner
       </Typography>
       <div style={{ marginTop: '1rem', display: 'flex' }}>
@@ -140,6 +129,9 @@ const ReservationPage: React.FC = () => {
               setCapFilter={setCapFilter}
             />
           </div>
+          <button onClick={() => console.log(reservations)}>
+            log reservations
+          </button>
           <Divider variant="fullWidth" />
         </LeftContainer>
         <Divider orientation="vertical" flexItem />

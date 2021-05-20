@@ -5,6 +5,7 @@ import User from '../../interfaces/User';
 import axios from '../../axios';
 import { Context } from '../../Context';
 import Section from '../../interfaces/Section';
+import Reservation from '../../interfaces/Reservation';
 
 const ButtonsContainer = styled.div`
   display: flex;
@@ -24,37 +25,19 @@ const StyledButton = withStyles({
   },
 })(Button);
 
-interface ReservationFormProps {
-  times: string[];
-  selectedTimes: string[];
-  setSelectedTimes: React.Dispatch<React.SetStateAction<string[]>>;
-  isMarkedArr: boolean[];
-  setIsMarkedArr: React.Dispatch<React.SetStateAction<boolean[]>>;
-  updateIsMarkedArr: (index: number) => void;
-  updateSelectedTimes: () => void;
+interface ReservationFormEditProps {
   openPopup: boolean;
   setOpenPopup: React.Dispatch<React.SetStateAction<boolean>>;
-  section: Section;
-  date: Date;
-  getReservationsForSelectionDate: () => void;
-  updateIsMarkedArrFromTo: (fromIndex: number, toIndex: number) => void;
+  reservation: Reservation;
+  times: string[];
 }
 
-const ReservationForm: React.FC<ReservationFormProps> = ({
-  times,
-  selectedTimes,
-  setSelectedTimes,
-  //isMarkedArr,
-  //setIsMarkedArr,
-  updateIsMarkedArr,
-  //updateSelectedTimes,
+const ReservationFormEdit: React.FC<ReservationFormEditProps> = ({
   openPopup,
   setOpenPopup,
-  section,
-  date,
-  getReservationsForSelectionDate,
-  updateIsMarkedArrFromTo,
-}: ReservationFormProps) => {
+  reservation,
+  times,
+}: ReservationFormEditProps) => {
   const { user } = useContext(Context.UserContext);
   const [currentUser, setCurrentUser] = useState<User>({
     userId: -1,
@@ -65,15 +48,7 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
     validDate: '',
     phoneNumber: '',
   });
-  const [currentTimes, setCurrentTimes] = useState<string[]>(
-    selectedTimes !== undefined ? selectedTimes : []
-  );
-  const [fromDate, setFromDate] = useState<string>(currentTimes[0]);
-  const [toDate, setToDate] = useState<string>(
-    currentTimes.length === 1
-      ? times[times.indexOf(currentTimes[0]) + 1]
-      : currentTimes[currentTimes.length - 1]
-  );
+
   const [deleteTime, setDeleteTime] = useState<string>('');
   const [desc, setDesc] = useState<string>('');
   const [capacity, setCapacity] = useState<string>('');
@@ -86,7 +61,7 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
     const val: number = +(event.target as HTMLInputElement).value;
     if (val < 1) {
       setCapacity('1');
-    } else if (val > section.capacity) {
+    } else if (val > reservation.section.capacity) {
       alert('Seksjonen har ikke plass til så mange');
       setCapacity('0');
     } else {
@@ -102,10 +77,67 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
       setCurrentUser(request.data);
       return request;
     } catch (error) {
-      console.log(error);
+      alert(error.response.data.error);
     }
   };
 
+  const getDateFromString = (str: string) => {
+    let index = -1;
+    for (let i = 0; i < str.length; i++) {
+      if (str[i] === ' ') {
+        index = i;
+        break;
+      }
+    }
+    if (index !== -1) {
+      const sub1: string = str.substring(0, index);
+      const sub2: string = str.substring(index);
+      const split: string[] = sub2.trim().split(':');
+      return new Date(sub1 + ' ' + split[0] + ':' + split[1]);
+    } else return new Date();
+  };
+
+  const getTimeFromString = (str: string) => {
+    let index = -1;
+    for (let i = 0; i < str.length; i++) {
+      if (str[i] === ' ') {
+        index = i;
+        break;
+      }
+    }
+    if (index !== -1) {
+      const sub1: string = str.substring(0, index);
+      const sub2: string = str.substring(index);
+      const split: string[] = sub2.trim().split(':');
+      return split[0] + ':' + split[1];
+    } else return '';
+  };
+
+  const getCurrentTimes = () => {
+    const fromTime = getTimeFromString(reservation.from_date);
+    const toTime = getTimeFromString(reservation.to_date);
+    console.log(fromTime);
+    console.log(toTime);
+    const fromIndex = times.indexOf(fromTime);
+    const toIndex = times.indexOf(toTime);
+    console.log(fromIndex);
+    console.log(toIndex);
+    const arr: string[] = [];
+    for (let i = fromIndex; i < toIndex; i++) {
+      arr.push(times[i]);
+    }
+    return arr;
+  };
+
+  const [currentTimes, setCurrentTimes] = useState<string[]>(getCurrentTimes());
+  const [fromDate, setFromDate] = useState<string>(currentTimes[0]);
+  const [toDate, setToDate] = useState<string>(
+    currentTimes.length === 1
+      ? times[times.indexOf(currentTimes[0]) + 1]
+      : currentTimes[currentTimes.length - 1]
+  );
+
+  /*
   const deleteListItem = (index: number) => {
     console.log(index);
     if (selectedTimes !== undefined) {
@@ -121,6 +153,7 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
       }
     }
   };
+  */
 
   /*
     "user_id":1819766832,
@@ -132,6 +165,7 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
   */
   //'2021-11-12 08:00:00.0'
   //'2021-11-12 09:00:00.0'
+  /*
   const postReservation = async () => {
     try {
       let dateFormat = '';
@@ -157,7 +191,7 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
       console.log(object);
       const request = await axios.post('/reservation', object);
       console.log(request);
-      getReservationsForSelectionDate();
+      getReservationForSectionDate();
       updateIsMarkedArrFromTo(times.indexOf(fromDate), times.indexOf(toDate));
       setOpenPopup(!openPopup);
       return request;
@@ -165,28 +199,22 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
       alert(err.response.data.error);
     }
   };
+  */
 
   useEffect(() => {
     getUser();
   }, []);
-
-  useEffect(() => {
-    if (selectedTimes !== undefined && deleteTime !== '') {
-      setSelectedTimes(currentTimes);
-      updateIsMarkedArr(times.indexOf(deleteTime));
-    }
-  }, [currentTimes]);
 
   return (
     <div>
       <Typography>
         {currentUser.userId !== -1 &&
           currentUser.firstName + ' ' + currentUser.surname + ' '}
-        ønsker å reservere de følgende tidene:
+        har reservert de følgdende tidene:
       </Typography>
       <ul>
         {currentTimes?.map((time, key: number) => (
-          <StyledLi onClick={deleteListItem.bind(this, key)} key={key}>
+          <StyledLi /*onClick={deleteListItem.bind(this, key)}*/ key={key}>
             {times.indexOf(time) !== times.length - 1
               ? `${time} til ${times[times.indexOf(time) + 1]}`
               : `${time} til 19:30`}
@@ -211,32 +239,21 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
         />
       </div>
       <ButtonsContainer>
-        <StyledButton variant="outlined" onClick={postReservation}>
-          Bekreft
-        </StyledButton>
+        <StyledButton variant="outlined">Endre</StyledButton>
         <StyledButton
           variant="outlined"
           onClick={() => setOpenPopup(!openPopup)}
         >
           Avbryt
         </StyledButton>
-        {/*
-        <button onClick={() => console.log(selectedTimes)}>
-          log selected times
-        </button>
-        <button onClick={() => console.log(isMarkedArr)}>
-          Log is marked arr
-        </button>
-        <button onClick={() => console.log(deleteTime)}>log delete time</button>
-        <button onClick={() => console.log(currentUser)}>log user</button>
-        <button onClick={() => console.log(date)}>log date</button>
-        <button onClick={() => console.log(currentTimes)}>
-          log current times
-        </button>
-        */}
       </ButtonsContainer>
+      <button onClick={() => console.log(reservation)}>log reservation</button>
+      <button onClick={() => console.log(currentTimes)}>
+        log current times
+      </button>
+      <button onClick={() => console.log(times)}>log times</button>
     </div>
   );
 };
 
-export default ReservationForm;
+export default ReservationFormEdit;
