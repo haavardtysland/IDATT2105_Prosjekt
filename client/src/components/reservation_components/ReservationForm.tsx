@@ -5,9 +5,7 @@ import User from '../../interfaces/User';
 import axios from '../../axios';
 import { Context } from '../../Context';
 import Section from '../../interfaces/Section';
-import Reservation from '../../interfaces/Reservation';
 import config from '../../Config';
-
 
 const ButtonsContainer = styled.div`
   display: flex;

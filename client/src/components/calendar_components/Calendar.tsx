@@ -4,6 +4,7 @@ import {
   CardContent,
   Divider,
   GridList,
+  Tooltip,
   Typography,
 } from '@material-ui/core';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
@@ -17,6 +18,8 @@ import axios from '../../axios';
 import Reservation from '../../interfaces/Reservation';
 import { SortFunctions } from '../sorting/SortFunctions';
 import { TimeFunctions } from './TimeFunctions';
+import InfoIcon from '@material-ui/icons/Info';
+import config from '../../Config';
 
 const ButtonsDiv = styled.div`
   display: flex;
@@ -276,14 +279,23 @@ const Calendar: React.FC<CalendarProps> = ({
       {' '}
       {/* Set the width to 37% for responsive design, 45rem for static*/}
       <CardContent>
-        <Typography
-          className={classes.title}
-          color="textSecondary"
-          gutterBottom
-        >
-          {section.section_name + ' '}
-          {getStringFromDate(date)}
-        </Typography>
+        <div style={{ display: 'flex' }}>
+          <Typography
+            className={classes.title}
+            color="textSecondary"
+            gutterBottom
+          >
+            {section.section_name + ' '}
+            {getStringFromDate(date)}
+          </Typography>
+          <Tooltip
+            title="Marker de ønskede tidene. Maks er 3 og må være sammenhengende."
+            style={{ marginLeft: '1%' }}
+            placement="right"
+          >
+            <InfoIcon />
+          </Tooltip>
+        </div>
         <Divider variant="fullWidth" />
         <GridList cellHeight={60} cols={8} style={{ padding: '10px' }}>
           {renderTimeCards}
@@ -300,7 +312,7 @@ const Calendar: React.FC<CalendarProps> = ({
             Fjern valgte tider
           </StyledButton>
           <Popup
-            title={`Reserver for ${section.section_name} ${getStringFromDate(
+            title={`Reserver for "${section.section_name}" ${getStringFromDate(
               date
             )}`}
             openPopup={openPopup}
@@ -336,6 +348,7 @@ const Calendar: React.FC<CalendarProps> = ({
         <button onClick={() => console.log(reservations)}>
           log reservations
         </button>
+        <button onClick={() => console.log(section)}>log section</button>
       </CardContent>
     </Card>
   );
