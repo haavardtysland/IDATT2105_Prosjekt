@@ -14,7 +14,7 @@ import InfoIcon from '@material-ui/icons/Info';
 import { Context } from '../Context';
 
 const StyledHeader = styled.h1`
-  margin-top: 6rem;
+  margin-top: 13%;
 `;
 
 const StyledDivHeader = styled.div`

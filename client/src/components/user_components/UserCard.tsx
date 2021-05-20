@@ -31,7 +31,7 @@ const TransformDiv = styled.div`
   transition: transform 450ms;
   margin: 1rem;
   width: 28%;
-  min-width: 10rem;
+  min-width: 15rem;
   min-height: 12%;
   height: 12%;
   :hover {

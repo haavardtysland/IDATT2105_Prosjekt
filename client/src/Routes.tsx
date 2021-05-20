@@ -10,6 +10,7 @@ import ReservationPage from './containers/ReservationPage';
 import RoomAdministration from './containers/AdminContainers/RoomAdministration';
 import UserAdministration from './containers/AdminContainers/UserAdministration';
 import ReservationAdministration from './containers/AdminContainers/ReservationAdministration';
+import MyUser from './containers/MyUser';
 
 export default (
   <Switch>
@@ -28,6 +29,7 @@ export default (
       <Route exact path="/addUser" component={CreateUser} />
       <Route exact path="/addRoom" component={CreateRoom} />
       <Route exact path="/mineBestillinger" component={ReservationPage} />
+      <Route exact path="/MyUser" component={MyUser} />
     </div>
   </Switch>
 );

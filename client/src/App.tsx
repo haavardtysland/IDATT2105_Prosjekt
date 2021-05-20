@@ -8,7 +8,7 @@ import Room from './interfaces/Room';
 
 function App() {
   const [user, setUser] = useState({
-    userId: -1,
+    id: -1,
     isAdmin: false,
   });
   const [room, setRoom] = useState<Room>({

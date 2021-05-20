@@ -37,15 +37,10 @@ const Login = () => {
         password: password,
       })
       .then((response) => {
-        if (response.data && !response.data.error) {
-          console.log(response.data);
-          setUser(response.data);
-          history.push('/mainPage');
-        }
-        if (response.data.error) {
-          alert(response.data.error);
-        }
-      });
+        setUser(response.data);
+        history.push('/mainPage');
+      })
+      .catch((err) => alert(err.response.data.error));
   };
 
   const onChangeUsername = (event: ChangeEvent<HTMLInputElement>) => {
