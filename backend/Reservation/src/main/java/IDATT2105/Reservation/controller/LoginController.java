@@ -53,6 +53,7 @@ public class LoginController {
                 .headers(header)
                 .body(formatJson(body));
       }else if(!user.verifyPassword(map.get("password").toString())){
+        System.out.println(map.get("password").toString());
         log.info("Password was wrong for user with email " + map.get("email").toString());
         header.add("Status", "403 Forbidden");
         body.put("error", "Passordet er feil");
@@ -70,7 +71,7 @@ public class LoginController {
     log.error("unable to login user with email: " + map.get("email").toString());
     header.add("Status", "403 Forbidden");
     body.put("error", "Finnes ingen bruker med denne email-en " + map.get("email").toString());
-    return ResponseEntity.ok()
+    return ResponseEntity.badRequest()
         .headers(header).body(formatJson(body));
   }
 }

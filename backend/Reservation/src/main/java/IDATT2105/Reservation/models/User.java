@@ -91,7 +91,7 @@ public class User {
     if (testPassword == null) {
       return false;
     }
-    char[] passwordChars = testPassword.toCharArray();
+    char[] passwordChars = testPassword.trim().toCharArray();
     byte[] saltBytes = Base64.decodeBase64(salt);
     byte[] hashedBytes = hashPassword(passwordChars, saltBytes);
     String hashedString = Hex.encodeHexString(hashedBytes);

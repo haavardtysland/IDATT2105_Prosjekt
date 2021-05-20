@@ -138,7 +138,7 @@ public class SectionController {
              if(room.getAvailable() < newSection.getCapacity()) {
                  log.info("Capacity is full");
                  header.add("STATUS", "400 BAD REQUEST");
-                 body.put("error", "not enough capacity for the room to add this section");
+                 body.put("error", "Ikke nok kapasitet i rommet for denne seksjonen");
                  return ResponseEntity.badRequest().headers(header).body(formatJson(body));
              }
              room.addSection(newSection);
