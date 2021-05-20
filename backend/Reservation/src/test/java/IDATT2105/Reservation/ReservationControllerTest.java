@@ -354,26 +354,7 @@ public class ReservationControllerTest {
 		JSONObject idJson = (JSONObject) parser.parse(room_id);
 		assert(room1.getRoom_id() == idJson.getAsNumber("room_id").intValue());
 	}
-
-	@Test
-	@Order(12)
-	public void editRoomCapacityTooSmallTest() throws Exception{
-		System.out.println("Test 3");
-		String error = mockMvc.perform(MockMvcRequestBuilders.put("/room/edit/" + room1.getRoom_id()).contentType(MediaType.APPLICATION_JSON).content(
-				"{\n" +
-						"\"name\" : \"" + room1.getName() + "\",\n" +
-						"\"capacity\" : " + 25 + ",\n" +
-						"\"sections\" : " + room1.getSections().toString() + "\n" +
-						"}"
-		)).andExpect(status().isBadRequest()).andExpect(MockMvcResultMatchers.jsonPath("$.error").exists())
-				.andExpect(MockMvcResultMatchers.jsonPath("$.error").isNotEmpty())
-				.andReturn().getResponse().getContentAsString();
-
-		JSONParser parser = new JSONParser();
-		JSONObject JSONError = (JSONObject) parser.parse(error);
-		assert(JSONError.get("error").equals("Kan ikke endre kapasiteten til mindre enn seksjonskapasitetene"));
-	}
-
+	
 	@Test
 	@Order(13)
 	public void getSectionTest() throws Exception{
