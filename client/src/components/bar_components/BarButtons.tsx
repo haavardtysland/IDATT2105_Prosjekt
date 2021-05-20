@@ -63,7 +63,12 @@ function BarButtons({ style }: any) {
         <MenuItem onClick={() => history.push('/MyUser')}>
           <p>Din bruker</p>
         </MenuItem>
-        <MenuItem onClick={() => history.push('/')}>
+        <MenuItem
+          onClick={() => {
+            history.push('/');
+            localStorage.clear();
+          }}
+        >
           <p>Logg ut</p>
         </MenuItem>
       </div>

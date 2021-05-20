@@ -1,5 +1,6 @@
 package IDATT2105.Reservation.models;
 
+import io.swagger.annotations.ApiModel;
 import org.eclipse.persistence.annotations.CascadeOnDelete;
 
 import java.sql.Timestamp;
@@ -9,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+@ApiModel(description = "Message model")
 @Entity
 public class Message {
   @Id

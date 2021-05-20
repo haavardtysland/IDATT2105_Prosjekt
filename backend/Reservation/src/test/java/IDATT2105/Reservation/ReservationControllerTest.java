@@ -221,6 +221,27 @@ public class ReservationControllerTest {
 		assert(idJson.getAsNumber("id").intValue()) == (newUser.getUserId());
 	}
 
+	@Test
+	@Order(6)
+	public void editUserWrongInfo() throws Exception {
+		System.out.println("Test 8");
+		String error = mockMvc.perform(MockMvcRequestBuilders.put("/user/edit/" + newUser.getUserId() + "/user").header("token",token).contentType(MediaType.APPLICATION_JSON).content(
+				"\n  {" +
+						"\n     \"firstName\":" + '\"' + "Nytt" + '\"' + "," +
+						"\n     \"surName\":" + '\"' + "Navn" + '\"' + "," +
+						"\n     \"email\":" + '\"' + "feil@gmail.com" + '\"' + "," +
+						"\n     \"isAdmin\":" +  newUser.getIsAdmin()  + "," +
+						"\n     \"validDate\":" + '\"' + newUser.getValidDate() + '\"' + "," +
+						"\n     \"password\":" + '\"' + "123" + '\"' + "," +
+						"\n     \"phoneNumber\":"  + newUser.getPhoneNumber()  +
+						"\n }"
+		)).andExpect(status().isBadRequest()).andExpect(MockMvcResultMatchers.jsonPath("$.error").exists()).andExpect(MockMvcResultMatchers.jsonPath("$.error").isNotEmpty()).andReturn().getResponse().getContentAsString();
+
+		JSONParser parser = new JSONParser();
+		JSONObject JSONError = (JSONObject) parser.parse(error);
+		assert("Passord eller email er feil".equals(JSONError.get("error")));
+	}
+
 
 	@Test
 	@Order(6)
@@ -333,26 +354,7 @@ public class ReservationControllerTest {
 		JSONObject idJson = (JSONObject) parser.parse(room_id);
 		assert(room1.getRoom_id() == idJson.getAsNumber("room_id").intValue());
 	}
-
-	@Test
-	@Order(12)
-	public void editRoomCapacityTooSmallTest() throws Exception{
-		System.out.println("Test 3");
-		String error = mockMvc.perform(MockMvcRequestBuilders.put("/room/edit/" + room1.getRoom_id()).contentType(MediaType.APPLICATION_JSON).content(
-				"{\n" +
-						"\"name\" : \"" + room1.getName() + "\",\n" +
-						"\"capacity\" : " + 25 + ",\n" +
-						"\"sections\" : " + room1.getSections().toString() + "\n" +
-						"}"
-		)).andExpect(status().isBadRequest()).andExpect(MockMvcResultMatchers.jsonPath("$.error").exists())
-				.andExpect(MockMvcResultMatchers.jsonPath("$.error").isNotEmpty())
-				.andReturn().getResponse().getContentAsString();
-
-		JSONParser parser = new JSONParser();
-		JSONObject JSONError = (JSONObject) parser.parse(error);
-		assert(JSONError.get("error").equals("Kan ikke endre kapasiteten til mindre enn seksjonskapasitetene"));
-	}
-
+	
 	@Test
 	@Order(13)
 	public void getSectionTest() throws Exception{
@@ -415,6 +417,90 @@ public class ReservationControllerTest {
 	}
 
 	@Test
+	@Order(15)
+	public void registerReservationWithWrongSectionTest() throws Exception {
+		System.out.println("Test 6");
+		reservation.setFromDate(Timestamp.valueOf("2021-05-05 12:00:00.0"));
+		reservation.setFromDate(Timestamp.valueOf("2021-05-05 12:00:00.0"));
+		reservation.setToDate(Timestamp.valueOf("2021-06-05 12:00:00.0"));
+		reservation.setCapacity(10);
+		reservation.setDescription("Test reservasjon");
+
+		String error = mockMvc.perform(MockMvcRequestBuilders.post("/reservation").header("token",token).accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON).content(
+				"{" +
+						"\n \"user_id\": " + newUser.getUserId() + "," +
+						"\n \"section_id\": " + -1 + "," +
+						"\n \"from_date\": " + "\"" + "2021-05-05 12:00:00.0" + "\"" + "," +
+						"\n \"to_date\": " + "\"" + "2021-06-05 12:00:00.0" + "\"" + "," +
+						"\n \"capacity\": " + 10 + ","+
+						"\n \"description\": " + "\"" + "Test reservasjon" + "\"" +
+						"\n}"
+		)).andExpect(status().isBadRequest()).andExpect(MockMvcResultMatchers.jsonPath("$.error").exists())
+				.andExpect(MockMvcResultMatchers.jsonPath("$.error").isNotEmpty())
+				.andReturn().getResponse().getContentAsString();
+
+		JSONParser parser = new JSONParser();
+		JSONObject JSONError = (JSONObject) parser.parse(error);
+		assert(JSONError.get("error").equals("Ingen seksjon med denne id"));
+	}
+
+	@Test
+	@Order(15)
+	public void registerReservationWithNoToken() throws Exception {
+		System.out.println("Test 6");
+		reservation.setFromDate(Timestamp.valueOf("2021-05-05 12:00:00.0"));
+		reservation.setFromDate(Timestamp.valueOf("2021-05-05 12:00:00.0"));
+		reservation.setToDate(Timestamp.valueOf("2021-06-05 12:00:00.0"));
+		reservation.setCapacity(10);
+		reservation.setDescription("Test reservasjon");
+
+		String error = mockMvc.perform(MockMvcRequestBuilders.post("/reservation").accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON).content(
+				"{" +
+						"\n \"user_id\": " + newUser.getUserId() + "," +
+						"\n \"section_id\": " + room1.getSections().get(0).getSectionId() + "," +
+						"\n \"from_date\": " + "\"" + "2021-05-05 12:00:00.0" + "\"" + "," +
+						"\n \"to_date\": " + "\"" + "2021-06-05 12:00:00.0" + "\"" + "," +
+						"\n \"capacity\": " + 10 + ","+
+						"\n \"description\": " + "\"" + "Test reservasjon" + "\"" +
+						"\n}"
+		)).andExpect(status().isBadRequest()).andExpect(MockMvcResultMatchers.jsonPath("$.error").exists())
+				.andExpect(MockMvcResultMatchers.jsonPath("$.error").isNotEmpty())
+				.andReturn().getResponse().getContentAsString();
+
+		JSONParser parser = new JSONParser();
+		JSONObject JSONError = (JSONObject) parser.parse(error);
+		assert(JSONError.get("error").equals("empty token"));
+	}
+
+	@Test
+	@Order(15)
+	public void registerReservationWithWrongUserId() throws Exception {
+		System.out.println("Test 6");
+		reservation.setFromDate(Timestamp.valueOf("2021-05-05 12:00:00.0"));
+		reservation.setFromDate(Timestamp.valueOf("2021-05-05 12:00:00.0"));
+		reservation.setToDate(Timestamp.valueOf("2021-06-05 12:00:00.0"));
+		reservation.setCapacity(10);
+		reservation.setDescription("Test reservasjon");
+
+		String error = mockMvc.perform(MockMvcRequestBuilders.post("/reservation").header("token", token).accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON).content(
+				"{" +
+						"\n \"user_id\": " + -1 + "," +
+						"\n \"section_id\": " + room1.getSections().get(0).getSectionId() + "," +
+						"\n \"from_date\": " + "\"" + "2021-05-05 12:00:00.0" + "\"" + "," +
+						"\n \"to_date\": " + "\"" + "2021-06-05 12:00:00.0" + "\"" + "," +
+						"\n \"capacity\": " + 10 + ","+
+						"\n \"description\": " + "\"" + "Test reservasjon" + "\"" +
+						"\n}"
+		)).andExpect(status().isBadRequest()).andExpect(MockMvcResultMatchers.jsonPath("$.error").exists())
+				.andExpect(MockMvcResultMatchers.jsonPath("$.error").isNotEmpty())
+				.andReturn().getResponse().getContentAsString();
+
+		JSONParser parser = new JSONParser();
+		JSONObject JSONError = (JSONObject) parser.parse(error);
+		assert(JSONError.get("error").equals("subject mismatch"));
+	}
+
+	@Test
 	@Order(16)
 	public void registerDuplicateReservationTest() throws Exception{
 			System.out.println("Test 6");
@@ -471,6 +557,25 @@ public class ReservationControllerTest {
 		JSONArray jsonArray = (JSONArray) parser.parse(csv);
 
 		assert((Integer.parseInt(((JSONObject)jsonArray.get(0)).get("reservationId").toString())) == reservation.getReservation_id());
+	}
+
+	@Test
+	@Order(18)
+	public void getReservationsForSectionWithinTimeframeTest() throws Exception{
+		Long start = reservation.getFromDate().getTime();
+		Long end = reservation.getToDate().getTime();
+		String reservationInfo = mockMvc.perform(MockMvcRequestBuilders.get("/reservation/" + room1.getSections().get(0).getSectionId() + "/section" + "/" + start + "/" + end).header("token",token).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(MockMvcResultMatchers.jsonPath("$.reservations").exists())
+				.andExpect(MockMvcResultMatchers.jsonPath("$.reservations").isNotEmpty())
+				.andReturn().getResponse().getContentAsString();
+
+
+		JSONParser parser = new JSONParser();
+		JSONObject json = (JSONObject) parser.parse(reservationInfo);
+		String csv = json.get("reservations").toString();
+		JSONArray jsonArray = (JSONArray) parser.parse(csv);
+
+		assert((Integer.parseInt(((JSONObject)jsonArray.get(0)).get("reservationId").toString())) == reservation.getReservation_id());
+
 	}
 
 
