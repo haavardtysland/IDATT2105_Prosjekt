@@ -4,6 +4,7 @@ import IDATT2105.Reservation.models.Room;
 import IDATT2105.Reservation.models.Section;
 import IDATT2105.Reservation.service.RoomService;
 import IDATT2105.Reservation.util.Logger;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -43,6 +44,7 @@ public class RoomController {
     }
      * @return true if the room was succesfully added, false if not
      */
+    @ApiOperation(value = "Add a room")
     @PostMapping(value="")
     public @ResponseBody
     ResponseEntity addRoom (@RequestBody HashMap<String, Object> map){
@@ -102,10 +104,6 @@ public class RoomController {
             } else {
                 newSection.setSectionId(Integer.parseInt(section.get("section_id").toString()));
             }
-            System.out.println(room.getAvailable());
-            if (room.getAvailable() < newSection.getCapacity() && newSection.getRoom() != null) {
-                return null;
-            }
             newSection.setRoom(room);
             sections.add(newSection);
         }
@@ -129,6 +127,7 @@ public class RoomController {
      * @param room_id
      * @return
      */
+    @ApiOperation(value = "Edit a room")
     @PutMapping(value="/edit/{room_id}")
     public @ResponseBody
     ResponseEntity editRoom(@RequestBody HashMap<String, Object> map, @PathVariable String room_id){
@@ -139,12 +138,6 @@ public class RoomController {
         Room room = roomService.getRoom(id);
         String name = map.get("name").toString();
         int capacity = Integer.parseInt(map.get("capacity").toString());
-        if(capacity < (room.getCapacity() - room.getAvailable())){
-            log.info("Capacity is full");
-            header.add("STATUS", "400 BAD REQUEST");
-            body.put("error", "Kan ikke endre kapasiteten til mindre enn seksjonskapasitetene");
-            return ResponseEntity.badRequest().headers(header).body(formatJson(body));
-        }
         ArrayList<LinkedHashMap> sectionList = (ArrayList) map.get("sections");
         room.setCapacity(capacity);
         room.setName(name);
@@ -175,7 +168,8 @@ public class RoomController {
      * @param capacity The wanted capacity
      * @return A ResponseEntity with the rooms that are available
      */
-   @GetMapping(value = "/{from_date}/{to_date}/{capacity}", produces="application/json")
+    @ApiOperation(value = "Get the available rooms within a timeframe and a given capacity")
+    @GetMapping(value = "/{from_date}/{to_date}/{capacity}", produces="application/json")
     public ResponseEntity getAvailableRooms(@PathVariable String from_date, @PathVariable String to_date, @PathVariable String capacity){
         List<Room> rooms;
         HttpHeaders header = new HttpHeaders();
@@ -200,6 +194,7 @@ public class RoomController {
      * Getting all the rooms in the database
      * @return A ResponseEntity with the rooms
      */
+    @ApiOperation(value = "Get all the rooms")
     @GetMapping(value="", produces="application/json")
     public ResponseEntity getRooms(
     ) {
@@ -224,6 +219,7 @@ public class RoomController {
      * @param room_id
      * @return ResponseEntity based on if the room could be deleted
      */
+    @ApiOperation(value = "Delete a room")
     @DeleteMapping(value="/{room_id}")
     public @ResponseBody
     ResponseEntity deleteRoom(@PathVariable String room_id){
@@ -242,6 +238,7 @@ public class RoomController {
         return ResponseEntity.badRequest().headers(header).body(formatJson(body));
     }
 
+    @ApiOperation(value = "Get a certain room by it id")
     @GetMapping(value = "/{room_id}", produces= "application/json")
     public @ResponseBody ResponseEntity getRoom(@PathVariable String room_id){
         Room room;

@@ -16,6 +16,8 @@ import java.sql.Date;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
+
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +38,7 @@ public class UserController {
   @Autowired
   private SendEmailService sendEmailService;
 
+  @ApiOperation(value = "Get all the users")
   @GetMapping(value = "", produces = "application/json")
   public ResponseEntity getAllUsers() {
     log.info("Received GetMapping at '/user'");
@@ -57,6 +60,7 @@ public class UserController {
     }
   }
 
+  @ApiOperation(value = "Get the user by its id")
   @GetMapping(value = "/{userId}", produces = "application/json")
   public ResponseEntity getUser(@PathVariable String userId){
       HttpHeaders header = new HttpHeaders();
@@ -72,6 +76,7 @@ public class UserController {
       return ResponseEntity.ok().headers(header).body(user.toString());
   }
 
+  @ApiOperation(value = "Delete a user")
   @PathTokenRequired
   @DeleteMapping("/{id}")
   public ResponseEntity deleteUser(@PathVariable Integer id) {
@@ -108,6 +113,7 @@ public class UserController {
    * @return
    */
 
+  @ApiOperation(value = "Register a user")
   @PostMapping("")
   public ResponseEntity registerUser(@RequestBody HashMap<String, Object> map) {
     log.info("recieved postmapping to /user: " + map.toString());
@@ -185,6 +191,7 @@ public class UserController {
    * @param id
    * @return
    */
+  @ApiOperation(value = "Editing user information by an admin user")
   @PathTwoTokenRequired
   @PutMapping(value = "/edit/{id}")
   public ResponseEntity editUser(@RequestBody Map<String, Object> map, @PathVariable Integer id) {
@@ -297,6 +304,7 @@ public class UserController {
    * @param id
    * @return
    */
+  @ApiOperation(value = "Editing user information for a normal user")
   @PathTwoTokenRequired
   @PutMapping(value = "/edit/{id}/user")
   public ResponseEntity editUserNotAdmin(@RequestBody Map<String, Object> map, @PathVariable Integer id) {
@@ -307,7 +315,7 @@ public class UserController {
     try {
       if (!userService.login(map.get("email").toString(), map.get("password").toString())) {
         log.debug("Someone tried to edit a user with an invalid email or password ");
-        body.put("error", "Invalid Email or Password");
+        body.put("error", "Passord eller email er feil");
         return ResponseEntity
             .badRequest()
             .headers(header)
@@ -315,7 +323,7 @@ public class UserController {
       }
     } catch (NullPointerException e) {
       log.error("A NullPointerException was caught while editing user");
-      body.put("error", "Invalid Email or Password");
+      body.put("error", "Passord eller email er feil");
       return ResponseEntity
           .badRequest()
           .headers(header)

@@ -12,6 +12,8 @@ import IDATT2105.Reservation.util.Logger;
 import IDATT2105.Reservation.util.PathTokenRequired;
 import IDATT2105.Reservation.util.ReservationTime;
 import java.sql.Timestamp;
+
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -38,6 +40,7 @@ public class SectionController {
     @Autowired
     private UserService userService;
 
+    @ApiOperation(value = "Delete a message")
     @PathTokenRequired
     @DeleteMapping(value="/message/{message_id}")
     public @ResponseBody
@@ -67,6 +70,7 @@ public class SectionController {
      * @param section_id
      * @return
      */
+    @ApiOperation(value = "Add a message for a section")
     @PostMapping(value="/{section_id}/message", produces="application/json")
     public @ResponseBody
     ResponseEntity addMessage(@RequestBody HashMap<String, Object> map, @PathVariable String section_id) {
@@ -116,6 +120,7 @@ public class SectionController {
      * @param room_id the room that the admin wants to add sections to
      * @return true if the sections can be added, false if not
      */
+    @ApiOperation(value = "Add one or more sections to a room")
     @PostMapping(value="/{room_id}", produces="application/json")
     public @ResponseBody
     ResponseEntity addSections(@RequestBody HashMap<String, Object> map, @PathVariable String room_id) {
@@ -152,44 +157,6 @@ public class SectionController {
         }
     }
 
-    /**
-     * Getting all the taken times for a section
-     * @param section_id section_id of the section you would like to check
-     * @return A json object on the form:
-     * "times": [
-     *     {
-     *         "start": 1352674800000,
-     *         "end": "1352674800000"
-     *     },
-     *     {
-     *         "start": 1605135600000,
-     *         "end": "1605135600000"
-     *     }
-     * ]
-     */
-    @GetMapping(value="/{section_id}/taken", produces="application/json")
-    public ResponseEntity getSectionAvailability(@PathVariable String section_id){
-        List<ReservationTime> reservationTimes;
-        Map<String, String> body = new HashMap<>();
-        HttpHeaders header = new HttpHeaders();
-        try{
-            log.info("Getting section with section id " + section_id);
-            int id = Integer.parseInt(section_id);
-            reservationTimes = sectionService.getSectionAvailability(id);
-            if(reservationTimes == null) {
-                header.add("STATUS", "400 BAD REQUEST");
-                body.put("error", "Are you sure there is a section with id " + id + "?")          ;
-                return ResponseEntity.ok().headers(header).body(formatJson(body));
-            }
-            header.add("STATUS", "200 OK");
-            return ResponseEntity.ok().headers(header).body("\"times\": \n " + reservationTimes.toString());
-        }  catch(Exception e) {
-            log.info("Something went wrong while getting section with section_id " + section_id);
-            header.add("STATUS", "400 BAD REQUEST");
-            body.put("error", "Something went wrong while getting section with section_id " + section_id);
-            return ResponseEntity.badRequest().headers(header).body(formatJson(body));
-        }
-    }
 
     /**
      * Getting all the taken times for a section
@@ -206,6 +173,7 @@ public class SectionController {
      *     }
      * ]
      */
+    @ApiOperation(value = "Get the statistics for a section within a timeframe")
     @GetMapping(value="/{section_id}/{from_date}/{to_date}", produces="application/json")
     public ResponseEntity getSectionStatistics(@PathVariable String section_id, @PathVariable String from_date, @PathVariable String to_date){
         Map<String, String> body = new HashMap<>();
@@ -233,6 +201,7 @@ public class SectionController {
         }
     }
 
+    @ApiOperation(value = "Get the all the sections")
     @GetMapping(value="", produces="application/json")
     public ResponseEntity getSections(){
         List<Section> sections;
@@ -251,6 +220,7 @@ public class SectionController {
         }
     }
 
+    @ApiOperation(value = "Get a section by its id")
     @GetMapping(value="/{section_id}", produces="application/json")
     public ResponseEntity getSection(@PathVariable String section_id){
         Section section;
@@ -274,7 +244,7 @@ public class SectionController {
             return ResponseEntity.badRequest().headers(header).body(formatJson(body));
         }
     }
-
+    @ApiOperation(value = "Delete a section")
     @DeleteMapping(value="/{section_id}")
     public @ResponseBody
     ResponseEntity deleteSection(@PathVariable String section_id) {

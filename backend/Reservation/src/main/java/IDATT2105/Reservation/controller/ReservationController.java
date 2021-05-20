@@ -25,6 +25,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.naming.directory.InvalidAttributesException;
+
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -53,6 +55,7 @@ public class ReservationController {
   @Autowired
   private SectionService sectionService;
 
+  @ApiOperation(value = "Get all the reservations")
   @GetMapping(value = "", produces = "application/json")
   public ResponseEntity getAllReservations() {
     log.debug("Received GetMapping at '/reservation'");
@@ -79,6 +82,7 @@ public class ReservationController {
    * @param userId the id of the user
    * @return A list of the reservations this user has
    */
+  @ApiOperation(value = "Get all the reservations for a certain user")
   @PathTokenRequired
   @GetMapping(value = "/{userId}/user", produces = "application/json")
   public ResponseEntity getAllReservationsForUser(@PathVariable Integer userId) {
@@ -106,6 +110,7 @@ public class ReservationController {
    * @param sectionId the id of the section
    * @return A list of reservations
    */
+  @ApiOperation(value = "Get all the reservations for a section")
   @GetMapping(value = "/{sectionId}/section", produces = "application/json")
   public ResponseEntity getAllReservationsForSection(@PathVariable Integer sectionId) {
     log.debug("Received GetMapping at '/reservation/{sectionID}' with " + sectionId);
@@ -134,6 +139,7 @@ public class ReservationController {
    * @param to the end time, as ms since epoch
    * @return
    */
+  @ApiOperation(value = "Get all the reservations for section within a timeframe")
   @GetMapping(value ="/{sectionId}/section/{from}/{to}", produces = "application/json")
   public ResponseEntity getReservationsForSectionOnTimeframe(@PathVariable Integer sectionId, @PathVariable String from, @PathVariable String to){
     log.debug("Received GetMapping at '/reservation/{sectionID}' with " + sectionId);
@@ -159,6 +165,7 @@ public class ReservationController {
     }
   }
 
+  @ApiOperation(value = "Get all the reservations for a certain room")
   @GetMapping(value = "/{roomId}/room", produces = "application/json")
   public ResponseEntity getAllReservationsForRoom(@PathVariable Integer roomId) {
     log.debug("Received GetMapping at '/reservation/{sectionID}' with " + roomId);
@@ -191,6 +198,7 @@ public class ReservationController {
     "description": "Test description"
 }
    */
+  @ApiOperation(value = "Register a new reservation")
   @MapTokenRequired
   @PostMapping(value = "", consumes = "application/json", produces = "application/json")
   public ResponseEntity registerReservation(@RequestBody Map<String, Object> map) {
@@ -211,7 +219,7 @@ public class ReservationController {
 
       Section section = sectionService.getSection(Integer.parseInt(map.get("section_id").toString()));
       if (section == null) {
-        body.put("error", "the section is null");
+        body.put("error", "Ingen seksjon med denne id");
         return ResponseEntity
             .badRequest()
             .body(formatJson(body));
@@ -253,7 +261,7 @@ public class ReservationController {
 
     } catch (InvalidAttributesException e) {
       log.error("InvalidattributesException, " + e.getMessage());
-      body.put("error", "invalid userID received");
+      body.put("error", "Ingen bruker med denne id");
       return ResponseEntity
           .badRequest()
           .headers(headers)
@@ -329,6 +337,7 @@ public class ReservationController {
         .body(formatJson(body));
   }
 
+  @ApiOperation(value = "Delete a reservation")
   @ReservationTokenRequired
   @DeleteMapping("/{reservationId}")
   public ResponseEntity deleteReservation(@PathVariable Integer reservationId) {
@@ -360,6 +369,8 @@ public class ReservationController {
     body.put("error", "no reservation was deleted, are you sure the reservation exists");
     return ResponseEntity.badRequest().headers(header).body(formatJson(body));
   }
+
+  @ApiOperation(value = "Edit a reservation")
   @MapTokenRequired
   @PutMapping(value = "/{id}", consumes = "application/json", produces = "application/json")
   public ResponseEntity editReservation(@PathVariable("id") int resId,
