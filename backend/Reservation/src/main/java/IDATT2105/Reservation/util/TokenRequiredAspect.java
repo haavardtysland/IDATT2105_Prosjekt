@@ -72,8 +72,8 @@ public class TokenRequiredAspect {
         Map map = (Map) arg;
         if (map.containsKey("userId")) {
           subject = map.get("userId").toString();
-        } else if (map.containsKey("fromUserId")) {
-          subject = map.get("fromUserId").toString();
+        } else if (map.containsKey("user_id")) {
+          subject = map.get("user_id").toString();
         }
       }
     }

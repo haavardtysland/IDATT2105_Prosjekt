@@ -143,5 +143,4 @@ public class Section {
             "\n\"messages\":" + messages.toString() +
             "\n}";
   }
-
 }
