@@ -66,6 +66,7 @@ function BarButtons({ style }: any) {
         <MenuItem
           onClick={() => {
             history.push('/');
+            localStorage.clear();
           }}
         >
           <p>Logg ut</p>

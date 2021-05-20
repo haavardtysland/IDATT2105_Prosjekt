@@ -15,7 +15,7 @@ const AdminRoutes: React.FC<PublicRouteProps> = ({
 
   useEffect(() => {
     const isLogin = async () => {
-      const id = localStorage.getItem('userID');
+      const id = localStorage.getItem('id');
       const token = localStorage.getItem('token');
       const config = {
         headers: {
@@ -31,8 +31,6 @@ const AdminRoutes: React.FC<PublicRouteProps> = ({
           config
         )
         .then((response) => {
-          console.log(response.data.result);
-          console.log(response.data.isAdmin);
           if (
             response.data.result == 'true' &&
             response.data.isAdmin == 'true'
