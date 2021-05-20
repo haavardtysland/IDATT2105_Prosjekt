@@ -7,7 +7,7 @@ import UserGrid from '../../components/user_components/UserGrid';
 import ChangeRoom from '../../components/room_components/ChangeRoom';
 import Room from '../../interfaces/Room';
 const Container = styled.div`
-  padding-top: 8%;
+  padding-top: 13%;
   padding-right: 3%;
   padding-left: 3%;
 `;
@@ -24,6 +24,26 @@ function UserAdministration() {
     axios
       .delete(`/user/${userId}`)
       .then(() => setUsers(users.filter((user) => user.userId != userId)));
+  };
+
+  const renewAccess = (user: User, time: Date) => {
+    if (!(time instanceof Date)) {
+      alert('Du må endre datoen');
+      return;
+    }
+    const date: string = time.toISOString().slice(0, 10);
+    axios
+      .put(`user/edit/${user.userId}`, {
+        firstName: user.firstName,
+        surName: user.surname,
+        email: user.email,
+        isAdmin: user.isAdmin,
+        validDate: date,
+        password: false,
+        phoneNumber: user.phoneNumber,
+      })
+      .then(() => alert(`${user.email} er nå gyldig til ${date}`))
+      .catch((err) => alert(err.data.error));
   };
 
   const resendPassword = (user: User) => {
@@ -46,6 +66,7 @@ function UserAdministration() {
     <Container>
       <AdministrateButtons />
       <UserGrid
+        renewAccess={(user, time) => renewAccess(user, time)}
         deleteUser={deleteUser}
         resendPassword={resendPassword}
         users={users}

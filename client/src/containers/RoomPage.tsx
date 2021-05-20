@@ -14,7 +14,7 @@ import InfoIcon from '@material-ui/icons/Info';
 import { Context } from '../Context';
 
 const StyledHeader = styled.h1`
-  margin-top: 6rem;
+  margin-top: 13%;
 `;
 
 const StyledDivHeader = styled.div`
@@ -99,12 +99,6 @@ const RoomPage: React.FC = () => {
       {currentSection.room_id !== -1 && (
         <Calendar date={selectedDate} section={currentSection} />
       )}
-      <button onClick={() => console.log(room['sections:'])}>
-        log context sections
-      </button>
-      <button onClick={() => console.log(currentSection)}>
-        log current sectionms
-      </button>
     </div>
   );
 };

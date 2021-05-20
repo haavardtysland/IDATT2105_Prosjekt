@@ -1,9 +1,10 @@
-export default interface User {
-  userId: number;
+export default interface UserResponse {
   firstName: string;
   surname: string;
   email: string;
-  isAdmin: boolean;
+  userId: number;
   validDate: string;
+  password: string;
+  isAdmin: string;
   phoneNumber: string;
 }

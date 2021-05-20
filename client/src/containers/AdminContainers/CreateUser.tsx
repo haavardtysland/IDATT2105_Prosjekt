@@ -6,7 +6,7 @@ import { Typography, Button } from '@material-ui/core';
 import axios from '../../axios';
 
 const Container = styled.div`
-  padding-top: 7%;
+  padding-top: 13%;
   padding-right: 3%;
   padding-left: 3%;
 `;

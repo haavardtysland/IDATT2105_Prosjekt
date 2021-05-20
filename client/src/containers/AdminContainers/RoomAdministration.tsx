@@ -7,7 +7,7 @@ import RoomGrid from '../../components/room_components/RoomGrid';
 import ChangeRoom from '../../components/room_components/ChangeRoom';
 import Section from '../../interfaces/Section';
 const Container = styled.div`
-  padding-top: 8%;
+  padding-top: 13%;
   padding-right: 3%;
   padding-left: 3%;
 `;

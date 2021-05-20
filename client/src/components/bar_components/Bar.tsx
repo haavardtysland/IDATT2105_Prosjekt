@@ -1,17 +1,5 @@
-import {
-  Button,
-  ClickAwayListener,
-  createStyles,
-  Grow,
-  makeStyles,
-  MenuItem,
-  MenuList,
-  Paper,
-  Popper,
-  Theme,
-  Toolbar,
-  Typography,
-} from '@material-ui/core';
+import { Button, MenuItem, Toolbar, Typography } from '@material-ui/core';
+import ListIcon from '@material-ui/icons/List';
 import React, {
   Fragment,
   useContext,
@@ -20,57 +8,58 @@ import React, {
   useState,
 } from 'react';
 import AppBar from '@material-ui/core/AppBar';
-import SettingsIcon from '@material-ui/icons/Settings';
-import styled from 'styled-components';
-import DropDownList from './DropDownList';
 import { useHistory } from 'react-router';
-import { Context } from '../../Context';
-import MyUser from '../user_components/MyUser';
+import BarButtons from './BarButtons';
+import BarDrawer from './BarDrawer';
+function getWindowDimensions() {
+  const { innerWidth: width, innerHeight: height } = window;
+  return {
+    width,
+    height,
+  };
+}
 
 function Bar() {
   const history = useHistory();
-  const { user } = useContext(Context.UserContext);
-  const admin = useRef(user.isAdmin);
+  const [windowDimensions, setWindowDimensions] = useState(
+    getWindowDimensions()
+  );
   const [openPopup, setOpenPopup] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowDimensions(getWindowDimensions());
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const onClick = () => {
+    setOpen(!open);
+  };
 
   return (
     <div>
       <AppBar>
         <Toolbar style={{ justifyContent: 'space-between' }}>
-          <Typography onClick={() => history.push('/mainPage')} variant="h4">
-            Romreservasjon fra helvete
-          </Typography>
-          <MenuItem>
-            <Button onClick={() => history.push('/mineBestillinger')}>
-              <Typography variant="h6">Se bestillinger</Typography>
-            </Button>
+          <MenuItem onClick={() => history.push('/mainPage')}>
+            <Typography variant="h4">Romreservasjon</Typography>
           </MenuItem>
-          {admin && (
+          {windowDimensions.width > 951 && (
             <Fragment>
-              <MenuItem>
-                <Button onClick={() => history.push('/addUser')}>
-                  <Typography variant="h6">Legg til brukere</Typography>
-                </Button>
-              </MenuItem>
-              <MenuItem>
-                <Button onClick={() => history.push('/addRoom')}>
-                  <Typography variant="h6">Legg til rom</Typography>
-                </Button>
-              </MenuItem>
-              <MenuItem>
-                <Button onClick={() => history.push('/administrate/room')}>
-                  <Typography variant="h6">Administrer</Typography>
-                </Button>
-              </MenuItem>
+              <BarButtons style={{ display: 'flex' }}></BarButtons>
             </Fragment>
           )}
-          <DropDownList
-            listItems={['Min Profil']}
-            openPopup={openPopup}
-            setOpenPopup={setOpenPopup}
-          >
-            <MyUser openPopup={openPopup} setOpenPopup={setOpenPopup} />
-          </DropDownList>
+          {windowDimensions.width < 951 && (
+            <Fragment>
+              <MenuItem onClick={onClick}>
+                <ListIcon style={{ width: '2.5rem', height: '100%' }} />
+              </MenuItem>
+              <BarDrawer open={open}></BarDrawer>
+            </Fragment>
+          )}
         </Toolbar>
       </AppBar>
     </div>

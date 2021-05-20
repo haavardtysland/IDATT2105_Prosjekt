@@ -31,23 +31,25 @@ enum SortOptions {
 const ReservationPage: React.FC = () => {
   const user = useContext(Context.UserContext);
   const [sortOption, setSortOption] = React.useState<number>(0);
+  /*
   const [reservations, setReservations] = useState<Reservation[]>([
     {
       reservationId: 1,
       capacity: 10,
       description: 'Reserverer dette rommet shamener',
-      fromDate: '05-15-2021 13:50:00',
-      toDate: '05-15-2021 16:00:00',
+      from_date: '05-15-2021 13:50:00',
+      to_date: '05-15-2021 16:00:00',
     },
     {
       reservationId: 2,
       capacity: 20,
       description: 'hva skjer babajan',
-      fromDate: '05-10-2021 12:00:00',
-      toDate: '05-21-2021 15:00:00',
+      from_date: '05-10-2021 12:00:00',
+      to_date: '05-21-2021 15:00:00',
     },
   ]);
-  //const [reservations, setReservations] = useState<Reservation[]>([]);
+  */
+  const [reservations, setReservations] = useState<Reservation[]>([]);
   const [currentReservations, setCurrentReservations] =
     useState<Reservation[]>(reservations);
   const [descFilter, setDescFilter] = useState<string>('');
@@ -115,7 +117,7 @@ const ReservationPage: React.FC = () => {
     <div>
       <Typography
         variant="h5"
-        style={{ marginTop: '6rem', marginLeft: '1rem' }}
+        style={{ marginTop: '11%', marginLeft: '1rem' }}
       >
         Mine Reservasjoner
       </Typography>
