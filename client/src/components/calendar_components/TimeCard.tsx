@@ -59,30 +59,25 @@ const TimeCard: React.FC<TimeCardProps> = ({
     if (bookedTimes[index] === false) {
       if (noMarked === 0) {
         updateIsMarkedArr(index);
-        updateBackgroundColor();
       } else if (
         index === 0 &&
         isMarkedArr[index + 1] === true &&
         noMarked < 3
       ) {
         updateIsMarkedArr(index);
-        updateBackgroundColor();
       } else if (
         index === isMarkedArr.length - 1 &&
         isMarkedArr[index - 1] === true &&
         noMarked < 3
       ) {
         updateIsMarkedArr(index);
-        updateBackgroundColor();
       } else if (
         (isMarkedArr[index - 1] === true || isMarkedArr[index + 1] === true) &&
         noMarked < 3
       ) {
         updateIsMarkedArr(index);
-        updateBackgroundColor();
       } else if (noMarked > 0 && isMarkedArr[index] === true) {
         updateIsMarkedArr(index);
-        updateBackgroundColor();
       }
     }
   };
