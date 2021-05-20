@@ -8,13 +8,22 @@ import Section from '../../interfaces/Section';
 import Reservation from '../../interfaces/Reservation';
 import config from '../../Config';
 
+
 const ButtonsContainer = styled.div`
   display: flex;
 `;
 
+const StyledLi = styled.li`
+  :hover {
+    color: red;
+    text-decoration: underline;
+  }
+`;
+
 const StyledButton = withStyles({
   root: {
-    margin: '2%',
+    margin: '1%',
+    width: '50%',
   },
 })(Button);
 
@@ -177,30 +186,33 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
         {currentUser.userId !== -1 &&
           currentUser.firstName + ' ' + currentUser.surname + ' '}
         ønsker å reservere de følgende tidene:
-        <ul>
-          {currentTimes?.map((time, key: number) => (
-            <li onClick={deleteListItem.bind(this, key)} key={key}>
-              {times.indexOf(time) !== times.length - 1
-                ? `${time} til ${times[times.indexOf(time) + 1]}`
-                : `${time} til 19:30`}
-            </li>
-          ))}
-        </ul>
+      </Typography>
+      <ul>
+        {currentTimes?.map((time, key: number) => (
+          <StyledLi onClick={deleteListItem.bind(this, key)} key={key}>
+            {times.indexOf(time) !== times.length - 1
+              ? `${time} til ${times[times.indexOf(time) + 1]}`
+              : `${time} til 19:30`}
+          </StyledLi>
+        ))}
+      </ul>
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
         <TextField
+          style={{ margin: '1%' }}
           variant="outlined"
           label="Beskrivelse"
           value={desc}
           onChange={onChangeDesc}
         />
         <TextField
+          style={{ margin: '1%' }}
           variant="outlined"
           type="number"
           label="Plasser"
           value={capacity}
           onChange={onChangeCapacity}
         />
-      </Typography>
-
+      </div>
       <ButtonsContainer>
         <StyledButton variant="outlined" onClick={postReservation}>
           Bekreft
@@ -211,6 +223,7 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
         >
           Avbryt
         </StyledButton>
+        {/*
         <button onClick={() => console.log(selectedTimes)}>
           log selected times
         </button>
@@ -223,6 +236,7 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
         <button onClick={() => console.log(currentTimes)}>
           log current times
         </button>
+        */}
       </ButtonsContainer>
     </div>
   );
