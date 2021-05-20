@@ -17,7 +17,7 @@ const Container = styled.div`
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     button: {
-      width: '25%',
+      width: '20%',
       height: '90%',
       marginLeft: '2rem',
       marginRight: '2rem',

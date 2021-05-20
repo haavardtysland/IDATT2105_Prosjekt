@@ -29,7 +29,6 @@ const Flex = styled.div`
 
 function MyUser() {
   const [useren, setUser] = useState<UserResponse>();
-  const { user } = useContext(Context.UserContext);
   const [openPopup, setOpenPopup] = useState<boolean>(false);
   const [password, setPassword] = useState<string>();
   const [method, setMethod] =
@@ -38,7 +37,7 @@ function MyUser() {
 
   const getUser = () => {
     axios
-      .get(`/user/${user.id}`)
+      .get(`/user/${localStorage.getItem('id')}`)
       .then((response) => {
         setUser(response.data);
       })
@@ -59,16 +58,20 @@ function MyUser() {
   const updateFirstname = (firstname: string, passord: string) => {
     if (useren && passord) {
       axios
-        .put(`/user/edit/${useren?.userId}/user`, {
-          firstName: firstname,
-          surName: useren.surname,
-          email: useren.email,
-          isAdmin: useren.isAdmin,
-          validDate: useren.validDate,
-          password: passord,
-          newpassword: passord,
-          phoneNumber: useren.phoneNumber,
-        }, config)
+        .put(
+          `/user/edit/${useren?.userId}/user`,
+          {
+            firstName: firstname,
+            surName: useren.surname,
+            email: useren.email,
+            isAdmin: useren.isAdmin,
+            validDate: useren.validDate,
+            password: passord,
+            newpassword: passord,
+            phoneNumber: useren.phoneNumber,
+          },
+          config
+        )
         .then(() => alert('Du endret fornavn'))
         .then(() => setOpenPopup(false))
         .catch((err) => alert(err.response.data.error));
@@ -94,16 +97,20 @@ function MyUser() {
   const updateSurname = (surname: string, passord: string) => {
     if (useren && passord) {
       axios
-        .put(`/user/edit/${useren?.userId}/user`, {
-          firstName: useren.firstName,
-          surName: surname,
-          email: useren.email,
-          isAdmin: useren.isAdmin,
-          validDate: useren.validDate,
-          password: passord,
-          newpassword: passord,
-          phoneNumber: useren.phoneNumber,
-        }, config)
+        .put(
+          `/user/edit/${useren?.userId}/user`,
+          {
+            firstName: useren.firstName,
+            surName: surname,
+            email: useren.email,
+            isAdmin: useren.isAdmin,
+            validDate: useren.validDate,
+            password: passord,
+            newpassword: passord,
+            phoneNumber: useren.phoneNumber,
+          },
+          config
+        )
         .then(() => alert('Du endret etternavn'))
         .then(() => setOpenPopup(false))
         .catch((err) => alert(err.response.data.error));
@@ -121,16 +128,20 @@ function MyUser() {
   const updatePassword = (newPassword: string, passord: string) => {
     if (useren && passord) {
       axios
-        .put(`/user/edit/${useren?.userId}/user`, {
-          firstName: useren.firstName,
-          surName: useren.surname,
-          email: useren.email,
-          isAdmin: useren.isAdmin,
-          validDate: useren.validDate,
-          password: passord,
-          newpassword: newPassword,
-          phoneNumber: useren.phoneNumber,
-        }, config)
+        .put(
+          `/user/edit/${useren?.userId}/user`,
+          {
+            firstName: useren.firstName,
+            surName: useren.surname,
+            email: useren.email,
+            isAdmin: useren.isAdmin,
+            validDate: useren.validDate,
+            password: passord,
+            newpassword: newPassword,
+            phoneNumber: useren.phoneNumber,
+          },
+          config
+        )
         .then(() => alert('Du endret passord'))
         .then(() => setOpenPopup(false))
         .catch((err) => alert(err.response.data.error));
@@ -156,16 +167,20 @@ function MyUser() {
   const updatePhoneNumber = (phoneNumber: string, passord: string) => {
     if (useren && passord) {
       axios
-        .put(`/user/edit/${useren.userId}/user`, {
-          firstName: useren.firstName,
-          surName: useren.surname,
-          email: useren.email,
-          isAdmin: useren.isAdmin,
-          validDate: useren.validDate,
-          password: passord,
-          newpassword: passord,
-          phoneNumber: phoneNumber,
-        }, config)
+        .put(
+          `/user/edit/${useren.userId}/user`,
+          {
+            firstName: useren.firstName,
+            surName: useren.surname,
+            email: useren.email,
+            isAdmin: useren.isAdmin,
+            validDate: useren.validDate,
+            password: passord,
+            newpassword: passord,
+            phoneNumber: phoneNumber,
+          },
+          config
+        )
         .then(() => alert('Du endret mobilnummer'))
         .then(() => setOpenPopup(false))
         .catch((err) => alert(err.response.data.error));
