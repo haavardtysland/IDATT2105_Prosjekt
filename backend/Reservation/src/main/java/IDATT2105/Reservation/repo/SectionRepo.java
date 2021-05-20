@@ -122,26 +122,6 @@ public class SectionRepo extends ProjectRepo {
     }
 
 
-    public ArrayList<ReservationTime> getSectionAvailability(int section_id){
-        EntityManager em = getEm();
-        ArrayList<ReservationTime> reservationTimes = new ArrayList<>();
-        try{
-            log.info("Finding the taken time slots for section: " + section_id);
-            Query q = em.createNativeQuery("SELECT reservation_id FROM RESERVATION where section_id = ?1");
-            q.setParameter(1, section_id);
-            List<Integer> ids = q.getResultList();
-            for(int id : ids) {
-                Reservation reservation = em.find(Reservation.class, id);
-                ReservationTime reservationTime = new ReservationTime(reservation.getFromDate().getTime(), reservation.getToDate().getTime());
-                reservationTimes.add(reservationTime);
-            }
-            return reservationTimes;
-        } catch(Exception e){
-            log.info("Finding taken time slots for section: " + section_id + " failed due to " + e);
-            return null;
-        }
-    }
-
     public Long getSectionStatistics(int section_id, Timestamp start, Timestamp end){
         EntityManager em = getEm();
         Long hours_used = 0L;

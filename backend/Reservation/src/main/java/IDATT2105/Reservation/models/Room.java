@@ -1,12 +1,13 @@
 package IDATT2105.Reservation.models;
 
+import io.swagger.annotations.ApiModel;
 import org.eclipse.persistence.annotations.CascadeOnDelete;
-import org.eclipse.persistence.annotations.PrivateOwned;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@ApiModel(description = "Room model")
 @Entity
 public class Room {
     @Id
@@ -81,10 +82,6 @@ public class Room {
             capacities += section.getCapacity();
         }
         return capacities;
-    }
-
-    public int getAvailable(){
-        return this.capacity - getSectionCapacaties();
     }
 
     public String toString() {
