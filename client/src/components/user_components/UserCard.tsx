@@ -31,7 +31,7 @@ const TransformDiv = styled.div`
   transition: transform 450ms;
   margin: 1rem;
   width: 28%;
-  min-width: 10rem;
+  min-width: 15rem;
   min-height: 12%;
   height: 12%;
   :hover {
@@ -48,7 +48,7 @@ interface Props {
 
 const UserCard = ({ user, deleteUser, resendPassword, renewAccess }: Props) => {
   const classes = useStyles();
-  const [date, setDate] = useState<Date>(user.validDate);
+  const [date, setDate] = useState<Date>(new Date(user.validDate));
 
   const onChangeDate = (event: Date | null) => {
     if (event) {

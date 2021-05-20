@@ -5,7 +5,7 @@ import CreateRoomForm from '../../components/room_components/CreateRoomForm';
 import axios from '../../axios';
 
 const Container = styled.div`
-  padding-top: 7%;
+  padding-top: 13%;
   padding-right: 3%;
   padding-left: 3%;
   display: flex;

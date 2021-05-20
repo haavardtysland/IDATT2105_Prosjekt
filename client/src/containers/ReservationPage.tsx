@@ -115,7 +115,7 @@ const ReservationPage: React.FC = () => {
     <div>
       <Typography
         variant="h5"
-        style={{ marginTop: '6rem', marginLeft: '1rem' }}
+        style={{ marginTop: '11%', marginLeft: '1rem' }}
       >
         Mine Reservasjoner
       </Typography>

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import AdministrateButtons from '../../components/AdministrateButtons';
 import Reservation from '../../interfaces/Reservation';
 const Container = styled.div`
-  padding-top: 8%;
+  padding-top: 13%;
   padding-right: 3%;
   padding-left: 3%;
 `;
