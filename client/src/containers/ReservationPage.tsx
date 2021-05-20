@@ -9,6 +9,7 @@ import axios from '../axios';
 import { Context } from '../Context';
 import FilterMenu from '../components/filter/FilterMenu';
 import { FilterFunctions } from '../components/filter/FilterFunctions';
+import config from '../Config';
 
 const LeftContainer = styled.div`
   margin-left: 2%;
@@ -100,7 +101,7 @@ const ReservationPage: React.FC = () => {
 
   const getReservationsUser = async () => {
     try {
-      const request = await axios.get(`/reservation/${user.user.id}/user`);
+      const request = await axios.get(`/reservation/${user.user.id}/user`, config);
       console.log(request);
       setReservations(request.data);
       return request;

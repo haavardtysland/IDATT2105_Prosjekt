@@ -6,6 +6,7 @@ import axios from '../../axios';
 import { Context } from '../../Context';
 import Section from '../../interfaces/Section';
 import Reservation from '../../interfaces/Reservation';
+import config from '../../Config';
 
 const ButtonsContainer = styled.div`
   display: flex;
@@ -148,7 +149,7 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
         description: desc,
       };
       console.log(object);
-      const request = await axios.post('/reservation', object);
+      const request = await axios.post('/reservation', object, config);
       console.log(request);
       getReservationsForSelectionDate();
       updateIsMarkedArrFromTo(times.indexOf(fromDate), times.indexOf(toDate));
