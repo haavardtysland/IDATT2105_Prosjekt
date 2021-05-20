@@ -12,6 +12,7 @@ import Popup from '../components/Popup';
 import ChangeUserForm from '../components/user_components/ChangeUserForm';
 import { Context } from '../Context';
 import UserResponse from '../interfaces/UserResponse';
+import config from '../Config';
 
 const Container = styled.div`
   padding-top: 13%;
@@ -67,7 +68,7 @@ function MyUser() {
           password: passord,
           newpassword: passord,
           phoneNumber: useren.phoneNumber,
-        })
+        }, config)
         .then(() => alert('Du endret fornavn'))
         .then(() => setOpenPopup(false))
         .catch((err) => alert(err.response.data.error));
@@ -102,7 +103,7 @@ function MyUser() {
           password: passord,
           newpassword: passord,
           phoneNumber: useren.phoneNumber,
-        })
+        }, config)
         .then(() => alert('Du endret etternavn'))
         .then(() => setOpenPopup(false))
         .catch((err) => alert(err.response.data.error));
@@ -129,7 +130,7 @@ function MyUser() {
           password: passord,
           newpassword: newPassword,
           phoneNumber: useren.phoneNumber,
-        })
+        }, config)
         .then(() => alert('Du endret passord'))
         .then(() => setOpenPopup(false))
         .catch((err) => alert(err.response.data.error));
@@ -164,7 +165,7 @@ function MyUser() {
           password: passord,
           newpassword: passord,
           phoneNumber: phoneNumber,
-        })
+        }, config)
         .then(() => alert('Du endret mobilnummer'))
         .then(() => setOpenPopup(false))
         .catch((err) => alert(err.response.data.error));

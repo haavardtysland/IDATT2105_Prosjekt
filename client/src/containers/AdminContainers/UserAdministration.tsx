@@ -6,6 +6,7 @@ import User from '../../interfaces/User';
 import UserGrid from '../../components/user_components/UserGrid';
 import ChangeRoom from '../../components/room_components/ChangeRoom';
 import Room from '../../interfaces/Room';
+import config from '../../Config'
 const Container = styled.div`
   padding-top: 13%;
   padding-right: 3%;
@@ -22,7 +23,7 @@ function UserAdministration() {
 
   const deleteUser = (userId: number) => {
     axios
-      .delete(`/user/${userId}`)
+      .delete(`/user/${userId}`, config)
       .then(() => setUsers(users.filter((user) => user.userId != userId)));
   };
 
@@ -41,7 +42,7 @@ function UserAdministration() {
         validDate: date,
         password: false,
         phoneNumber: user.phoneNumber,
-      })
+      }, config)
       .then(() => alert(`${user.email} er nå gyldig til ${date}`))
       .catch((err) => alert(err.data.error));
   };
@@ -56,7 +57,7 @@ function UserAdministration() {
         validDate: user.validDate,
         password: true, //if true send new password. if false use the oldone.
         phoneNumber: user.phoneNumber,
-      })
+      }, config)
       .then(() => alert(`${user.email} har fått tilsendt et nytt passord`))
       .catch((err) => alert(err.data.error));
   };

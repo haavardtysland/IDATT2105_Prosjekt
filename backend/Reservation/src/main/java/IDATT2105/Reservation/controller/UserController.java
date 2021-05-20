@@ -72,7 +72,7 @@ public class UserController {
       return ResponseEntity.ok().headers(header).body(user.toString());
   }
 
-
+  @PathTokenRequired
   @DeleteMapping("/{id}")
   public ResponseEntity deleteUser(@PathVariable Integer id) {
     log.info("recieved deletemapping to user with id " + id);
@@ -116,16 +116,19 @@ public class UserController {
 
 
     if (userService.getUserByEmail(map.get("email").toString()) != null) {
-      body.put("error", "En bruker med en emailen finnes allerede");
+      body.put("error", "En bruker med den emailen finnes allerede");
 
       return ResponseEntity
           .badRequest()
           .body(formatJson(body));
     }
-
     String randomPassword = getRandomPassword();
     try {
-      sendEmailService.sendUserEmail(map.get("email").toString(), randomPassword);
+      if(map.get("password") == null) {
+        sendEmailService.sendUserEmail(map.get("email").toString(), randomPassword);
+      } else {
+        randomPassword = map.get("password").toString();
+      }
     }    catch(Exception e){
       log.info("Mailen er ugyldig");
       header.add("Status", "400 Bad Request");
@@ -182,6 +185,7 @@ public class UserController {
    * @param id
    * @return
    */
+  @PathTwoTokenRequired
   @PutMapping(value = "/edit/{id}")
   public ResponseEntity editUser(@RequestBody Map<String, Object> map, @PathVariable Integer id) {
     log.info("receieved a put mapping for user with id: " + id);
@@ -193,7 +197,6 @@ public class UserController {
     if (map.get("newEmail") == null || map.get("newEmail").equals("")) {
       map.put("newEmail", map.get("email"));
     }
-
 
     if (!validateStringMap(map)) {
       log.error(
@@ -219,20 +222,30 @@ public class UserController {
 
     try {
       String randomPassword = getRandomPassword();
-      String password = userService.getUser(id).getPassword();
-      if(Boolean.parseBoolean(map.get("password").toString())){
-        password = randomPassword;
-      }
-      boolean result = userService.editUser(
-          id,
-          map.get("firstName").toString(),
-          map.get("surName").toString(),
-          map.get("newEmail").toString(),
-          Boolean.parseBoolean(map.get("isAdmin").toString()),
-          Date.valueOf(map.get("validDate").toString()),
-          password,
-          Integer.parseInt(map.get("phoneNumber").toString()));
+      User user = userService.getUser(id);
+      boolean result = false;
 
+      if(Boolean.parseBoolean(map.get("password").toString())){
+        user.setPassword(randomPassword);
+        result = userService.editUser(
+                id,
+                map.get("firstName").toString(),
+                map.get("surName").toString(),
+                map.get("email").toString(),
+                Boolean.parseBoolean(map.get("isAdmin").toString()),
+                Date.valueOf(map.get("validDate").toString()),
+                randomPassword,
+                Integer.parseInt(map.get("phoneNumber").toString()));
+      } else {
+        user.setFirstName((map.get("firstName").toString()));
+        user.setSurname(map.get("surName").toString());
+        user.setEmail(map.get("newEmail").toString());
+        user.setValidDate(Date.valueOf(map.get("validDate").toString()));
+        user.setPhoneNumber(Integer.parseInt(map.get("phoneNumber").toString()));
+        result = userService.editUser(
+                user
+        );
+      }
       log.info("edited user " + id);
       if (result) {
         log.info("updated user");
@@ -284,13 +297,13 @@ public class UserController {
    * @param id
    * @return
    */
+  @PathTwoTokenRequired
   @PutMapping(value = "/edit/{id}/user")
   public ResponseEntity editUserNotAdmin(@RequestBody Map<String, Object> map, @PathVariable Integer id) {
     log.info("receieved a put mapping for user with id: " + id);
     Map<String, String> body = new HashMap<>();
     HttpHeaders header = new HttpHeaders();
     header.add("Content-Type", "application/json; charset=UTF-8");
-
     try {
       if (!userService.login(map.get("email").toString(), map.get("password").toString())) {
         log.debug("Someone tried to edit a user with an invalid email or password ");
@@ -310,7 +323,7 @@ public class UserController {
     }
 
     if (map.get("newpassword") == null || map.get("newpassword").equals("")) {
-      map.put("newpassword", map.get("password"));
+      map.put("newpassword", map.get("password").toString());
     }
 
     if (!validateStringMap(map)) {
