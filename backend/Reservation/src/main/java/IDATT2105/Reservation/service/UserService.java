@@ -31,8 +31,8 @@ public class UserService {
   }
 
   public User login(String email) {
-      log.info("logging in user with email " + email.trim());
-      return getUserByEmail(email.trim());
+    log.info("logging in user with email " + email.trim());
+    return getUserByEmail(email.trim());
   }
 
   public boolean login(String email, String password) {
