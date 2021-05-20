@@ -57,6 +57,7 @@ const Calendar: React.FC<CalendarProps> = ({
   date,
   section,
 }: CalendarProps) => {
+  const length = 24;
   const classes = useStyles();
   const [reset, setReset] = useState<boolean>(false);
   const [openPopup, setOpenPopup] = useState<boolean>(false);
@@ -69,11 +70,8 @@ const Calendar: React.FC<CalendarProps> = ({
   };
   const [isMarkedArr, setIsMarkedArr] = useState<boolean[]>(getFalseArr());
   const [noMarked, setNoMarked] = useState<number>(0);
-  const [noClicked, setNoClicked] = useState<number>(0);
-  const [timeCard1, setTimeCard1] = useState<string>('');
-  const [timeCard2, setTimeCard2] = useState<string>('');
 
-  const times: string[] = TimeFunctions.setTimeArr();
+  const times: string[] = TimeFunctions.times;
   const getDateFromString = TimeFunctions.getDateFromString;
   const getStringFromDate = TimeFunctions.getStringFromDate;
   const getTimeFromString = TimeFunctions.getTimeFromString;
@@ -115,7 +113,6 @@ const Calendar: React.FC<CalendarProps> = ({
       count--;
     }
   };
-  //TODO: fix what is updated.
   const updateMarked = (index: number, items: boolean[], count: number) => {
     const item = items[index];
     if (count === 0) {
@@ -328,8 +325,6 @@ const Calendar: React.FC<CalendarProps> = ({
             />
           </Popup>
         </ButtonsDiv>
-        <button onClick={() => console.log(times)}>log times</button>
-        {/*
         <Button onClick={() => console.log(isMarkedArr)}>Log marked arr</Button>
         <Button onClick={() => console.log(bookedTimes)}>
           log booked times
@@ -341,10 +336,6 @@ const Calendar: React.FC<CalendarProps> = ({
         <button onClick={() => console.log(reservations)}>
           log reservations
         </button>
-        <button onClick={() => console.log(noClicked)}>log no clicked</button>
-        <button onClick={() => console.log(timeCard1)}>log time card 1</button>
-        <button onClick={() => console.log(timeCard2)}>log time card 2</button>
-        */}
       </CardContent>
     </Card>
   );

@@ -21,6 +21,7 @@ const setTimeArr = (): string[] => {
   }
   return times;
 };
+const times = setTimeArr();
 
 const getDateFromString = (str: string) => {
   let index = -1;
@@ -79,6 +80,7 @@ const sameDay = (date1: Date, date2: Date) => {
 };
 
 export const TimeFunctions = {
+  times,
   setTimeArr,
   getDateFromString,
   getStringFromDate,

@@ -6,6 +6,7 @@ import axios from '../../axios';
 import { Context } from '../../Context';
 import Section from '../../interfaces/Section';
 import Reservation from '../../interfaces/Reservation';
+import { TimeFunctions } from '../calendar_components/TimeFunctions';
 
 const ButtonsContainer = styled.div`
   display: flex;
@@ -29,14 +30,12 @@ interface ReservationFormEditProps {
   openPopup: boolean;
   setOpenPopup: React.Dispatch<React.SetStateAction<boolean>>;
   reservation: Reservation;
-  times: string[];
 }
 
 const ReservationFormEdit: React.FC<ReservationFormEditProps> = ({
   openPopup,
   setOpenPopup,
   reservation,
-  times,
 }: ReservationFormEditProps) => {
   const { user } = useContext(Context.UserContext);
   const [currentUser, setCurrentUser] = useState<User>({
@@ -52,6 +51,7 @@ const ReservationFormEdit: React.FC<ReservationFormEditProps> = ({
   const [deleteTime, setDeleteTime] = useState<string>('');
   const [desc, setDesc] = useState<string>('');
   const [capacity, setCapacity] = useState<string>('');
+  const times = TimeFunctions.times;
 
   const onChangeDesc = (event: ChangeEvent<HTMLInputElement>) => {
     setDesc((event.target as HTMLInputElement).value);

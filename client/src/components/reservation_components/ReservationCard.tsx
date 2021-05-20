@@ -151,7 +151,6 @@ const ReservationCard: React.FC<ReservationCardProps> = ({
               openPopup={openPopup}
               setOpenPopup={setOpenPopup}
               reservation={reservation}
-              times={times}
             />
           </Popup>
         </CardContent>
