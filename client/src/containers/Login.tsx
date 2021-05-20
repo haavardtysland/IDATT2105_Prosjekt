@@ -37,12 +37,12 @@ const Login = () => {
         password: password,
       })
       .then((response) => {
-        localStorage.setItem("token", response.data.token);
-        localStorage.setItem("isAdmin", response.data.isAdmin);
-        localStorage.setItem("id", response.data.id);
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('isAdmin', response.data.isAdmin);
+        localStorage.setItem('id', response.data.id);
         setUser(response.data);
-        history.push('/mainPage');
       })
+      .then(() => history.push('/mainPage'))
       .catch((err) => alert(err.response.data.error));
   };
 
