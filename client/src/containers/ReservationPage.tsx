@@ -9,6 +9,7 @@ import axios from '../axios';
 import { Context } from '../Context';
 import FilterMenu from '../components/filter/FilterMenu';
 import { FilterFunctions } from '../components/filter/FilterFunctions';
+import config from '../Config';
 
 const LeftContainer = styled.div`
   margin-left: 2%;
@@ -76,12 +77,14 @@ const ReservationPage: React.FC = () => {
 
   const getReservationsUser = async () => {
     try {
-      const request = await axios.get(`/reservation/${user.user.id}/user`);
-      console.log(request);
-      setReservations(request.data.reservations);
+      const request = await axios.get(
+        `/reservation/${user.user.id}/user`,
+        config
+      );
+      setReservations(request.data['reservations']);
       return request;
     } catch (err) {
-      console.log(err);
+      console.log(err.response);
     }
   };
 

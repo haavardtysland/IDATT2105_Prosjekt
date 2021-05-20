@@ -25,7 +25,7 @@ export default (
         component={ReservationAdministration}
       />
       <Route exact path="/mainPage" component={MainPage} />
-      <Route exact path="/RoomPage" component={RoomPage} />
+      <Route exact path="/RoomPage/:roomID" component={RoomPage} />
       <Route exact path="/addUser" component={CreateUser} />
       <Route exact path="/addRoom" component={CreateRoom} />
       <Route exact path="/mineBestillinger" component={ReservationPage} />

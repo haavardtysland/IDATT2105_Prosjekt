@@ -79,6 +79,7 @@ public class ReservationController {
    * @param userId the id of the user
    * @return A list of the reservations this user has
    */
+  @PathTokenRequired
   @GetMapping(value = "/{userId}/user", produces = "application/json")
   public ResponseEntity getAllReservationsForUser(@PathVariable Integer userId) {
     log.debug("Received GetMapping at '/reservation/{userID}' with " + userId);
@@ -190,7 +191,7 @@ public class ReservationController {
     "description": "Test description"
 }
    */
-
+  @MapTokenRequired
   @PostMapping(value = "", consumes = "application/json", produces = "application/json")
   public ResponseEntity registerReservation(@RequestBody Map<String, Object> map) {
 
@@ -229,6 +230,23 @@ public class ReservationController {
             body.put("error", "Tidspunktet er allerede reservert");
             return ResponseEntity.badRequest().headers(headers).body(formatJson(body));
         }
+      }
+
+      List<Reservation> allReservationsForRoom = reservationService.getReservationsForRoom(section.getRoom().getRoom_id());
+      int allSectionCapacity = 0;
+      for(Reservation res : allReservationsForRoom){
+        if(res.getFromDate().getTime() > newReservation.getFromDate().getTime() && res.getToDate().getTime() < newReservation.getToDate().getTime()
+            || res.getFromDate().getTime() < newReservation.getFromDate().getTime() && res.getToDate().getTime() > newReservation.getFromDate().getTime()
+            || res.getFromDate().getTime() < newReservation.getToDate().getTime() && res.getToDate().getTime() > newReservation.getToDate().getTime()
+            || res.getFromDate().getTime() == newReservation.getFromDate().getTime() && res.getToDate().getTime() == newReservation.getToDate().getTime()){
+          allSectionCapacity += res.getSection().getCapacity();
+        }
+      }
+      if(section.getRoom().getCapacity()-allSectionCapacity < section.getCapacity()){
+        log.info("This section is not available");
+        headers.add("Status", "400 Bad Request");
+        body.put("error", "Denne seksjonen er opptatt");
+        return ResponseEntity.badRequest().headers(headers).body(formatJson(body));
       }
       // creates one or multiple activities based on repeat
       return createReservation(user, newReservation, map, body, headers);
@@ -311,7 +329,7 @@ public class ReservationController {
         .body(formatJson(body));
   }
 
-  //@ReservationTokenRequired //denne funker for de som har laget reservasjonen
+  @ReservationTokenRequired
   @DeleteMapping("/{reservationId}")
   public ResponseEntity deleteReservation(@PathVariable Integer reservationId) {
     log.info("recieved deletemapping to reservation with id " + reservationId);
@@ -342,7 +360,7 @@ public class ReservationController {
     body.put("error", "no reservation was deleted, are you sure the reservation exists");
     return ResponseEntity.badRequest().headers(header).body(formatJson(body));
   }
- // @ReservationTokenRequired
+  @MapTokenRequired
   @PutMapping(value = "/{id}", consumes = "application/json", produces = "application/json")
   public ResponseEntity editReservation(@PathVariable("id") int resId,
                                      @RequestBody Map<String, Object> map

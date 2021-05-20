@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useContext, useState } from 'react';
+import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
 import Room from '../interfaces/Room';
 import {
   Divider,
@@ -12,6 +12,8 @@ import Calendar from '../components/calendar_components/Calendar';
 import styled from 'styled-components';
 import InfoIcon from '@material-ui/icons/Info';
 import { Context } from '../Context';
+import Chat from '../components/chat_components/Chat';
+import axios from '../axios';
 
 const StyledHeader = styled.h1`
   margin-top: 13%;
@@ -30,6 +32,7 @@ const StyledTextField = withStyles({
 
 const RoomPage: React.FC = () => {
   const { room } = useContext(Context.RoomContext);
+  const [currentRoom, setCurrentRoom] = useState<Room>(room);
   const [currentSection, setCurrentSection] = useState<Section>({
     room_id: -1,
     section_id: -1,
@@ -42,7 +45,7 @@ const RoomPage: React.FC = () => {
 
   const handleChangeCurrentSection = (event: ChangeEvent<HTMLInputElement>) => {
     if (room !== undefined) {
-      const tmp = room['sections'].find(
+      const tmp = currentRoom.sections.find(
         (section: Section) => section.section_id === +event.target.value
       );
       if (tmp !== undefined) setCurrentSection(tmp);
@@ -50,14 +53,22 @@ const RoomPage: React.FC = () => {
   };
 
   const handleChangeDate = (event: ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value);
     setSelectedDate(new Date(event.target.value));
   };
+
+  useEffect(() => {
+    if (room['room_id'] == -1) {
+      const pathName: string[] = window.location.pathname.split('/');
+      axios.get(`/room/${pathName[pathName.length - 1]}`).then((response) => {
+        setCurrentRoom(response.data);
+      });
+    }
+  }, []);
 
   return (
     <div>
       <StyledDivHeader>
-        <StyledHeader>{room.name}</StyledHeader>
+        <StyledHeader>{currentRoom.name}</StyledHeader>
         <Tooltip
           title="Markere de ønskede tidene"
           style={{ marginTop: '6.8rem', marginLeft: '0.5rem' }}
@@ -74,8 +85,8 @@ const RoomPage: React.FC = () => {
           onChange={handleChangeCurrentSection}
           value={currentSection}
         >
-          {room !== undefined &&
-            room['sections'].map((section: Section, key: number) => (
+          {currentRoom !== undefined &&
+            currentRoom.sections.map((section: Section, key: number) => (
               <MenuItem value={section.section_id} key={key}>
                 {section.section_name}
               </MenuItem>
@@ -93,9 +104,10 @@ const RoomPage: React.FC = () => {
           onChange={handleChangeDate}
         />
       </div>
-      {currentSection.room_id !== -1 && (
+      {currentRoom.room_id !== -1 && (
         <Calendar date={selectedDate} section={currentSection} />
       )}
+      <Chat room={currentRoom}></Chat>
     </div>
   );
 };

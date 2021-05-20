@@ -63,8 +63,7 @@ function MainPage() {
 
   const onRoomClick = (newRoom: Room) => {
     setRoom(newRoom);
-    console.log(room);
-    history.push('/RoomPage');
+    history.push(`/RoomPage/${newRoom.room_id}`);
   };
 
   return (

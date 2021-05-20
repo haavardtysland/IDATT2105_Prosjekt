@@ -31,8 +31,8 @@ public class UserService {
   }
 
   public User login(String email) {
-      log.info("logging in user with email " + email.trim());
-      return getUserByEmail(email.trim());
+    log.info("logging in user with email " + email.trim());
+    return getUserByEmail(email.trim());
   }
 
   public boolean login(String email, String password) {
@@ -62,6 +62,21 @@ public class UserService {
     }
     return false;
   }
+
+  public boolean editUser(User user) {
+    try {
+      log.debug("In editUser");
+
+      log.info("updating user with id: " + user.getUserId());
+
+      return repo.updateUser(user);
+    } catch (Exception e) {
+      log.debug("An error was caught while updating user " + e.getMessage() + " | Local; " +
+              e.getLocalizedMessage());
+    }
+    return false;
+  }
+
 
 
   public User registerUser(int id, String firstname, String surname, String email, Boolean isAdmin, Date validDate, String password, int phoneNumber) {
