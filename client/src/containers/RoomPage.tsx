@@ -5,6 +5,7 @@ import {
   MenuItem,
   TextField,
   Tooltip,
+  Typography,
   withStyles,
 } from '@material-ui/core';
 import Section from '../interfaces/Section';
@@ -16,12 +17,13 @@ import Chat from '../components/chat_components/Chat';
 import axios from '../axios';
 
 const StyledHeader = styled.h1`
-  margin-top: 13%;
+  margin-top: 5%;
 `;
 
 const StyledDivHeader = styled.div`
   margin-left: 50%;
   display: flex;
+  margin-top: 6rem;
 `;
 const StyledTextField = withStyles({
   root: {
@@ -30,9 +32,6 @@ const StyledTextField = withStyles({
   },
 })(TextField);
 
-//TODO: show available times for the current section and the current selected date
-//TODO: fix popup to reserve marked times.
-//TODO: make sure the user can only book 3 coherent times.
 const RoomPage: React.FC = () => {
   const { room } = useContext(Context.RoomContext);
   const [currentRoom, setCurrentRoom] = useState<Room>(room);
@@ -60,7 +59,7 @@ const RoomPage: React.FC = () => {
   };
 
   useEffect(() => {
-    if (room['room_id'] == -1) {
+    if (room['room_id'] === -1) {
       const pathName: string[] = window.location.pathname.split('/');
       axios.get(`/room/${pathName[pathName.length - 1]}`).then((response) => {
         setCurrentRoom(response.data);
@@ -73,8 +72,8 @@ const RoomPage: React.FC = () => {
       <StyledDivHeader>
         <StyledHeader>{currentRoom.name}</StyledHeader>
         <Tooltip
-          title="Markere de ønskede tidene"
-          style={{ marginTop: '6.8rem', marginLeft: '0.5rem' }}
+          title="Velg dato og seksjon"
+          style={{ marginTop: '8%', marginLeft: '0.5rem' }}
         >
           <InfoIcon></InfoIcon>
         </Tooltip>
@@ -107,7 +106,7 @@ const RoomPage: React.FC = () => {
           onChange={handleChangeDate}
         />
       </div>
-      {currentRoom.room_id !== -1 && (
+      {currentRoom.room_id !== -1 && currentSection.section_id !== -1 && (
         <Calendar date={selectedDate} section={currentSection} />
       )}
       <Chat room={currentRoom}></Chat>

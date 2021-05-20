@@ -5,9 +5,7 @@ import User from '../../interfaces/User';
 import axios from '../../axios';
 import { Context } from '../../Context';
 import Section from '../../interfaces/Section';
-import Reservation from '../../interfaces/Reservation';
 import config from '../../Config';
-
 
 const ButtonsContainer = styled.div`
   display: flex;
@@ -47,10 +45,10 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
   times,
   selectedTimes,
   setSelectedTimes,
-  isMarkedArr,
-  setIsMarkedArr,
+  //isMarkedArr,
+  //setIsMarkedArr,
   updateIsMarkedArr,
-  updateSelectedTimes,
+  //updateSelectedTimes,
   openPopup,
   setOpenPopup,
   section,
@@ -87,8 +85,8 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
 
   const onChangeCapacity = (event: ChangeEvent<HTMLInputElement>) => {
     const val: number = +(event.target as HTMLInputElement).value;
-    if (val < 0) {
-      setCapacity('0');
+    if (val < 1) {
+      setCapacity('1');
     } else if (val > section.capacity) {
       alert('Seksjonen har ikke plass til så mange');
       setCapacity('0');
@@ -223,6 +221,7 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
         >
           Avbryt
         </StyledButton>
+        <button onClick={() => console.log(toDate)}>log to date</button>
         {/*
         <button onClick={() => console.log(selectedTimes)}>
           log selected times
