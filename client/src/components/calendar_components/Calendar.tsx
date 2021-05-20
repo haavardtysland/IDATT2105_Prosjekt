@@ -147,11 +147,11 @@ const Calendar: React.FC<CalendarProps> = ({
     setIsMarkedArr(items);
   };
 
-  const updateBookedTimesFromTo = (fromIndex: number, toIndex: number) => {
+  const updateBookedTimesFromToFalse = (fromIndex: number, toIndex: number) => {
     const items = [...bookedTimes];
     for (let i = fromIndex; i < toIndex; i++) {
       let item = items[i];
-      item = !item;
+      item = false;
       items[i] = item;
     }
     setBookedTimes(items);
@@ -209,7 +209,7 @@ const Calendar: React.FC<CalendarProps> = ({
 
   // to update the booked times
   useEffect(() => {
-    if (reservations !== [] && reservations !== undefined) {
+    if (reservations.length !== 0) {
       const items = [...bookedTimes];
       for (const i in reservations) {
         const fromDate = getDateFromString(reservations[i].from_date);
@@ -222,13 +222,15 @@ const Calendar: React.FC<CalendarProps> = ({
           if (fromIndex >= 0 && toIndex <= isMarkedArr.length - 1) {
             for (let i = fromIndex; i < toIndex; i++) {
               let item = items[i];
-              item = !item;
+              item = true;
               items[i] = item;
             }
           }
         }
       }
       setBookedTimes(items);
+    } else {
+      updateBookedTimesFromToFalse(0, length);
     }
   }, [reservations, date, section]);
 
@@ -259,7 +261,7 @@ const Calendar: React.FC<CalendarProps> = ({
         bookedTimes={bookedTimes}
         setBookedTimes={setBookedTimes}
         updateBookedTimesFromTo={(fromIndex: number, toIndex: number) =>
-          updateBookedTimesFromTo(fromIndex, toIndex)
+          updateBookedTimesFromToFalse(fromIndex, toIndex)
         }
         noMarked={noMarked}
         setNoMarked={setNoMarked}
@@ -337,6 +339,7 @@ const Calendar: React.FC<CalendarProps> = ({
             />
           </Popup>
         </ButtonsDiv>
+        {/*
         <Button onClick={() => console.log(isMarkedArr)}>Log marked arr</Button>
         <Button onClick={() => console.log(bookedTimes)}>
           log booked times
@@ -349,6 +352,10 @@ const Calendar: React.FC<CalendarProps> = ({
           log reservations
         </button>
         <button onClick={() => console.log(section)}>log section</button>
+        <button onClick={() => console.log(reservations.length)}>
+          log reservations length
+        </button>
+        */}
       </CardContent>
     </Card>
   );

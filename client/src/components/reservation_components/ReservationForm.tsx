@@ -221,6 +221,7 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
         >
           Avbryt
         </StyledButton>
+        <button onClick={() => console.log(toDate)}>log to date</button>
         {/*
         <button onClick={() => console.log(selectedTimes)}>
           log selected times
