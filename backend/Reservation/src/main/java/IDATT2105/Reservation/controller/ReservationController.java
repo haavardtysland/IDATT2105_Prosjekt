@@ -53,6 +53,7 @@ public class ReservationController {
   @Autowired
   private SectionService sectionService;
 
+
   @GetMapping(value = "", produces = "application/json")
   public ResponseEntity getAllReservations() {
     log.debug("Received GetMapping at '/reservation'");
@@ -360,6 +361,22 @@ public class ReservationController {
     body.put("error", "no reservation was deleted, are you sure the reservation exists");
     return ResponseEntity.badRequest().headers(header).body(formatJson(body));
   }
+
+  /**
+   * Edit reseration with given id
+   * Put:
+   {
+     "user_id":1819766832,
+     "section_id": 1095509925,
+     "from_date":"2030-11-12 00:00:00.0",
+     "to_date": "2031-11-12 12:30:11.0",
+     "capacity": 1,
+     "description": "helerommet"
+   }
+   * @param resId
+   * @param map
+   * @return
+   */
   @MapTokenRequired
   @PutMapping(value = "/{id}", consumes = "application/json", produces = "application/json")
   public ResponseEntity editReservation(@PathVariable("id") int resId,

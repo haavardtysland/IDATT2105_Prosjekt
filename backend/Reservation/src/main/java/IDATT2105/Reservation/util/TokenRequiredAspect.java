@@ -136,7 +136,7 @@ public class TokenRequiredAspect {
   public Object reservationTokenRequiredWithAnnotation(ProceedingJoinPoint pjp,
                                                     ReservationTokenRequired reservationTokenRequired)
       throws Throwable {
-    log.info("Around activityTokenRequiredWithAnnotation");
+    log.info("Around reservationTokenRequiredWithAnnotation");
     Object[] args = pjp.getArgs();
     String subject = "";
     Reservation reservation = null;
@@ -204,66 +204,6 @@ public class TokenRequiredAspect {
       } else {
         return pjp.proceed();
       }
-    } catch (ExpiredJwtException e) {
-      body.put("error", "expired token");
-      return ResponseEntity
-          .badRequest()
-          .body(body);
-    }
-  }
-
-
-  private Object handleTokenArr(ProceedingJoinPoint pjp, List<String> subjects) throws Throwable {
-    Map<String, String> body = new HashMap<>();
-    try {
-      log.info(
-          "Handling token for pjp: [" + pjp.toString() + "] with subjects [" + subjects +
-              "]");
-      for (String subject : subjects) {
-        if (subject == null || subject.equals("")) {
-          log.error("No subject");
-          body.put("error", "no subject passed");
-
-          return ResponseEntity
-              .badRequest()
-              .body(body);
-        }
-      }
-      ServletRequestAttributes reqAttributes =
-          (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-      HttpServletRequest request = reqAttributes.getRequest();
-      // checks for token in request header
-      String tokenInHeader = request.getHeader("token");
-      log.info("Token received: " + tokenInHeader);
-      if (StringUtils.isEmpty(tokenInHeader)) {
-        log.error("No token was passed in header");
-        body.put("error", "empty token");
-        return ResponseEntity
-            .badRequest()
-            .body(body);
-      }
-      Claims claims = Jwts.parser()
-          .setSigningKey(DatatypeConverter.parseBase64Binary(securityService.getSecretKey()))
-          .parseClaimsJws(tokenInHeader).getBody();
-      if (claims == null || claims.getSubject() == null) {
-        log.error("Claims was found to be null");
-        body.put("error", "claim is null");
-
-        return ResponseEntity
-            .badRequest()
-            .body(body);
-      }
-      for (String subject : subjects) {
-        if (claims.getSubject().equalsIgnoreCase(subject)) {
-          return pjp.proceed();
-        }
-      }
-      log.error("Subject does not match token");
-
-      body.put("error", "subject mismatch");
-      return ResponseEntity
-          .badRequest()
-          .body(body);
     } catch (ExpiredJwtException e) {
       body.put("error", "expired token");
       return ResponseEntity

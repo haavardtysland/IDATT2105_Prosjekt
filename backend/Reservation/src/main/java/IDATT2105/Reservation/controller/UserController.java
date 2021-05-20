@@ -57,6 +57,11 @@ public class UserController {
     }
   }
 
+  /**
+   * Gets user with given userId
+   * @param userId
+   * @return user
+   */
   @GetMapping(value = "/{userId}", produces = "application/json")
   public ResponseEntity getUser(@PathVariable String userId){
       HttpHeaders header = new HttpHeaders();
@@ -72,6 +77,12 @@ public class UserController {
       return ResponseEntity.ok().headers(header).body(user.toString());
   }
 
+  /**
+   * Deletes user with given id
+   * Requiers token
+   * @param id
+   * @return userId
+   */
   @PathTokenRequired
   @DeleteMapping("/{id}")
   public ResponseEntity deleteUser(@PathVariable Integer id) {
@@ -95,17 +106,21 @@ public class UserController {
   }
 
   /**
-   * {
-   *     "firstName":"mattias",
-   *     "surName":"my",
-   *     "email": "mathimyr@stud.ntnu.no",
-   *     "isAdmin": true,
-   *     "validDate": "2022-11-12",
-   *     "phoneNumber": 1231231
-   * }
-   *
+   * Register new user
+   * User by admin user to register new users
+   * saend mail to the users email with email and password
+   * Post:
+    {
+        "firstName":"mattias",
+        "surName":"my",
+        "email": "mathimyr@stud.ntnu.no",
+        "isAdmin": true,
+        "validDate": "2022-11-12",
+        "phoneNumber": 1231231
+    }
+
    * @param map
-   * @return
+   * @return userID
    */
 
   @PostMapping("")
@@ -154,8 +169,6 @@ public class UserController {
 
       body.put("userId", String.valueOf(result.getUserId()));
       body.put("isAdmin", String.valueOf(result.getIsAdmin()));
-      //body.put("token", securityService
-      //  .createToken(String.valueOf(result.getUserId()), (1000 * 60 * 60 * 24)));
       return ResponseEntity
               .ok()
               .headers(header)
@@ -171,7 +184,10 @@ public class UserController {
   }
 
   /**
-   * put like this:
+   * Edit's user when admin-user send the put request
+   * Sends mail to the user's email if the password is changed
+   * Used when a user need new password
+   * Put:
    * {
    *     "firstName":"mattias",
    *     "surName":"my",
@@ -282,17 +298,18 @@ public class UserController {
 
 
   /**
-   * put like this:
-   * {
-   *     "firstName":"mattias",
-   *     "surName":"my",
-   *     "email": "mathimyr@stud.ntnu.no",
-   *     "isAdmin": true,
-   *     "validDate": "2022-11-12",
-   *     "password": "123123",
-   *     "newpassword": "sda",
-   *     "phoneNumber": 1231231
-   * }
+   * Edit's user by user it's itself
+   * Put:
+    {
+        "firstName":"mattias",
+        "surName":"my",
+        "email": "mathimyr@stud.ntnu.no",
+        "isAdmin": true,
+        "validDate": "2022-11-12",
+        "password": "123123",
+        "newpassword": "sda",
+        "phoneNumber": 1231231
+    }
    * @param map
    * @param id
    * @return

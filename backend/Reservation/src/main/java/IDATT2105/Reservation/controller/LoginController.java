@@ -28,6 +28,17 @@ public class LoginController {
   @Autowired
   private SecurityService securityService;
 
+
+  /**
+   * Logging inn with user
+   * Post:
+   {
+    "email":"email@gmail.com",
+    "password":"password"
+   }
+   * @param map
+   * @return returns the users userid, isAdmin (wheter the account is an admin or not) and a token
+   */
  @PostMapping("")
   private ResponseEntity loginUser(@RequestBody Map<String, Object> map) {
     log.info("recieved postmapping to /login " + map.toString());
