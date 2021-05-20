@@ -15,8 +15,8 @@ const sortCapacityLowHigh = (reservations: Reservation[]) => {
 const sortDateLateEarly = (reservations: Reservation[]) => {
   return [
     ...reservations.sort((r1, r2) => {
-      const time1 = new Date(r1.toDate).getTime();
-      const time2 = new Date(r2.toDate).getTime();
+      const time1 = new Date(r1.to_date).getTime();
+      const time2 = new Date(r2.to_date).getTime();
       return time1 > time2 ? -1 : 1;
     }),
   ];
@@ -25,17 +25,25 @@ const sortDateLateEarly = (reservations: Reservation[]) => {
 const sortDateEarlyLate = (reservations: Reservation[]) => {
   console.log([
     ...reservations.sort((r1, r2) => {
-      const time1 = new Date(r1.toDate).getTime();
-      const time2 = new Date(r2.toDate).getTime();
+      const time1 = new Date(r1.to_date).getTime();
+      const time2 = new Date(r2.to_date).getTime();
       return time1 > time2 ? 1 : -1;
     }),
   ]);
   return [
     ...reservations.sort((r1, r2) => {
-      const time1 = new Date(r1.toDate).getTime();
-      const time2 = new Date(r2.toDate).getTime();
+      const time1 = new Date(r1.to_date).getTime();
+      const time2 = new Date(r2.to_date).getTime();
       return time1 > time2 ? 1 : -1;
     }),
+  ];
+};
+
+const sortSelectedTimes = (selectedTimes: string[]): string[] => {
+  return [
+    ...selectedTimes.sort((s1: string, s2: string): number =>
+      s1 > s2 ? 1 : -1
+    ),
   ];
 };
 
@@ -44,4 +52,5 @@ export const SortFunctions = {
   sortCapacityLowHigh,
   sortDateLateEarly,
   sortDateEarlyLate,
+  sortSelectedTimes,
 };

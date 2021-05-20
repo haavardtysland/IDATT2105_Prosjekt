@@ -4,6 +4,6 @@ export default interface User {
   surname: string;
   email: string;
   isAdmin: boolean;
-  validDate: Date;
+  validDate: string;
   phoneNumber: string;
 }
