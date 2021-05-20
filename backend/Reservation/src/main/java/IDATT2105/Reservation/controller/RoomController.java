@@ -54,6 +54,16 @@ public class RoomController {
         room.setName(map.get("name").toString());
         room.setCapacity(Integer.parseInt(map.get("capacity").toString()));
         ArrayList<LinkedHashMap> sectionList = (ArrayList) map.get("sections");
+
+        if(sectionList.size() == 0){
+            Section section = new Section();
+            section.setSectionName("hele rommet");
+            section.setCapacity(room.getCapacity());
+            section.setSectionId(getRandomID());
+            section.setRoom(room);
+            room.addSection(section);
+        }
+
         ArrayList<Section> sections = toSectionList(sectionList, room);
         if(sections == null) {
             log.info("Capacity is full");

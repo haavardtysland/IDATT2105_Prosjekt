@@ -72,7 +72,7 @@ public class UserController {
       return ResponseEntity.ok().headers(header).body(user.toString());
   }
 
-
+  @PathTokenRequired
   @DeleteMapping("/{id}")
   public ResponseEntity deleteUser(@PathVariable Integer id) {
     log.info("recieved deletemapping to user with id " + id);
@@ -182,6 +182,7 @@ public class UserController {
    * @param id
    * @return
    */
+  @PathTwoTokenRequired
   @PutMapping(value = "/edit/{id}")
   public ResponseEntity editUser(@RequestBody Map<String, Object> map, @PathVariable Integer id) {
     log.info("receieved a put mapping for user with id: " + id);
@@ -284,6 +285,7 @@ public class UserController {
    * @param id
    * @return
    */
+  @PathTwoTokenRequired
   @PutMapping(value = "/edit/{id}/user")
   public ResponseEntity editUserNotAdmin(@RequestBody Map<String, Object> map, @PathVariable Integer id) {
     log.info("receieved a put mapping for user with id: " + id);

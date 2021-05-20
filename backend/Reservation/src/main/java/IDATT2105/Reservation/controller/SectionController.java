@@ -9,6 +9,7 @@ import IDATT2105.Reservation.service.RoomService;
 import IDATT2105.Reservation.service.SectionService;
 import IDATT2105.Reservation.service.UserService;
 import IDATT2105.Reservation.util.Logger;
+import IDATT2105.Reservation.util.PathTokenRequired;
 import IDATT2105.Reservation.util.ReservationTime;
 import java.sql.Timestamp;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,7 @@ public class SectionController {
     @Autowired
     private UserService userService;
 
+    @PathTokenRequired
     @DeleteMapping(value="/message/{message_id}")
     public @ResponseBody
     ResponseEntity deleteMessage(@PathVariable String message_id) {
@@ -135,12 +137,6 @@ public class SectionController {
              newSection.setSectionName(section.get("section_name").toString());
              newSection.setCapacity(Integer.parseInt(section.get("capacity").toString()));
              sections.add(newSection);
-             if(room.getAvailable() < newSection.getCapacity()) {
-                 log.info("Capacity is full");
-                 header.add("STATUS", "400 BAD REQUEST");
-                 body.put("error", "not enough capacity for the room to add this section");
-                 return ResponseEntity.badRequest().headers(header).body(formatJson(body));
-             }
              room.addSection(newSection);
          }
         boolean result =  roomService.addSection(room);
