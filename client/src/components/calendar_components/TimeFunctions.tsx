@@ -1,6 +1,7 @@
 import getDayOfWeek from './GetDayOfWeek';
 
 const setTimeArr = (): string[] => {
+  const length = 24;
   let hour = 7;
   let minutes = 0;
   const times: string[] = [];
@@ -20,7 +21,6 @@ const setTimeArr = (): string[] => {
   }
   return times;
 };
-const times = setTimeArr();
 
 const getDateFromString = (str: string) => {
   let index = -1;
@@ -79,9 +79,17 @@ const sameDay = (date1: Date, date2: Date) => {
 };
 
 export const TimeFunctions = {
-  times,
+  setTimeArr,
   getDateFromString,
   getStringFromDate,
   getTimeFromString,
   sameDay,
 };
+
+/*
+const times = TimeFunctions.times;
+const getDateFromString = TimeFunctions.getDateFromString;
+const getStringFromDate = TimeFunctions.getStringFromDate;
+const getTimeFromString = TimeFunctions.getTimeFromString;
+const sameDay = TimeFunctions.sameDay;
+*/

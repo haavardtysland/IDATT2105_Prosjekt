@@ -9,7 +9,6 @@ import {
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import React, { useState, useEffect, useRef } from 'react';
 import TimeCard from './TimeCard';
-import getDayOfWeek from './GetDayOfWeek';
 import styled from 'styled-components';
 import Popup from '../Popup';
 import ReservationForm from '../reservation_components/ReservationForm';
@@ -17,7 +16,7 @@ import Section from '../../interfaces/Section';
 import axios from '../../axios';
 import Reservation from '../../interfaces/Reservation';
 import { SortFunctions } from '../sorting/SortFunctions';
-import { SettingsCellOutlined } from '@material-ui/icons';
+import { TimeFunctions } from './TimeFunctions';
 
 const ButtonsDiv = styled.div`
   display: flex;
@@ -58,7 +57,6 @@ const Calendar: React.FC<CalendarProps> = ({
   date,
   section,
 }: CalendarProps) => {
-  const length = 24;
   const classes = useStyles();
   const [reset, setReset] = useState<boolean>(false);
   const [openPopup, setOpenPopup] = useState<boolean>(false);
@@ -75,27 +73,12 @@ const Calendar: React.FC<CalendarProps> = ({
   const [timeCard1, setTimeCard1] = useState<string>('');
   const [timeCard2, setTimeCard2] = useState<string>('');
 
-  const setTimeArr = (): string[] => {
-    let hour = 7;
-    let minutes = 0;
-    const times: string[] = [];
-    for (let i = 0; i < length; i++) {
-      if (i % 2 === 0) {
-        minutes = 30;
-        String(hour).length === 1
-          ? times.push(`0${String(hour)}:${String(minutes)}`)
-          : times.push(`${String(hour)}:${String(minutes)}`);
-      } else {
-        minutes = 0;
-        hour++;
-        String(hour).length === 1
-          ? times.push(`0${String(hour)}:${String(minutes)}0`)
-          : times.push(`${String(hour)}:${String(minutes)}0`);
-      }
-    }
-    return times;
-  };
-  const times = setTimeArr();
+  const times: string[] = TimeFunctions.setTimeArr();
+  const getDateFromString = TimeFunctions.getDateFromString;
+  const getStringFromDate = TimeFunctions.getStringFromDate;
+  const getTimeFromString = TimeFunctions.getTimeFromString;
+  const sameDay = TimeFunctions.sameDay;
+
   const [selectedTimes, setSelectedTimes] = useState<string[]>([]);
   const [reservations, setReservations] = useState<Reservation[]>([]);
   const [bookedTimes, setBookedTimes] = useState<boolean[]>(getFalseArr());
@@ -218,62 +201,6 @@ const Calendar: React.FC<CalendarProps> = ({
         setReservations(response.data['reservations']);
       })
       .catch((err) => console.log(err));
-  };
-
-  const getDateFromString = (str: string) => {
-    let index = -1;
-    for (let i = 0; i < str.length; i++) {
-      if (str[i] === ' ') {
-        index = i;
-        break;
-      }
-    }
-    if (index !== -1) {
-      const sub1: string = str.substring(0, index);
-      const sub2: string = str.substring(index);
-      const split: string[] = sub2.trim().split(':');
-      return new Date(sub1 + ' ' + split[0] + ':' + split[1]);
-    } else return new Date();
-  };
-
-  const getStringFromDate = (date: Date) => {
-    return (
-      getDayOfWeek(date.getDay()) +
-      ' ' +
-      date.getDate() +
-      '.' +
-      (date.getMonth() + 1) +
-      '.' +
-      date.getFullYear()
-    );
-  };
-
-  const getTimeFromString = (str: string) => {
-    let index = -1;
-    for (let i = 0; i < str.length; i++) {
-      if (str[i] === ' ') {
-        index = i;
-        break;
-      }
-    }
-    if (index !== -1) {
-      const sub1: string = str.substring(0, index);
-      const sub2: string = str.substring(index);
-      const split: string[] = sub2.trim().split(':');
-      return split[0] + ':' + split[1];
-    } else return '';
-  };
-
-  const sameDay = (date1: Date, date2: Date) => {
-    if (
-      date1.getFullYear() === date2.getFullYear() &&
-      date1.getMonth() == date2.getMonth() &&
-      date1.getDay() === date2.getDay()
-    ) {
-      return true;
-    } else {
-      return false;
-    }
   };
 
   useEffect(() => {
@@ -401,6 +328,7 @@ const Calendar: React.FC<CalendarProps> = ({
             />
           </Popup>
         </ButtonsDiv>
+        <button onClick={() => console.log(times)}>log times</button>
         {/*
         <Button onClick={() => console.log(isMarkedArr)}>Log marked arr</Button>
         <Button onClick={() => console.log(bookedTimes)}>
