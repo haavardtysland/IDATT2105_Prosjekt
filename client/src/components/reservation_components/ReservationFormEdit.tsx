@@ -30,12 +30,16 @@ interface ReservationFormEditProps {
   openPopup: boolean;
   setOpenPopup: React.Dispatch<React.SetStateAction<boolean>>;
   reservation: Reservation;
+  setReservation: React.Dispatch<React.SetStateAction<Reservation>>;
+  deleteReservation: () => void;
 }
 
 const ReservationFormEdit: React.FC<ReservationFormEditProps> = ({
   openPopup,
   setOpenPopup,
   reservation,
+  setReservation,
+  deleteReservation,
 }: ReservationFormEditProps) => {
   const { user } = useContext(Context.UserContext);
   const [currentUser, setCurrentUser] = useState<User>({
@@ -49,9 +53,19 @@ const ReservationFormEdit: React.FC<ReservationFormEditProps> = ({
   });
 
   const [deleteTime, setDeleteTime] = useState<string>('');
-  const [desc, setDesc] = useState<string>('');
-  const [capacity, setCapacity] = useState<string>('');
+  const [desc, setDesc] = useState<string>(reservation.description);
+  const [capacity, setCapacity] = useState<string>(
+    String(reservation.capacity)
+  );
+
   const times = TimeFunctions.times;
+  const getDateFromString = TimeFunctions.getDateFromString;
+  const getStringFromDate = TimeFunctions.getStringFromDate;
+  const getTimeFromString = TimeFunctions.getTimeFromString;
+  const sameDay = TimeFunctions.sameDay;
+  const dateFormat = TimeFunctions.getDateFormat(
+    TimeFunctions.getDateFromString(reservation.from_date)
+  );
 
   const onChangeDesc = (event: ChangeEvent<HTMLInputElement>) => {
     setDesc((event.target as HTMLInputElement).value);
@@ -81,47 +95,11 @@ const ReservationFormEdit: React.FC<ReservationFormEditProps> = ({
     }
   };
 
-  const getDateFromString = (str: string) => {
-    let index = -1;
-    for (let i = 0; i < str.length; i++) {
-      if (str[i] === ' ') {
-        index = i;
-        break;
-      }
-    }
-    if (index !== -1) {
-      const sub1: string = str.substring(0, index);
-      const sub2: string = str.substring(index);
-      const split: string[] = sub2.trim().split(':');
-      return new Date(sub1 + ' ' + split[0] + ':' + split[1]);
-    } else return new Date();
-  };
-
-  const getTimeFromString = (str: string) => {
-    let index = -1;
-    for (let i = 0; i < str.length; i++) {
-      if (str[i] === ' ') {
-        index = i;
-        break;
-      }
-    }
-    if (index !== -1) {
-      const sub1: string = str.substring(0, index);
-      const sub2: string = str.substring(index);
-      const split: string[] = sub2.trim().split(':');
-      return split[0] + ':' + split[1];
-    } else return '';
-  };
-
   const getCurrentTimes = () => {
     const fromTime = getTimeFromString(reservation.from_date);
     const toTime = getTimeFromString(reservation.to_date);
-    console.log(fromTime);
-    console.log(toTime);
     const fromIndex = times.indexOf(fromTime);
     const toIndex = times.indexOf(toTime);
-    console.log(fromIndex);
-    console.log(toIndex);
     const arr: string[] = [];
     for (let i = fromIndex; i < toIndex; i++) {
       arr.push(times[i]);
@@ -137,73 +115,58 @@ const ReservationFormEdit: React.FC<ReservationFormEditProps> = ({
       : currentTimes[currentTimes.length - 1]
   );
 
-  /*
   const deleteListItem = (index: number) => {
     console.log(index);
-    if (selectedTimes !== undefined) {
-      if (currentTimes.length === 1) {
-        setDeleteTime(currentTimes[0]);
-        setCurrentTimes([]);
-        setOpenPopup(!openPopup);
-      } else {
-        setDeleteTime(currentTimes[index]);
-        setCurrentTimes(
-          currentTimes.filter((time) => time !== selectedTimes[index])
-        );
-      }
+    if (currentTimes.length === 1) {
+      setDeleteTime(currentTimes[0]);
+      setCurrentTimes([]);
+      setOpenPopup(!openPopup);
+    } else {
+      setDeleteTime(currentTimes[index]);
+      setCurrentTimes(
+        currentTimes.filter((time) => time !== currentTimes[index])
+      );
     }
   };
-  */
 
-  /*
-    "user_id":1819766832,
-    "section_id": 1,
-    "from_date":"2012-11-12 00:00:00.0",
-    "to_date": "2018-11-12 12:30:11.0",
-    "capacity": 3,
-    "description": "Test description"
-  */
-  //'2021-11-12 08:00:00.0'
-  //'2021-11-12 09:00:00.0'
-  /*
-  const postReservation = async () => {
+  const editReservation = async () => {
     try {
-      let dateFormat = '';
-      if (String(date.getMonth() + 1).length === 1) {
-        dateFormat = `${date.getFullYear()}-0${
-          date.getMonth() + 1
-        }-${date.getDate()}`;
-      } else {
-        dateFormat = `${date.getFullYear()}-${
-          date.getMonth() + 1
-        }-${date.getDate()}`;
-      }
-
-      console.log(dateFormat);
-      const object = {
+      const edit = {
         user_id: currentUser.userId,
-        section_id: section.section_id,
+        section_id: reservation.section.section_id,
         from_date: dateFormat + ` ${fromDate}:00.0`,
         to_date: dateFormat + ` ${toDate}:00.0`,
         capacity: capacity,
         description: desc,
       };
-      console.log(object);
-      const request = await axios.post('/reservation', object);
+      console.log(edit);
+      const request = await axios.put(
+        `/reservation/${reservation.reservationId}`,
+        edit
+      );
       console.log(request);
-      getReservationForSectionDate();
-      updateIsMarkedArrFromTo(times.indexOf(fromDate), times.indexOf(toDate));
-      setOpenPopup(!openPopup);
+      setReservation(request.data);
       return request;
     } catch (err) {
       alert(err.response.data.error);
     }
   };
-  */
 
   useEffect(() => {
     getUser();
   }, []);
+
+  useEffect(() => {
+    setFromDate(currentTimes[0]);
+    setToDate(
+      currentTimes.length === 1
+        ? times[times.indexOf(currentTimes[0]) + 1]
+        : currentTimes[currentTimes.length - 1]
+    );
+    if (currentTimes.length === 0) {
+      deleteReservation();
+    }
+  }, [currentTimes]);
 
   return (
     <div>
@@ -214,7 +177,7 @@ const ReservationFormEdit: React.FC<ReservationFormEditProps> = ({
       </Typography>
       <ul>
         {currentTimes?.map((time, key: number) => (
-          <StyledLi /*onClick={deleteListItem.bind(this, key)}*/ key={key}>
+          <StyledLi onClick={deleteListItem.bind(this, key)} key={key}>
             {times.indexOf(time) !== times.length - 1
               ? `${time} til ${times[times.indexOf(time) + 1]}`
               : `${time} til 19:30`}
@@ -239,7 +202,9 @@ const ReservationFormEdit: React.FC<ReservationFormEditProps> = ({
         />
       </div>
       <ButtonsContainer>
-        <StyledButton variant="outlined">Endre</StyledButton>
+        <StyledButton variant="outlined" onClick={editReservation}>
+          Endre
+        </StyledButton>
         <StyledButton
           variant="outlined"
           onClick={() => setOpenPopup(!openPopup)}

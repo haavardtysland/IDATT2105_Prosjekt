@@ -68,6 +68,8 @@ const ReservationCard: React.FC<ReservationCardProps> = ({
 }: ReservationCardProps) => {
   const classes = useStyles();
   const [openPopup, setOpenPopup] = useState<boolean>(false);
+  const [currentReservation, setCurrentReservation] =
+    useState<Reservation>(reservation);
 
   const setTimeArr = (): string[] => {
     let hour = 7;
@@ -150,7 +152,9 @@ const ReservationCard: React.FC<ReservationCardProps> = ({
             <ReservationFormEdit
               openPopup={openPopup}
               setOpenPopup={setOpenPopup}
-              reservation={reservation}
+              reservation={currentReservation}
+              setReservation={setCurrentReservation}
+              deleteReservation={deleteReservation}
             />
           </Popup>
         </CardContent>

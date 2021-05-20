@@ -79,6 +79,20 @@ const sameDay = (date1: Date, date2: Date) => {
   }
 };
 
+const getDateFormat = (date: Date): string => {
+  let dateFormat = '';
+  if (String(date.getMonth() + 1).length === 1) {
+    dateFormat = `${date.getFullYear()}-0${
+      date.getMonth() + 1
+    }-${date.getDate()}`;
+  } else {
+    dateFormat = `${date.getFullYear()}-${
+      date.getMonth() + 1
+    }-${date.getDate()}`;
+  }
+  return dateFormat;
+};
+
 export const TimeFunctions = {
   times,
   setTimeArr,
@@ -86,6 +100,7 @@ export const TimeFunctions = {
   getStringFromDate,
   getTimeFromString,
   sameDay,
+  getDateFormat,
 };
 
 /*
@@ -94,4 +109,5 @@ const getDateFromString = TimeFunctions.getDateFromString;
 const getStringFromDate = TimeFunctions.getStringFromDate;
 const getTimeFromString = TimeFunctions.getTimeFromString;
 const sameDay = TimeFunctions.sameDay;
+const dateFormat = TimeFunctions.getDateFormat;
 */

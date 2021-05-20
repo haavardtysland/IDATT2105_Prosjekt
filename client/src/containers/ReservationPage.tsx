@@ -129,13 +129,14 @@ const ReservationPage: React.FC = () => {
               setCapFilter={setCapFilter}
             />
           </div>
-          <button onClick={() => console.log(reservations)}>
-            log reservations
-          </button>
           <Divider variant="fullWidth" />
         </LeftContainer>
         <Divider orientation="vertical" flexItem />
-        <RightContainer>{renderReservations}</RightContainer>
+        <RightContainer>
+          {reservations.length > 0
+            ? renderReservations
+            : 'Du har ingen reservasjoner'}
+        </RightContainer>
       </div>
     </div>
   );
