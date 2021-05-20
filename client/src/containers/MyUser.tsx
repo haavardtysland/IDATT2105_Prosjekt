@@ -31,7 +31,8 @@ function MyUser() {
   const { user } = useContext(Context.UserContext);
   const [openPopup, setOpenPopup] = useState<boolean>(false);
   const [password, setPassword] = useState<string>();
-  const [method, setMethod] = useState<(value: string) => void>();
+  const [method, setMethod] =
+    useState<(value: string, passord: string) => void>();
   const [value, setValue] = useState<string>();
 
   const getUser = () => {
@@ -47,16 +48,15 @@ function MyUser() {
     getUser();
   }, []);
 
-  const changeFirstname = (firstname: string) => {
-    if (firstname != '') {
-      setOpenPopup(true);
-      setValue(firstname);
-      setMethod(updateFirstname);
-    }
+  const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
+    setPassword((event.target as HTMLInputElement).value);
   };
 
-  const updateFirstname = (firstname: string) => {
-    if (useren) {
+  //The reason why the update methods are takong inn password and not just getting it from the state
+  //is because when you setMethod in the change-mehtods (ie: changeFirstname) it stores the
+  //state as it is when you are setting the method. The password state is undefined when you are setting the metod.
+  const updateFirstname = (firstname: string, passord: string) => {
+    if (useren && passord) {
       axios
         .put(`/user/edit/${useren?.userId}/user`, {
           firstName: firstname,
@@ -64,8 +64,8 @@ function MyUser() {
           email: useren.email,
           isAdmin: useren.isAdmin,
           validDate: useren.validDate,
-          password: password,
-          newpassword: password,
+          password: passord,
+          newpassword: passord,
           phoneNumber: useren.phoneNumber,
         })
         .then(() => alert('Du endret fornavn'))
@@ -74,16 +74,24 @@ function MyUser() {
     }
   };
 
+  const changeFirstname = (firstname: string) => {
+    if (firstname != '') {
+      setOpenPopup(true);
+      setValue(firstname);
+      setMethod(() => updateFirstname);
+    }
+  };
+
   const changeSurname = (surname: string) => {
     if (surname != '') {
       setOpenPopup(true);
       setValue(surname);
-      setMethod(updateSurname);
+      setMethod(() => updateSurname);
     }
   };
 
-  const updateSurname = (surname: string) => {
-    if (useren) {
+  const updateSurname = (surname: string, passord: string) => {
+    if (useren && passord) {
       axios
         .put(`/user/edit/${useren?.userId}/user`, {
           firstName: useren.firstName,
@@ -91,8 +99,8 @@ function MyUser() {
           email: useren.email,
           isAdmin: useren.isAdmin,
           validDate: useren.validDate,
-          password: password,
-          newpassword: password,
+          password: passord,
+          newpassword: passord,
           phoneNumber: useren.phoneNumber,
         })
         .then(() => alert('Du endret etternavn'))
@@ -105,12 +113,12 @@ function MyUser() {
     if (newPassword != '') {
       setOpenPopup(!openPopup);
       setValue(newPassword);
-      setMethod(updatePassword);
+      setMethod(() => updatePassword);
     }
   };
 
-  const updatePassword = (newPassword: string) => {
-    if (useren) {
+  const updatePassword = (newPassword: string, passord: string) => {
+    if (useren && passord) {
       axios
         .put(`/user/edit/${useren?.userId}/user`, {
           firstName: useren.firstName,
@@ -118,7 +126,7 @@ function MyUser() {
           email: useren.email,
           isAdmin: useren.isAdmin,
           validDate: useren.validDate,
-          password: password,
+          password: passord,
           newpassword: newPassword,
           phoneNumber: useren.phoneNumber,
         })
@@ -130,8 +138,9 @@ function MyUser() {
 
   const onConfirm = () => {
     setOpenPopup(false);
-    if (method && value) {
-      method(value);
+    console.log(method);
+    if (method && value && password) {
+      method(value, password);
     }
   };
 
@@ -139,31 +148,27 @@ function MyUser() {
     if (phoneNumber != '') {
       setOpenPopup(!openPopup);
       setValue(phoneNumber);
-      setMethod(updatePhoneNumber);
+      setMethod(() => updatePhoneNumber);
     }
   };
 
-  const updatePhoneNumber = (phoneNumber: string) => {
-    if (useren) {
+  const updatePhoneNumber = (phoneNumber: string, passord: string) => {
+    if (useren && passord) {
       axios
-        .put(`/user/edit/${useren?.userId}/user`, {
+        .put(`/user/edit/${useren.userId}/user`, {
           firstName: useren.firstName,
           surName: useren.surname,
           email: useren.email,
           isAdmin: useren.isAdmin,
           validDate: useren.validDate,
-          password: password,
-          newpassword: password,
+          password: passord,
+          newpassword: passord,
           phoneNumber: phoneNumber,
         })
         .then(() => alert('Du endret mobilnummer'))
         .then(() => setOpenPopup(false))
         .catch((err) => alert(err.response.data.error));
     }
-  };
-
-  const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
-    setPassword((event.target as HTMLInputElement).value);
   };
 
   return (
@@ -183,6 +188,7 @@ function MyUser() {
           <TextField
             variant="outlined"
             label="Passord"
+            type="password"
             onChange={onChangePassword}
             InputLabelProps={{
               shrink: true,
