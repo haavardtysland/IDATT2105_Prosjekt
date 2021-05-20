@@ -16,6 +16,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import axios from '../../axios';
 import Popup from '../Popup';
 import ReservationFormEdit from './ReservationFormEdit';
+import config from '../../Config';
 
 const TimeContainer = styled.div`
   display: flex;
@@ -96,7 +97,8 @@ const ReservationCard: React.FC<ReservationCardProps> = ({
   const deleteReservation = async () => {
     try {
       const request = await axios.delete(
-        `/reservation/${reservation.reservationId}`
+        `/reservation/${reservation.reservationId}`,
+        config
       );
       console.log(request);
       getReservationsUser();

@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import User from '../../interfaces/User';
 import axios from '../../axios';
 import { Context } from '../../Context';
-import Section from '../../interfaces/Section';
 import Reservation from '../../interfaces/Reservation';
 import { TimeFunctions } from '../calendar_components/TimeFunctions';
+import config from '../../Config';
 
 const ButtonsContainer = styled.div`
   display: flex;
@@ -142,7 +142,8 @@ const ReservationFormEdit: React.FC<ReservationFormEditProps> = ({
       console.log(edit);
       const request = await axios.put(
         `/reservation/${reservation.reservationId}`,
-        edit
+        edit,
+        config
       );
       console.log(request);
       setReservation(request.data);

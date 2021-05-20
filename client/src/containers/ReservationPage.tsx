@@ -84,7 +84,7 @@ const ReservationPage: React.FC = () => {
       setReservations(request.data['reservations']);
       return request;
     } catch (err) {
-      console.log(err.response);
+      console.log(err.response.data.message);
     }
   };
 
