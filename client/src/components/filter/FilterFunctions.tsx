@@ -1,4 +1,5 @@
 import Reservation from '../../interfaces/Reservation';
+import Room from '../../interfaces/Room';
 
 const descFilter = (reservations: Reservation[], desc: string) => {
   return reservations.filter((r: Reservation) => {
@@ -22,8 +23,8 @@ const timeFilter = (
     if (fromTime === '' || toTime === '') {
       return r;
     } else if (fromTime !== null && toTime !== null) {
-      const d1 = new Date(r.fromDate).getTime();
-      const d2 = new Date(r.toDate).getTime();
+      const d1 = new Date(r.from_date).getTime();
+      const d2 = new Date(r.to_date).getTime();
       const t1 = new Date(fromTime).getTime();
       const t2 = new Date(toTime).getTime();
       if (d1 >= t1 && d2 <= t2) return r;

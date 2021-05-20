@@ -69,10 +69,10 @@ const ReservationCard: React.FC<ReservationCardProps> = ({
             </div>
             <TimeContainer>
               <Typography className={classes.timeText}>
-                Fra: {reservation.fromDate}
+                Fra: {reservation.from_date}
               </Typography>
               <Typography className={classes.timeText}>
-                Til: {reservation.toDate}
+                Til: {reservation.to_date}
               </Typography>
             </TimeContainer>
           </div>

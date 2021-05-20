@@ -1,6 +1,7 @@
 import { Card, CardContent, Typography, Tooltip } from '@material-ui/core';
 import React, { useState, useEffect, forwardRef } from 'react';
 import styled from 'styled-components';
+import Reservation from '../../interfaces/Reservation';
 import Circle from './Circle';
 
 const TransformDiv = styled.div`
@@ -17,6 +18,13 @@ interface TimeCardProps {
   index: number;
   updateIsMarkedArr: (index: number) => void;
   updateSelectedTimes: () => void;
+  //reservations: Reservation[];
+  getTimeFromString: (str: string) => string;
+  times: string[];
+  date: Date;
+  bookedTimes: boolean[];
+  setBookedTimes: React.Dispatch<React.SetStateAction<boolean[]>>;
+  updateBookedTimesFromTo: (fromIndex: number, toIndex: number) => void;
 }
 
 const TimeCard: React.FC<TimeCardProps> = ({
@@ -27,12 +35,20 @@ const TimeCard: React.FC<TimeCardProps> = ({
   index,
   updateIsMarkedArr,
   updateSelectedTimes,
+  //reservations,
+  getTimeFromString,
+  bookedTimes,
+  setBookedTimes,
+  updateBookedTimesFromTo,
 }: TimeCardProps) => {
   const [backgroundcolor, setBackgroundcolor] = useState<string>('');
+  const [circleColor, setCircleColor] = useState<string>('green');
 
   const handleIsMarked = () => {
-    updateIsMarkedArr(index);
-    updateColors();
+    if (bookedTimes[index] === false) {
+      updateIsMarkedArr(index);
+      updateColors();
+    }
   };
 
   const updateColors = () => {
@@ -40,6 +56,14 @@ const TimeCard: React.FC<TimeCardProps> = ({
       setBackgroundcolor('white');
     } else {
       setBackgroundcolor('lightgrey');
+    }
+  };
+
+  const checkIfReserved = () => {
+    if (bookedTimes[index] === true) {
+      setCircleColor('red');
+    } else {
+      setCircleColor('green');
     }
   };
 
@@ -59,17 +83,19 @@ const TimeCard: React.FC<TimeCardProps> = ({
     updateColors();
   }, [isMarkedArr]);
 
+  useEffect(() => {
+    checkIfReserved();
+  }, [bookedTimes]);
+
   return (
-    <Tooltip title="ledig">
-      <TransformDiv onClick={handleIsMarked} style={{ padding: '3px' }}>
-        <Card style={{ backgroundColor: backgroundcolor }}>
-          <CardContent>
-            <Typography>{time}</Typography>
-            <Circle />
-          </CardContent>
-        </Card>
-      </TransformDiv>
-    </Tooltip>
+    <TransformDiv onClick={handleIsMarked} style={{ padding: '3px' }}>
+      <Card style={{ backgroundColor: backgroundcolor }}>
+        <CardContent>
+          <Typography>{time}</Typography>
+          <Circle color={circleColor} />
+        </CardContent>
+      </Card>
+    </TransformDiv>
   );
 };
 

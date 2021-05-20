@@ -71,6 +71,7 @@ public class RoomController {
             body.put("error", "Ikke nok kapasitet i rommet til alle seksjonene");
             return ResponseEntity.ok().headers(header).body(formatJson(body));
         }
+        room.setSections(sections);
         boolean result = roomService.addRoom(room);
         if(result){
             log.info("Posted room successfully");
@@ -94,17 +95,19 @@ public class RoomController {
         ArrayList<Section> sections = new ArrayList<>();
         for(LinkedHashMap section : sectionList) {
             Section newSection = new Section();
-            newSection.setSectionId(getRandomID());
-            newSection.setRoom(room);
             newSection.setSectionName(section.get("section_name").toString());
             newSection.setCapacity(Integer.parseInt(section.get("capacity").toString()));
+            if (Integer.parseInt(section.get("section_id").toString()) == 0) {
+                newSection.setSectionId(getRandomID());
+            } else {
+                newSection.setSectionId(Integer.parseInt(section.get("section_id").toString()));
+            }
             System.out.println(room.getAvailable());
-            System.out.println(newSection);
-            if(room.getAvailable() < newSection.getCapacity()) {
+            if (room.getAvailable() < newSection.getCapacity() && newSection.getRoom() != null) {
                 return null;
             }
+            newSection.setRoom(room);
             sections.add(newSection);
-            room.addSection(newSection);
         }
         log.debug("final section list: " + sections.toString());
         return sections;
@@ -136,20 +139,33 @@ public class RoomController {
         Room room = roomService.getRoom(id);
         String name = map.get("name").toString();
         int capacity = Integer.parseInt(map.get("capacity").toString());
+        if(capacity < (room.getCapacity() - room.getAvailable())){
+            log.info("Capacity is full");
+            header.add("STATUS", "400 BAD REQUEST");
+            body.put("error", "Kan ikke endre kapasiteten til mindre enn seksjonskapasitetene");
+            return ResponseEntity.badRequest().headers(header).body(formatJson(body));
+        }
         ArrayList<LinkedHashMap> sectionList = (ArrayList) map.get("sections");
-        ArrayList<Section> sections = toSectionList(sectionList, room);
         room.setCapacity(capacity);
         room.setName(name);
+        ArrayList<Section> sections = toSectionList(sectionList, room);
+        if(sections == null) {
+            log.info("Capacity is full");
+            header.add("STATUS", "400 BAD REQUEST");
+            body.put("error", "Ikke nok kapasitet i rommet til alle seksjonene");
+            return ResponseEntity.badRequest().headers(header).body(formatJson(body));
+        }
         room.setSections(sections);
         boolean result = roomService.editRoom(room);
         if(result){
-            log.info("Sucesfully edited room with room_id " + room_id);
+            log.info("Succesfully edited room with room_id " + room_id);
             header.add("STATUS", "200 OK");
+            body.put("room_id", String.valueOf(room.getRoom_id()));
             return ResponseEntity.ok().headers(header).body(formatJson(body));
         }
         log.info("Something went wrong with editing room with room_id " + room_id);
         header.add("STATUS", "400 BAD REQUEST");
-        return ResponseEntity.ok().headers(header).body(formatJson(body));
+        return ResponseEntity.badRequest().headers(header).body(formatJson(body));
     }
 
     /**

@@ -115,12 +115,51 @@ public class ReservationControllerTest {
 			room1.getSections().get(i).setSectionId((Integer.parseInt(((JSONObject)array.get(i)).get("section_id").toString())));
 		}
 
+
 		assert(room1.getRoom_id() == recievied_id);
 
 	}
 
 	@Test
 	@Order(3)
+	public void editRoomTest() throws Exception{
+		System.out.println("Test 3");
+		String room_id = mockMvc.perform(MockMvcRequestBuilders.put("/room/edit/" + room1.getRoom_id()).contentType(MediaType.APPLICATION_JSON).content(
+				"{\n" +
+						"\"name\" : \"" + room1.getName() + "\",\n" +
+						"\"capacity\" : " + 125 + ",\n" +
+						"\"sections\" : " + room1.getSections().toString() + "\n" +
+						"}"
+		)).andExpect(status().isOk()).andExpect(MockMvcResultMatchers.jsonPath("$.room_id").exists())
+				.andExpect(MockMvcResultMatchers.jsonPath("$.room_id").isNotEmpty())
+				.andReturn().getResponse().getContentAsString();
+
+		JSONParser parser = new JSONParser();
+		JSONObject idJson = (JSONObject) parser.parse(room_id);
+		assert(room1.getRoom_id() == idJson.getAsNumber("room_id").intValue());
+	}
+
+	@Test
+	@Order(4)
+	public void editRoomCapacityTooSmallTest() throws Exception{
+		System.out.println("Test 3");
+		String error = mockMvc.perform(MockMvcRequestBuilders.put("/room/edit/" + room1.getRoom_id()).contentType(MediaType.APPLICATION_JSON).content(
+				"{\n" +
+						"\"name\" : \"" + room1.getName() + "\",\n" +
+						"\"capacity\" : " + 25 + ",\n" +
+						"\"sections\" : " + room1.getSections().toString() + "\n" +
+						"}"
+		)).andExpect(status().isBadRequest()).andExpect(MockMvcResultMatchers.jsonPath("$.error").exists())
+				.andExpect(MockMvcResultMatchers.jsonPath("$.error").isNotEmpty())
+				.andReturn().getResponse().getContentAsString();
+
+		JSONParser parser = new JSONParser();
+		JSONObject JSONError = (JSONObject) parser.parse(error);
+		assert(JSONError.get("error").equals("Kan ikke endre kapasiteten til mindre enn seksjonskapasitetene"));
+	}
+
+	@Test
+	@Order(5)
 	public void getSectionTest() throws Exception{
 		System.out.println("Test 3");
 		String sectionInfo = mockMvc.perform(MockMvcRequestBuilders.get("/section/" + room1.getSections().get(0).getSectionId()).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(MockMvcResultMatchers.jsonPath("$.section_id").exists())
@@ -134,7 +173,7 @@ public class ReservationControllerTest {
 	}
 
 	@Test
-	@Order(4)
+	@Order(6)
 	public void addSectionTest() throws Exception{
 		System.out.println("Test 3");
 		String section_id = mockMvc.perform(MockMvcRequestBuilders.post("/section/" + room1.getRoom_id()).contentType(MediaType.APPLICATION_JSON).content(
@@ -148,7 +187,7 @@ public class ReservationControllerTest {
 	}
 
 	@Test
-	@Order(5)
+	@Order(7)
 	public void registerUserTest() throws Exception{
 		System.out.println("Test 4");
 		String result = mockMvc.perform(MockMvcRequestBuilders.post("/user").contentType(MediaType.APPLICATION_JSON).content(
@@ -158,7 +197,8 @@ public class ReservationControllerTest {
         "\n     \"email\":" + '\"' + newUser.getEmail() + '\"' + "," +
         "\n     \"isAdmin\":" +  newUser.getIsAdmin()  + "," +
         "\n     \"validDate\":" + '\"' + newUser.getValidDate() + '\"' + "," +
-        "\n     \"phoneNumber\":"  + newUser.getPhoneNumber()  +
+        "\n     \"phoneNumber\":"  + newUser.getPhoneNumber()  +  "," +
+				"\n\"password\": " + '\"' + "123" + '\"' +
         "\n }"
 		)).andExpect(status().isOk()).andExpect(MockMvcResultMatchers.jsonPath("$.userId").exists()).andExpect(MockMvcResultMatchers.jsonPath("$.userId").isNotEmpty()).andReturn().getResponse().getContentAsString();
 
@@ -167,8 +207,9 @@ public class ReservationControllerTest {
 		newUser.setId(idJson.getAsNumber("userId").intValue());
 	}
 
+
 	@Test
-	@Order(6)
+	@Order(8)
 	public void registerUserWithAlreadyRegisteredEmail() throws Exception{
 		System.out.println("Test 5");
 		String error = mockMvc.perform(MockMvcRequestBuilders.post("/user").contentType(MediaType.APPLICATION_JSON).content(
@@ -184,13 +225,13 @@ public class ReservationControllerTest {
 
 		JSONParser parser = new JSONParser();
 		JSONObject JSONError = (JSONObject) parser.parse(error);
-		assert("En bruker med en emailen finnes allerede".equals(JSONError.get("error")));
+		assert("En bruker med den emailen finnes allerede".equals(JSONError.get("error")));
 
 	}
 
 
 	@Test
-	@Order(7)
+	@Order(9)
 	public void editUserTest() throws Exception{
 		System.out.println("Test 7");
 		String result = mockMvc.perform(MockMvcRequestBuilders.put("/user/edit/" + newUser.getUserId() + "/user").contentType(MediaType.APPLICATION_JSON).content(
@@ -211,13 +252,13 @@ public class ReservationControllerTest {
 	}
 
 	@Test
-	@Order(8)
+	@Order(10)
 	public void editAdminUserTest() throws Exception{
 		System.out.println("Test 8");
 		//Sends new password to the user, which is only accessible for the admin, admin can also change other info
 		String result = mockMvc.perform(MockMvcRequestBuilders.put("/user/edit/" + newUser.getUserId()).contentType(MediaType.APPLICATION_JSON).content(
 				"\n  {" +
-						"\n     \"firstName\":" + '\"' + newUser.getFirstName() + '\"' + "," +
+						"\n     \"firstName\":" + '\"' + adminUser.getFirstName() + '\"' + "," +
 						"\n     \"surName\":" + '\"' + newUser.getSurname() + '\"' + "," +
 						"\n     \"email\":" + '\"' + newUser.getEmail() + '\"' + "," +
 						"\n     \"isAdmin\":" +  newUser.getIsAdmin()  + "," +
@@ -233,8 +274,9 @@ public class ReservationControllerTest {
 		assert(idJson.getAsNumber("id").intValue()) == (newUser.getUserId());
 	}
 
+
 	@Test
-	@Order(8)
+	@Order(11)
 	public void getUserTest() throws Exception{
 		System.out.println("Test 9");
 
@@ -249,13 +291,13 @@ public class ReservationControllerTest {
 	}
 
 	@Test
-	@Order(8)
+	@Order(12)
 	public void loginTest() throws Exception{
 		System.out.println("Test 8");
 		String result = mockMvc.perform(MockMvcRequestBuilders.post("/login").contentType(MediaType.APPLICATION_JSON).content(
 				"\n {" +
-						"\n     \"email\" :" + '\"' + newUser.getEmail() + '\"' + "," +
-						"\n     \"password\": " + '\"' + "123" + '\"' +
+						"\n\"email\":" + "\"" + newUser.getEmail() + '\"' + "," +
+						"\n\"password\":" + "\"" + "123" + "\""  +
 						"\n }"
 		)).andExpect(status().isOk()).andExpect(MockMvcResultMatchers.jsonPath("$.id").exists()).andExpect(MockMvcResultMatchers.jsonPath("$.id").isNotEmpty()).andReturn().getResponse().getContentAsString();
 
@@ -265,12 +307,12 @@ public class ReservationControllerTest {
 	}
 
 	@Test
-	@Order(9)
+	@Order(13)
 	public void loginWithWrongEmailTest() throws Exception{
 		System.out.println("Test 9");
 		String error = mockMvc.perform(MockMvcRequestBuilders.post("/login").contentType(MediaType.APPLICATION_JSON).content(
 				"\n {" +
-						"\n     \"email\" :" + '\"' + "wrong.mail@gmail.com"+ '\"' + "," +
+						"\n     \"email\":" + '\"' + "wrong.mail@gmail.com"+ '\"' + "," +
 						"\n     \"password\": " + '\"' + "123" + '\"' +
 						"\n }"
 		)).andExpect(status().isBadRequest()).andExpect(MockMvcResultMatchers.jsonPath("$.error").exists()).andExpect(MockMvcResultMatchers.jsonPath("$.error").isNotEmpty()).andReturn().getResponse().getContentAsString();
@@ -281,7 +323,7 @@ public class ReservationControllerTest {
 	}
 
 	@Test
-	@Order(9)
+	@Order(14)
 	public void loginWithWrongPasswordTest() throws Exception{
 		System.out.println("Test 9");
 		String error = mockMvc.perform(MockMvcRequestBuilders.post("/login").contentType(MediaType.APPLICATION_JSON).content(
@@ -289,16 +331,16 @@ public class ReservationControllerTest {
 						"\n     \"email\" :" + '\"' + newUser.getEmail() + '\"' + "," +
 						"\n     \"password\": " + '\"' + "321" + '\"' +
 						"\n }"
-		)).andExpect(status().isBadRequest()).andExpect(MockMvcResultMatchers.jsonPath("$.error").exists()).andExpect(MockMvcResultMatchers.jsonPath("$.error").isNotEmpty()).andReturn().getResponse().getContentAsString();
+		)).andExpect(status().isForbidden()).andExpect(MockMvcResultMatchers.jsonPath("$.error").exists()).andExpect(MockMvcResultMatchers.jsonPath("$.error").isNotEmpty()).andReturn().getResponse().getContentAsString();
 
 		JSONParser parser = new JSONParser();
 		JSONObject JSONError = (JSONObject) parser.parse(error);
-		assert("Passordet er feil eller brukeren er ikke gyldig lenger".equals(JSONError.get("error")));
+		assert("Passordet er feil".equals(JSONError.get("error")));
 	}
 
 
 	@Test
-	@Order(8)
+	@Order(15)
 	public void registerReservationTest() throws Exception {
 		System.out.println("Test 6");
 		reservation.setFromDate(Timestamp.valueOf("2021-05-05 12:00:00.0"));
@@ -328,7 +370,7 @@ public class ReservationControllerTest {
 	}
 
 	@Test
-	@Order(8)
+	@Order(16)
 	public void registerDuplicateReservationTest() throws Exception{
 			System.out.println("Test 6");
 			reservation.setFromDate(Timestamp.valueOf("2021-05-05 12:00:00.0"));
@@ -355,7 +397,7 @@ public class ReservationControllerTest {
 		}
 
 	@Test
-	@Order(9)
+	@Order(17)
 	public void getReservationsForUserTest() throws Exception{
 		System.out.println("Test 7");
 		String reservationInfo = mockMvc.perform(MockMvcRequestBuilders.get("/reservation/" + newUser.getUserId() + "/user").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(MockMvcResultMatchers.jsonPath("$.reservations").exists())
@@ -371,7 +413,7 @@ public class ReservationControllerTest {
 	}
 
 	@Test
-	@Order(10)
+	@Order(18)
 	public void getReservationsForSectionTest() throws Exception{
 		System.out.println("Test 8");
 		String reservationInfo = mockMvc.perform(MockMvcRequestBuilders.get("/reservation/" + room1.getSections().get(0).getSectionId() + "/section").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(MockMvcResultMatchers.jsonPath("$.reservations").exists())
@@ -388,7 +430,7 @@ public class ReservationControllerTest {
 
 
 	@Test
-	@Order(11)
+	@Order(19)
 	public void getReservationsForRoomTest() throws Exception{
 		System.out.println("Test 8");
 		String reservationInfo = mockMvc.perform(MockMvcRequestBuilders.get("/reservation/" + room1.getRoom_id() + "/room").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(MockMvcResultMatchers.jsonPath("$.reservations").exists())
@@ -404,7 +446,7 @@ public class ReservationControllerTest {
 	}
 
 	@Test
-	@Order(12)
+	@Order(20)
 	public void getSectionStatistics() throws Exception{
 		System.out.println("Test 11");
 		Long start = section1.getReservations().get(0).getFromDate().getTime();
@@ -422,7 +464,7 @@ public class ReservationControllerTest {
 	}
 
 	@Test
-	@Order(13)
+	@Order(21)
 	public void addMessage() throws Exception{
 		message.setUser(newUser);
 		message.setMessage("Test melding");
@@ -439,8 +481,37 @@ public class ReservationControllerTest {
 		System.out.println(info.toString());
 
 	}
+
 	@Test
-	@Order(14)
+	@Order(22)
+	public void editReservationTest() throws Exception{
+		String reservationId = mockMvc.perform(MockMvcRequestBuilders.put("/reservation/" + reservation.getReservation_id()).contentType(MediaType.APPLICATION_JSON).content(
+				"{" +
+						"\n \"user_id\": " + newUser.getUserId() + "," +
+						"\n \"section_id\": " + room1.getSections().get(0).getSectionId() + "," +
+						"\n \"from_date\": " + "\"" + "2021-05-05 12:00:00.0" + "\"" + "," +
+						"\n \"to_date\": " + "\"" + "2021-06-05 12:00:00.0" + "\"" + "," +
+						"\n \"capacity\": " + 10 + ","+
+						"\n \"description\": " + "\"" + "Test reservasjon redigert" + "\"" +
+						"\n}"
+		)).andExpect(status().isOk()).andExpect(MockMvcResultMatchers.jsonPath("$.reservationId").exists()).andExpect(MockMvcResultMatchers.jsonPath("$.reservationId").isNotEmpty()).andReturn().getResponse().getContentAsString();
+		JSONParser parser = new JSONParser();
+		JSONObject info = (JSONObject) parser.parse(reservationId);
+		assert(reservation.getReservation_id() == Integer.parseInt(info.get("reservationId").toString()));
+	}
+
+	@Test
+	@Order(23)
+	public void deleteReservationTest() throws Exception{
+		System.out.println("Test 14");
+		String reservationId = mockMvc.perform(MockMvcRequestBuilders.delete("/reservation/" + reservation.getReservation_id()).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
+		JSONParser parser = new JSONParser();
+		JSONObject info = (JSONObject) parser.parse(reservationId);
+		assert(reservation.getReservation_id() == Integer.parseInt(info.get("reservationId").toString()));
+
+	}
+	@Test
+	@Order(24)
 	public void deleteUserTest() throws Exception{
 		System.out.println("Test 5");
 		String user_id = mockMvc.perform(MockMvcRequestBuilders.delete("/user/" + newUser.getUserId()).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
@@ -448,7 +519,7 @@ public class ReservationControllerTest {
 	}
 
 	@Test
-	@Order(15)
+	@Order(25)
 	public void deleteRoomTest() throws Exception {
 		System.out.println("Test 4");
 		String room_id = mockMvc.perform(MockMvcRequestBuilders.delete("/room/" + room1.getRoom_id()).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();

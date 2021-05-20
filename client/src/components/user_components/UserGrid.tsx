@@ -1,4 +1,4 @@
-import { GridList } from '@material-ui/core';
+import { GridList, TextField } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import User from '../../interfaces/User';
@@ -19,9 +19,10 @@ interface Props {
   users: User[];
   deleteUser: (userId: number) => void;
   resendPassword: (user: User) => void;
+  renewAccess: (user: User, time: Date) => void;
 }
 
-function UserGrid({ users, deleteUser, resendPassword }: Props) {
+function UserGrid({ users, deleteUser, resendPassword, renewAccess }: Props) {
   const [page, setPage] = useState<number>(1);
   const [currentUsers, setCurrentUsers] = useState<User[]>(users);
 
@@ -35,8 +36,26 @@ function UserGrid({ users, deleteUser, resendPassword }: Props) {
     setPage(value);
   };
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCurrentUsers(titleFilter(users, event.target.value));
+  };
+
+  const titleFilter = (rooms: User[], titleSearch: string): User[] => {
+    return rooms.filter((user: User) => {
+      if (titleSearch == '') {
+        return user;
+      } else if (
+        user.email != null &&
+        user.email.toLowerCase().includes(titleSearch.toLocaleLowerCase())
+      ) {
+        return user;
+      }
+    });
+  };
+
   return (
     <Container>
+      <TextField placeholder="Search" onChange={handleChange}></TextField>
       <GridList
         style={{
           display: 'flex',
@@ -45,8 +64,9 @@ function UserGrid({ users, deleteUser, resendPassword }: Props) {
         }}
         cols={3}
       >
-        {users.map((user, index) => (
+        {currentUsers.map((user, index) => (
           <UserCard
+            renewAccess={(user, time) => renewAccess(user, time)}
             deleteUser={() => deleteUser(user.userId)}
             resendPassword={() => resendPassword(user)}
             key={index}
