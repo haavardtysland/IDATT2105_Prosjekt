@@ -15,6 +15,8 @@ import Section from '../../interfaces/Section';
 import axios from '../../axios';
 import Room from '../../interfaces/Room';
 import User from '../../interfaces/User';
+import MessageCard from './MessageCard';
+import Message from '../../interfaces/Message';
 
 const useStyles = makeStyles({
   drawerPaper: {
@@ -43,12 +45,6 @@ const StyledTextField = withStyles({
   },
 })(TextField);
 
-interface Message {
-  message: string;
-  user: User;
-  timecreated: number;
-}
-
 interface Props {
   room: Room;
 }
@@ -57,6 +53,7 @@ function Chat({ room }: Props) {
   const [currentSection, setCurrentSection] = useState<Section>();
   const [currentFilter, setCurrentFilter] = useState<string>();
   const [message, setMessage] = useState<string>('');
+  const [messages, setMessages] = useState<Message[]>([]);
   const [open, setOpen] = useState<boolean>(true);
   const classes = useStyles();
 
@@ -160,7 +157,11 @@ function Chat({ room }: Props) {
               </TextField>
             </Grid>
             <Grid item xs>
-              <MessageBox id="chat">Shheeesh</MessageBox>
+              <MessageBox id="chat">
+                {messages.map((msg, index) => {
+                  <MessageCard key={index} message={msg}></MessageCard>;
+                })}
+              </MessageBox>
             </Grid>
             <Grid item>
               <Send>

@@ -68,7 +68,7 @@ public class SecurityController {
   public ResponseEntity validateToken(@RequestBody Map<String, Object> map) {
     log.info("received request at /security/token/validate with valid token");
     Map<String, String> body = new HashMap<>();
-
+    body.put("result", "true");
     return ResponseEntity
         .ok()
         .body(formatJson(body));
@@ -86,7 +86,7 @@ public class SecurityController {
       return ResponseEntity.badRequest().body(formatJson(body));
     }
     body.put("result", "true");
-    body.put("isAdmin", user.getIsAdmin().toString());
+    body.put("isAdmin",  user.getIsAdmin().toString());
 
     return ResponseEntity.ok().body(formatJson(body));
   }
