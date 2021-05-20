@@ -1,12 +1,12 @@
 package IDATT2105.Reservation.models;
 
+import io.swagger.annotations.ApiModel;
 import org.eclipse.persistence.annotations.CascadeOnDelete;
 
-import java.sql.Time;
 import java.sql.Timestamp;
-import javax.annotation.processing.Generated;
 import javax.persistence.*;
 
+@ApiModel(description = "Reservation model")
 @Entity
 public class Reservation {
 

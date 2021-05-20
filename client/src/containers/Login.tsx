@@ -37,6 +37,9 @@ const Login = () => {
         password: password,
       })
       .then((response) => {
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("isAdmin", response.data.isAdmin);
+        localStorage.setItem("id", response.data.id);
         setUser(response.data);
         history.push('/mainPage');
       })

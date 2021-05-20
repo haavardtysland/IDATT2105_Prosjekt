@@ -4,6 +4,9 @@ package IDATT2105.Reservation.models;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.eclipse.persistence.annotations.CascadeOnDelete;
 import javax.persistence.*;

@@ -9,6 +9,8 @@ import IDATT2105.Reservation.util.Logger;
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -28,18 +30,8 @@ public class LoginController {
   @Autowired
   private SecurityService securityService;
 
-
-  /**
-   * Logging inn with user
-   * Post:
-   {
-    "email":"email@gmail.com",
-    "password":"password"
-   }
-   * @param map
-   * @return returns the users userid, isAdmin (wheter the account is an admin or not) and a token
-   */
- @PostMapping("")
+  @ApiOperation(value = "Login with a valid user")
+  @PostMapping("")
   private ResponseEntity loginUser(@RequestBody Map<String, Object> map) {
     log.info("recieved postmapping to /login " + map.toString());
     HttpHeaders header = new HttpHeaders();
