@@ -102,11 +102,10 @@ const ReservationPage: React.FC = () => {
   const getReservationsUser = async () => {
     try {
       const request = await axios.get(`/reservation/${user.user.id}/user`, config);
-      console.log(request);
-      setReservations(request.data);
+      setReservations(request.data["reservations"]);
       return request;
     } catch (err) {
-      console.log(err);
+      console.log(err.response);
     }
   };
 
