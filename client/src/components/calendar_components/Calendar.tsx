@@ -17,6 +17,7 @@ import Section from '../../interfaces/Section';
 import axios from '../../axios';
 import Reservation from '../../interfaces/Reservation';
 import { SortFunctions } from '../sorting/SortFunctions';
+import { SettingsCellOutlined } from '@material-ui/icons';
 
 const ButtonsDiv = styled.div`
   display: flex;
@@ -70,6 +71,9 @@ const Calendar: React.FC<CalendarProps> = ({
   };
   const [isMarkedArr, setIsMarkedArr] = useState<boolean[]>(getFalseArr());
   const [noMarked, setNoMarked] = useState<number>(0);
+  const [noClicked, setNoClicked] = useState<number>(0);
+  const [timeCard1, setTimeCard1] = useState<string>('');
+  const [timeCard2, setTimeCard2] = useState<string>('');
 
   const setTimeArr = (): string[] => {
     let hour = 7;
@@ -104,39 +108,49 @@ const Calendar: React.FC<CalendarProps> = ({
     setIsMarkedArr(items);
   };
 
-  const updateToTrue = (index: number, item: boolean, items: boolean[]) => {
+  const updateToTrue = (
+    index: number,
+    item: boolean,
+    items: boolean[],
+    count: number
+  ) => {
     if (item === false) {
       item = !item;
       items[index] = item;
-      setNoMarked(noMarked + 1);
+      count++;
     }
   };
-  const updateToFalse = (index: number, item: boolean, items: boolean[]) => {
+  const updateToFalse = (
+    index: number,
+    item: boolean,
+    items: boolean[],
+    count: number
+  ) => {
     if (item === true) {
       item = !item;
       items[index] = item;
-      setNoMarked(noMarked - 1);
+      count--;
     }
   };
   //TODO: fix what is updated.
-  const updateMarked = (index: number, items: boolean[]) => {
+  const updateMarked = (index: number, items: boolean[], count: number) => {
     const item = items[index];
-    if (noMarked === 0) {
-      updateToTrue(index, item, items);
+    if (count === 0) {
+      updateToTrue(index, item, items, count);
     } else if (index === 0 && isMarkedArr[index + 1] === true) {
-      updateToTrue(index, item, items);
+      updateToTrue(index, item, items, count);
     } else if (
       index === isMarkedArr.length - 1 &&
       isMarkedArr[index - 1] === true
     ) {
-      updateToTrue(index, item, items);
+      updateToTrue(index, item, items, count);
     } else if (
       isMarkedArr[index - 1] === true ||
       isMarkedArr[index + 1] === true
     ) {
-      updateToTrue(index, item, items);
+      updateToTrue(index, item, items, count);
     } else {
-      updateToFalse(index, item, items);
+      updateToFalse(index, item, items, count);
     }
   };
 
@@ -266,6 +280,7 @@ const Calendar: React.FC<CalendarProps> = ({
     getReservationForSectionDate();
   }, [section, date]);
 
+  // to update the booked times
   useEffect(() => {
     if (reservations !== [] && reservations !== undefined) {
       const items = [...bookedTimes];
@@ -279,12 +294,14 @@ const Calendar: React.FC<CalendarProps> = ({
           const toIndex: number = times.indexOf(toTime);
           if (fromIndex >= 0 && toIndex <= isMarkedArr.length - 1) {
             for (let i = fromIndex; i < toIndex; i++) {
-              updateMarked(i, items);
+              let item = items[i];
+              item = !item;
+              items[i] = item;
             }
           }
         }
-        setBookedTimes(items);
       }
+      setBookedTimes(items);
     }
   }, [reservations, date, section]);
 
@@ -309,7 +326,6 @@ const Calendar: React.FC<CalendarProps> = ({
         index={key}
         updateIsMarkedArr={(index: number) => updateIsMarkedArr(index)}
         updateSelectedTimes={updateSelectedTimes}
-        //reservations={reservations}
         getTimeFromString={(str: string) => getTimeFromString(str)}
         times={times}
         date={date}
@@ -318,6 +334,8 @@ const Calendar: React.FC<CalendarProps> = ({
         updateBookedTimesFromTo={(fromIndex: number, toIndex: number) =>
           updateBookedTimesFromTo(fromIndex, toIndex)
         }
+        noMarked={noMarked}
+        setNoMarked={setNoMarked}
       />
     );
   });
@@ -383,6 +401,7 @@ const Calendar: React.FC<CalendarProps> = ({
             />
           </Popup>
         </ButtonsDiv>
+        {/*
         <Button onClick={() => console.log(isMarkedArr)}>Log marked arr</Button>
         <Button onClick={() => console.log(bookedTimes)}>
           log booked times
@@ -394,6 +413,10 @@ const Calendar: React.FC<CalendarProps> = ({
         <button onClick={() => console.log(reservations)}>
           log reservations
         </button>
+        <button onClick={() => console.log(noClicked)}>log no clicked</button>
+        <button onClick={() => console.log(timeCard1)}>log time card 1</button>
+        <button onClick={() => console.log(timeCard2)}>log time card 2</button>
+        */}
       </CardContent>
     </Card>
   );
