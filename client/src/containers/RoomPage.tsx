@@ -13,6 +13,7 @@ import styled from 'styled-components';
 import InfoIcon from '@material-ui/icons/Info';
 import { Context } from '../Context';
 import Chat from '../components/chat_components/Chat';
+import Stats from '../components/stats_components/Stats';
 import axios from '../axios';
 import { Autocomplete } from '@material-ui/lab';
 import ChatIcon from '@material-ui/icons/Chat';
@@ -30,6 +31,7 @@ const StyledDivHeader = styled.div`
 const RoomPage: React.FC = () => {
   const { room } = useContext(Context.RoomContext);
   const [openChat, setOpenChat] = useState<boolean>(false);
+  const [openStats, setOpenStats] = useState<boolean>(false);
   const [currentRoom, setCurrentRoom] = useState<Room>(room);
   const [currentSection, setCurrentSection] = useState<Section>({
     room_id: -1,
@@ -37,8 +39,22 @@ const RoomPage: React.FC = () => {
     section_name: '',
     capacity: -1,
   });
+
+  const [selectedDate, setSelectedDate] = React.useState<Date>(new Date());
+  const [value, setValue] = React.useState(null);
+
+  const handleChangeCurrentSection = (event: ChangeEvent<HTMLInputElement>) => {
+    if (room !== undefined) {
+      const tmp = currentRoom.sections.find(
+        (section: Section) => section.section_id === +event.target.value
+      );
+      if (tmp !== undefined) setCurrentSection(tmp);
+    }
+  };
+
   const { date } = useContext(Context.DateContext);
   const [selectedDate, setSelectedDate] = React.useState<Date>(date);
+
 
   const handleChangeDate = (event: ChangeEvent<HTMLInputElement>) => {
     setSelectedDate(new Date(event.target.value));
@@ -76,6 +92,7 @@ const RoomPage: React.FC = () => {
         </Tooltip>
       </StyledDivHeader>
       <Divider variant="fullWidth" />
+
       <div style={{ display: 'flex' }}>
         <Autocomplete
           style={{ marginTop: '3rem', width: '20%', marginLeft: '20%' }}
@@ -117,6 +134,11 @@ const RoomPage: React.FC = () => {
         closeChat={() => setOpenChat(false)}
         room={currentRoom}
       ></Chat>
+      <Stats
+        open={openStats}
+        closeStats={() => setOpenStats(false)}
+        section={currentSection}
+      ></Stats>
     </div>
   );
 };

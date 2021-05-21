@@ -46,7 +46,7 @@ public class SectionService {
     }
 
     public Long getSectionStatistics(int section_id, Timestamp start, Timestamp end){
-        log.info("Getting statistics for section with section_id " + section_id);
+        log.info("Getting statistics for section with section_id " + section_id + "from: " + start + " to: " + end);
         return this.repo.getSectionStatistics(section_id, start, end);
     }
 
