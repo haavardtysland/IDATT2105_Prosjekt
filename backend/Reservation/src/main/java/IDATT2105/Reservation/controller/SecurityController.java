@@ -2,20 +2,14 @@ package IDATT2105.Reservation.controller;
 
 
 import static IDATT2105.Reservation.controller.ControllerUtil.formatJson;
-
 import IDATT2105.Reservation.models.User;
 import IDATT2105.Reservation.service.UserService;
 import IDATT2105.Reservation.util.Logger;
 import IDATT2105.Reservation.util.MapTokenRequired;
-
 import IDATT2105.Reservation.service.SecurityService;
-
-
-
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
 import io.swagger.annotations.ApiOperation;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.springframework.beans.factory.annotation.Autowired;

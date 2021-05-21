@@ -65,7 +65,7 @@ public class UserService {
 
   /**
    * @see UserService#editUser(int, String, String, String, Boolean, Date, String, int)
-   * Takes in User instead of all the parameters
+   * Takes in object of User instead of all the parameters
    */
   public boolean editUser(User user) {
     try {
@@ -95,7 +95,6 @@ public class UserService {
     }
     return null;
   }
-
 
   public boolean deleteUser(int userId) {
     log.info("deleting user " + userId);

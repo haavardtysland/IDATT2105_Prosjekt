@@ -1,13 +1,10 @@
 package IDATT2105.Reservation.service;
 
-import IDATT2105.Reservation.models.Message;
 import IDATT2105.Reservation.models.Section;
 import IDATT2105.Reservation.repo.SectionRepo;
 import IDATT2105.Reservation.util.Logger;
-import IDATT2105.Reservation.util.ReservationTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.sql.Timestamp;
 import java.util.ArrayList;
 

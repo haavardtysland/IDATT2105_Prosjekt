@@ -2,7 +2,6 @@ package IDATT2105.Reservation.models;
 
 import io.swagger.annotations.ApiModel;
 import org.eclipse.persistence.annotations.CascadeOnDelete;
-
 import java.sql.Timestamp;
 import javax.persistence.*;
 

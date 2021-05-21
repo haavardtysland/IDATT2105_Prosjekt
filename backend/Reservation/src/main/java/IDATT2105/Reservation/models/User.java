@@ -4,7 +4,6 @@ package IDATT2105.Reservation.models;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.apache.tomcat.util.codec.binary.Base64;
@@ -193,7 +192,7 @@ public class User {
   public void removeMesage(Message message) {
     for(int i = 0; i < this.messages.size(); i++) {
       if(this.messages.get(i).getMessageId() == message.getMessageId()) {
-        this.reservations.remove(i);
+        this.messages.remove(i);
       }
     }
     message.setUser(null);

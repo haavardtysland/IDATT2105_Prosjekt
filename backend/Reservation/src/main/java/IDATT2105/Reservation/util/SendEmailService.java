@@ -15,6 +15,12 @@ public class SendEmailService {
   @Autowired
   private JavaMailSender javaMailSender;
 
+  /**
+   * Mail service that is used when a user is created
+   * Sends mail to the user with parameter's:
+   * @param email
+   * @param password
+   */
   public void sendUserEmail(String email, String password){
     log.info("sending mail");
     SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
@@ -26,6 +32,11 @@ public class SendEmailService {
     log.info("sending sent");
   }
 
+  /**
+   * Send's mail when a user is edited by a admin user
+   * @param email
+   * @param password
+   */
   public void sendEditUserEmail(String email, String password){
     log.info("sending mail");
     SimpleMailMessage simpleMailMessage = new SimpleMailMessage();

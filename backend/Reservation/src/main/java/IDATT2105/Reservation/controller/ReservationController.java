@@ -2,30 +2,21 @@ package IDATT2105.Reservation.controller;
 
 import static IDATT2105.Reservation.controller.ControllerUtil.formatJson;
 import static IDATT2105.Reservation.controller.ControllerUtil.getRandomID;
-import static IDATT2105.Reservation.controller.ControllerUtil.getRandomPassword;
-
 import IDATT2105.Reservation.models.Reservation;
 import IDATT2105.Reservation.models.Section;
 import IDATT2105.Reservation.models.User;
 import IDATT2105.Reservation.service.ReservationService;
 import IDATT2105.Reservation.service.SectionService;
 import IDATT2105.Reservation.service.UserService;
-import IDATT2105.Reservation.service.ReservationService;
-import IDATT2105.Reservation.service.RoomService;
 import IDATT2105.Reservation.util.Logger;
 import IDATT2105.Reservation.util.MapTokenRequired;
 import IDATT2105.Reservation.util.PathTokenRequired;
-import IDATT2105.Reservation.util.PathTwoTokenRequired;
 import IDATT2105.Reservation.util.ReservationTokenRequired;
-import java.sql.Date;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.naming.directory.InvalidAttributesException;
-
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;

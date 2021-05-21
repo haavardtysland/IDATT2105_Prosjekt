@@ -6,9 +6,7 @@ import IDATT2105.Reservation.models.Room;
 import IDATT2105.Reservation.models.Section;
 import IDATT2105.Reservation.models.User;
 import IDATT2105.Reservation.util.Logger;
-import IDATT2105.Reservation.util.ReservationTime;
 import org.springframework.stereotype.Repository;
-
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.io.IOException;
@@ -121,7 +119,13 @@ public class SectionRepo extends ProjectRepo {
 
     }
 
-
+    /**
+     * Mehtod that checks how many hours a section is used in hours between two dates
+     * @param section_id
+     * @param start
+     * @param end
+     * @return hours used between two dates
+     */
     public Long getSectionStatistics(int section_id, Timestamp start, Timestamp end){
         EntityManager em = getEm();
         Long hours_used = 0L;
