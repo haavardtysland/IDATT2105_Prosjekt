@@ -36,10 +36,7 @@ interface ReservationFormProps {
   times: string[];
   selectedTimes: string[];
   setSelectedTimes: React.Dispatch<React.SetStateAction<string[]>>;
-  isMarkedArr: boolean[];
-  setIsMarkedArr: React.Dispatch<React.SetStateAction<boolean[]>>;
   updateIsMarkedArr: (index: number) => void;
-  updateSelectedTimes: () => void;
   openPopup: boolean;
   setOpenPopup: React.Dispatch<React.SetStateAction<boolean>>;
   section: Section;
@@ -52,10 +49,7 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
   times,
   selectedTimes,
   setSelectedTimes,
-  //isMarkedArr,
-  //setIsMarkedArr,
   updateIsMarkedArr,
-  //updateSelectedTimes,
   openPopup,
   setOpenPopup,
   section,
@@ -168,7 +162,10 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
       const request = await axios.post('/reservation', object, config);
       console.log(request);
       getReservationsForSelectionDate();
-      updateIsMarkedArrFromTo(times.indexOf(fromDate), times.indexOf(toDate));
+      updateIsMarkedArrFromTo(
+        times.indexOf(fromDate),
+        times.indexOf(toDate) - 1
+      );
       setOpenPopup(!openPopup);
       return request;
     } catch (err) {
@@ -237,24 +234,6 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
         >
           Avbryt
         </StyledButton>
-        <button onClick={() => console.log(toDate)}>log to date</button>
-        <button onClick={() => console.log(currentTimes)}>
-          log current times
-        </button>
-        {/*
-        <button onClick={() => console.log(selectedTimes)}>
-          log selected times
-        </button>
-        <button onClick={() => console.log(isMarkedArr)}>
-          Log is marked arr
-        </button>
-        <button onClick={() => console.log(deleteTime)}>log delete time</button>
-        <button onClick={() => console.log(currentUser)}>log user</button>
-        <button onClick={() => console.log(date)}>log date</button>
-        <button onClick={() => console.log(currentTimes)}>
-          log current times
-        </button>
-        */}
       </ButtonsContainer>
     </div>
   );

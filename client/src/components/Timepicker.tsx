@@ -20,7 +20,7 @@ function Timepicker({ onTimeChange }: Props) {
   useEffect(() => {
     onTimeChange(time);
   }, [time]);
-  
+
   return (
     <Autocomplete
       id="combo-box-demo"
@@ -28,7 +28,7 @@ function Timepicker({ onTimeChange }: Props) {
       onChange={onChangeTime}
       getOptionLabel={(option) => option}
       renderInput={(params) => (
-        <TextField {...params} label="Combo box" variant="outlined" />
+        <TextField {...params} label="Tidspunkt" variant="outlined" />
       )}
     />
   );
