@@ -85,7 +85,7 @@ spring.mail.properties.mail.smtp.starttls.enable=true
 
 
 ## Endepunkter med Swagger UI
-Vi har brukt [Swagger UI](https://swagger.io/tools/swagger-ui/) for å dokumentere endepunktene våre. Når du kjører backend lokalt kan du gå til http://localhost:8081/swagger-ui.html#/. Hvis du vil se det uten å kjøre lokalt kan du også se det på http://idatt2105.herokuapp.com/swagger-ui.html# hvor vi har deployet backend.
+Vi har brukt [Swagger UI](https://swagger.io/tools/swagger-ui/) for å dokumentere endepunktene våre. Når du kjører backend lokalt kan du gå til http://localhost:8081/swagger-ui.html#/. Hvis du vil se det uten å kjøre lokalt kan du også se det på http://idatt2105.herokuapp.com/swagger-ui.html# hvor vi har deployet backend. Det kan være at den deploya bacekend sover når den ikke er brukt på lenge, og vil derfor ta lang tid å laste inn. Om det står application error på nettsiden http://idatt2105.herokuapp.com, vil det bety at applikasjonen har kræsjet. Send isåfall mail til ole.lokken1@gmail.com om du vil vi skal vekke den igjen. 
  
 
 
