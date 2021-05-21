@@ -6,7 +6,6 @@ import {
   MenuItem,
   TextField,
   Tooltip,
-  Typography,
   withStyles,
 } from '@material-ui/core';
 import Section from '../interfaces/Section';
@@ -44,10 +43,8 @@ const RoomPage: React.FC = () => {
     section_name: '',
     capacity: -1,
   });
-  const [selectedDate, setSelectedDate] = React.useState<Date>(
-    new Date('2014-08-18T21:11:54')
-  );
-  const [value, setValue] = React.useState(null);
+  const { date } = useContext(Context.DateContext);
+  const [selectedDate, setSelectedDate] = React.useState<Date>(date);
 
   const handleChangeCurrentSection = (event: ChangeEvent<HTMLInputElement>) => {
     if (room !== undefined) {
@@ -103,7 +100,7 @@ const RoomPage: React.FC = () => {
           id="date"
           label="Dato"
           type="date"
-          defaultValue={new Date()}
+          defaultValue={date}
           InputLabelProps={{
             shrink: true,
           }}

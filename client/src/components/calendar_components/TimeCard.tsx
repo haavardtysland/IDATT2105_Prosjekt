@@ -1,8 +1,6 @@
 import { Card, CardContent, Typography, Tooltip } from '@material-ui/core';
-import React, { useState, useEffect, forwardRef, LegacyRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import Reservation from '../../interfaces/Reservation';
-import { SortFunctions } from '../sorting/SortFunctions';
 import Circle from './Circle';
 
 const TransformDiv = styled.div`
@@ -27,6 +25,7 @@ interface TimeCardProps {
   updateBookedTimesFromTo: (fromIndex: number, toIndex: number) => void;
   noMarked: number;
   setNoMarked: React.Dispatch<React.SetStateAction<number>>;
+  updateIsMarkedArrFromTo: (fromIndex: number, toIndex: number) => void;
 }
 
 const TimeCard: React.FC<TimeCardProps> = ({
@@ -43,6 +42,7 @@ const TimeCard: React.FC<TimeCardProps> = ({
   updateBookedTimesFromTo,
   noMarked,
   setNoMarked,
+  updateIsMarkedArrFromTo,
 }: TimeCardProps) => {
   const [backgroundcolor, setBackgroundcolor] = useState<string>('');
   const [circleColor, setCircleColor] = useState<string>('green');
@@ -77,7 +77,15 @@ const TimeCard: React.FC<TimeCardProps> = ({
       ) {
         updateIsMarkedArr(index);
       } else if (noMarked > 0 && isMarkedArr[index] === true) {
-        updateIsMarkedArr(index);
+        if (
+          isMarkedArr[index - 1] === true &&
+          isMarkedArr[index + 1] === true
+        ) {
+          if (index !== 0 && index !== isMarkedArr.length - 1)
+            updateIsMarkedArrFromTo(index - 1, index + 1);
+        } else {
+          updateIsMarkedArr(index);
+        }
       }
     }
   };

@@ -36,10 +36,7 @@ interface ReservationFormProps {
   times: string[];
   selectedTimes: string[];
   setSelectedTimes: React.Dispatch<React.SetStateAction<string[]>>;
-  isMarkedArr: boolean[];
-  setIsMarkedArr: React.Dispatch<React.SetStateAction<boolean[]>>;
   updateIsMarkedArr: (index: number) => void;
-  updateSelectedTimes: () => void;
   openPopup: boolean;
   setOpenPopup: React.Dispatch<React.SetStateAction<boolean>>;
   section: Section;
@@ -52,10 +49,7 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
   times,
   selectedTimes,
   setSelectedTimes,
-  //isMarkedArr,
-  //setIsMarkedArr,
   updateIsMarkedArr,
-  //updateSelectedTimes,
   openPopup,
   setOpenPopup,
   section,
@@ -168,7 +162,10 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
       const request = await axios.post('/reservation', object, config);
       console.log(request);
       getReservationsForSelectionDate();
-      updateIsMarkedArrFromTo(times.indexOf(fromDate), times.indexOf(toDate));
+      updateIsMarkedArrFromTo(
+        times.indexOf(fromDate),
+        times.indexOf(toDate) - 1
+      );
       setOpenPopup(!openPopup);
       return request;
     } catch (err) {
