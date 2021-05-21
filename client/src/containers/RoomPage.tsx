@@ -39,10 +39,10 @@ const RoomPage: React.FC = () => {
     room_id: -1,
     section_id: -1,
     section_name: '',
-    capacity: -1,
+    capacity: -1
   });
   const [selectedDate, setSelectedDate] = React.useState<Date>(
-    new Date('2014-08-18T21:11:54')
+    new Date()
   );
 
   const handleChangeCurrentSection = (event: ChangeEvent<HTMLInputElement>) => {
@@ -62,8 +62,10 @@ const RoomPage: React.FC = () => {
     if (room['room_id'] === -1) {
       const pathName: string[] = window.location.pathname.split('/');
       axios.get(`/room/${pathName[pathName.length - 1]}`).then((response) => {
+        console.log(response.data.sections[0])
         setCurrentRoom(response.data);
-      });
+        setCurrentSection(response.data.sections[0])
+      })
     }
   }, []);
 
@@ -84,10 +86,11 @@ const RoomPage: React.FC = () => {
           variant="outlined"
           select
           label="Seksjon"
+          defaultValue={currentSection}
           onChange={handleChangeCurrentSection}
           value={currentSection}
         >
-          {currentRoom !== undefined &&
+          {currentRoom !== undefined && currentRoom.sections !== undefined &&
             currentRoom.sections.map((section: Section, key: number) => (
               <MenuItem value={section.section_id} key={key}>
                 {section.section_name}
@@ -99,7 +102,7 @@ const RoomPage: React.FC = () => {
           id="date"
           label="Dato"
           type="date"
-          defaultValue="2021-05-12"
+          defaultValue={new Date()}
           InputLabelProps={{
             shrink: true,
           }}
