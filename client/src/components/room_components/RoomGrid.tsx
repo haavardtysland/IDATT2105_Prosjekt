@@ -12,7 +12,6 @@ const Container = styled.div`
   padding: 1rem;
   padding-bottom: 3rem;
   width: 60%;
-  margin-top: 2rem;
   width: 100%;
   height: 100%;
 `;

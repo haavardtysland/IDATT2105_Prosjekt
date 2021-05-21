@@ -98,18 +98,16 @@ const RoomPage: React.FC = () => {
           onChange={handleChangeDate}
         />
         <Button
-          style={{ marginTop: '5%', marginLeft: '4%' }}
+          style={{ marginTop: '3rem', marginLeft: '4%', padding: '2rem' }}
           onClick={() => setOpenChat(!openChat)}
         >
           <ChatIcon />
         </Button>
-        {openChat && (
-          <Chat
-            open={openChat}
-            closeChat={() => setOpenChat(false)}
-            room={currentRoom}
-          ></Chat>
-        )}
+        <Chat
+          open={openChat}
+          closeChat={() => setOpenChat(false)}
+          room={currentRoom}
+        ></Chat>
       </div>
       {currentRoom.room_id !== -1 && currentSection.section_id !== -1 && (
         <Calendar date={selectedDate} section={currentSection} />
