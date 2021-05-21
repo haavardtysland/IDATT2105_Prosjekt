@@ -47,6 +47,13 @@ RDSUSERNAME=brukernavn
 RDSPASSWORD=passord
 server.port=8080
 secretKey = (nøkkel til å lage token)
+spring.mail.protocol=smtp
+spring.mail.host=smtp.gmail.com
+spring.mail.port=587
+spring.mail.username= (en mail du bruker til å sende ut brukernavn og passord til brukere)
+spring.mail.password= (passord til denne mailen)
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
 ```
 
 ### Kjøre backend lokalt
