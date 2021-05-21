@@ -10,14 +10,13 @@ import {
 import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import SendRoundedIcon from '@material-ui/icons/SendRounded';
-import { Context } from '../../Context';
 import Section from '../../interfaces/Section';
 import axios from '../../axios';
 import Room from '../../interfaces/Room';
-import User from '../../interfaces/User';
 import MessageCard from './MessageCard';
 import Message from '../../interfaces/Message';
 import ChatFilter from './ChatFilter';
+import { Autocomplete } from '@material-ui/lab';
 
 const useStyles = makeStyles({
   drawerPaper: {
@@ -62,6 +61,7 @@ function Chat({ room, open, closeChat }: Props) {
   const [filterValue, setFilterValue] = useState<number | null>(null);
   const [message, setMessage] = useState<string>('');
   const [messages, setMessages] = useState<Message[]>([]);
+  const [sendtMessages, setSendtMessages] = useState<Message[]>([]);
   const classes = useStyles();
 
   const onChangeMessage = (event: ChangeEvent<HTMLInputElement>) => {
@@ -89,7 +89,10 @@ function Chat({ room, open, closeChat }: Props) {
 
   useEffect(() => {
     if (currentSection?.messages) {
-      setMessages(currentSection.messages);
+      const getSendt: Message[] = sendtMessages.filter(
+        (msg) => msg.sectionId == currentSection.section_id
+      );
+      setMessages(SortTimeSendt([...currentSection.messages, ...getSendt]));
     } else if (currentSection == null) {
       let all: Message[] = [];
       room.sections.forEach((sec) => {
@@ -97,17 +100,18 @@ function Chat({ room, open, closeChat }: Props) {
           all = all.concat(sec.messages);
         }
       });
-      setMessages(SortTimeSendt(all));
+      setMessages(SortTimeSendt([...all, ...sendtMessages]));
     }
-  }, [currentSection]);
+  }, [currentSection, sendtMessages]);
 
-  const handleChangeCurrentSection = (event: ChangeEvent<HTMLInputElement>) => {
-    if (room !== undefined) {
-      const tmp = room.sections.find(
-        (section: Section) => section.section_id === +event.target.value
-      );
-      if (tmp !== undefined) setCurrentSection(tmp);
-      else setCurrentSection(undefined);
+  const onValueChange = (
+    event: ChangeEvent<any>,
+    newInputValue: Section | null
+  ) => {
+    if (newInputValue) {
+      setCurrentSection(newInputValue);
+    } else if (newInputValue == null) {
+      setCurrentSection(undefined);
     }
   };
 
@@ -118,7 +122,13 @@ function Chat({ room, open, closeChat }: Props) {
           user_id: localStorage.getItem('id'),
           message: message,
         })
-        .then(() => setMessage(''));
+        .then((response) => {
+          console.log(response.data);
+          setSendtMessages([...sendtMessages, response.data]);
+        })
+        .then(() => {
+          setMessage('');
+        });
     }
   };
 
@@ -154,23 +164,15 @@ function Chat({ room, open, closeChat }: Props) {
         <Grid item xs={12} sm container>
           <Grid item xs container direction="column">
             <Grid item xs>
-              <StyledTextField
-                variant="outlined"
-                select
-                label="Seksjon"
-                onChange={handleChangeCurrentSection}
-                value={currentSection}
-              >
-                <MenuItem value={'Vis for hele rommet'}>
-                  Vis meldinger fra alle seksjoner
-                </MenuItem>
-                {room !== undefined &&
-                  room.sections.map((section: Section, key: number) => (
-                    <MenuItem value={section.section_id} key={key}>
-                      {section.section_name}
-                    </MenuItem>
-                  ))}
-              </StyledTextField>
+              <Autocomplete
+                options={room.sections}
+                getOptionLabel={(sec) => sec.section_name}
+                style={{ width: '80%', marginTop: '4rem' }}
+                onChange={onValueChange}
+                renderInput={(params) => (
+                  <TextField {...params} label="Seksjon" variant="outlined" />
+                )}
+              />
               <ChatFilter
                 setFilterValue={(val) => setFilterValue(val)}
               ></ChatFilter>

@@ -8,6 +8,7 @@ import Room from '../interfaces/Room';
 import RoomGrid from '../components/room_components/RoomGrid';
 import { Context } from '../Context';
 import { useHistory } from 'react-router';
+import { setDate } from 'date-fns';
 
 const Container = styled.div`
   padding-top: 13%;
@@ -38,7 +39,7 @@ function MainPage() {
   const [minCapacity, setMinCapacity] = useState<number>();
   const [rooms, setRooms] = useState<Room[]>();
   const history = useHistory();
-  const { room, setRoom } = useContext(Context.RoomContext);
+  const { setRoom } = useContext(Context.RoomContext);
 
   const getAllRooms = () => {
     axios.get('/room').then((response) => {

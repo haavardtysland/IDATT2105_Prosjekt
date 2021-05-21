@@ -272,10 +272,10 @@ const Calendar: React.FC<CalendarProps> = ({
   return (
     <Card
       style={{
+        maxWidth: '45rem',
         margin: '1%',
-        width: '45rem',
-        marginLeft: 'auto',
         marginRight: 'auto',
+        marginLeft: 'auto',
       }}
     >
       {' '}
@@ -339,22 +339,6 @@ const Calendar: React.FC<CalendarProps> = ({
             />
           </Popup>
         </ButtonsDiv>
-        <Button onClick={() => console.log(isMarkedArr)}>Log marked arr</Button>
-        <Button onClick={() => console.log(bookedTimes)}>
-          log booked times
-        </Button>
-        <Button onClick={() => console.log(selectedTimes)}>
-          Log selected times
-        </Button>
-        <button onClick={() => console.log(noMarked)}>log no marked</button>
-        <button onClick={() => console.log(reservations)}>
-          log reservations
-        </button>
-        <button onClick={() => console.log(section)}>log section</button>
-        <button onClick={() => console.log(reservations.length)}>
-          log reservations length
-        </button>
-        <button onClick={() => console.log(date)}>log date</button>
       </CardContent>
     </Card>
   );

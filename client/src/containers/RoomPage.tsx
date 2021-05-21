@@ -2,10 +2,8 @@ import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
 import Room from '../interfaces/Room';
 import {
   Divider,
-  MenuItem,
   TextField,
   Tooltip,
-  Typography,
   withStyles,
   Button,
 } from '@material-ui/core';
@@ -16,6 +14,7 @@ import InfoIcon from '@material-ui/icons/Info';
 import { Context } from '../Context';
 import Chat from '../components/chat_components/Chat';
 import axios from '../axios';
+import { Autocomplete } from '@material-ui/lab';
 
 const StyledHeader = styled.h1`
   margin-top: 5%;
@@ -41,11 +40,9 @@ const RoomPage: React.FC = () => {
     room_id: -1,
     section_id: -1,
     section_name: '',
-    capacity: -1
+    capacity: -1,
   });
-  const [selectedDate, setSelectedDate] = React.useState<Date>(
-    new Date()
-  );
+  const [selectedDate, setSelectedDate] = React.useState<Date>(new Date());
   const [value, setValue] = React.useState(null);
 
   const handleChangeCurrentSection = (event: ChangeEvent<HTMLInputElement>) => {
@@ -61,14 +58,23 @@ const RoomPage: React.FC = () => {
     setSelectedDate(new Date(event.target.value));
   };
 
+  const onValueChange = (
+    event: ChangeEvent<any>,
+    newInputValue: Section | null
+  ) => {
+    if (newInputValue) {
+      setCurrentSection(newInputValue);
+    }
+  };
+
   useEffect(() => {
     if (room['room_id'] === -1) {
       const pathName: string[] = window.location.pathname.split('/');
       axios.get(`/room/${pathName[pathName.length - 1]}`).then((response) => {
-        console.log(response.data.sections[0])
+        console.log(response.data.sections[0]);
         setCurrentRoom(response.data);
-        setCurrentSection(response.data.sections[0])
-      })
+        setCurrentSection(response.data.sections[0]);
+      });
     }
   }, []);
 
@@ -85,27 +91,21 @@ const RoomPage: React.FC = () => {
       </StyledDivHeader>
       <Button onClick={() => setOpenChat(!openChat)}>Open Chat</Button>
       <Divider variant="fullWidth" />
-      <div>
-        <StyledTextField
-          variant="outlined"
-          select
-          label="Seksjon"
-          defaultValue={currentSection}
-          onChange={handleChangeCurrentSection}
-          value={currentSection}
-        >
-          {currentRoom !== undefined && currentRoom.sections !== undefined &&
-            currentRoom.sections.map((section: Section, key: number) => (
-              <MenuItem value={section.section_id} key={key}>
-                {section.section_name}
-              </MenuItem>
-            ))}
-        </StyledTextField>
+      <div style={{ display: 'flex' }}>
+        <Autocomplete
+          style={{ marginTop: '3rem', width: '20%', marginLeft: '20%' }}
+          options={room.sections}
+          getOptionLabel={(sec: any) => sec.section_name}
+          onChange={onValueChange}
+          renderInput={(params) => (
+            <TextField {...params} label="Seksjon" variant="outlined" />
+          )}
+        />
         <TextField
-          style={{ marginTop: '5%', marginLeft: '15%' }}
           id="date"
           label="Dato"
           type="date"
+          style={{ marginTop: '3rem', marginLeft: '20%' }}
           defaultValue={new Date()}
           InputLabelProps={{
             shrink: true,
@@ -116,6 +116,7 @@ const RoomPage: React.FC = () => {
       {currentRoom.room_id !== -1 && currentSection.section_id !== -1 && (
         <Calendar date={selectedDate} section={currentSection} />
       )}
+
       <Chat
         open={openChat}
         closeChat={() => setOpenChat(false)}
