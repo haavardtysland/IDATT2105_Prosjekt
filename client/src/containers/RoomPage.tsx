@@ -14,6 +14,7 @@ import styled from 'styled-components';
 import InfoIcon from '@material-ui/icons/Info';
 import { Context } from '../Context';
 import Chat from '../components/chat_components/Chat';
+import Stats from '../components/stats_components/Stats';
 import axios from '../axios';
 
 const StyledHeader = styled.h1`
@@ -110,6 +111,7 @@ const RoomPage: React.FC = () => {
         <Calendar date={selectedDate} section={currentSection} />
       )}
       <Chat room={currentRoom}></Chat>
+      <Stats section={currentSection}></Stats>
     </div>
   );
 };
