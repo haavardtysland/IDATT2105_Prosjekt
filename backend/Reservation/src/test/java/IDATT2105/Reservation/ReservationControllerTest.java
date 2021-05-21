@@ -354,7 +354,7 @@ public class ReservationControllerTest {
 		JSONObject idJson = (JSONObject) parser.parse(room_id);
 		assert(room1.getRoom_id() == idJson.getAsNumber("room_id").intValue());
 	}
-	
+
 	@Test
 	@Order(13)
 	public void getSectionTest() throws Exception{
@@ -396,7 +396,7 @@ public class ReservationControllerTest {
 		reservation.setCapacity(10);
 		reservation.setDescription("Test reservasjon");
 
-		String reservation_id = mockMvc.perform(MockMvcRequestBuilders.post("/reservation").header("token",token).accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON).content(
+		String reservation_id = mockMvc.perform(MockMvcRequestBuilders.post("/reservation").header("token", token).accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON).content(
 				"{" +
 						"\n \"user_id\": " + newUser.getUserId() + "," +
 						"\n \"section_id\": " + room1.getSections().get(0).getSectionId() + "," +

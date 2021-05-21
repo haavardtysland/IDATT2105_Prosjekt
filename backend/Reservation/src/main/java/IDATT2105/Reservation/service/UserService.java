@@ -63,6 +63,10 @@ public class UserService {
     return false;
   }
 
+  /**
+   * @see UserService#editUser(int, String, String, String, Boolean, Date, String, int)
+   * Takes in User instead of all the parameters
+   */
   public boolean editUser(User user) {
     try {
       log.debug("In editUser");
@@ -97,10 +101,4 @@ public class UserService {
     log.info("deleting user " + userId);
     return repo.deleteUser(userId);
   }
-
-   /* public boolean login(String email, String password) {
-    log.info("logging in user with email " + email.trim());
-    return getUser(email.trim()).verifyPassword(password);
-  }*/
-
 }
