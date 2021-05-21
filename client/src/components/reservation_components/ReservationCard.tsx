@@ -48,13 +48,6 @@ const TransformDiv = styled.div`
   }
 `;
 
-const StyledHeader = withStyles({
-  root: {
-    marginLeft: '2%',
-    marginBottom: '2%',
-  },
-})(Typography);
-
 const StyledInfo = withStyles({
   root: {
     marginLeft: '2%',
@@ -173,7 +166,7 @@ const ReservationCard: React.FC<ReservationCardProps> = ({
           <Popup
             openPopup={openPopup}
             setOpenPopup={setOpenPopup}
-            title={`Endre på reservasjon i ${reservation.section.section_name}`}
+            title={`Endre på reservasjon i "${reservation.section.section_name}" `}
           >
             <ReservationFormEdit
               openPopup={openPopup}

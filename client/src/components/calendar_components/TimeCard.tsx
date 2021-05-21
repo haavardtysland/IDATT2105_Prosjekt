@@ -1,7 +1,9 @@
 import { Card, CardContent, Typography, Tooltip } from '@material-ui/core';
+import { TimerSharp } from '@material-ui/icons';
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Circle from './Circle';
+import { TimeFunctions } from './TimeFunctions';
 
 const TransformDiv = styled.div`
   transition: transform 450ms;

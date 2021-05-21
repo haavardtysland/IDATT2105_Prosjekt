@@ -60,6 +60,7 @@ const Calendar: React.FC<CalendarProps> = ({
   section,
 }: CalendarProps) => {
   const length = 24;
+  const lastTime = '19:30';
   const classes = useStyles();
   const [reset, setReset] = useState<boolean>(false);
   const [openPopup, setOpenPopup] = useState<boolean>(false);
@@ -126,8 +127,8 @@ const Calendar: React.FC<CalendarProps> = ({
 
   const getReservationForSectionDate = () => {
     const dateFormat = TimeFunctions.getDateFormat(date);
-    const from: string = dateFormat + ` 07:30:00.0`;
-    const to: string = dateFormat + ` 19:00:00.0`;
+    const from: string = dateFormat + ` 04:30:00.0`;
+    const to: string = dateFormat + ` 22:00:00.0`;
     const fromDate = new Date(from);
     const toDate = new Date(to);
     axios
@@ -158,12 +159,24 @@ const Calendar: React.FC<CalendarProps> = ({
           const fromTime: string = fromDate.toTimeString().substring(0, 5);
           const toTime: string = toDate.toTimeString().substring(0, 5);
           const fromIndex: number = times.indexOf(fromTime);
-          const toIndex: number = times.indexOf(toTime);
-          if (fromIndex >= 0 && toIndex <= isMarkedArr.length - 1) {
-            for (let i = fromIndex; i < toIndex; i++) {
-              let item = items[i];
-              item = true;
-              items[i] = item;
+          let toIndex = -1;
+          if (toTime === lastTime) {
+            toIndex = isMarkedArr.length - 1;
+            if (fromIndex >= 0) {
+              for (let i = fromIndex; i <= toIndex; i++) {
+                let item = items[i];
+                item = true;
+                items[i] = item;
+              }
+            }
+          } else {
+            toIndex = times.indexOf(toTime);
+            if (fromIndex >= 0 && toIndex <= isMarkedArr.length - 1) {
+              for (let i = fromIndex; i < toIndex; i++) {
+                let item = items[i];
+                item = true;
+                items[i] = item;
+              }
             }
           }
         }
@@ -268,9 +281,8 @@ const Calendar: React.FC<CalendarProps> = ({
               section={section}
               date={date}
               getReservationsForSelectionDate={getReservationForSectionDate}
-              updateIsMarkedArrFromTo={(fromIndex: number, toIndex: number) =>
-                updateIsMarkedArrFromTo(fromIndex, toIndex)
-              }
+              isMarkedArr={isMarkedArr}
+              setIsMarkedArr={setIsMarkedArr}
             />
           </Popup>
         </ButtonsDiv>
