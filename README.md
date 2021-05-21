@@ -31,7 +31,7 @@ Målet for prosjektet var å lage en applikasjon der administratorer kan legge t
   Eventuelle forbedringer vi kan se på ved fremtidig arbeid er: 
    - Støtte for kryptert overføring med HTTPS
    - Frontend tester
-   - ++
+   - Teste sikkerheten til applikasjonen slik at den blir sikker mot eventuelle angrep
 
 
 ## Testing
