@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
 import Room from '../interfaces/Room';
 import {
+  Button,
   Divider,
   MenuItem,
   TextField,
@@ -15,6 +16,7 @@ import InfoIcon from '@material-ui/icons/Info';
 import { Context } from '../Context';
 import Chat from '../components/chat_components/Chat';
 import axios from '../axios';
+import ChatIcon from '@material-ui/icons/Chat';
 
 const StyledHeader = styled.h1`
   margin-top: 5%;
@@ -23,7 +25,7 @@ const StyledHeader = styled.h1`
 const StyledDivHeader = styled.div`
   margin-left: 50%;
   display: flex;
-  margin-top: 6rem;
+  margin-top: 10%;
 `;
 const StyledTextField = withStyles({
   root: {
@@ -45,6 +47,7 @@ const RoomPage: React.FC = () => {
     new Date('2014-08-18T21:11:54')
   );
   const [value, setValue] = React.useState(null);
+  const [openChat, setOpenChat] = useState<boolean>(false);
 
   const handleChangeCurrentSection = (event: ChangeEvent<HTMLInputElement>) => {
     if (room !== undefined) {
@@ -74,7 +77,7 @@ const RoomPage: React.FC = () => {
         <StyledHeader>{currentRoom.name}</StyledHeader>
         <Tooltip
           title="Velg dato og seksjon"
-          style={{ marginTop: '8%', marginLeft: '0.5rem' }}
+          style={{ marginTop: '6%', marginLeft: '0.5rem' }}
         >
           <InfoIcon></InfoIcon>
         </Tooltip>
@@ -106,11 +109,17 @@ const RoomPage: React.FC = () => {
           }}
           onChange={handleChangeDate}
         />
+        <Button
+          style={{ marginTop: '5%', marginLeft: '4%' }}
+          onClick={() => setOpenChat(!openChat)}
+        >
+          <ChatIcon />
+        </Button>
+        {openChat && <Chat room={currentRoom}></Chat>}
       </div>
       {currentRoom.room_id !== -1 && currentSection.section_id !== -1 && (
         <Calendar date={selectedDate} section={currentSection} />
       )}
-      <Chat room={currentRoom}></Chat>
     </div>
   );
 };
