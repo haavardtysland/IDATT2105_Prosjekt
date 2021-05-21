@@ -50,7 +50,7 @@ const TimeFilter: React.FC<TimeFilterProps> = ({
         variant="outlined"
       />
       <TextField
-        label="Fra tid"
+        label="Til tid"
         type="datetime-local"
         className={classes.textField}
         InputLabelProps={{

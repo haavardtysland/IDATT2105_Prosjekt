@@ -50,7 +50,7 @@ const LoginCard = ({
       <Button
         style={{ width: '100%', height: '50px' }}
         variant="contained"
-        color="secondary"
+        color="primary"
         onClick={onLogin}
       >
         LOG IN

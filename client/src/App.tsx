@@ -5,6 +5,24 @@ import { BrowserRouter } from 'react-router-dom';
 import Routes from './Routes';
 import { Context } from './Context';
 import Room from './interfaces/Room';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#13263a',
+      contrastText: '#fff',
+    },
+    secondary: {
+      main: '#000',
+      contrastText: '#000',
+    },
+    error: {
+      main: '#fff',
+      contrastText: '#000',
+    },
+  },
+});
 
 function App() {
   const [user, setUser] = useState({
@@ -23,15 +41,17 @@ function App() {
   const dateValue = useMemo(() => ({ date, setDate }), [date, setDate]);
 
   return (
-    <Context.UserContext.Provider value={userValue}>
-      <Context.RoomContext.Provider value={roomValue}>
-        <Context.DateContext.Provider value={dateValue}>
-          <BrowserRouter>
-            <div className="App">{Routes}</div>
-          </BrowserRouter>
-        </Context.DateContext.Provider>
-      </Context.RoomContext.Provider>
-    </Context.UserContext.Provider>
+    <ThemeProvider theme={theme}>
+      <Context.UserContext.Provider value={userValue}>
+        <Context.RoomContext.Provider value={roomValue}>
+          <Context.DateContext.Provider value={dateValue}>
+            <BrowserRouter>
+              <div className="App">{Routes}</div>
+            </BrowserRouter>
+          </Context.DateContext.Provider>
+        </Context.RoomContext.Provider>
+      </Context.UserContext.Provider>
+    </ThemeProvider>
   );
 }
 

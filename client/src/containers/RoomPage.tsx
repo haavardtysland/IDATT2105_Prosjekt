@@ -17,6 +17,7 @@ import Stats from '../components/stats_components/Stats';
 import axios from '../axios';
 import { Autocomplete } from '@material-ui/lab';
 import ChatIcon from '@material-ui/icons/Chat';
+import EqualizerIcon from '@material-ui/icons/Equalizer';
 
 const StyledHeader = styled.h1`
   margin-top: 5%;
@@ -40,21 +41,8 @@ const RoomPage: React.FC = () => {
     capacity: -1,
   });
 
-  const [selectedDate, setSelectedDate] = React.useState<Date>(new Date());
-  const [value, setValue] = React.useState(null);
-
-  const handleChangeCurrentSection = (event: ChangeEvent<HTMLInputElement>) => {
-    if (room !== undefined) {
-      const tmp = currentRoom.sections.find(
-        (section: Section) => section.section_id === +event.target.value
-      );
-      if (tmp !== undefined) setCurrentSection(tmp);
-    }
-  };
-
   const { date } = useContext(Context.DateContext);
   const [selectedDate, setSelectedDate] = React.useState<Date>(date);
-
 
   const handleChangeDate = (event: ChangeEvent<HTMLInputElement>) => {
     setSelectedDate(new Date(event.target.value));
@@ -115,18 +103,22 @@ const RoomPage: React.FC = () => {
           onChange={handleChangeDate}
         />
         <Button
-          style={{ marginTop: '5%', marginLeft: '4%' }}
+          style={{ marginTop: '3rem', marginLeft: '4%', padding: '2rem' }}
           onClick={() => setOpenChat(!openChat)}
         >
           <ChatIcon />
         </Button>
-        {openChat && (
-          <Chat
-            open={openChat}
-            closeChat={() => setOpenChat(false)}
-            room={currentRoom}
-          ></Chat>
-        )}
+        <Button
+          style={{ marginTop: '3rem', padding: '2rem' }}
+          onClick={() => setOpenStats(!openChat)}
+        >
+          <EqualizerIcon fontSize="large" />
+        </Button>
+        <Chat
+          open={openChat}
+          closeChat={() => setOpenChat(false)}
+          room={currentRoom}
+        ></Chat>
       </div>
       {currentRoom.room_id !== -1 && currentSection.section_id !== -1 && (
         <Calendar date={selectedDate} section={currentSection} />

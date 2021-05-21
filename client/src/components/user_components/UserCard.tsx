@@ -72,6 +72,7 @@ const UserCard = ({ user, deleteUser, resendPassword, renewAccess }: Props) => {
           >
             {user.email}
           </Typography>
+          <p style={{ textAlign: 'center' }}>Tlf: {user.phoneNumber}</p>
           <Flex>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <KeyboardDatePicker
