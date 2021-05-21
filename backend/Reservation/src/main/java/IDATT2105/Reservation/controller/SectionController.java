@@ -93,7 +93,7 @@ public class SectionController {
         if(result){
             log.info("Sucesfully added message to section " + id);
             header.add("Status", "200 OK");
-            return ResponseEntity.ok().headers(header).body(formatJson(body));
+            return ResponseEntity.ok().headers(header).body(message.toString());
         } else {
             log.info("Something went wrong while adding message to section " + id);
             header.add("Status", "400 BAD REQUEST");
