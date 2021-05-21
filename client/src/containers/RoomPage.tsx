@@ -82,7 +82,6 @@ const RoomPage: React.FC = () => {
           <InfoIcon></InfoIcon>
         </Tooltip>
       </StyledDivHeader>
-      <Button onClick={() => setOpenChat(!openChat)}>Open Chat</Button>
       <Divider variant="fullWidth" />
       <div>
         <StyledTextField
