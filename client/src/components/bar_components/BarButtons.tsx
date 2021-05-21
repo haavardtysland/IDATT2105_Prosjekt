@@ -34,7 +34,7 @@ function BarButtons({ style }: any) {
           className={classes.menuItem}
           onClick={() => history.push('/mineBestillinger')}
         >
-          <Typography variant="h6">Se bestillinger</Typography>
+          <Typography variant="h6">Se reservasjoner</Typography>
         </MenuItem>
         {localStorage.getItem('isAdmin') == 'true' && (
           <Fragment>

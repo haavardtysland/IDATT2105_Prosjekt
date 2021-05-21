@@ -39,10 +39,11 @@ function Form({ changeFromTime, changeToTime, changeMinCapacity }: Props) {
 
   const onChangeDate = (event: Date | null) => {
     if (event) {
+      console.log(event);
       const dato: Date = new Date(
         event.getFullYear(),
         event.getMonth(),
-        event.getDay()
+        event.getDate()
       );
       setDate(dato);
     }
@@ -70,7 +71,7 @@ function Form({ changeFromTime, changeToTime, changeMinCapacity }: Props) {
           value={new Date(date)}
           placeholder=""
           onChange={(date) => onChangeDate(date)}
-          format="MM/dd/yyyy"
+          format="dd/MM/yyyy"
         />
       </MuiPickersUtilsProvider>
       <Typography

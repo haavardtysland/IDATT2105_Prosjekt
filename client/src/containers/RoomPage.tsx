@@ -13,6 +13,7 @@ import styled from 'styled-components';
 import InfoIcon from '@material-ui/icons/Info';
 import { Context } from '../Context';
 import Chat from '../components/chat_components/Chat';
+import Stats from '../components/stats_components/Stats';
 import axios from '../axios';
 import { Autocomplete } from '@material-ui/lab';
 import ChatIcon from '@material-ui/icons/Chat';
@@ -21,6 +22,7 @@ import {
   MuiPickersUtilsProvider,
 } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
+import EqualizerIcon from '@material-ui/icons/Equalizer';
 
 const StyledHeader = styled.h1`
   margin-top: 5%;
@@ -35,6 +37,7 @@ const StyledDivHeader = styled.div`
 const RoomPage: React.FC = () => {
   const { room } = useContext(Context.RoomContext);
   const [openChat, setOpenChat] = useState<boolean>(false);
+  const [openStats, setOpenStats] = useState<boolean>(false);
   const [currentRoom, setCurrentRoom] = useState<Room>(room);
   const [currentSection, setCurrentSection] = useState<Section>({
     room_id: -1,
@@ -42,6 +45,7 @@ const RoomPage: React.FC = () => {
     section_name: '',
     capacity: -1,
   });
+
   const { date } = useContext(Context.DateContext);
   const [selectedDate, setSelectedDate] = React.useState<Date>(date);
 
@@ -92,6 +96,7 @@ const RoomPage: React.FC = () => {
         </Tooltip>
       </StyledDivHeader>
       <Divider variant="fullWidth" />
+
       <div style={{ display: 'flex' }}>
         <Autocomplete
           style={{ marginTop: '5%', width: '15%', marginLeft: '31%' }}
@@ -114,18 +119,22 @@ const RoomPage: React.FC = () => {
           />
         </MuiPickersUtilsProvider>
         <Button
-          style={{ marginTop: '5%', marginLeft: '4%' }}
+          style={{ marginTop: '3rem', marginLeft: '4%', padding: '2rem' }}
           onClick={() => setOpenChat(!openChat)}
         >
           <ChatIcon />
         </Button>
-        {openChat && (
-          <Chat
-            open={openChat}
-            closeChat={() => setOpenChat(false)}
-            room={currentRoom}
-          ></Chat>
-        )}
+        <Button
+          style={{ marginTop: '3rem', padding: '2rem' }}
+          onClick={() => setOpenStats(!openChat)}
+        >
+          <EqualizerIcon fontSize="large" />
+        </Button>
+        <Chat
+          open={openChat}
+          closeChat={() => setOpenChat(false)}
+          room={currentRoom}
+        ></Chat>
       </div>
       {currentRoom.room_id !== -1 && currentSection.section_id !== -1 && (
         <Calendar date={selectedDate} section={currentSection} />
@@ -135,6 +144,11 @@ const RoomPage: React.FC = () => {
         closeChat={() => setOpenChat(false)}
         room={currentRoom}
       ></Chat>
+      <Stats
+        open={openStats}
+        closeStats={() => setOpenStats(false)}
+        section={currentSection}
+      ></Stats>
     </div>
   );
 };
