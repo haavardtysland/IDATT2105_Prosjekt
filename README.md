@@ -31,6 +31,7 @@ Målet for prosjektet var å lage en applikasjon der administratorer kan legge t
 
 ## Testing
 Vi har valgt å lage integrasjonstester som tester hele stakken, helt fra controller og til database. Vi har god dekningsgrad på server-siden, der testene dekker 58% av linjene i kodebasen. Disse har blitt brukt i en kombinasjon med CI/CD slik at når man oppretter pull requests, blir testene kjørt, og vi får beskjed fra CI om testene feiler.
+![Skjermbilde 2021-05-21 kl  16 11 32](https://user-images.githubusercontent.com/55196403/119150974-3936af80-ba4f-11eb-8b25-39afc81a85df.png)
 
 
 ## Installasjonsinstrukser
