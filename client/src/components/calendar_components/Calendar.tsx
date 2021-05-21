@@ -210,10 +210,10 @@ const Calendar: React.FC<CalendarProps> = ({
   // to update the booked times
   useEffect(() => {
     if (reservations.length !== 0) {
-      const items = [...bookedTimes];
-      for (const i in reservations) {
-        const fromDate = getDateFromString(reservations[i].from_date);
-        const toDate = getDateFromString(reservations[i].to_date);
+      const items = getFalseArr();
+      for (const index in reservations) {
+        const fromDate = getDateFromString(reservations[index].from_date);
+        const toDate = getDateFromString(reservations[index].to_date);
         if (sameDay(fromDate, toDate) && sameDay(toDate, date)) {
           const fromTime: string = fromDate.toTimeString().substring(0, 5);
           const toTime: string = toDate.toTimeString().substring(0, 5);
@@ -291,7 +291,7 @@ const Calendar: React.FC<CalendarProps> = ({
             {getStringFromDate(date)}
           </Typography>
           <Tooltip
-            title="Marker de ønskede tidene. Maks er 3 og må være sammenhengende."
+            title="Marker de ønskede tidene. Maks er 3 og må være sammenhengende. De røde tidene er de som allerede er booket, mens de grønne tidene er ledige og kan markeres."
             style={{ marginLeft: '1%' }}
             placement="right"
           >
@@ -339,7 +339,6 @@ const Calendar: React.FC<CalendarProps> = ({
             />
           </Popup>
         </ButtonsDiv>
-        {/*
         <Button onClick={() => console.log(isMarkedArr)}>Log marked arr</Button>
         <Button onClick={() => console.log(bookedTimes)}>
           log booked times
@@ -355,7 +354,7 @@ const Calendar: React.FC<CalendarProps> = ({
         <button onClick={() => console.log(reservations.length)}>
           log reservations length
         </button>
-        */}
+        <button onClick={() => console.log(date)}>log date</button>
       </CardContent>
     </Card>
   );

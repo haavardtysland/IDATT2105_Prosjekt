@@ -37,6 +37,9 @@ function CreateRoom() {
           } else {
             alert('Du opprettet rommet');
           }
+        })
+        .catch((err) => {
+          alert(err.response.data.error);
         });
     } else {
       alert('Fyll inn alle felt');

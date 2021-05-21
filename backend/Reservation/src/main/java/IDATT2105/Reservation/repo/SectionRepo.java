@@ -143,10 +143,10 @@ public class SectionRepo extends ProjectRepo {
             List<Integer> ids = q.getResultList();
             for(int id : ids) {
                 Reservation reservation = em.find(Reservation.class, id);
+                System.out.println(reservation.getFromDate());
+                System.out.println(reservation.getToDate());
                 if(reservation.getFromDate().getTime() >= start.getTime() && reservation.getFromDate().getTime() < end.getTime()){
                     if(reservation.getToDate().getTime() > end.getTime()){
-                        System.out.println(reservation.getFromDate().getTime());
-                        System.out.println(end.getTime());
                         hours_used += (end.getTime() - reservation.getFromDate().getTime());
                     } else {
                         hours_used += (reservation.getToDate().getTime() -  reservation.getFromDate().getTime());
@@ -154,8 +154,9 @@ public class SectionRepo extends ProjectRepo {
                 }
                 else if(!(reservation.getToDate().getTime() > end.getTime()) && !(reservation.getToDate().getTime() < start.getTime())) {
                     hours_used += (reservation.getToDate().getTime() - start.getTime());
-                } else{
-                    hours_used += (end.getTime() - start.getTime());
+                } else if(reservation.getFromDate().getTime() < start.getTime() && reservation.getToDate().getTime() > start.getTime()
+                        || reservation.getFromDate().getTime() < end.getTime() && reservation.getToDate().getTime() > end.getTime() ){
+                    hours_used += end.getTime() - start.getTime();
                 }
             }
             return hours_used;

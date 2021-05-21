@@ -93,7 +93,7 @@ public class SectionController {
         if(result){
             log.info("Sucesfully added message to section " + id);
             header.add("Status", "200 OK");
-            return ResponseEntity.ok().headers(header).body(formatJson(body));
+            return ResponseEntity.ok().headers(header).body(message.toString());
         } else {
             log.info("Something went wrong while adding message to section " + id);
             header.add("Status", "400 BAD REQUEST");
@@ -154,17 +154,10 @@ public class SectionController {
     /**
      * Getting all the taken times for a section
      * @param section_id section_id of the section you would like to check
-     * @return A json object on the form:
-     * "times": [
-     *     {
-     *         "start": 1352674800000,
-     *         "end": "1352674800000"
-     *     },
-     *     {
-     *         "start": 1605135600000,
-     *         "end": "1605135600000"
-     *     }
-     * ]
+     * @return A json object on the form, which represents the ms the section has been reserved for this period:
+     * {
+     * "time: 18000
+     * }
      */
     @ApiOperation(value = "Get the statistics for a section within a timeframe")
     @GetMapping(value="/{section_id}/{from_date}/{to_date}", produces="application/json")

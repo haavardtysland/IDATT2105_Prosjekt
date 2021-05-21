@@ -7,6 +7,7 @@ import {
   Tooltip,
   Typography,
   withStyles,
+  Button,
 } from '@material-ui/core';
 import Section from '../interfaces/Section';
 import Calendar from '../components/calendar_components/Calendar';
@@ -35,6 +36,8 @@ const StyledTextField = withStyles({
 
 const RoomPage: React.FC = () => {
   const { room } = useContext(Context.RoomContext);
+  const [openChat, setOpenChat] = useState<boolean>(false);
+  const [openStats, setOpenStats] = useState<boolean>(false);
   const [currentRoom, setCurrentRoom] = useState<Room>(room);
   const [currentSection, setCurrentSection] = useState<Section>({
     room_id: -1,
@@ -42,9 +45,8 @@ const RoomPage: React.FC = () => {
     section_name: '',
     capacity: -1,
   });
-  const [selectedDate, setSelectedDate] = React.useState<Date>(
-    new Date('2014-08-18T21:11:54')
-  );
+  const [selectedDate, setSelectedDate] = React.useState<Date>(new Date());
+  const [value, setValue] = React.useState(null);
 
   const handleChangeCurrentSection = (event: ChangeEvent<HTMLInputElement>) => {
     if (room !== undefined) {
@@ -63,7 +65,9 @@ const RoomPage: React.FC = () => {
     if (room['room_id'] === -1) {
       const pathName: string[] = window.location.pathname.split('/');
       axios.get(`/room/${pathName[pathName.length - 1]}`).then((response) => {
+        console.log(response.data.sections[0]);
         setCurrentRoom(response.data);
+        setCurrentSection(response.data.sections[0]);
       });
     }
   }, []);
@@ -79,16 +83,19 @@ const RoomPage: React.FC = () => {
           <InfoIcon></InfoIcon>
         </Tooltip>
       </StyledDivHeader>
+      <Button onClick={() => setOpenChat(!openChat)}>Open Chat</Button>
       <Divider variant="fullWidth" />
       <div>
         <StyledTextField
           variant="outlined"
           select
           label="Seksjon"
+          defaultValue={currentSection}
           onChange={handleChangeCurrentSection}
           value={currentSection}
         >
           {currentRoom !== undefined &&
+            currentRoom.sections !== undefined &&
             currentRoom.sections.map((section: Section, key: number) => (
               <MenuItem value={section.section_id} key={key}>
                 {section.section_name}
@@ -100,7 +107,7 @@ const RoomPage: React.FC = () => {
           id="date"
           label="Dato"
           type="date"
-          defaultValue="2021-05-12"
+          defaultValue={new Date()}
           InputLabelProps={{
             shrink: true,
           }}
@@ -110,8 +117,16 @@ const RoomPage: React.FC = () => {
       {currentRoom.room_id !== -1 && currentSection.section_id !== -1 && (
         <Calendar date={selectedDate} section={currentSection} />
       )}
-      <Chat room={currentRoom}></Chat>
-      <Stats section={currentSection}></Stats>
+      <Chat
+        open={openChat}
+        closeChat={() => setOpenChat(false)}
+        room={currentRoom}
+      ></Chat>
+      <Stats
+        open={openStats}
+        closeStats={() => setOpenStats(false)}
+        section={currentSection}
+      ></Stats>
     </div>
   );
 };

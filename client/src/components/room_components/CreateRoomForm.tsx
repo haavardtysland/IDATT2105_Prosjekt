@@ -92,7 +92,7 @@ function CreateRoomForm({
           variant="outlined"
           type="number"
           className={classes.textField}
-          label="Etternavn"
+          label="Kapasitet"
           onChange={onCapacityChange}
           InputLabelProps={{
             shrink: true,

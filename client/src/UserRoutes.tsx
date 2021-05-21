@@ -17,8 +17,6 @@ const UserRoutes: React.FC<PublicRouteProps> = ({
     const isLogin = async () => {
       const id = localStorage.getItem('id');
       const token = localStorage.getItem('token');
-      console.log(token);
-      console.log(id);
       const config = {
         headers: {
           token: token,

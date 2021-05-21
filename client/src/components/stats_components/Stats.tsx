@@ -49,16 +49,17 @@ const StyledTextField = withStyles({
 
 interface Props {
   section: Section;
+  open: boolean;
+  closeStats: () => void;
 }
 
-function Stats({ section }: Props) {
+function Stats({ section, open, closeStats }: Props) {
   const [currentSection, setCurrentSection] = useState<Section>();
   const [fromDateTime, setFromDateTime] = useState<string>('');
   const [toDateTime, setToDateTime] = useState<string>('');
   const [ms, setMs] = useState<number>(0);
   const [fullMs, setFullMs] = useState<number>(0);
   const [progress, setProgress] = useState<number>(0);
-  const [open, setOpen] = useState<boolean>(true);
   const classes = useStyles();
   /*
   const onChangeFilter = (event: ChangeEvent<HTMLInputElement>) => {
@@ -85,13 +86,16 @@ function Stats({ section }: Props) {
   const getStats = () => {
     const to = new Date(toDateTime).getTime();
     const from = new Date(fromDateTime).getTime();
-    console.log(to - from);
-    setFullMs(100);
+
+    //console.log(to - from);
+    //setFullMs(100);
     axios
       .get(`/section/${section.section_id}/${from}/${to}`)
       .then((response) => {
-        //setMs(response.data);
-        console.log(response.data);
+        setMs((response.data.time / (to - from)) * 100);
+        setFullMs(response.data.time);
+        console.log(response.data.time);
+        console.log((response.data.time / (to - from)) * 100);
         //setFullMs((to - from) / response.data.time);
       });
   };
@@ -120,7 +124,7 @@ function Stats({ section }: Props) {
               top: '20px',
               right: '20px',
             }}
-            onClick={() => setOpen(false)}
+            onClick={closeStats}
           >
             Lukk
           </Button>
@@ -136,22 +140,36 @@ function Stats({ section }: Props) {
                   setTimeFilterTo={setToDateTime}
                 ></TimeFilter>
               </div>
-              <button onClick={getStats}>heiheihei</button>
             </Grid>
+            <Button
+              variant="outlined"
+              style={{ width: '80%' }}
+              disabled={fromDateTime == '' || toDateTime == ''}
+              onClick={getStats}
+            >
+              heiheihei
+            </Button>
 
             <Grid item xs>
               <Box display="flex" alignItems="center">
                 <Box width="100%" mr={1}>
-                  <LinearProgress variant="determinate" value={fullMs} />
+                  <p>Hvor mange prosent av timer det gitte intervallet:</p>
+                  <LinearProgress variant="determinate" value={ms} />
                 </Box>
                 <Box minWidth={35}>
-                  <Typography variant="body2" color="textSecondary">{`${
-                    Math.round(ms / ms) * 100
-                  }%`}</Typography>
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                  >{`${Math.round(ms)}%`}</Typography>
                 </Box>
               </Box>
             </Grid>
-            <Grid item></Grid>
+            <Grid item>
+              <p>
+                Seksjonen er brukt: {Math.floor(fullMs / 3600000)} time(r) og{' '}
+                {(fullMs % 3600000) / 60000} minutt(er) i denne perioden.
+              </p>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
