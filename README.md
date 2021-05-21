@@ -40,8 +40,8 @@ Vi har valgt å lage integrasjonstester som tester hele stakken, helt fra contro
 
 ## CI/CD
 Vi har brukt Github Actions til Continious Integration. Dette har vi brukt utover prosjektet i samsvar med testene for å passe på at alt kjører riktig før vi merger pull requestene.<br>
-Vi har brukt [Heroku](https://www.heroku.com/) til å deploye backend for å gjøre utviklingen lettere på frontend: http://idatt2105.herokuapp.com/
-
+Vi har brukt [Heroku](https://www.heroku.com/) til å deploye backend for å gjøre utviklingen lettere på frontend: http://idatt2105.herokuapp.com/ <br>
+Vi har også brukt [Firebase](https://firebase.google.com/?gclid=CjwKCAjwtJ2FBhAuEiwAIKu19hfjT2CysVLTzz4LpKZhKRdVQxuaeUZdcvc2m_QN_dBEHq6kUkiNphoCswMQAvD_BwE&gclsrc=aw.ds) til å deploye frontend: https://reservation-app-b824f.web.app/, men her må man kjøre backend lokalt ettersom vi fikk problemer med at det ikke var HTTPS.
 
 
 ## Installasjonsinstrukser
