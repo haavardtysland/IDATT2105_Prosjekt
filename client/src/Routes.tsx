@@ -11,25 +11,35 @@ import RoomAdministration from './containers/AdminContainers/RoomAdministration'
 import UserAdministration from './containers/AdminContainers/UserAdministration';
 import ReservationAdministration from './containers/AdminContainers/ReservationAdministration';
 import MyUser from './containers/MyUser';
+import AdminRoutes from './AdminRoutes';
+import UserRoutes from './UserRoutes';
 
 export default (
   <Switch>
     <Route exact path="/" component={Login} />
     <div>
       <Bar></Bar>
-      <Route exact path="/administrate/room" component={RoomAdministration} />
-      <Route exact path="/administrate/user" component={UserAdministration} />
-      <Route
+      <AdminRoutes
+        exact
+        path="/administrate/room"
+        component={RoomAdministration}
+      />
+      <AdminRoutes
+        exact
+        path="/administrate/user"
+        component={UserAdministration}
+      />
+      <AdminRoutes
         exact
         path="/administarte/reservation"
         component={ReservationAdministration}
       />
-      <Route exact path="/mainPage" component={MainPage} />
-      <Route exact path="/RoomPage" component={RoomPage} />
-      <Route exact path="/addUser" component={CreateUser} />
-      <Route exact path="/addRoom" component={CreateRoom} />
-      <Route exact path="/mineBestillinger" component={ReservationPage} />
-      <Route exact path="/MyUser" component={MyUser} />
+      <UserRoutes exact path="/mainPage" component={MainPage} />
+      <UserRoutes exact path="/RoomPage/:roomID" component={RoomPage} />
+      <AdminRoutes exact path="/addUser" component={CreateUser} />
+      <AdminRoutes exact path="/addRoom" component={CreateRoom} />
+      <UserRoutes exact path="/mineBestillinger" component={ReservationPage} />
+      <UserRoutes exact path="/MyUser" component={MyUser} />
     </div>
   </Switch>
 );

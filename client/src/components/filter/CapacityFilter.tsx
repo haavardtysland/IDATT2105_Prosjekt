@@ -22,7 +22,7 @@ const CapacityFilter: React.FC<CapacityFilterProps> = ({
         valueLabelDisplay="auto"
         aria-labelledby="range-slider"
         //getAriaValueText={valuetext}
-        min={5}
+        min={1}
       />
     </div>
   );

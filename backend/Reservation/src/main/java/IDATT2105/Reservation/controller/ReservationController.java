@@ -277,11 +277,10 @@ public class ReservationController {
       throws InvalidAttributesException {
     log.debug("map: to reservation");
     log.info(map.get("from_date").toString());
-        Timestamp fromDate = Timestamp.valueOf(map.get("from_date").toString());
-        Timestamp toDate = Timestamp.valueOf(map.get("to_date").toString());
-        int capacity = Integer.parseInt(map.get("capacity").toString());
-        String description = map.get("description").toString();
-
+    Timestamp fromDate = Timestamp.valueOf(map.get("from_date").toString());
+    Timestamp toDate = Timestamp.valueOf(map.get("to_date").toString());
+    int capacity = Integer.parseInt(map.get("capacity").toString());
+    String description = map.get("description").toString();
     return new Reservation(resId,
         section, fromDate, toDate, user,
         capacity, description);

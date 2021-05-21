@@ -4,12 +4,12 @@ import {
   CardContent,
   Divider,
   GridList,
+  Tooltip,
   Typography,
 } from '@material-ui/core';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import React, { useState, useEffect, useRef } from 'react';
 import TimeCard from './TimeCard';
-import getDayOfWeek from './GetDayOfWeek';
 import styled from 'styled-components';
 import Popup from '../Popup';
 import ReservationForm from '../reservation_components/ReservationForm';
@@ -17,7 +17,9 @@ import Section from '../../interfaces/Section';
 import axios from '../../axios';
 import Reservation from '../../interfaces/Reservation';
 import { SortFunctions } from '../sorting/SortFunctions';
-import { SettingsCellOutlined } from '@material-ui/icons';
+import { TimeFunctions } from './TimeFunctions';
+import InfoIcon from '@material-ui/icons/Info';
+import config from '../../Config';
 
 const ButtonsDiv = styled.div`
   display: flex;
@@ -71,31 +73,13 @@ const Calendar: React.FC<CalendarProps> = ({
   };
   const [isMarkedArr, setIsMarkedArr] = useState<boolean[]>(getFalseArr());
   const [noMarked, setNoMarked] = useState<number>(0);
-  const [noClicked, setNoClicked] = useState<number>(0);
-  const [timeCard1, setTimeCard1] = useState<string>('');
-  const [timeCard2, setTimeCard2] = useState<string>('');
 
-  const setTimeArr = (): string[] => {
-    let hour = 7;
-    let minutes = 0;
-    const times: string[] = [];
-    for (let i = 0; i < length; i++) {
-      if (i % 2 === 0) {
-        minutes = 30;
-        String(hour).length === 1
-          ? times.push(`0${String(hour)}:${String(minutes)}`)
-          : times.push(`${String(hour)}:${String(minutes)}`);
-      } else {
-        minutes = 0;
-        hour++;
-        String(hour).length === 1
-          ? times.push(`0${String(hour)}:${String(minutes)}0`)
-          : times.push(`${String(hour)}:${String(minutes)}0`);
-      }
-    }
-    return times;
-  };
-  const times = setTimeArr();
+  const times: string[] = TimeFunctions.times;
+  const getDateFromString = TimeFunctions.getDateFromString;
+  const getStringFromDate = TimeFunctions.getStringFromDate;
+  const getTimeFromString = TimeFunctions.getTimeFromString;
+  const sameDay = TimeFunctions.sameDay;
+
   const [selectedTimes, setSelectedTimes] = useState<string[]>([]);
   const [reservations, setReservations] = useState<Reservation[]>([]);
   const [bookedTimes, setBookedTimes] = useState<boolean[]>(getFalseArr());
@@ -132,7 +116,6 @@ const Calendar: React.FC<CalendarProps> = ({
       count--;
     }
   };
-  //TODO: fix what is updated.
   const updateMarked = (index: number, items: boolean[], count: number) => {
     const item = items[index];
     if (count === 0) {
@@ -164,11 +147,11 @@ const Calendar: React.FC<CalendarProps> = ({
     setIsMarkedArr(items);
   };
 
-  const updateBookedTimesFromTo = (fromIndex: number, toIndex: number) => {
+  const updateBookedTimesFromToFalse = (fromIndex: number, toIndex: number) => {
     const items = [...bookedTimes];
     for (let i = fromIndex; i < toIndex; i++) {
       let item = items[i];
-      item = !item;
+      item = false;
       items[i] = item;
     }
     setBookedTimes(items);
@@ -220,69 +203,13 @@ const Calendar: React.FC<CalendarProps> = ({
       .catch((err) => console.log(err));
   };
 
-  const getDateFromString = (str: string) => {
-    let index = -1;
-    for (let i = 0; i < str.length; i++) {
-      if (str[i] === ' ') {
-        index = i;
-        break;
-      }
-    }
-    if (index !== -1) {
-      const sub1: string = str.substring(0, index);
-      const sub2: string = str.substring(index);
-      const split: string[] = sub2.trim().split(':');
-      return new Date(sub1 + ' ' + split[0] + ':' + split[1]);
-    } else return new Date();
-  };
-
-  const getStringFromDate = (date: Date) => {
-    return (
-      getDayOfWeek(date.getDay()) +
-      ' ' +
-      date.getDate() +
-      '.' +
-      (date.getMonth() + 1) +
-      '.' +
-      date.getFullYear()
-    );
-  };
-
-  const getTimeFromString = (str: string) => {
-    let index = -1;
-    for (let i = 0; i < str.length; i++) {
-      if (str[i] === ' ') {
-        index = i;
-        break;
-      }
-    }
-    if (index !== -1) {
-      const sub1: string = str.substring(0, index);
-      const sub2: string = str.substring(index);
-      const split: string[] = sub2.trim().split(':');
-      return split[0] + ':' + split[1];
-    } else return '';
-  };
-
-  const sameDay = (date1: Date, date2: Date) => {
-    if (
-      date1.getFullYear() === date2.getFullYear() &&
-      date1.getMonth() == date2.getMonth() &&
-      date1.getDay() === date2.getDay()
-    ) {
-      return true;
-    } else {
-      return false;
-    }
-  };
-
   useEffect(() => {
     getReservationForSectionDate();
   }, [section, date]);
 
   // to update the booked times
   useEffect(() => {
-    if (reservations !== [] && reservations !== undefined) {
+    if (reservations.length !== 0) {
       const items = [...bookedTimes];
       for (const i in reservations) {
         const fromDate = getDateFromString(reservations[i].from_date);
@@ -295,13 +222,15 @@ const Calendar: React.FC<CalendarProps> = ({
           if (fromIndex >= 0 && toIndex <= isMarkedArr.length - 1) {
             for (let i = fromIndex; i < toIndex; i++) {
               let item = items[i];
-              item = !item;
+              item = true;
               items[i] = item;
             }
           }
         }
       }
       setBookedTimes(items);
+    } else {
+      updateBookedTimesFromToFalse(0, length);
     }
   }, [reservations, date, section]);
 
@@ -332,7 +261,7 @@ const Calendar: React.FC<CalendarProps> = ({
         bookedTimes={bookedTimes}
         setBookedTimes={setBookedTimes}
         updateBookedTimesFromTo={(fromIndex: number, toIndex: number) =>
-          updateBookedTimesFromTo(fromIndex, toIndex)
+          updateBookedTimesFromToFalse(fromIndex, toIndex)
         }
         noMarked={noMarked}
         setNoMarked={setNoMarked}
@@ -352,14 +281,23 @@ const Calendar: React.FC<CalendarProps> = ({
       {' '}
       {/* Set the width to 37% for responsive design, 45rem for static*/}
       <CardContent>
-        <Typography
-          className={classes.title}
-          color="textSecondary"
-          gutterBottom
-        >
-          {section.section_name + ' '}
-          {getStringFromDate(date)}
-        </Typography>
+        <div style={{ display: 'flex' }}>
+          <Typography
+            className={classes.title}
+            color="textSecondary"
+            gutterBottom
+          >
+            {section.section_name + ' '}
+            {getStringFromDate(date)}
+          </Typography>
+          <Tooltip
+            title="Marker de ønskede tidene. Maks er 3 og må være sammenhengende."
+            style={{ marginLeft: '1%' }}
+            placement="right"
+          >
+            <InfoIcon />
+          </Tooltip>
+        </div>
         <Divider variant="fullWidth" />
         <GridList cellHeight={60} cols={8} style={{ padding: '10px' }}>
           {renderTimeCards}
@@ -376,7 +314,7 @@ const Calendar: React.FC<CalendarProps> = ({
             Fjern valgte tider
           </StyledButton>
           <Popup
-            title={`Reserver for ${section.section_name} ${getStringFromDate(
+            title={`Reserver for "${section.section_name}" ${getStringFromDate(
               date
             )}`}
             openPopup={openPopup}
@@ -413,9 +351,10 @@ const Calendar: React.FC<CalendarProps> = ({
         <button onClick={() => console.log(reservations)}>
           log reservations
         </button>
-        <button onClick={() => console.log(noClicked)}>log no clicked</button>
-        <button onClick={() => console.log(timeCard1)}>log time card 1</button>
-        <button onClick={() => console.log(timeCard2)}>log time card 2</button>
+        <button onClick={() => console.log(section)}>log section</button>
+        <button onClick={() => console.log(reservations.length)}>
+          log reservations length
+        </button>
         */}
       </CardContent>
     </Card>

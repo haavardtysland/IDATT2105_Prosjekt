@@ -25,8 +25,6 @@ const useStyles = makeStyles({
 
 function BarButtons({ style }: any) {
   const history = useHistory();
-  const { user } = useContext(Context.UserContext);
-  const admin = useRef(user.isAdmin);
   const classes = useStyles();
 
   return (
@@ -38,7 +36,7 @@ function BarButtons({ style }: any) {
         >
           <Typography variant="h6">Se bestillinger</Typography>
         </MenuItem>
-        {admin.current == 'true' && (
+        {localStorage.getItem('isAdmin') == 'true' && (
           <Fragment>
             <MenuItem
               className={classes.menuItem}
@@ -65,7 +63,12 @@ function BarButtons({ style }: any) {
         <MenuItem onClick={() => history.push('/MyUser')}>
           <p>Din bruker</p>
         </MenuItem>
-        <MenuItem onClick={() => history.push('/')}>
+        <MenuItem
+          onClick={() => {
+            history.push('/');
+            localStorage.clear();
+          }}
+        >
           <p>Logg ut</p>
         </MenuItem>
       </div>

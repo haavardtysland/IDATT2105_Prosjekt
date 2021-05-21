@@ -1,14 +1,26 @@
 package IDATT2105.Reservation.util;
 
+/*
+import IDATT2106.team6.Gidd.models.Activity;
+import IDATT2106.team6.Gidd.models.FriendGroup;
+import IDATT2106.team6.Gidd.models.User;
+import IDATT2106.team6.Gidd.service.ActivityService;
+import IDATT2106.team6.Gidd.service.FriendGroupService;
+import IDATT2106.team6.Gidd.service.SecurityServiceImpl;
+
+ */
+
 import IDATT2105.Reservation.models.Reservation;
 import IDATT2105.Reservation.models.User;
 import IDATT2105.Reservation.service.ReservationService;
 import IDATT2105.Reservation.service.SecurityServiceImpl;
+
 import IDATT2105.Reservation.service.UserService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.bind.DatatypeConverter;
@@ -58,10 +70,10 @@ public class TokenRequiredAspect {
     for (Object arg : args) {
       if (arg instanceof Map) {
         Map map = (Map) arg;
-        if (map.containsKey("user_id")) {
+        if (map.containsKey("userId")) {
+          subject = map.get("userId").toString();
+        } else if (map.containsKey("user_id")) {
           subject = map.get("user_id").toString();
-        } else if (map.containsKey("fromUserId")) {
-          subject = map.get("fromUserId").toString();
         }
       }
     }
@@ -142,14 +154,6 @@ public class TokenRequiredAspect {
     return handleToken(pjp, subject);
   }
 
-  /**
-   * Check function that checks if the subject is correct or if the user is admin
-   * Admin then for example has access to edit other users reservations
-   * @param pjp
-   * @param subject
-   * @return Object
-   * @throws Throwable
-   */
   private Object handleToken(ProceedingJoinPoint pjp, String subject) throws Throwable {
     Map<String, String> body = new HashMap<>();
     try {
