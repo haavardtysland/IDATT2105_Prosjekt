@@ -94,7 +94,7 @@ function ReservationAdministration() {
   return (
     <div>
       <Container>
-        <AdministrateButtons />
+        <AdministrateButtons/>
       </Container>
       <div style ={{marginTop: '-10%'}}>
         <Typography variant="h5" style={{ marginTop: '11%', marginLeft: '1rem' }}>

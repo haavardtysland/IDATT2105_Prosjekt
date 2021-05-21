@@ -5,18 +5,14 @@ import static IDATT2105.Reservation.controller.ControllerUtil.formatJson;
 import static IDATT2105.Reservation.controller.ControllerUtil.getRandomID;
 import static IDATT2105.Reservation.controller.ControllerUtil.getRandomPassword;
 import static IDATT2105.Reservation.controller.ControllerUtil.validateStringMap;
-
 import IDATT2105.Reservation.models.User;
 import IDATT2105.Reservation.service.UserService;
-
 import IDATT2105.Reservation.util.PathTokenRequired;
 import IDATT2105.Reservation.util.PathTwoTokenRequired;
 import IDATT2105.Reservation.util.SendEmailService;
 import java.sql.Date;
-import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
-
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
