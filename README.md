@@ -37,7 +37,7 @@ Hvis man ønsker å kjøre backend lokalt så er man avhengig av egen database, 
 
 ```Backend/src/main/resources/```
 
-Den skal se slik ut, men rdshostname, rdsport, rdsusername, og rdspassword skal byttes til verdier fra egen database.
+Den skal se slik ut, men rdshostname, rdsport, rdsusername, rdspassword, spring.mail.username, spring.mail.password skal byttes til verdier fra egen database/mail.
 
 ```
 RDSHOSTNAME=mysql-ait.stud.idi.ntnu.no
