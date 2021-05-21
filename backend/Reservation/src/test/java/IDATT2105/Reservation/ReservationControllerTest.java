@@ -631,7 +631,7 @@ public class ReservationControllerTest {
 
 		JSONParser parser = new JSONParser();
 		JSONObject info = (JSONObject) parser.parse(messageId);
-		assert(info.toString().equals("{}"));
+		assert(info.get("message").equals(message.getMessage()));
 	}
 
 	@Test
