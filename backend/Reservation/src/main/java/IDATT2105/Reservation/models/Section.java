@@ -2,7 +2,6 @@ package IDATT2105.Reservation.models;
 
 import io.swagger.annotations.ApiModel;
 import org.eclipse.persistence.annotations.CascadeOnDelete;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;

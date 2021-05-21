@@ -1,7 +1,6 @@
 package IDATT2105.Reservation.controller;
 
 import static IDATT2105.Reservation.controller.ControllerUtil.formatJson;
-
 import IDATT2105.Reservation.models.User;
 import IDATT2105.Reservation.service.SecurityService;
 import IDATT2105.Reservation.service.UserService;
@@ -9,7 +8,6 @@ import IDATT2105.Reservation.util.Logger;
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.Map;
-
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;

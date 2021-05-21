@@ -23,6 +23,21 @@ const useStyles = makeStyles((theme: Theme) =>
       marginRight: '2rem',
       padding: '2rem',
     },
+    typography: {
+      variant:'h5'
+    },
+    '@media(max-width:951px)':{
+      button: {
+        width: '40%',
+        height: '90%',
+        marginLeft: '2rem',
+        marginRight: '2rem',
+        padding: '2rem',
+      },
+      typography: {
+        variant:'p'
+      }
+    }
   })
 );
 
@@ -35,7 +50,8 @@ function AdministrateButtons() {
         onClick={() => history.push('/administrate/room')}
         className={classes.button}
       >
-        <Typography variant="h5">
+        <Typography 
+        className={classes.typography}>
           Administrer <br></br> rom
         </Typography>
       </Button>
@@ -43,7 +59,7 @@ function AdministrateButtons() {
         onClick={() => history.push('/administrate/user')}
         className={classes.button}
       >
-        <Typography variant="h5">
+        <Typography className={classes.typography}>
           Administrer <br></br> brukere
         </Typography>
       </Button>
@@ -51,7 +67,7 @@ function AdministrateButtons() {
         onClick={() => history.push('/administarte/reservation')}
         className={classes.button}
       >
-        <Typography variant="h5">
+        <Typography className={classes.typography}>
           Administrer <br></br> reservasjoner
         </Typography>
       </Button>

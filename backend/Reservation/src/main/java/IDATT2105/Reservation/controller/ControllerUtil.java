@@ -1,6 +1,5 @@
 package IDATT2105.Reservation.controller;
 
-
 import IDATT2105.Reservation.util.Logger;
 import java.util.Iterator;
 import java.util.Map;

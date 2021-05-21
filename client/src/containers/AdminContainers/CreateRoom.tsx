@@ -25,9 +25,6 @@ function CreateRoom() {
 
   const addRoom = () => {
     if (roomname != undefined && capacity != undefined) {
-      console.log(roomname);
-      console.log(capacity);
-      console.log(sections);
       axios
         .post('/room', {
           name: roomname,

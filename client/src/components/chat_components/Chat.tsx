@@ -17,6 +17,7 @@ import Room from '../../interfaces/Room';
 import User from '../../interfaces/User';
 import MessageCard from './MessageCard';
 import Message from '../../interfaces/Message';
+import ChatFilter from './ChatFilter';
 
 const useStyles = makeStyles({
   drawerPaper: {
@@ -55,8 +56,10 @@ interface Props {
 }
 
 function Chat({ room, open, closeChat }: Props) {
-  const [currentSection, setCurrentSection] = useState<Section>();
-  const [currentFilter, setCurrentFilter] = useState<string>();
+  const [currentSection, setCurrentSection] = useState<Section | undefined>(
+    room.sections[0]
+  );
+  const [filterValue, setFilterValue] = useState<number | null>(null);
   const [message, setMessage] = useState<string>('');
   const [messages, setMessages] = useState<Message[]>([]);
   const classes = useStyles();
@@ -70,6 +73,19 @@ function Chat({ room, open, closeChat }: Props) {
       return mes1.timecreated - mes2.timecreated;
     });
   };
+
+  useEffect(() => {
+    const now: number = new Date().getTime();
+    if (filterValue != null) {
+      setMessages(
+        messages.filter((mes) => mes.timecreated > now - filterValue)
+      );
+    } else if (filterValue == null) {
+      if (currentSection?.messages) {
+        setMessages(currentSection.messages);
+      }
+    }
+  }, [filterValue]);
 
   useEffect(() => {
     if (currentSection?.messages) {
@@ -97,10 +113,12 @@ function Chat({ room, open, closeChat }: Props) {
 
   const sendMessage = () => {
     if (message != '' && currentSection) {
-      axios.post(`/section/${currentSection.section_id}/message`, {
-        user_id: localStorage.getItem('id'),
-        message: message,
-      });
+      axios
+        .post(`/section/${currentSection.section_id}/message`, {
+          user_id: localStorage.getItem('id'),
+          message: message,
+        })
+        .then(() => setMessage(''));
     }
   };
 
@@ -147,12 +165,15 @@ function Chat({ room, open, closeChat }: Props) {
                   Vis meldinger fra alle seksjoner
                 </MenuItem>
                 {room !== undefined &&
-                  room['sections'].map((section: Section, key: number) => (
+                  room.sections.map((section: Section, key: number) => (
                     <MenuItem value={section.section_id} key={key}>
                       {section.section_name}
                     </MenuItem>
                   ))}
               </StyledTextField>
+              <ChatFilter
+                setFilterValue={(val) => setFilterValue(val)}
+              ></ChatFilter>
             </Grid>
             <Grid item xs>
               <MessageBox id="chat">

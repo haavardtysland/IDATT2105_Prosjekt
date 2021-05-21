@@ -1,13 +1,9 @@
 package IDATT2105.Reservation.repo;
 
-
-import IDATT2105.Reservation.models.Reservation;
 import IDATT2105.Reservation.models.Room;
 import IDATT2105.Reservation.models.Section;
-import IDATT2105.Reservation.models.User;
 import IDATT2105.Reservation.util.Logger;
 import org.springframework.stereotype.Repository;
-
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.io.IOException;
@@ -169,5 +165,4 @@ public class RoomRepo extends ProjectRepo {
             em.close();
         }
     }
-
 }

@@ -4,24 +4,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.TypedQuery;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import IDATT2105.Reservation.util.SendEmailService;
-
 import IDATT2105.Reservation.models.User;
 import IDATT2105.Reservation.util.*;
-
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 
 @Repository
 public class UserRepo extends ProjectRepo {
   private Logger log = new Logger(UserRepo.class.toString());
-
-
-  @Autowired
-  private SendEmailService sendEmailService;
 
   public UserRepo() throws IOException {
     connect();

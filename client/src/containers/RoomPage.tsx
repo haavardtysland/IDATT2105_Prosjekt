@@ -63,7 +63,9 @@ const RoomPage: React.FC = () => {
     if (room['room_id'] === -1) {
       const pathName: string[] = window.location.pathname.split('/');
       axios.get(`/room/${pathName[pathName.length - 1]}`).then((response) => {
+        console.log(response.data.sections[0]);
         setCurrentRoom(response.data);
+        setCurrentSection(response.data.sections[0]);
       });
     }
   }, []);
@@ -85,10 +87,12 @@ const RoomPage: React.FC = () => {
           variant="outlined"
           select
           label="Seksjon"
+          defaultValue={currentSection}
           onChange={handleChangeCurrentSection}
           value={currentSection}
         >
           {currentRoom !== undefined &&
+            currentRoom.sections !== undefined &&
             currentRoom.sections.map((section: Section, key: number) => (
               <MenuItem value={section.section_id} key={key}>
                 {section.section_name}
