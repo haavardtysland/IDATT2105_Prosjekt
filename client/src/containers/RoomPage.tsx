@@ -71,7 +71,6 @@ const RoomPage: React.FC = () => {
     if (room['room_id'] === -1) {
       const pathName: string[] = window.location.pathname.split('/');
       axios.get(`/room/${pathName[pathName.length - 1]}`).then((response) => {
-        console.log(response.data.sections[0]);
         setCurrentRoom(response.data);
         setCurrentSection(response.data.sections[0]);
       });
@@ -94,8 +93,8 @@ const RoomPage: React.FC = () => {
       <div style={{ display: 'flex' }}>
         <Autocomplete
           style={{ marginTop: '5%', width: '15%', marginLeft: '31%' }}
-          options={room.sections}
-          getOptionLabel={(sec: any) => sec.section_name}
+          options={currentRoom.sections}
+          getOptionLabel={(sec: Section) => sec.section_name}
           onChange={onValueChange}
           renderInput={(params) => (
             <TextField {...params} label="Seksjon" variant="outlined" />
