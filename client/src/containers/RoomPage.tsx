@@ -46,6 +46,7 @@ const RoomPage: React.FC = () => {
   const [selectedDate, setSelectedDate] = React.useState<Date>(
     new Date('2014-08-18T21:11:54')
   );
+  const [value, setValue] = React.useState(null);
 
   const handleChangeCurrentSection = (event: ChangeEvent<HTMLInputElement>) => {
     if (room !== undefined) {
@@ -102,7 +103,7 @@ const RoomPage: React.FC = () => {
           id="date"
           label="Dato"
           type="date"
-          defaultValue="2021-05-12"
+          defaultValue={new Date()}
           InputLabelProps={{
             shrink: true,
           }}

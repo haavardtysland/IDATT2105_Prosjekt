@@ -1,5 +1,5 @@
 import { Card, CardContent, Typography, Tooltip } from '@material-ui/core';
-import React, { useState, useEffect, forwardRef } from 'react';
+import React, { useState, useEffect, forwardRef, LegacyRef } from 'react';
 import styled from 'styled-components';
 import Reservation from '../../interfaces/Reservation';
 import { SortFunctions } from '../sorting/SortFunctions';
