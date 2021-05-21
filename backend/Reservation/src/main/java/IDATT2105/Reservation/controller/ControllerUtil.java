@@ -47,7 +47,6 @@ public class ControllerUtil {
       Map.Entry pair = (Map.Entry) it.next();
       String goose = "";
 
-      //todo very scuffed
       try {
         Integer.parseInt(pair.getValue().toString());
       } catch (Exception e) {

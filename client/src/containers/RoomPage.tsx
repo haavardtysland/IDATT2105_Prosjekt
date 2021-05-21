@@ -36,6 +36,7 @@ const StyledTextField = withStyles({
 
 const RoomPage: React.FC = () => {
   const { room } = useContext(Context.RoomContext);
+  const [openChat, setOpenChat] = useState<boolean>(false);
   const [currentRoom, setCurrentRoom] = useState<Room>(room);
   const [currentSection, setCurrentSection] = useState<Section>({
     room_id: -1,
@@ -47,7 +48,6 @@ const RoomPage: React.FC = () => {
     new Date('2014-08-18T21:11:54')
   );
   const [value, setValue] = React.useState(null);
-  const [openChat, setOpenChat] = useState<boolean>(false);
 
   const handleChangeCurrentSection = (event: ChangeEvent<HTMLInputElement>) => {
     if (room !== undefined) {
@@ -82,6 +82,7 @@ const RoomPage: React.FC = () => {
           <InfoIcon></InfoIcon>
         </Tooltip>
       </StyledDivHeader>
+      <Button onClick={() => setOpenChat(!openChat)}>Open Chat</Button>
       <Divider variant="fullWidth" />
       <div>
         <StyledTextField
@@ -115,7 +116,13 @@ const RoomPage: React.FC = () => {
         >
           <ChatIcon />
         </Button>
-        {openChat && <Chat room={currentRoom}></Chat>}
+        {openChat && (
+          <Chat
+            open={openChat}
+            closeChat={() => setOpenChat(false)}
+            room={currentRoom}
+          ></Chat>
+        )}
       </div>
       {currentRoom.room_id !== -1 && currentSection.section_id !== -1 && (
         <Calendar date={selectedDate} section={currentSection} />

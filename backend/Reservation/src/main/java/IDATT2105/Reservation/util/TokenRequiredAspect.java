@@ -136,7 +136,7 @@ public class TokenRequiredAspect {
   public Object reservationTokenRequiredWithAnnotation(ProceedingJoinPoint pjp,
                                                     ReservationTokenRequired reservationTokenRequired)
       throws Throwable {
-    log.info("Around activityTokenRequiredWithAnnotation");
+    log.info("Around reservationTokenRequiredWithAnnotation");
     Object[] args = pjp.getArgs();
     String subject = "";
     Reservation reservation = null;
@@ -211,5 +211,4 @@ public class TokenRequiredAspect {
           .body(body);
     }
   }
-
 }

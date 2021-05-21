@@ -25,6 +25,9 @@ function CreateRoom() {
 
   const addRoom = () => {
     if (roomname != undefined && capacity != undefined) {
+      console.log(roomname);
+      console.log(capacity);
+      console.log(sections);
       axios
         .post('/room', {
           name: roomname,
@@ -37,6 +40,9 @@ function CreateRoom() {
           } else {
             alert('Du opprettet rommet');
           }
+        })
+        .catch((err) => {
+          alert(err.response.data.error);
         });
     } else {
       alert('Fyll inn alle felt');

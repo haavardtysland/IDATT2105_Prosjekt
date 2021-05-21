@@ -1,5 +1,7 @@
-import { Card } from '@material-ui/core';
-import React from 'react';
+import { Card, Tooltip, Typography } from '@material-ui/core';
+
+import React, { Fragment } from 'react';
+import styled from 'styled-components';
 import Message from '../../interfaces/Message';
 
 interface Props {
@@ -7,7 +9,16 @@ interface Props {
 }
 
 function MessageCard({ message }: Props) {
-  return <Card></Card>;
+  return (
+    <Tooltip title={new Date(message.timecreated).toISOString()}>
+      <Card style={{ width: '80%', margin: '0.5rem' }}>
+        <p style={{ borderBottom: '0.5px solid black' }}>
+          {message.user.email}
+        </p>
+        <p>{message.message}</p>
+      </Card>
+    </Tooltip>
+  );
 }
 
 export default MessageCard;
