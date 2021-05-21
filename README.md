@@ -26,6 +26,13 @@ Målet for prosjektet var å lage en applikasjon der administratorer kan legge t
   - Se, endre eller slette egne reservasjoner
   - Legge til kommentarer i en seksjon, og se andre kommentarer
   - Se statistikk over andre rom
+ 
+## Fremtidig arbeid
+  Eventuelle forbedringer vi kan se på ved fremtidig arbeid er: 
+   - Støtte for kryptert overføring med HTTPS
+   - Frontend tester
+   - ++
+
 
 ## Testing
 Vi har valgt å lage integrasjonstester som tester hele stakken, helt fra controller og til database. Vi har god dekningsgrad på server-siden, der testene dekker 58% av linjene i kodebasen. Disse har blitt brukt i en kombinasjon med CI/CD slik at når man oppretter pull requests, blir testene kjørt, og vi får beskjed fra CI om testene feiler. 
