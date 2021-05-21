@@ -139,7 +139,7 @@ const Calendar: React.FC<CalendarProps> = ({
 
   const updateIsMarkedArrFromTo = (fromIndex: number, toIndex: number) => {
     const items = [...isMarkedArr];
-    for (let i = fromIndex; i <= toIndex; i++) {
+    for (let i = fromIndex; i < toIndex; i++) {
       let item = items[i];
       item = !item;
       items[i] = item;
@@ -210,17 +210,17 @@ const Calendar: React.FC<CalendarProps> = ({
   // to update the booked times
   useEffect(() => {
     if (reservations.length !== 0) {
-      const items = [...bookedTimes];
-      for (const i in reservations) {
-        const fromDate = getDateFromString(reservations[i].from_date);
-        const toDate = getDateFromString(reservations[i].to_date);
+      const items = getFalseArr();
+      for (const index in reservations) {
+        const fromDate = getDateFromString(reservations[index].from_date);
+        const toDate = getDateFromString(reservations[index].to_date);
         if (sameDay(fromDate, toDate) && sameDay(toDate, date)) {
           const fromTime: string = fromDate.toTimeString().substring(0, 5);
           const toTime: string = toDate.toTimeString().substring(0, 5);
           const fromIndex: number = times.indexOf(fromTime);
           const toIndex: number = times.indexOf(toTime);
           if (fromIndex >= 0 && toIndex <= isMarkedArr.length - 1) {
-            for (let i = fromIndex; i <= toIndex; i++) {
+            for (let i = fromIndex; i < toIndex; i++) {
               let item = items[i];
               item = true;
               items[i] = item;

@@ -1,12 +1,18 @@
 import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
-import { Button, Typography, withStyles, TextField } from '@material-ui/core';
+import {
+  Button,
+  Typography,
+  withStyles,
+  TextField,
+  Tooltip,
+} from '@material-ui/core';
 import styled from 'styled-components';
 import User from '../../interfaces/User';
 import axios from '../../axios';
-import { Context } from '../../Context';
 import Section from '../../interfaces/Section';
 import config from '../../Config';
 import { TimeFunctions } from '../calendar_components/TimeFunctions';
+import InfoIcon from '@material-ui/icons/Info';
 
 const ButtonsContainer = styled.div`
   display: flex;
@@ -70,12 +76,24 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
   const [currentTimes, setCurrentTimes] = useState<string[]>(
     selectedTimes !== undefined ? selectedTimes : []
   );
+
+  const lastToDate = '19:30';
+  const getToDate = (): string => {
+    if (currentTimes.length === 1) {
+      return times[times.indexOf(currentTimes[0]) + 1];
+    } else if (
+      times.indexOf(currentTimes[currentTimes.length - 1]) ===
+      times.length - 1
+    ) {
+      return lastToDate;
+    } else {
+      return times[times.indexOf(currentTimes[currentTimes.length - 1]) + 1];
+    }
+  };
+
   const [fromDate, setFromDate] = useState<string>(currentTimes[0]);
-  const [toDate, setToDate] = useState<string>(
-    currentTimes.length === 1
-      ? times[times.indexOf(currentTimes[0]) + 1]
-      : currentTimes[currentTimes.length - 1]
-  );
+  const [toDate, setToDate] = useState<string>(getToDate());
+
   const [deleteTime, setDeleteTime] = useState<string>('');
   const [desc, setDesc] = useState<string>('');
   const [capacity, setCapacity] = useState<string>('');
@@ -166,22 +184,29 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
     if (selectedTimes !== undefined && deleteTime !== '') {
       setSelectedTimes(currentTimes);
       updateIsMarkedArr(times.indexOf(deleteTime));
+      setFromDate(currentTimes[0]);
+      setToDate(getToDate());
     }
   }, [currentTimes]);
 
   return (
     <div>
-      <Typography>
-        {currentUser.userId !== -1 &&
-          currentUser.firstName + ' ' + currentUser.surname + ' '}
-        ønsker å reservere de følgende tidene:
-      </Typography>
+      <div style={{ display: 'flex' }}>
+        <Typography>
+          {currentUser.userId !== -1 &&
+            currentUser.firstName + ' ' + currentUser.surname + ' '}
+          ønsker å reservere de følgende tidene:
+        </Typography>
+        <Tooltip title="Trykk på de tidene man ønsker å fjerne.">
+          <InfoIcon />
+        </Tooltip>
+      </div>
       <ul>
         {currentTimes?.map((time, key: number) => (
           <StyledLi onClick={deleteListItem.bind(this, key)} key={key}>
             {times.indexOf(time) !== times.length - 1
               ? `${time} til ${times[times.indexOf(time) + 1]}`
-              : `${time} til 19:30`}
+              : `${time} til ${lastToDate}`}
           </StyledLi>
         ))}
       </ul>
@@ -213,6 +238,9 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
           Avbryt
         </StyledButton>
         <button onClick={() => console.log(toDate)}>log to date</button>
+        <button onClick={() => console.log(currentTimes)}>
+          log current times
+        </button>
         {/*
         <button onClick={() => console.log(selectedTimes)}>
           log selected times
