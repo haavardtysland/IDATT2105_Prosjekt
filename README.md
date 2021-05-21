@@ -64,7 +64,7 @@ spring.mail.properties.mail.smtp.starttls.enable=true
   4. Gå til Backend mappen i terminalen
   5. Skriv ```mvn spring-boot:run```
   6. Om du ønsker å kjøre testene kan du skrive ```mvn test```
-  7. Serveren starter på ```localhost:8081``` 
+  7. Serveren starter på http://localhost:8081 
   8. Gå til filen Axios.tsx i kildekoden på klient siden under ".client/src/", og endre baseURL til ```'http://localhost:8081'```
 
 ### Kjøre frontend lokalt
@@ -80,8 +80,8 @@ spring.mail.properties.mail.smtp.starttls.enable=true
   2. Last ned [Docker Desktop](https://www.docker.com/products/docker-desktop)
   3. Gå til filen Axios.tsx i kildekoden på klient siden under ".client/src/", og endre baseURL til 'http://localhost:8081'
   4. Gå til rot-mappen i prosjektet og skriv ```docker compose up```
-  5. Frontend vil da kjøre på localhost:3000
-  6. Backend kjører på localhost:8081
+  5. Frontend vil da kjøre på http://localhost:3000
+  6. Backend kjører på http://localhost:8081
 
 
 ## Endepunkter med Swagger UI
