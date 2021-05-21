@@ -17,12 +17,9 @@ interface TimeCardProps {
   index: number;
   updateIsMarkedArr: (index: number) => void;
   updateSelectedTimes: () => void;
-  getTimeFromString: (str: string) => string;
   times: string[];
   date: Date;
   bookedTimes: boolean[];
-  setBookedTimes: React.Dispatch<React.SetStateAction<boolean[]>>;
-  updateBookedTimesFromTo: (fromIndex: number, toIndex: number) => void;
   noMarked: number;
   setNoMarked: React.Dispatch<React.SetStateAction<number>>;
   updateIsMarkedArrFromTo: (fromIndex: number, toIndex: number) => void;
@@ -36,12 +33,8 @@ const TimeCard: React.FC<TimeCardProps> = ({
   index,
   updateIsMarkedArr,
   updateSelectedTimes,
-  getTimeFromString,
   bookedTimes,
-  setBookedTimes,
-  updateBookedTimesFromTo,
   noMarked,
-  setNoMarked,
   updateIsMarkedArrFromTo,
 }: TimeCardProps) => {
   const [backgroundcolor, setBackgroundcolor] = useState<string>('');
