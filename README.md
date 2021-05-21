@@ -37,7 +37,7 @@ Hvis man ønsker å kjøre backend lokalt så er man avhengig av egen database, 
 
 ```Backend/src/main/resources/```
 
-Den skal se slik ut, men rdshostname, rdsport, rdsusername, rdspassword, spring.mail.username, spring.mail.password skal byttes til verdier fra egen database/mail.
+Den skal se slik ut, men rdshostname, rdsport, rdsusername og rdspassword skal byttes til verdier fra egen database.
 
 ```
 RDSHOSTNAME=mysql-ait.stud.idi.ntnu.no
@@ -50,8 +50,8 @@ secretKey = (nøkkel til å lage token)
 spring.mail.protocol=smtp
 spring.mail.host=smtp.gmail.com
 spring.mail.port=587
-spring.mail.username= (en mail du bruker til å sende ut brukernavn og passord til brukere)
-spring.mail.password= (passord til denne mailen)
+spring.mail.username=reservasjonapp@gmail.com
+spring.mail.password=guttaruler123
 spring.mail.properties.mail.smtp.auth=true
 spring.mail.properties.mail.smtp.starttls.enable=true
 ```
