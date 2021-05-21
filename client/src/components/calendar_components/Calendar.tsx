@@ -210,10 +210,10 @@ const Calendar: React.FC<CalendarProps> = ({
   return (
     <Card
       style={{
+        maxWidth: '45rem',
         margin: '1%',
-        width: '45rem',
-        marginLeft: 'auto',
         marginRight: 'auto',
+        marginLeft: 'auto',
       }}
     >
       {' '}

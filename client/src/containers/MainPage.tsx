@@ -8,6 +8,7 @@ import Room from '../interfaces/Room';
 import RoomGrid from '../components/room_components/RoomGrid';
 import { Context } from '../Context';
 import { useHistory } from 'react-router';
+import { setDate } from 'date-fns';
 
 const Container = styled.div`
   padding-top: 13%;

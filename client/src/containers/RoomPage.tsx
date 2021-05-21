@@ -3,7 +3,6 @@ import Room from '../interfaces/Room';
 import {
   Button,
   Divider,
-  MenuItem,
   TextField,
   Tooltip,
   withStyles,
@@ -15,6 +14,7 @@ import InfoIcon from '@material-ui/icons/Info';
 import { Context } from '../Context';
 import Chat from '../components/chat_components/Chat';
 import axios from '../axios';
+import { Autocomplete } from '@material-ui/lab';
 import ChatIcon from '@material-ui/icons/Chat';
 
 const StyledHeader = styled.h1`
@@ -26,12 +26,6 @@ const StyledDivHeader = styled.div`
   display: flex;
   margin-top: 10%;
 `;
-const StyledTextField = withStyles({
-  root: {
-    width: '20%',
-    margin: '5% 10rem 5% 20%',
-  },
-})(TextField);
 
 const RoomPage: React.FC = () => {
   const { room } = useContext(Context.RoomContext);
@@ -46,17 +40,17 @@ const RoomPage: React.FC = () => {
   const { date } = useContext(Context.DateContext);
   const [selectedDate, setSelectedDate] = React.useState<Date>(date);
 
-  const handleChangeCurrentSection = (event: ChangeEvent<HTMLInputElement>) => {
-    if (room !== undefined) {
-      const tmp = currentRoom.sections.find(
-        (section: Section) => section.section_id === +event.target.value
-      );
-      if (tmp !== undefined) setCurrentSection(tmp);
-    }
-  };
-
   const handleChangeDate = (event: ChangeEvent<HTMLInputElement>) => {
     setSelectedDate(new Date(event.target.value));
+  };
+
+  const onValueChange = (
+    event: ChangeEvent<any>,
+    newInputValue: Section | null
+  ) => {
+    if (newInputValue) {
+      setCurrentSection(newInputValue);
+    }
   };
 
   useEffect(() => {
@@ -82,29 +76,22 @@ const RoomPage: React.FC = () => {
         </Tooltip>
       </StyledDivHeader>
       <Divider variant="fullWidth" />
-      <div>
-        <StyledTextField
-          variant="outlined"
-          select
-          label="Seksjon"
-          defaultValue={currentSection}
-          onChange={handleChangeCurrentSection}
-          value={currentSection}
-        >
-          {currentRoom !== undefined &&
-            currentRoom.sections !== undefined &&
-            currentRoom.sections.map((section: Section, key: number) => (
-              <MenuItem value={section.section_id} key={key}>
-                {section.section_name}
-              </MenuItem>
-            ))}
-        </StyledTextField>
+      <div style={{ display: 'flex' }}>
+        <Autocomplete
+          style={{ marginTop: '3rem', width: '20%', marginLeft: '20%' }}
+          options={room.sections}
+          getOptionLabel={(sec: any) => sec.section_name}
+          onChange={onValueChange}
+          renderInput={(params) => (
+            <TextField {...params} label="Seksjon" variant="outlined" />
+          )}
+        />
         <TextField
-          style={{ marginTop: '5%', marginLeft: '15%' }}
           id="date"
           label="Dato"
           type="date"
-          defaultValue={date}
+          style={{ marginTop: '3rem', marginLeft: '20%' }}
+          defaultValue={new Date()}
           InputLabelProps={{
             shrink: true,
           }}
@@ -127,6 +114,11 @@ const RoomPage: React.FC = () => {
       {currentRoom.room_id !== -1 && currentSection.section_id !== -1 && (
         <Calendar date={selectedDate} section={currentSection} />
       )}
+      <Chat
+        open={openChat}
+        closeChat={() => setOpenChat(false)}
+        room={currentRoom}
+      ></Chat>
     </div>
   );
 };
