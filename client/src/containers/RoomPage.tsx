@@ -7,6 +7,7 @@ import {
   Tooltip,
   Typography,
   withStyles,
+  Button,
 } from '@material-ui/core';
 import Section from '../interfaces/Section';
 import Calendar from '../components/calendar_components/Calendar';
@@ -34,6 +35,7 @@ const StyledTextField = withStyles({
 
 const RoomPage: React.FC = () => {
   const { room } = useContext(Context.RoomContext);
+  const [openChat, setOpenChat] = useState<boolean>(false);
   const [currentRoom, setCurrentRoom] = useState<Room>(room);
   const [currentSection, setCurrentSection] = useState<Section>({
     room_id: -1,
@@ -44,6 +46,7 @@ const RoomPage: React.FC = () => {
   const [selectedDate, setSelectedDate] = React.useState<Date>(
     new Date()
   );
+  const [value, setValue] = React.useState(null);
 
   const handleChangeCurrentSection = (event: ChangeEvent<HTMLInputElement>) => {
     if (room !== undefined) {
@@ -80,6 +83,7 @@ const RoomPage: React.FC = () => {
           <InfoIcon></InfoIcon>
         </Tooltip>
       </StyledDivHeader>
+      <Button onClick={() => setOpenChat(!openChat)}>Open Chat</Button>
       <Divider variant="fullWidth" />
       <div>
         <StyledTextField
@@ -112,7 +116,11 @@ const RoomPage: React.FC = () => {
       {currentRoom.room_id !== -1 && currentSection.section_id !== -1 && (
         <Calendar date={selectedDate} section={currentSection} />
       )}
-      <Chat room={currentRoom}></Chat>
+      <Chat
+        open={openChat}
+        closeChat={() => setOpenChat(false)}
+        room={currentRoom}
+      ></Chat>
     </div>
   );
 };

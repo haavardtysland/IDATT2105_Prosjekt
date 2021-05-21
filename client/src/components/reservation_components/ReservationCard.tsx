@@ -122,6 +122,8 @@ const ReservationCard: React.FC<ReservationCardProps> = ({
               </StyledInfo>
               <StyledInfo>Beskrivelse: {reservation.description}</StyledInfo>
               <StyledInfo>Plasser: {reservation.capacity}</StyledInfo>
+              <StyledInfo>{reservation.user.email}</StyledInfo>
+              <StyledInfo>{reservation.user.phoneNumber}</StyledInfo>
             </div>
             <TimeContainer>
               <Typography className={classes.timeText}>

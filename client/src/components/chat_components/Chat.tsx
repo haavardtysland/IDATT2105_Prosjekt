@@ -17,19 +17,23 @@ import Room from '../../interfaces/Room';
 import User from '../../interfaces/User';
 import MessageCard from './MessageCard';
 import Message from '../../interfaces/Message';
+import ChatFilter from './ChatFilter';
 
 const useStyles = makeStyles({
   drawerPaper: {
-    marginTop: '15%',
+    marginTop: '13%',
   },
 });
 
+const Flex = styled.div`
+  display: flex;
+`;
 const MessageBox = styled.div`
-  height: 35vh;
+  height: 40vh;
   max-width: 80vh;
   overflow: hidden;
   overflow-y: scroll;
-  margin-top: 15vh;
+  margin-top: 4vh;
 `;
 
 const Send = styled.div`
@@ -47,26 +51,54 @@ const StyledTextField = withStyles({
 
 interface Props {
   room: Room;
+  open: boolean;
+  closeChat: () => void;
 }
 
-function Chat({ room }: Props) {
-  const [currentSection, setCurrentSection] = useState<Section>();
-  const [currentFilter, setCurrentFilter] = useState<string>();
+function Chat({ room, open, closeChat }: Props) {
+  const [currentSection, setCurrentSection] = useState<Section | undefined>(
+    room.sections[0]
+  );
+  const [filterValue, setFilterValue] = useState<number | null>(null);
   const [message, setMessage] = useState<string>('');
   const [messages, setMessages] = useState<Message[]>([]);
-  const [open, setOpen] = useState<boolean>(true);
   const classes = useStyles();
 
   const onChangeMessage = (event: ChangeEvent<HTMLInputElement>) => {
     setMessage((event.target as HTMLInputElement).value);
   };
 
-  const onChangeFilter = (event: ChangeEvent<HTMLInputElement>) => {
-    setCurrentFilter((event.target as HTMLInputElement).value);
+  const SortTimeSendt = (messages: Message[]): Message[] => {
+    return [...messages].sort((mes1, mes2) => {
+      return mes1.timecreated - mes2.timecreated;
+    });
   };
 
   useEffect(() => {
-    console.log(currentSection);
+    const now: number = new Date().getTime();
+    if (filterValue != null) {
+      setMessages(
+        messages.filter((mes) => mes.timecreated > now - filterValue)
+      );
+    } else if (filterValue == null) {
+      if (currentSection?.messages) {
+        setMessages(currentSection.messages);
+      }
+    }
+  }, [filterValue]);
+
+  useEffect(() => {
+    if (currentSection?.messages) {
+      setMessages(currentSection.messages);
+    } else if (currentSection == null) {
+      let all: Message[] = [];
+      room.sections.forEach((sec) => {
+        if (sec.messages) {
+          all = all.concat(sec.messages);
+        }
+      });
+      setMessages(SortTimeSendt(all));
+    }
   }, [currentSection]);
 
   const handleChangeCurrentSection = (event: ChangeEvent<HTMLInputElement>) => {
@@ -75,22 +107,20 @@ function Chat({ room }: Props) {
         (section: Section) => section.section_id === +event.target.value
       );
       if (tmp !== undefined) setCurrentSection(tmp);
+      else setCurrentSection(undefined);
     }
   };
 
   const sendMessage = () => {
-    console.log(currentSection);
     if (message != '' && currentSection) {
-      axios.post(`/section/${currentSection.section_id}/message`, {
-        user_id: localStorage.getItem('id'),
-        message: message,
-      });
+      axios
+        .post(`/section/${currentSection.section_id}/message`, {
+          user_id: localStorage.getItem('id'),
+          message: message,
+        })
+        .then(() => setMessage(''));
     }
   };
-
-  useEffect(() => {
-    console.log('snekker');
-  }, []);
 
   return (
     <Drawer
@@ -116,7 +146,7 @@ function Chat({ room }: Props) {
               top: '20px',
               right: '20px',
             }}
-            onClick={() => setOpen(false)}
+            onClick={closeChat}
           >
             Lukk
           </Button>
@@ -132,40 +162,30 @@ function Chat({ room }: Props) {
                 value={currentSection}
               >
                 <MenuItem value={'Vis for hele rommet'}>
-                  Vis for hele rommet
+                  Vis meldinger fra alle seksjoner
                 </MenuItem>
                 {room !== undefined &&
-                  room['sections'].map((section: Section, key: number) => (
+                  room.sections.map((section: Section, key: number) => (
                     <MenuItem value={section.section_id} key={key}>
                       {section.section_name}
                     </MenuItem>
                   ))}
               </StyledTextField>
-            </Grid>
-            <Grid item xs>
-              <TextField
-                style={{ marginTop: '4px', width: '80%' }}
-                variant="outlined"
-                select
-                label="Filter"
-                onChange={onChangeFilter}
-                value={currentFilter}
-              >
-                <MenuItem value="Vis siste uke">Vis siste uke</MenuItem>
-                <MenuItem value="Vis siste måned">Vis siste måned</MenuItem>
-                <MenuItem value="Vis siste år">Vis siste år</MenuItem>
-              </TextField>
+              <ChatFilter
+                setFilterValue={(val) => setFilterValue(val)}
+              ></ChatFilter>
             </Grid>
             <Grid item xs>
               <MessageBox id="chat">
-                {messages.map((msg, index) => {
-                  <MessageCard key={index} message={msg}></MessageCard>;
-                })}
+                {messages.map((msg, index) => (
+                  <MessageCard key={index} message={msg}></MessageCard>
+                ))}
               </MessageBox>
             </Grid>
             <Grid item>
               <Send>
                 <TextField
+                  disabled={currentSection == undefined}
                   onChange={onChangeMessage}
                   value={message}
                   variant="outlined"
