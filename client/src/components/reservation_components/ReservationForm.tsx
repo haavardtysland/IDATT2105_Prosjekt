@@ -6,6 +6,7 @@ import axios from '../../axios';
 import { Context } from '../../Context';
 import Section from '../../interfaces/Section';
 import config from '../../Config';
+import { TimeFunctions } from '../calendar_components/TimeFunctions';
 
 const ButtonsContainer = styled.div`
   display: flex;
@@ -56,7 +57,7 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
   getReservationsForSelectionDate,
   updateIsMarkedArrFromTo,
 }: ReservationFormProps) => {
-  const { user } = useContext(Context.UserContext);
+  const userId = localStorage.getItem('id');
   const [currentUser, setCurrentUser] = useState<User>({
     userId: -1,
     firstName: '',
@@ -97,8 +98,8 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
 
   const getUser = async () => {
     try {
-      console.log(user);
-      const request = await axios.get(`/user/${user.id}`);
+      console.log(userId);
+      const request = await axios.get(`/user/${userId}`);
       console.log(request);
       setCurrentUser(request.data);
       return request;
@@ -135,17 +136,7 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
   //'2021-11-12 09:00:00.0'
   const postReservation = async () => {
     try {
-      let dateFormat = '';
-      if (String(date.getMonth() + 1).length === 1) {
-        dateFormat = `${date.getFullYear()}-0${
-          date.getMonth() + 1
-        }-${date.getDate()}`;
-      } else {
-        dateFormat = `${date.getFullYear()}-${
-          date.getMonth() + 1
-        }-${date.getDate()}`;
-      }
-
+      const dateFormat = TimeFunctions.getDateFormat(date);
       console.log(dateFormat);
       const object = {
         user_id: currentUser.userId,
