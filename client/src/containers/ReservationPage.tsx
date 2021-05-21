@@ -6,7 +6,6 @@ import { SortFunctions } from '../components/sorting/SortFunctions';
 import Reservation from '../interfaces/Reservation';
 import SortMenu from '../components/sorting/SortMenu';
 import axios from '../axios';
-import { Context } from '../Context';
 import FilterMenu from '../components/filter/FilterMenu';
 import { FilterFunctions } from '../components/filter/FilterFunctions';
 import config from '../Config';
@@ -30,7 +29,7 @@ enum SortOptions {
 }
 
 const ReservationPage: React.FC = () => {
-  const user = useContext(Context.UserContext);
+  const userId = localStorage.getItem('id');
   const [sortOption, setSortOption] = React.useState<number>(0);
   const [reservations, setReservations] = useState<Reservation[]>([]);
   const [currentReservations, setCurrentReservations] =
@@ -77,10 +76,7 @@ const ReservationPage: React.FC = () => {
 
   const getReservationsUser = async () => {
     try {
-      const request = await axios.get(
-        `/reservation/${user.user.id}/user`,
-        config
-      );
+      const request = await axios.get(`/reservation/${userId}/user`, config);
       setReservations(request.data['reservations']);
       return request;
     } catch (err) {
