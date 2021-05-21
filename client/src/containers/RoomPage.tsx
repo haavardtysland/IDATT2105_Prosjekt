@@ -1,12 +1,6 @@
 import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
 import Room from '../interfaces/Room';
-import {
-  Button,
-  Divider,
-  TextField,
-  Tooltip,
-  withStyles,
-} from '@material-ui/core';
+import { Button, Divider, TextField, Tooltip } from '@material-ui/core';
 import Section from '../interfaces/Section';
 import Calendar from '../components/calendar_components/Calendar';
 import styled from 'styled-components';

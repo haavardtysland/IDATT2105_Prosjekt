@@ -5,19 +5,11 @@ import {
   Grid,
   LinearProgress,
   makeStyles,
-  MenuItem,
-  TextField,
   Typography,
-  withStyles,
 } from '@material-ui/core';
-import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
-import styled from 'styled-components';
-import SendRoundedIcon from '@material-ui/icons/SendRounded';
-import { Context } from '../../Context';
+import React, { useEffect, useState } from 'react';
 import Section from '../../interfaces/Section';
 import axios from '../../axios';
-import Room from '../../interfaces/Room';
-import User from '../../interfaces/User';
 import TimeFilter from '../filter/TimeFilter';
 
 const useStyles = makeStyles({
@@ -25,27 +17,6 @@ const useStyles = makeStyles({
     marginTop: '15%',
   },
 });
-
-const MessageBox = styled.div`
-  height: 35vh;
-  max-width: 80vh;
-  overflow: hidden;
-  overflow-y: scroll;
-  margin-top: 15vh;
-`;
-
-const Send = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 95%;
-`;
-
-const StyledTextField = withStyles({
-  root: {
-    width: '80%',
-    marginTop: '5rem',
-  },
-})(TextField);
 
 interface Props {
   section: Section;
@@ -61,23 +32,10 @@ function Stats({ section, open, closeStats }: Props) {
   const [fullMs, setFullMs] = useState<number>(0);
   const [progress, setProgress] = useState<number>(0);
   const classes = useStyles();
-  /*
-  const onChangeFilter = (event: ChangeEvent<HTMLInputElement>) => {
-    setCurrentFilter((event.target as HTMLInputElement).value);
-  };*/
 
   useEffect(() => {
     console.log(currentSection);
   }, [currentSection]);
-  /*
-  const handleChangeCurrentSection = (event: ChangeEvent<HTMLInputElement>) => {
-    if (room !== undefined) {
-      const tmp = room.sections.find(
-        (section: Section) => section.section_id === +event.target.value
-      );
-      if (tmp !== undefined) setCurrentSection(tmp);
-    }
-  };*/
 
   useEffect(() => {
     console.log('snekker');
@@ -87,16 +45,11 @@ function Stats({ section, open, closeStats }: Props) {
     const to = new Date(toDateTime).getTime();
     const from = new Date(fromDateTime).getTime();
 
-    //console.log(to - from);
-    //setFullMs(100);
     axios
       .get(`/section/${section.section_id}/${from}/${to}`)
       .then((response) => {
         setMs((response.data.time / (to - from)) * 100);
         setFullMs(response.data.time);
-        console.log(response.data.time);
-        console.log((response.data.time / (to - from)) * 100);
-        //setFullMs((to - from) / response.data.time);
       });
   };
 
@@ -147,9 +100,8 @@ function Stats({ section, open, closeStats }: Props) {
               disabled={fromDateTime == '' || toDateTime == ''}
               onClick={getStats}
             >
-              heiheihei
+              Se statistikk
             </Button>
-
             <Grid item xs>
               <Box display="flex" alignItems="center">
                 <Box width="100%" mr={1}>
