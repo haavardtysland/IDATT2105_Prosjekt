@@ -1,13 +1,9 @@
 package IDATT2105.Reservation.service;
 
 import IDATT2105.Reservation.models.Reservation;
-import IDATT2105.Reservation.models.Section;
-import IDATT2105.Reservation.models.User;
 import IDATT2105.Reservation.repo.ReservationRepo;
 import IDATT2105.Reservation.util.Logger;
-import java.sql.Time;
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -64,9 +60,4 @@ public class ReservationService {
     log.info("Getting all reservations within a timeframe for a particular section " + sectionId + "between " + start + " and " + end) ;
     return repo.getReservationsForSectionOnTimeframe(sectionId, start, end);
   }
-
- /* public User getReservation(String email) {
-    log.info("getting user by email: " + email);
-    return repo.findReservationByEmail(email);
-  }*/
 }

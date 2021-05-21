@@ -10,9 +10,7 @@ import IDATT2105.Reservation.service.SectionService;
 import IDATT2105.Reservation.service.UserService;
 import IDATT2105.Reservation.util.Logger;
 import IDATT2105.Reservation.util.PathTokenRequired;
-import IDATT2105.Reservation.util.ReservationTime;
 import java.sql.Timestamp;
-
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -21,9 +19,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import static IDATT2105.Reservation.controller.ControllerUtil.formatJson;
 import static IDATT2105.Reservation.controller.ControllerUtil.getRandomID;
-
-
-import java.sql.Timestamp;
 import java.util.*;
 
 @CrossOrigin(origins = "*")
@@ -68,7 +63,7 @@ public class SectionController {
      * }
      * @param map
      * @param section_id
-     * @return
+     * @return confirmation and id
      */
     @ApiOperation(value = "Add a message for a section")
     @PostMapping(value="/{section_id}/message", produces="application/json")
@@ -83,8 +78,6 @@ public class SectionController {
             body.put("error", "Adding message to section " + id + " failed, are you sure the section exists?");
             return ResponseEntity.badRequest().headers(header).body(formatJson(body));
         }
-       // System.out.println(map.get("messages").getClass());
-        //String newMessage = map.get("message").toString();
         Message message = new Message();
             message.setMessageId(getRandomID());
             User user = userService.getUser(Integer.parseInt(map.get("user_id").toString()));
@@ -244,6 +237,13 @@ public class SectionController {
             return ResponseEntity.badRequest().headers(header).body(formatJson(body));
         }
     }
+
+    /**
+     * Deletes section with section_id
+     *
+     * @param section_id
+     * @return confirmation and id
+     */
     @ApiOperation(value = "Delete a section")
     @DeleteMapping(value="/{section_id}")
     public @ResponseBody

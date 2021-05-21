@@ -1,31 +1,19 @@
 package IDATT2105.Reservation.repo;
 
 import IDATT2105.Reservation.models.Reservation;
-import IDATT2105.Reservation.models.User;
-import IDATT2105.Reservation.service.UserService;
 import IDATT2105.Reservation.util.Logger;
-import IDATT2105.Reservation.util.SendEmailService;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class ReservationRepo extends ProjectRepo {
 
-
   private Logger log = new Logger(UserRepo.class.toString());
-
-
-  @Autowired
-  private SendEmailService sendEmailService;
-
-  @Autowired
-  private UserRepo userRepo;
 
   public ReservationRepo() throws IOException {
     connect();
@@ -42,7 +30,6 @@ public class ReservationRepo extends ProjectRepo {
 
   public Reservation findReservation(int reservationId){
     EntityManager em = getEm();
-    Reservation reservation;
     log.info("finding reservation with id " + reservationId);
     try {
       return em.find(Reservation.class, reservationId);
@@ -69,8 +56,6 @@ public class ReservationRepo extends ProjectRepo {
         em.remove(temporaryReservation);
         em.getTransaction().commit();
         log.info("delete success on id: " + reservationId);
-        //em.getEntityManagerFactory().getCache().evict(User.class);
-
         return true;
       }else {
         log.error("failed finding reservation, cannot delete reservation with id: " + reservationId);
