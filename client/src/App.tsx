@@ -17,15 +17,19 @@ function App() {
     capacity: 0,
     sections: [],
   });
+  const [date, setDate] = useState<Date>(new Date());
   const userValue = useMemo(() => ({ user, setUser }), [user, setUser]);
   const roomValue = useMemo(() => ({ room, setRoom }), [room, setRoom]);
+  const dateValue = useMemo(() => ({ date, setDate }), [date, setDate]);
 
   return (
     <Context.UserContext.Provider value={userValue}>
       <Context.RoomContext.Provider value={roomValue}>
-        <BrowserRouter>
-          <div className="App">{Routes}</div>
-        </BrowserRouter>
+        <Context.DateContext.Provider value={dateValue}>
+          <BrowserRouter>
+            <div className="App">{Routes}</div>
+          </BrowserRouter>
+        </Context.DateContext.Provider>
       </Context.RoomContext.Provider>
     </Context.UserContext.Provider>
   );

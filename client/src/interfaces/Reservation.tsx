@@ -9,4 +9,5 @@ export default interface Reservation {
   to_date: string;
   section: Section;
   user: User;
+  room_name: string;
 }

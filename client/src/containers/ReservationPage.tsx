@@ -38,7 +38,7 @@ const ReservationPage: React.FC = () => {
   const [descFilter, setDescFilter] = useState<string>('');
   const [timeFilterFrom, setTimeFilterFrom] = useState<string>('');
   const [timeFilterTo, setTimeFilterTo] = useState<string>('');
-  const [capFilter, setCapFilter] = React.useState<number[]>([20, 37]);
+  const [capFilter, setCapFilter] = React.useState<number[]>([1, 100]);
 
   useEffect(() => {
     if (sortOption === SortOptions.CapacityHighLow) {
