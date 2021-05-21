@@ -213,11 +213,6 @@ const ReservationFormEdit: React.FC<ReservationFormEditProps> = ({
           Avbryt
         </StyledButton>
       </ButtonsContainer>
-      <button onClick={() => console.log(reservation)}>log reservation</button>
-      <button onClick={() => console.log(currentTimes)}>
-        log current times
-      </button>
-      <button onClick={() => console.log(times)}>log times</button>
     </div>
   );
 };

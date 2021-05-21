@@ -42,7 +42,8 @@ interface ReservationFormProps {
   section: Section;
   date: Date;
   getReservationsForSelectionDate: () => void;
-  updateIsMarkedArrFromTo: (fromIndex: number, toIndex: number) => void;
+  isMarkedArr: boolean[];
+  setIsMarkedArr: React.Dispatch<React.SetStateAction<boolean[]>>;
 }
 
 const ReservationForm: React.FC<ReservationFormProps> = ({
@@ -55,7 +56,8 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
   section,
   date,
   getReservationsForSelectionDate,
-  updateIsMarkedArrFromTo,
+  isMarkedArr,
+  setIsMarkedArr,
 }: ReservationFormProps) => {
   const userId = localStorage.getItem('id');
   const [currentUser, setCurrentUser] = useState<User>({
@@ -71,15 +73,15 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
     selectedTimes !== undefined ? selectedTimes : []
   );
 
-  const lastToDate = '19:30';
+  const lastTime = '19:30';
   const getToDate = (): string => {
-    if (currentTimes.length === 1) {
-      return times[times.indexOf(currentTimes[0]) + 1];
-    } else if (
+    if (
       times.indexOf(currentTimes[currentTimes.length - 1]) ===
       times.length - 1
     ) {
-      return lastToDate;
+      return lastTime;
+    } else if (currentTimes.length === 1) {
+      return times[times.indexOf(currentTimes[0]) + 1];
     } else {
       return times[times.indexOf(currentTimes[currentTimes.length - 1]) + 1];
     }
@@ -162,10 +164,13 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
       const request = await axios.post('/reservation', object, config);
       console.log(request);
       getReservationsForSelectionDate();
-      updateIsMarkedArrFromTo(
-        times.indexOf(fromDate),
-        times.indexOf(toDate) - 1
-      );
+      setIsMarkedArr(() => {
+        const arr: boolean[] = [];
+        for (let i = 0; i < isMarkedArr.length; i++) {
+          arr.push(false);
+        }
+        return arr;
+      });
       setOpenPopup(!openPopup);
       return request;
     } catch (err) {
@@ -203,7 +208,7 @@ const ReservationForm: React.FC<ReservationFormProps> = ({
           <StyledLi onClick={deleteListItem.bind(this, key)} key={key}>
             {times.indexOf(time) !== times.length - 1
               ? `${time} til ${times[times.indexOf(time) + 1]}`
-              : `${time} til ${lastToDate}`}
+              : `${time} til ${lastTime}`}
           </StyledLi>
         ))}
       </ul>
