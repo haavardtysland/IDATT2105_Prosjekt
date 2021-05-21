@@ -21,8 +21,24 @@ import config from '../../Config';
 const TimeContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 1% 0 2% 2%;
-  width: 13rem;
+  margin-right: auto;
+  margin-left: auto;
+  position: relative;
+  //border: 2px solid pink;
+`;
+
+const RightContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const ButtonsContainer = styled.div`
+  display: flex;
+  flex-direction: block;
+  //border: 2px solid green;
+  margin-left: auto;
+  margin-top: auto;
+  position: relative;
 `;
 
 const TransformDiv = styled.div`
@@ -114,40 +130,46 @@ const ReservationCard: React.FC<ReservationCardProps> = ({
           <div style={{ display: 'flex' }}>
             <CardMedia
               image={roomPic}
-              style={{ height: '100px', width: '100px' }}
+              style={{ height: '150px', width: '150px' }}
             />
             <div style={{ flex: '1' }}>
-              <StyledInfo variant="h5">
-                {reservation.section.section_name}
+              <StyledInfo variant="h5">{reservation.room_name}</StyledInfo>
+              <StyledInfo>
+                Seksjon: {reservation.section.section_name}
               </StyledInfo>
               <StyledInfo>Beskrivelse: {reservation.description}</StyledInfo>
               <StyledInfo>Plasser: {reservation.capacity}</StyledInfo>
               <StyledInfo>{reservation.user.email}</StyledInfo>
               <StyledInfo>{reservation.user.phoneNumber}</StyledInfo>
             </div>
-            <TimeContainer>
-              <Typography className={classes.timeText}>
-                Fra:{' '}
-                {reservation.from_date.substring(
-                  0,
-                  reservation.from_date.indexOf('.') - 3
-                )}
-              </Typography>
-              <Typography className={classes.timeText}>
-                Til:{' '}
-                {reservation.to_date.substring(
-                  0,
-                  reservation.to_date.indexOf('.') - 3
-                )}
-              </Typography>
-            </TimeContainer>
+            <RightContainer>
+              <TimeContainer>
+                <Typography className={classes.timeText}>
+                  Fra:{' '}
+                  {reservation.from_date.substring(
+                    0,
+                    reservation.from_date.indexOf('.') - 3
+                  )}
+                </Typography>
+                <Typography className={classes.timeText}>
+                  Til:{' '}
+                  {reservation.to_date.substring(
+                    0,
+                    reservation.to_date.indexOf('.') - 3
+                  )}
+                </Typography>
+              </TimeContainer>
+              <ButtonsContainer>
+                <StyledButton onClick={deleteReservation}>
+                  <DeleteForeverIcon />
+                </StyledButton>
+                <StyledButton onClick={() => setOpenPopup(!openPopup)}>
+                  <EditIcon />
+                </StyledButton>
+              </ButtonsContainer>
+            </RightContainer>
           </div>
-          <StyledButton onClick={deleteReservation}>
-            <DeleteForeverIcon />
-          </StyledButton>
-          <StyledButton onClick={() => setOpenPopup(!openPopup)}>
-            <EditIcon />
-          </StyledButton>
+
           <Popup
             openPopup={openPopup}
             setOpenPopup={setOpenPopup}

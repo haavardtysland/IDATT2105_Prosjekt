@@ -8,7 +8,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import TimeCard from './TimeCard';
 import styled from 'styled-components';
 import Popup from '../Popup';
@@ -19,7 +19,6 @@ import Reservation from '../../interfaces/Reservation';
 import { SortFunctions } from '../sorting/SortFunctions';
 import { TimeFunctions } from './TimeFunctions';
 import InfoIcon from '@material-ui/icons/Info';
-import config from '../../Config';
 
 const ButtonsDiv = styled.div`
   display: flex;
@@ -77,7 +76,6 @@ const Calendar: React.FC<CalendarProps> = ({
   const times: string[] = TimeFunctions.times;
   const getDateFromString = TimeFunctions.getDateFromString;
   const getStringFromDate = TimeFunctions.getStringFromDate;
-  const getTimeFromString = TimeFunctions.getTimeFromString;
   const sameDay = TimeFunctions.sameDay;
 
   const [selectedTimes, setSelectedTimes] = useState<string[]>([]);
@@ -92,54 +90,9 @@ const Calendar: React.FC<CalendarProps> = ({
     setIsMarkedArr(items);
   };
 
-  const updateToTrue = (
-    index: number,
-    item: boolean,
-    items: boolean[],
-    count: number
-  ) => {
-    if (item === false) {
-      item = !item;
-      items[index] = item;
-      count++;
-    }
-  };
-  const updateToFalse = (
-    index: number,
-    item: boolean,
-    items: boolean[],
-    count: number
-  ) => {
-    if (item === true) {
-      item = !item;
-      items[index] = item;
-      count--;
-    }
-  };
-  const updateMarked = (index: number, items: boolean[], count: number) => {
-    const item = items[index];
-    if (count === 0) {
-      updateToTrue(index, item, items, count);
-    } else if (index === 0 && isMarkedArr[index + 1] === true) {
-      updateToTrue(index, item, items, count);
-    } else if (
-      index === isMarkedArr.length - 1 &&
-      isMarkedArr[index - 1] === true
-    ) {
-      updateToTrue(index, item, items, count);
-    } else if (
-      isMarkedArr[index - 1] === true ||
-      isMarkedArr[index + 1] === true
-    ) {
-      updateToTrue(index, item, items, count);
-    } else {
-      updateToFalse(index, item, items, count);
-    }
-  };
-
   const updateIsMarkedArrFromTo = (fromIndex: number, toIndex: number) => {
     const items = [...isMarkedArr];
-    for (let i = fromIndex; i < toIndex; i++) {
+    for (let i = fromIndex; i <= toIndex; i++) {
       let item = items[i];
       item = !item;
       items[i] = item;
@@ -149,7 +102,7 @@ const Calendar: React.FC<CalendarProps> = ({
 
   const updateBookedTimesFromToFalse = (fromIndex: number, toIndex: number) => {
     const items = [...bookedTimes];
-    for (let i = fromIndex; i < toIndex; i++) {
+    for (let i = fromIndex; i <= toIndex; i++) {
       let item = items[i];
       item = false;
       items[i] = item;
@@ -171,21 +124,8 @@ const Calendar: React.FC<CalendarProps> = ({
     }
   };
 
-  const getReservationsForSection = () => {
-    axios
-      .get(`/reservation/${section.section_id}/section`)
-      .then((response) => {
-        console.log(response);
-        setReservations(response.data['reservations']);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  //"/{sectionId}/section/{from}/{to}"
   const getReservationForSectionDate = () => {
-    const dateFormat = `${date.getFullYear()}-${
-      date.getMonth() + 1
-    }-${date.getDate()}`;
+    const dateFormat = TimeFunctions.getDateFormat(date);
     const from: string = dateFormat + ` 07:30:00.0`;
     const to: string = dateFormat + ` 19:00:00.0`;
     const fromDate = new Date(from);
@@ -230,7 +170,7 @@ const Calendar: React.FC<CalendarProps> = ({
       }
       setBookedTimes(items);
     } else {
-      updateBookedTimesFromToFalse(0, length);
+      updateBookedTimesFromToFalse(0, length - 1);
     }
   }, [reservations, date, section]);
 
@@ -255,16 +195,14 @@ const Calendar: React.FC<CalendarProps> = ({
         index={key}
         updateIsMarkedArr={(index: number) => updateIsMarkedArr(index)}
         updateSelectedTimes={updateSelectedTimes}
-        getTimeFromString={(str: string) => getTimeFromString(str)}
         times={times}
         date={date}
         bookedTimes={bookedTimes}
-        setBookedTimes={setBookedTimes}
-        updateBookedTimesFromTo={(fromIndex: number, toIndex: number) =>
-          updateBookedTimesFromToFalse(fromIndex, toIndex)
-        }
         noMarked={noMarked}
         setNoMarked={setNoMarked}
+        updateIsMarkedArrFromTo={(fromIndex: number, toIndex: number) =>
+          updateIsMarkedArrFromTo(fromIndex, toIndex)
+        }
       />
     );
   });
@@ -324,10 +262,7 @@ const Calendar: React.FC<CalendarProps> = ({
               times={times}
               selectedTimes={SortFunctions.sortSelectedTimes(selectedTimes)}
               setSelectedTimes={setSelectedTimes}
-              isMarkedArr={isMarkedArr}
-              setIsMarkedArr={setIsMarkedArr}
               updateIsMarkedArr={(index: number) => updateIsMarkedArr(index)}
-              updateSelectedTimes={updateSelectedTimes}
               openPopup={openPopup}
               setOpenPopup={setOpenPopup}
               section={section}

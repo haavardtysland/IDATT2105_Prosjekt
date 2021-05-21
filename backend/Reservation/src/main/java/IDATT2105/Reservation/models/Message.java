@@ -89,6 +89,7 @@ public class Message {
     return
         "{" +
             "\n\"messageId\": " + messageId + "," +
+            "\n\"sectionId\": " + section.getSectionId() + "," +
             "\n \"user\": " + user.toJSON() + "," +
             "\n \"message\":" + '\"' + message + '\"' + "," +
             "\n \"timecreated\":" + (timeCreated == null ? "null" : timeCreated.getTime()) +

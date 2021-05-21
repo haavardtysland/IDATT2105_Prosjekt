@@ -40,6 +40,7 @@ function MainPage() {
   const [rooms, setRooms] = useState<Room[]>();
   const history = useHistory();
   const { setRoom } = useContext(Context.RoomContext);
+  const { setDate } = useContext(Context.DateContext);
 
   const getAllRooms = () => {
     axios.get('/room').then((response) => {
@@ -56,7 +57,8 @@ function MainPage() {
           if (response.data.error) {
             alert(response.data.error);
           }
-        });
+        })
+        .then(() => setDate(new Date(fromTime)));
     } else {
       alert('Alle felter må fylles ut');
     }
