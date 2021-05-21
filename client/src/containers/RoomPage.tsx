@@ -17,6 +17,11 @@ import Stats from '../components/stats_components/Stats';
 import axios from '../axios';
 import { Autocomplete } from '@material-ui/lab';
 import ChatIcon from '@material-ui/icons/Chat';
+import {
+  KeyboardDatePicker,
+  MuiPickersUtilsProvider,
+} from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
 
 const StyledHeader = styled.h1`
@@ -57,6 +62,17 @@ const RoomPage: React.FC = () => {
     }
   };
 
+  const onChangeDate = (event: Date | null) => {
+    if (event) {
+      const dato: Date = new Date(
+        event.getFullYear(),
+        event.getMonth(),
+        event.getDate()
+      );
+      setSelectedDate(dato);
+    }
+  };
+
   useEffect(() => {
     if (room['room_id'] === -1) {
       const pathName: string[] = window.location.pathname.split('/');
@@ -83,7 +99,7 @@ const RoomPage: React.FC = () => {
 
       <div style={{ display: 'flex' }}>
         <Autocomplete
-          style={{ marginTop: '3rem', width: '20%', marginLeft: '20%' }}
+          style={{ marginTop: '5%', width: '15%', marginLeft: '31%' }}
           options={room.sections}
           getOptionLabel={(sec: any) => sec.section_name}
           onChange={onValueChange}
@@ -91,17 +107,17 @@ const RoomPage: React.FC = () => {
             <TextField {...params} label="Seksjon" variant="outlined" />
           )}
         />
-        <TextField
-          id="date"
-          label="Dato"
-          type="date"
-          style={{ marginTop: '3rem', marginLeft: '20%' }}
-          defaultValue={new Date()}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          onChange={handleChangeDate}
-        />
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <KeyboardDatePicker
+            style={{ margin: '5% 0 0 7%', width: '15%' }}
+            inputVariant="outlined"
+            minDate={new Date()}
+            value={selectedDate}
+            placeholder=""
+            onChange={(date) => onChangeDate(date)}
+            format="MM/dd/yyyy"
+          />
+        </MuiPickersUtilsProvider>
         <Button
           style={{ marginTop: '3rem', marginLeft: '4%', padding: '2rem' }}
           onClick={() => setOpenChat(!openChat)}

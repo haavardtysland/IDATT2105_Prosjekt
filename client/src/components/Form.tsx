@@ -67,6 +67,7 @@ function Form({ changeFromTime, changeToTime, changeMinCapacity }: Props) {
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <KeyboardDatePicker
           inputVariant="outlined"
+          minDate={new Date()}
           value={new Date(date)}
           placeholder=""
           onChange={(date) => onChangeDate(date)}
