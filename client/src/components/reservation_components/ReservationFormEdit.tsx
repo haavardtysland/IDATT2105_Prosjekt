@@ -173,7 +173,7 @@ const ReservationFormEdit: React.FC<ReservationFormEditProps> = ({
     <div>
       <Typography>
         {currentUser.userId !== -1 &&
-          currentUser.firstName + ' ' + currentUser.surname + ' '}
+          reservation.user.firstName + ' ' + reservation.user.surname + ' '}
         har reservert de følgdende tidene:
       </Typography>
       <ul>
