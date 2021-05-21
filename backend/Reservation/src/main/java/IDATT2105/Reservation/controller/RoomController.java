@@ -65,15 +65,10 @@ public class RoomController {
             section.setRoom(room);
             room.addSection(section);
         }
-
-        ArrayList<Section> sections = toSectionList(sectionList, room);
-        if(sections == null) {
-            log.info("Capacity is full");
-            header.add("STATUS", "400 BAD REQUEST");
-            body.put("error", "Ikke nok kapasitet i rommet til alle seksjonene");
-            return ResponseEntity.ok().headers(header).body(formatJson(body));
+        else {
+            ArrayList<Section> sections = toSectionList(sectionList, room);
+            room.setSections(sections);
         }
-        room.setSections(sections);
         boolean result = roomService.addRoom(room);
         if(result){
             log.info("Posted room successfully");
@@ -99,7 +94,9 @@ public class RoomController {
             Section newSection = new Section();
             newSection.setSectionName(section.get("section_name").toString());
             newSection.setCapacity(Integer.parseInt(section.get("capacity").toString()));
-            if (Integer.parseInt(section.get("section_id").toString()) == 0) {
+            if (section.get("section_id") == null) {
+                newSection.setSectionId(getRandomID());
+            } else if(Integer.parseInt(section.get("section_id").toString()) == 0) {
                 newSection.setSectionId(getRandomID());
             } else {
                 newSection.setSectionId(Integer.parseInt(section.get("section_id").toString()));

@@ -354,7 +354,7 @@ public class ReservationControllerTest {
 		JSONObject idJson = (JSONObject) parser.parse(room_id);
 		assert(room1.getRoom_id() == idJson.getAsNumber("room_id").intValue());
 	}
-	
+
 	@Test
 	@Order(13)
 	public void getSectionTest() throws Exception{
